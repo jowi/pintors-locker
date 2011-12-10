@@ -1,0 +1,5 @@
+H:\pintor_itmm\itmm\itmm\bin\itmm.dll
+H:\pintor_itmm\itmm\itmm\bin\itmm.pdb
+H:\pintor_itmm\itmm\itmm\obj\Debug\ResolveAssemblyReference.cache
+H:\pintor_itmm\itmm\itmm\obj\Debug\itmm.dll
+H:\pintor_itmm\itmm\itmm\obj\Debug\itmm.pdb
