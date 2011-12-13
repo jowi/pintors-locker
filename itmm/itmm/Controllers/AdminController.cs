@@ -16,6 +16,10 @@ namespace itmm.Controllers
             ViewBag.MyMessage = "Welcome to administrator page <- Message brought to you by ViewBag";
             return View();
         }
+        public ActionResult AccordionTest()
+        {
+            return PartialView();
+        }
 
     }
 }

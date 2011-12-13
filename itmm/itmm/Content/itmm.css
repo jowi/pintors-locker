@@ -1,2 +1,82 @@
-﻿body {
+﻿body{
+   font-family:Arial, sans-serif;
+   margin:0;
+   /*overflow-y: scroll;*/
 }
+#wrapper{
+/*   height:100%;
+   width:100%;*/
+}
+/*******NAV**********/
+#nav{
+    background-color:#E6E6E6;
+    width:200px;
+    height:100%;
+    color:white;/*#EFF2FB;*//*#BDBDBD;*/
+    position:absolute;
+}
+#nav h1{
+    margin:0;
+    padding: 15px 15px 10px 0;
+    text-align: right;
+    letter-spacing: 2px;
+    
+}
+#nav h1 a{
+    color: inherit;
+    font: inherit;
+    text-decoration:none;
+}
+#nav ul{
+    list-style:none;
+    padding:0;
+
+}
+#nav ul li{
+}
+#nav ul li a{
+    height: 30px;
+    text-decoration: none;
+    text-align: right;
+    color:#BDBDBD;
+    display:block;
+    padding: 8px 15px 0 0;
+    font-weight: 600;
+    letter-spacing: 4px;
+}
+.light{
+   background-color:white;
+   border:solid 1px white;
+}
+
+/*******CONTENT**********/
+
+#loading{
+   margin: 130px 0 0 400px;
+}
+#content{
+   height:100%;
+   width: 85%;
+   position: relative;
+   left: 200px;
+   background-color:white;
+}
+#usrnav{
+   height:30px;
+   border-bottom: dashed 1px #E6E6E6;   
+}
+#usrnav span{
+   margin: 5px 0 5px 0;
+   padding: 0 40px 0 0;
+   color:green;
+   float:right;
+}
+#accholder{
+   width: 900px;
+   margin: 50px 0 0 100px;
+}
+#modal_diag{
+   
+}
+
+

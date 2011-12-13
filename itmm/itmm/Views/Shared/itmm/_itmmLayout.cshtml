@@ -1,15 +1,77 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <title>@ViewBag.Title</title>
-
-    <link href="../../Content/itmm.css" rel="stylesheet" type="text/css" />
-
+    <link href="../../../Content/itmm.css" rel="stylesheet" type="text/css" />
+    <link href="../../../Content/themes/smoothness/smoothness/jquery-ui-1.8.16.custom.css" rel="Stylesheet" type="text/css"/>
+    <script src="../../../Scripts/itmm_js/jquery-1.6.2.min.js" type="text/javascript"></script>
+    <script src="../../../Scripts/itmm_js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+    <style type="text/css">
+        #accordion, #modal{
+            font: 15px "Trebuchet MS" , sans-serif;
+        }
+        .ui-dialog-title{
+            font: 15px "Trebuchet MS" , sans-serif;
+        }
+    </style>
 </head>
 <body>
-    <div>
-        @RenderBody()
+    <div id="wrapper">
+        <div id="nav">
+            <h1>
+               <a href="/Admin/Index">itmm</a></h1>
+            <ul>
+                <li><a href="#">ADL</a></li>
+                <li><a href="#">CBELS</a></li>
+                <li><a href="#">MIT</a></li>
+                <li><a href="#">SAL</a></li>
+            </ul>
+        </div>
+        <!--end nav-->
+        <div id="content">
+            <div id="usrnav">
+                <span>Welcome ADMIN!,<a href="#">log out</a></span>
+            </div>
+            <div id="accholder">
+            <span class="ui-corner-tl">dd</span>
+                   @RenderBody()
+            </div>
+            <!--end accholder-->
+        </div>
+        <!--end content-->
     </div>
+    <!--end wrapper-->
 </body>
+<script type="text/javascript">
+          $(document).ready(function () {
+              $("ul > li > a").click(function () {
+
+                  $("ul > li > a").removeClass("light").css("color", "");
+                  $(this).addClass("light").css("color", "#F7BE81");
+
+
+                  $(this).fadeIn("slow");
+
+
+                  $("#accholder").empty().html('<img id="loading" src="../Content/images/loading3.gif" />');
+                  $("#accholder").load('/Admin/AccordionTest #accord',
+				function () {
+				    //alert('Load was performed.');
+				    //ACCORDION
+				    $("#accordion").accordion({ animated: 'bounceslide' });
+
+				    //MODAL
+				    $("#modal_diag").click(function () {
+				        $("#modal").css("visibility", "visible");
+				        $("#modal").dialog({
+				            modal: true, position: [520, 200],
+				            show: 'slide', hide: 'slide'
+				        });
+				    })/*.dialog*/
+				}
+				);		
+              }); /*.click*/
+
+          }); /*.ready*/       
+</script>
 </html>
