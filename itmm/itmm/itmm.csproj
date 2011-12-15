@@ -14,6 +14,7 @@
     <AssemblyName>itmm</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -67,6 +68,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\pintor.mdf" />
+    <Content Include="App_Data\pintor_log.ldf">
+      <DependentUpon>pintor.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\images\loading3.gif" />
     <Content Include="Content\itmm.css" />
     <Content Include="Content\themes\smoothness\smoothness\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -138,9 +143,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Views\Shared\itmm\_itmmLayout.cshtml" />
   </ItemGroup>
