@@ -13,3 +13,8 @@ C:\Users\rohit\Desktop\pintors-locker\itmm\itmm\bin\itmm.pdb
 C:\Users\rohit\Desktop\pintors-locker\itmm\itmm\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\rohit\Desktop\pintors-locker\itmm\itmm\obj\Debug\itmm.dll
 C:\Users\rohit\Desktop\pintors-locker\itmm\itmm\obj\Debug\itmm.pdb
+H:\pintors-locker\itmm\itmm\bin\itmm.dll
+H:\pintors-locker\itmm\itmm\bin\itmm.pdb
+H:\pintors-locker\itmm\itmm\obj\Debug\ResolveAssemblyReference.cache
+H:\pintors-locker\itmm\itmm\obj\Debug\itmm.dll
+H:\pintors-locker\itmm\itmm\obj\Debug\itmm.pdb
