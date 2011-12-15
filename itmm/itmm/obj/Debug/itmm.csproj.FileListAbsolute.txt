@@ -8,3 +8,8 @@ H:\pintors_locker\itmm\itmm\bin\itmm.pdb
 H:\pintors_locker\itmm\itmm\obj\Debug\ResolveAssemblyReference.cache
 H:\pintors_locker\itmm\itmm\obj\Debug\itmm.dll
 H:\pintors_locker\itmm\itmm\obj\Debug\itmm.pdb
+C:\Users\rohit\Desktop\pintors-locker\itmm\itmm\bin\itmm.dll
+C:\Users\rohit\Desktop\pintors-locker\itmm\itmm\bin\itmm.pdb
+C:\Users\rohit\Desktop\pintors-locker\itmm\itmm\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\rohit\Desktop\pintors-locker\itmm\itmm\obj\Debug\itmm.dll
+C:\Users\rohit\Desktop\pintors-locker\itmm\itmm\obj\Debug\itmm.pdb
