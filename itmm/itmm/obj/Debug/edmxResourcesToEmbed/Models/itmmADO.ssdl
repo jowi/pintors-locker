@@ -19,8 +19,10 @@
     <EntitySet Name="Income" EntityType="pintorModel.Store.Income" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="InventoryCost" EntityType="pintorModel.Store.InventoryCost" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Laboratory" EntityType="pintorModel.Store.Laboratory" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="LaboratoryKiosk" EntityType="pintorModel.Store.LaboratoryKiosk" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="LaboratoryUser" EntityType="pintorModel.Store.LaboratoryUser" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Laboratory_Equipment" EntityType="pintorModel.Store.Laboratory_Equipment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Laboratory_Material" EntityType="pintorModel.Store.Laboratory_Material" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Laboratory_Room" EntityType="pintorModel.Store.Laboratory_Room" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Laboratory_User" EntityType="pintorModel.Store.Laboratory_User" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Liability" EntityType="pintorModel.Store.Liability" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Material" EntityType="pintorModel.Store.Material" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Room" EntityType="pintorModel.Store.Room" store:Type="Tables" Schema="dbo" />
@@ -99,29 +101,37 @@
       <End Role="Equipment" EntitySet="Equipment" />
       <End Role="InventoryCost" EntitySet="InventoryCost" />
     </AssociationSet>
-    <AssociationSet Name="FK_Laboratory_LaboratoryKiosk" Association="pintorModel.Store.FK_Laboratory_LaboratoryKiosk">
-      <End Role="LaboratoryKiosk" EntitySet="LaboratoryKiosk" />
-      <End Role="Laboratory" EntitySet="Laboratory" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Laboratory_Room" Association="pintorModel.Store.FK_Laboratory_Room">
-      <End Role="Room" EntitySet="Room" />
-      <End Role="Laboratory" EntitySet="Laboratory" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LaboratoryKiosk_Equipment" Association="pintorModel.Store.FK_LaboratoryKiosk_Equipment">
+    <AssociationSet Name="FK_Laboratory_Equipment_Equipment" Association="pintorModel.Store.FK_Laboratory_Equipment_Equipment">
       <End Role="Equipment" EntitySet="Equipment" />
-      <End Role="LaboratoryKiosk" EntitySet="LaboratoryKiosk" />
+      <End Role="Laboratory_Equipment" EntitySet="Laboratory_Equipment" />
     </AssociationSet>
-    <AssociationSet Name="FK_LaboratoryKiosk_Material" Association="pintorModel.Store.FK_LaboratoryKiosk_Material">
-      <End Role="Material" EntitySet="Material" />
-      <End Role="LaboratoryKiosk" EntitySet="LaboratoryKiosk" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LaboratoryUser_aspnet_Users" Association="pintorModel.Store.FK_LaboratoryUser_aspnet_Users">
-      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-      <End Role="LaboratoryUser" EntitySet="LaboratoryUser" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LaboratoryUser_Laboratory" Association="pintorModel.Store.FK_LaboratoryUser_Laboratory">
+    <AssociationSet Name="FK_Laboratory_Equipment_Laboratory" Association="pintorModel.Store.FK_Laboratory_Equipment_Laboratory">
       <End Role="Laboratory" EntitySet="Laboratory" />
-      <End Role="LaboratoryUser" EntitySet="LaboratoryUser" />
+      <End Role="Laboratory_Equipment" EntitySet="Laboratory_Equipment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Laboratory_Material_Laboratory" Association="pintorModel.Store.FK_Laboratory_Material_Laboratory">
+      <End Role="Laboratory" EntitySet="Laboratory" />
+      <End Role="Laboratory_Material" EntitySet="Laboratory_Material" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Laboratory_Material_Material" Association="pintorModel.Store.FK_Laboratory_Material_Material">
+      <End Role="Material" EntitySet="Material" />
+      <End Role="Laboratory_Material" EntitySet="Laboratory_Material" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Laboratory_Room_Laboratory" Association="pintorModel.Store.FK_Laboratory_Room_Laboratory">
+      <End Role="Laboratory" EntitySet="Laboratory" />
+      <End Role="Laboratory_Room" EntitySet="Laboratory_Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Laboratory_Room_Room" Association="pintorModel.Store.FK_Laboratory_Room_Room">
+      <End Role="Room" EntitySet="Room" />
+      <End Role="Laboratory_Room" EntitySet="Laboratory_Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Laboratory_User_aspnet_Users" Association="pintorModel.Store.FK_Laboratory_User_aspnet_Users">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="Laboratory_User" EntitySet="Laboratory_User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Laboratory_User_Laboratory_User" Association="pintorModel.Store.FK_Laboratory_User_Laboratory_User">
+      <End Role="Laboratory" EntitySet="Laboratory" />
+      <End Role="Laboratory_User" EntitySet="Laboratory_User" />
     </AssociationSet>
     <AssociationSet Name="FK_Liability_StudentInfo" Association="pintorModel.Store.FK_Liability_StudentInfo">
       <End Role="StudentInfo" EntitySet="StudentInfo" />
@@ -335,25 +345,41 @@
       <PropertyRef Name="LaboratoryId" />
     </Key>
     <Property Name="LaboratoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="RoomId" Type="int" Nullable="false" />
+    <Property Name="RoomId" Type="int" />
     <Property Name="LaboratoryDesc" Type="varchar" MaxLength="50" />
     <Property Name="LaboratoryName" Type="varchar" Nullable="false" MaxLength="50" />
   </EntityType>
-  <EntityType Name="LaboratoryKiosk">
+  <EntityType Name="Laboratory_Equipment">
     <Key>
-      <PropertyRef Name="LaboratoryId" />
+      <PropertyRef Name="Laboratory_EquipmentId" />
     </Key>
+    <Property Name="Laboratory_EquipmentId" Type="int" Nullable="false" />
     <Property Name="LaboratoryId" Type="int" Nullable="false" />
-    <Property Name="MaterialId" Type="int" />
-    <Property Name="EquipmentId" Type="int" />
+    <Property Name="EquipmentId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="LaboratoryUser">
+  <EntityType Name="Laboratory_Material">
     <Key>
-      <PropertyRef Name="LaboratoryUserId" />
+      <PropertyRef Name="Laboratory_MaterialId" />
     </Key>
+    <Property Name="Laboratory_MaterialId" Type="int" Nullable="false" />
+    <Property Name="LaboratoryId" Type="int" Nullable="false" />
+    <Property Name="MaterialId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Laboratory_Room">
+    <Key>
+      <PropertyRef Name="Laboratory_RoomId" />
+    </Key>
+    <Property Name="Laboratory_RoomId" Type="int" Nullable="false" />
+    <Property Name="LaboratoryId" Type="int" Nullable="false" />
+    <Property Name="RoomId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Laboratory_User">
+    <Key>
+      <PropertyRef Name="Laboratory_UserId" />
+    </Key>
+    <Property Name="Laboratory_UserId" Type="int" Nullable="false" />
     <Property Name="LaboratoryId" Type="int" Nullable="false" />
     <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="LaboratoryUserId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Liability">
     <Key>
@@ -629,74 +655,98 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Laboratory_LaboratoryKiosk">
-    <End Role="LaboratoryKiosk" Type="pintorModel.Store.LaboratoryKiosk" Multiplicity="1" />
-    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="LaboratoryKiosk">
-        <PropertyRef Name="LaboratoryId" />
-      </Principal>
-      <Dependent Role="Laboratory">
-        <PropertyRef Name="LaboratoryId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Laboratory_Room">
-    <End Role="Room" Type="pintorModel.Store.Room" Multiplicity="1" />
-    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Room">
-        <PropertyRef Name="RoomId" />
-      </Principal>
-      <Dependent Role="Laboratory">
-        <PropertyRef Name="RoomId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LaboratoryKiosk_Equipment">
-    <End Role="Equipment" Type="pintorModel.Store.Equipment" Multiplicity="0..1" />
-    <End Role="LaboratoryKiosk" Type="pintorModel.Store.LaboratoryKiosk" Multiplicity="*" />
+  <Association Name="FK_Laboratory_Equipment_Equipment">
+    <End Role="Equipment" Type="pintorModel.Store.Equipment" Multiplicity="1" />
+    <End Role="Laboratory_Equipment" Type="pintorModel.Store.Laboratory_Equipment" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Equipment">
         <PropertyRef Name="EquipmentId" />
       </Principal>
-      <Dependent Role="LaboratoryKiosk">
+      <Dependent Role="Laboratory_Equipment">
         <PropertyRef Name="EquipmentId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_LaboratoryKiosk_Material">
-    <End Role="Material" Type="pintorModel.Store.Material" Multiplicity="0..1" />
-    <End Role="LaboratoryKiosk" Type="pintorModel.Store.LaboratoryKiosk" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Material">
-        <PropertyRef Name="MaterialId" />
-      </Principal>
-      <Dependent Role="LaboratoryKiosk">
-        <PropertyRef Name="MaterialId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LaboratoryUser_aspnet_Users">
-    <End Role="aspnet_Users" Type="pintorModel.Store.aspnet_Users" Multiplicity="1" />
-    <End Role="LaboratoryUser" Type="pintorModel.Store.LaboratoryUser" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="aspnet_Users">
-        <PropertyRef Name="UserId" />
-      </Principal>
-      <Dependent Role="LaboratoryUser">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LaboratoryUser_Laboratory">
+  <Association Name="FK_Laboratory_Equipment_Laboratory">
     <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1" />
-    <End Role="LaboratoryUser" Type="pintorModel.Store.LaboratoryUser" Multiplicity="*" />
+    <End Role="Laboratory_Equipment" Type="pintorModel.Store.Laboratory_Equipment" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Laboratory">
         <PropertyRef Name="LaboratoryId" />
       </Principal>
-      <Dependent Role="LaboratoryUser">
+      <Dependent Role="Laboratory_Equipment">
+        <PropertyRef Name="LaboratoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Laboratory_Material_Laboratory">
+    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1" />
+    <End Role="Laboratory_Material" Type="pintorModel.Store.Laboratory_Material" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratory">
+        <PropertyRef Name="LaboratoryId" />
+      </Principal>
+      <Dependent Role="Laboratory_Material">
+        <PropertyRef Name="LaboratoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Laboratory_Material_Material">
+    <End Role="Material" Type="pintorModel.Store.Material" Multiplicity="1" />
+    <End Role="Laboratory_Material" Type="pintorModel.Store.Laboratory_Material" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Material">
+        <PropertyRef Name="MaterialId" />
+      </Principal>
+      <Dependent Role="Laboratory_Material">
+        <PropertyRef Name="MaterialId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Laboratory_Room_Laboratory">
+    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1" />
+    <End Role="Laboratory_Room" Type="pintorModel.Store.Laboratory_Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratory">
+        <PropertyRef Name="LaboratoryId" />
+      </Principal>
+      <Dependent Role="Laboratory_Room">
+        <PropertyRef Name="LaboratoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Laboratory_Room_Room">
+    <End Role="Room" Type="pintorModel.Store.Room" Multiplicity="1" />
+    <End Role="Laboratory_Room" Type="pintorModel.Store.Laboratory_Room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RoomId" />
+      </Principal>
+      <Dependent Role="Laboratory_Room">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Laboratory_User_aspnet_Users">
+    <End Role="aspnet_Users" Type="pintorModel.Store.aspnet_Users" Multiplicity="1" />
+    <End Role="Laboratory_User" Type="pintorModel.Store.Laboratory_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Laboratory_User">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Laboratory_User_Laboratory_User">
+    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1" />
+    <End Role="Laboratory_User" Type="pintorModel.Store.Laboratory_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratory">
+        <PropertyRef Name="LaboratoryId" />
+      </Principal>
+      <Dependent Role="Laboratory_User">
         <PropertyRef Name="LaboratoryId" />
       </Dependent>
     </ReferentialConstraint>

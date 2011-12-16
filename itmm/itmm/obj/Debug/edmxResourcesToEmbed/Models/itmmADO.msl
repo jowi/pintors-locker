@@ -206,31 +206,30 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Laboratories">
-      <EntityTypeMapping TypeName="pintorModel.Laboratory">
-        <MappingFragment StoreEntitySet="Laboratory">
-          <ScalarProperty Name="LaboratoryName" ColumnName="LaboratoryName" />
-          <ScalarProperty Name="LaboratoryDesc" ColumnName="LaboratoryDesc" />
-          <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+    <EntitySetMapping Name="Laboratory_Equipment">
+      <EntityTypeMapping TypeName="pintorModel.Laboratory_Equipment">
+        <MappingFragment StoreEntitySet="Laboratory_Equipment">
+          <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
           <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
+          <ScalarProperty Name="Laboratory_EquipmentId" ColumnName="Laboratory_EquipmentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="LaboratoryKiosks">
-      <EntityTypeMapping TypeName="pintorModel.LaboratoryKiosk">
-        <MappingFragment StoreEntitySet="LaboratoryKiosk">
-          <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
+    <EntitySetMapping Name="Laboratory_Material">
+      <EntityTypeMapping TypeName="pintorModel.Laboratory_Material">
+        <MappingFragment StoreEntitySet="Laboratory_Material">
           <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
           <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
+          <ScalarProperty Name="Laboratory_MaterialId" ColumnName="Laboratory_MaterialId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="LaboratoryUsers">
-      <EntityTypeMapping TypeName="pintorModel.LaboratoryUser">
-        <MappingFragment StoreEntitySet="LaboratoryUser">
-          <ScalarProperty Name="LaboratoryUserId" ColumnName="LaboratoryUserId" />
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
+    <EntitySetMapping Name="Laboratory_Room">
+      <EntityTypeMapping TypeName="pintorModel.Laboratory_Room">
+        <MappingFragment StoreEntitySet="Laboratory_Room">
+          <ScalarProperty Name="RoomId" ColumnName="RoomId" />
           <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
+          <ScalarProperty Name="Laboratory_RoomId" ColumnName="Laboratory_RoomId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -306,5 +305,24 @@
         <ScalarProperty Name="RoleId" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="Laboratory_User">
+      <EntityTypeMapping TypeName="pintorModel.Laboratory_User">
+        <MappingFragment StoreEntitySet="Laboratory_User">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
+          <ScalarProperty Name="Laboratory_UserId" ColumnName="Laboratory_UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Laboratories">
+      <EntityTypeMapping TypeName="pintorModel.Laboratory">
+        <MappingFragment StoreEntitySet="Laboratory">
+          <ScalarProperty Name="LaboratoryName" ColumnName="LaboratoryName" />
+          <ScalarProperty Name="LaboratoryDesc" ColumnName="LaboratoryDesc" />
+          <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
