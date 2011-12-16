@@ -1,0 +1,745 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="pintorModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="pintorEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="aspnet_Applications" EntityType="pintorModel.aspnet_Applications" />
+    <EntitySet Name="aspnet_Membership" EntityType="pintorModel.aspnet_Membership" />
+    <EntitySet Name="aspnet_Paths" EntityType="pintorModel.aspnet_Paths" />
+    <EntitySet Name="aspnet_PersonalizationAllUsers" EntityType="pintorModel.aspnet_PersonalizationAllUsers" />
+    <EntitySet Name="aspnet_PersonalizationPerUser" EntityType="pintorModel.aspnet_PersonalizationPerUser" />
+    <EntitySet Name="aspnet_Profile" EntityType="pintorModel.aspnet_Profile" />
+    <EntitySet Name="aspnet_Roles" EntityType="pintorModel.aspnet_Roles" />
+    <EntitySet Name="aspnet_SchemaVersions" EntityType="pintorModel.aspnet_SchemaVersions" />
+    <EntitySet Name="aspnet_Users" EntityType="pintorModel.aspnet_Users" />
+    <EntitySet Name="aspnet_WebEvent_Events" EntityType="pintorModel.aspnet_WebEvent_Events" />
+    <EntitySet Name="Classes" EntityType="pintorModel.Class" />
+    <EntitySet Name="Dispenses" EntityType="pintorModel.Dispense" />
+    <EntitySet Name="Equipments" EntityType="pintorModel.Equipment" />
+    <EntitySet Name="Events" EntityType="pintorModel.Event" />
+    <EntitySet Name="Incomes" EntityType="pintorModel.Income" />
+    <EntitySet Name="InventoryCosts" EntityType="pintorModel.InventoryCost" />
+    <EntitySet Name="Laboratories" EntityType="pintorModel.Laboratory" />
+    <EntitySet Name="LaboratoryKiosks" EntityType="pintorModel.LaboratoryKiosk" />
+    <EntitySet Name="LaboratoryUsers" EntityType="pintorModel.LaboratoryUser" />
+    <EntitySet Name="Liabilities" EntityType="pintorModel.Liability" />
+    <EntitySet Name="Materials" EntityType="pintorModel.Material" />
+    <EntitySet Name="Rooms" EntityType="pintorModel.Room" />
+    <EntitySet Name="StudentInfoes" EntityType="pintorModel.StudentInfo" />
+    <EntitySet Name="sysdiagrams" EntityType="pintorModel.sysdiagram" />
+    <EntitySet Name="Tables" EntityType="pintorModel.Table" />
+    <AssociationSet Name="FK__aspnet_Me__Appli__66603565" Association="pintorModel.FK__aspnet_Me__Appli__66603565">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pa__Appli__1F98B2C1" Association="pintorModel.FK__aspnet_Pa__Appli__1F98B2C1">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Ro__Appli__08B54D69" Association="pintorModel.FK__aspnet_Ro__Appli__08B54D69">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Us__Appli__52593CB8" Association="pintorModel.FK__aspnet_Us__Appli__52593CB8">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Me__UserI__6754599E" Association="pintorModel.FK__aspnet_Me__UserI__6754599E">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__PathI__2739D489" Association="pintorModel.FK__aspnet_Pe__PathI__2739D489">
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+      <End Role="aspnet_PersonalizationAllUsers" EntitySet="aspnet_PersonalizationAllUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__PathI__2CF2ADDF" Association="pintorModel.FK__aspnet_Pe__PathI__2CF2ADDF">
+      <End Role="aspnet_Paths" EntitySet="aspnet_Paths" />
+      <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pe__UserI__2DE6D218" Association="pintorModel.FK__aspnet_Pe__UserI__2DE6D218">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_PersonalizationPerUser" EntitySet="aspnet_PersonalizationPerUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK__aspnet_Pr__UserI__7D439ABD" Association="pintorModel.FK__aspnet_Pr__UserI__7D439ABD">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="aspnet_Profile" EntitySet="aspnet_Profile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LaboratoryUser_aspnet_Users" Association="pintorModel.FK_LaboratoryUser_aspnet_Users">
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+      <End Role="LaboratoryUser" EntitySet="LaboratoryUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Group_Class" Association="pintorModel.FK_Group_Class">
+      <End Role="Class" EntitySet="Classes" />
+      <End Role="Table" EntitySet="Tables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dispense_Equipment" Association="pintorModel.FK_Dispense_Equipment">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="Dispense" EntitySet="Dispenses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dispense_Room" Association="pintorModel.FK_Dispense_Room">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="Dispense" EntitySet="Dispenses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dispense_Table" Association="pintorModel.FK_Dispense_Table">
+      <End Role="Table" EntitySet="Tables" />
+      <End Role="Dispense" EntitySet="Dispenses" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InventoryCost_Equipment" Association="pintorModel.FK_InventoryCost_Equipment">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="InventoryCost" EntitySet="InventoryCosts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LaboratoryKiosk_Equipment" Association="pintorModel.FK_LaboratoryKiosk_Equipment">
+      <End Role="Equipment" EntitySet="Equipments" />
+      <End Role="LaboratoryKiosk" EntitySet="LaboratoryKiosks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Income_StudentInfo" Association="pintorModel.FK_Income_StudentInfo">
+      <End Role="StudentInfo" EntitySet="StudentInfoes" />
+      <End Role="Income" EntitySet="Incomes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Laboratory_LaboratoryKiosk" Association="pintorModel.FK_Laboratory_LaboratoryKiosk">
+      <End Role="LaboratoryKiosk" EntitySet="LaboratoryKiosks" />
+      <End Role="Laboratory" EntitySet="Laboratories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Laboratory_Room" Association="pintorModel.FK_Laboratory_Room">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="Laboratory" EntitySet="Laboratories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LaboratoryUser_Laboratory" Association="pintorModel.FK_LaboratoryUser_Laboratory">
+      <End Role="Laboratory" EntitySet="Laboratories" />
+      <End Role="LaboratoryUser" EntitySet="LaboratoryUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LaboratoryKiosk_Material" Association="pintorModel.FK_LaboratoryKiosk_Material">
+      <End Role="Material" EntitySet="Materials" />
+      <End Role="LaboratoryKiosk" EntitySet="LaboratoryKiosks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Liability_StudentInfo" Association="pintorModel.FK_Liability_StudentInfo">
+      <End Role="StudentInfo" EntitySet="StudentInfoes" />
+      <End Role="Liability" EntitySet="Liabilities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Room_Room" Association="pintorModel.FK_Room_Room">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="Room1" EntitySet="Rooms" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Group_StudentInfo" Association="pintorModel.FK_Group_StudentInfo">
+      <End Role="StudentInfo" EntitySet="StudentInfoes" />
+      <End Role="Table" EntitySet="Tables" />
+    </AssociationSet>
+    <AssociationSet Name="aspnet_UsersInRoles" Association="pintorModel.aspnet_UsersInRoles">
+      <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="aspnet_Applications">
+    <Key>
+      <PropertyRef Name="ApplicationId" />
+    </Key>
+    <Property Type="String" Name="ApplicationName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LoweredApplicationName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="Guid" Name="ApplicationId" Nullable="false" />
+    <Property Type="String" Name="Description" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="aspnet_Membership" Relationship="pintorModel.FK__aspnet_Me__Appli__66603565" FromRole="aspnet_Applications" ToRole="aspnet_Membership" />
+    <NavigationProperty Name="aspnet_Paths" Relationship="pintorModel.FK__aspnet_Pa__Appli__1F98B2C1" FromRole="aspnet_Applications" ToRole="aspnet_Paths" />
+    <NavigationProperty Name="aspnet_Roles" Relationship="pintorModel.FK__aspnet_Ro__Appli__08B54D69" FromRole="aspnet_Applications" ToRole="aspnet_Roles" />
+    <NavigationProperty Name="aspnet_Users" Relationship="pintorModel.FK__aspnet_Us__Appli__52593CB8" FromRole="aspnet_Applications" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Type="Guid" Name="ApplicationId" Nullable="false" />
+    <Property Type="Guid" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="PasswordFormat" Nullable="false" />
+    <Property Type="String" Name="PasswordSalt" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MobilePIN" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LoweredEmail" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PasswordQuestion" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PasswordAnswer" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsApproved" Nullable="false" />
+    <Property Type="Boolean" Name="IsLockedOut" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Nullable="false" />
+    <Property Type="DateTime" Name="LastLoginDate" Nullable="false" />
+    <Property Type="DateTime" Name="LastPasswordChangedDate" Nullable="false" />
+    <Property Type="DateTime" Name="LastLockoutDate" Nullable="false" />
+    <Property Type="Int32" Name="FailedPasswordAttemptCount" Nullable="false" />
+    <Property Type="DateTime" Name="FailedPasswordAttemptWindowStart" Nullable="false" />
+    <Property Type="Int32" Name="FailedPasswordAnswerAttemptCount" Nullable="false" />
+    <Property Type="DateTime" Name="FailedPasswordAnswerAttemptWindowStart" Nullable="false" />
+    <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="pintorModel.FK__aspnet_Me__Appli__66603565" FromRole="aspnet_Membership" ToRole="aspnet_Applications" />
+    <NavigationProperty Name="aspnet_Users" Relationship="pintorModel.FK__aspnet_Me__UserI__6754599E" FromRole="aspnet_Membership" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_Paths">
+    <Key>
+      <PropertyRef Name="PathId" />
+    </Key>
+    <Property Type="Guid" Name="ApplicationId" Nullable="false" />
+    <Property Type="Guid" Name="PathId" Nullable="false" />
+    <Property Type="String" Name="Path" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LoweredPath" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="pintorModel.FK__aspnet_Pa__Appli__1F98B2C1" FromRole="aspnet_Paths" ToRole="aspnet_Applications" />
+    <NavigationProperty Name="aspnet_PersonalizationAllUsers" Relationship="pintorModel.FK__aspnet_Pe__PathI__2739D489" FromRole="aspnet_Paths" ToRole="aspnet_PersonalizationAllUsers" />
+    <NavigationProperty Name="aspnet_PersonalizationPerUser" Relationship="pintorModel.FK__aspnet_Pe__PathI__2CF2ADDF" FromRole="aspnet_Paths" ToRole="aspnet_PersonalizationPerUser" />
+  </EntityType>
+  <EntityType Name="aspnet_PersonalizationAllUsers">
+    <Key>
+      <PropertyRef Name="PathId" />
+    </Key>
+    <Property Type="Guid" Name="PathId" Nullable="false" />
+    <Property Type="Binary" Name="PageSettings" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Type="DateTime" Name="LastUpdatedDate" Nullable="false" />
+    <NavigationProperty Name="aspnet_Paths" Relationship="pintorModel.FK__aspnet_Pe__PathI__2739D489" FromRole="aspnet_PersonalizationAllUsers" ToRole="aspnet_Paths" />
+  </EntityType>
+  <EntityType Name="aspnet_PersonalizationPerUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="Guid" Name="PathId" />
+    <Property Type="Guid" Name="UserId" />
+    <Property Type="Binary" Name="PageSettings" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Type="DateTime" Name="LastUpdatedDate" Nullable="false" />
+    <NavigationProperty Name="aspnet_Paths" Relationship="pintorModel.FK__aspnet_Pe__PathI__2CF2ADDF" FromRole="aspnet_PersonalizationPerUser" ToRole="aspnet_Paths" />
+    <NavigationProperty Name="aspnet_Users" Relationship="pintorModel.FK__aspnet_Pe__UserI__2DE6D218" FromRole="aspnet_PersonalizationPerUser" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_Profile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Type="Guid" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="PropertyNames" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PropertyValuesString" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Binary" Name="PropertyValuesBinary" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Type="DateTime" Name="LastUpdatedDate" Nullable="false" />
+    <NavigationProperty Name="aspnet_Users" Relationship="pintorModel.FK__aspnet_Pr__UserI__7D439ABD" FromRole="aspnet_Profile" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Type="Guid" Name="ApplicationId" Nullable="false" />
+    <Property Type="Guid" Name="RoleId" Nullable="false" />
+    <Property Type="String" Name="RoleName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LoweredRoleName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="pintorModel.FK__aspnet_Ro__Appli__08B54D69" FromRole="aspnet_Roles" ToRole="aspnet_Applications" />
+    <NavigationProperty Name="aspnet_Users" Relationship="pintorModel.aspnet_UsersInRoles" FromRole="aspnet_Roles" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_SchemaVersions">
+    <Key>
+      <PropertyRef Name="Feature" />
+      <PropertyRef Name="CompatibleSchemaVersion" />
+    </Key>
+    <Property Type="String" Name="Feature" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="CompatibleSchemaVersion" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsCurrentVersion" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Type="Guid" Name="ApplicationId" Nullable="false" />
+    <Property Type="Guid" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LoweredUserName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MobileAlias" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsAnonymous" Nullable="false" />
+    <Property Type="DateTime" Name="LastActivityDate" Nullable="false" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="pintorModel.FK__aspnet_Us__Appli__52593CB8" FromRole="aspnet_Users" ToRole="aspnet_Applications" />
+    <NavigationProperty Name="aspnet_Membership" Relationship="pintorModel.FK__aspnet_Me__UserI__6754599E" FromRole="aspnet_Users" ToRole="aspnet_Membership" />
+    <NavigationProperty Name="aspnet_PersonalizationPerUser" Relationship="pintorModel.FK__aspnet_Pe__UserI__2DE6D218" FromRole="aspnet_Users" ToRole="aspnet_PersonalizationPerUser" />
+    <NavigationProperty Name="aspnet_Profile" Relationship="pintorModel.FK__aspnet_Pr__UserI__7D439ABD" FromRole="aspnet_Users" ToRole="aspnet_Profile" />
+    <NavigationProperty Name="LaboratoryUsers" Relationship="pintorModel.FK_LaboratoryUser_aspnet_Users" FromRole="aspnet_Users" ToRole="LaboratoryUser" />
+    <NavigationProperty Name="aspnet_Roles" Relationship="pintorModel.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
+  </EntityType>
+  <EntityType Name="aspnet_WebEvent_Events">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Type="String" Name="EventId" Nullable="false" MaxLength="32" FixedLength="true" Unicode="false" />
+    <Property Type="DateTime" Name="EventTimeUtc" Nullable="false" />
+    <Property Type="DateTime" Name="EventTime" Nullable="false" />
+    <Property Type="String" Name="EventType" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="EventSequence" Nullable="false" Precision="19" Scale="0" />
+    <Property Type="Decimal" Name="EventOccurrence" Nullable="false" Precision="19" Scale="0" />
+    <Property Type="Int32" Name="EventCode" Nullable="false" />
+    <Property Type="Int32" Name="EventDetailCode" Nullable="false" />
+    <Property Type="String" Name="Message" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ApplicationPath" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ApplicationVirtualPath" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MachineName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="RequestUrl" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ExceptionType" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Details" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Class">
+    <Key>
+      <PropertyRef Name="ClassId" />
+    </Key>
+    <Property Type="Int32" Name="ClassId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="GroupNo" />
+    <Property Type="String" Name="CourseCode" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CourseDescription" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Day" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Schedule" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Instructor" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Tables" Relationship="pintorModel.FK_Group_Class" FromRole="Class" ToRole="Table" />
+  </EntityType>
+  <EntityType Name="Dispense">
+    <Key>
+      <PropertyRef Name="DispenseId" />
+    </Key>
+    <Property Type="Int32" Name="DispenseId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="TableId" />
+    <Property Type="Int32" Name="RoomId" />
+    <Property Type="Int32" Name="EquipmentId" />
+    <Property Type="Int32" Name="LaboratoryId" />
+    <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Equipment" Relationship="pintorModel.FK_Dispense_Equipment" FromRole="Dispense" ToRole="Equipment" />
+    <NavigationProperty Name="Room" Relationship="pintorModel.FK_Dispense_Room" FromRole="Dispense" ToRole="Room" />
+    <NavigationProperty Name="Table" Relationship="pintorModel.FK_Dispense_Table" FromRole="Dispense" ToRole="Table" />
+  </EntityType>
+  <EntityType Name="Equipment">
+    <Key>
+      <PropertyRef Name="EquipmentId" />
+    </Key>
+    <Property Type="Int32" Name="EquipmentId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Binary" Name="Make" MaxLength="50" FixedLength="false" />
+    <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Binary" Name="Location" MaxLength="50" FixedLength="false" />
+    <Property Type="Int32" Name="SerialNumber" />
+    <Property Type="String" Name="Barcode" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DateReceived" />
+    <Property Type="DateTime" Name="LifeExpectancy" />
+    <NavigationProperty Name="Dispenses" Relationship="pintorModel.FK_Dispense_Equipment" FromRole="Equipment" ToRole="Dispense" />
+    <NavigationProperty Name="InventoryCosts" Relationship="pintorModel.FK_InventoryCost_Equipment" FromRole="Equipment" ToRole="InventoryCost" />
+    <NavigationProperty Name="LaboratoryKiosks" Relationship="pintorModel.FK_LaboratoryKiosk_Equipment" FromRole="Equipment" ToRole="LaboratoryKiosk" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Type="Int32" Name="EventId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="EventName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="EventDate" />
+    <Property Type="String" Name="EventLocation" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CreatedBy" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DateCreated" />
+  </EntityType>
+  <EntityType Name="Income">
+    <Key>
+      <PropertyRef Name="IncomeId" />
+    </Key>
+    <Property Type="Int32" Name="IncomeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="StudentId" />
+    <Property Type="String" Name="Transactionn" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="cost" Precision="19" Scale="4" />
+    <NavigationProperty Name="StudentInfo" Relationship="pintorModel.FK_Income_StudentInfo" FromRole="Income" ToRole="StudentInfo" />
+  </EntityType>
+  <EntityType Name="InventoryCost">
+    <Key>
+      <PropertyRef Name="MaterialId" />
+    </Key>
+    <Property Type="Int32" Name="MaterialId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="EquipmentId" />
+    <Property Type="Decimal" Name="TotalCost" Precision="19" Scale="4" />
+    <Property Type="Int32" Name="Remaining" />
+    <Property Type="Int32" Name="Saved" />
+    <NavigationProperty Name="Equipment" Relationship="pintorModel.FK_InventoryCost_Equipment" FromRole="InventoryCost" ToRole="Equipment" />
+  </EntityType>
+  <EntityType Name="Laboratory">
+    <Key>
+      <PropertyRef Name="LaboratoryId" />
+    </Key>
+    <Property Type="Int32" Name="LaboratoryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="RoomId" Nullable="false" />
+    <Property Type="String" Name="LaboratoryDesc" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LaboratoryName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="LaboratoryKiosk" Relationship="pintorModel.FK_Laboratory_LaboratoryKiosk" FromRole="Laboratory" ToRole="LaboratoryKiosk" />
+    <NavigationProperty Name="Room" Relationship="pintorModel.FK_Laboratory_Room" FromRole="Laboratory" ToRole="Room" />
+    <NavigationProperty Name="LaboratoryUsers" Relationship="pintorModel.FK_LaboratoryUser_Laboratory" FromRole="Laboratory" ToRole="LaboratoryUser" />
+  </EntityType>
+  <EntityType Name="LaboratoryKiosk">
+    <Key>
+      <PropertyRef Name="LaboratoryId" />
+    </Key>
+    <Property Type="Int32" Name="LaboratoryId" Nullable="false" />
+    <Property Type="Int32" Name="MaterialId" />
+    <Property Type="Int32" Name="EquipmentId" />
+    <NavigationProperty Name="Equipment" Relationship="pintorModel.FK_LaboratoryKiosk_Equipment" FromRole="LaboratoryKiosk" ToRole="Equipment" />
+    <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Laboratory_LaboratoryKiosk" FromRole="LaboratoryKiosk" ToRole="Laboratory" />
+    <NavigationProperty Name="Material" Relationship="pintorModel.FK_LaboratoryKiosk_Material" FromRole="LaboratoryKiosk" ToRole="Material" />
+  </EntityType>
+  <EntityType Name="LaboratoryUser">
+    <Key>
+      <PropertyRef Name="LaboratoryUserId" />
+    </Key>
+    <Property Type="Int32" Name="LaboratoryId" Nullable="false" />
+    <Property Type="Guid" Name="UserId" Nullable="false" />
+    <Property Type="Int32" Name="LaboratoryUserId" Nullable="false" />
+    <NavigationProperty Name="aspnet_Users" Relationship="pintorModel.FK_LaboratoryUser_aspnet_Users" FromRole="LaboratoryUser" ToRole="aspnet_Users" />
+    <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_LaboratoryUser_Laboratory" FromRole="LaboratoryUser" ToRole="Laboratory" />
+  </EntityType>
+  <EntityType Name="Liability">
+    <Key>
+      <PropertyRef Name="LiabilityId" />
+    </Key>
+    <Property Type="Int32" Name="LiabilityId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="StudentId" />
+    <Property Type="String" Name="Equipment" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Decimal" Name="Fine" Precision="19" Scale="4" />
+    <Property Type="String" Name="Status" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="StudentInfo" Relationship="pintorModel.FK_Liability_StudentInfo" FromRole="Liability" ToRole="StudentInfo" />
+  </EntityType>
+  <EntityType Name="Material">
+    <Key>
+      <PropertyRef Name="MaterialId" />
+    </Key>
+    <Property Type="Int32" Name="MaterialId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="LaboratoryId" Nullable="false" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Description" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="DateReceived" />
+    <Property Type="Int32" Name="Quantity" />
+    <NavigationProperty Name="LaboratoryKiosks" Relationship="pintorModel.FK_LaboratoryKiosk_Material" FromRole="Material" ToRole="LaboratoryKiosk" />
+  </EntityType>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="RoomId" />
+    </Key>
+    <Property Type="Int32" Name="RoomId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="Room1" />
+    <Property Type="Int32" Name="LaboratoryId" />
+    <NavigationProperty Name="Dispenses" Relationship="pintorModel.FK_Dispense_Room" FromRole="Room" ToRole="Dispense" />
+    <NavigationProperty Name="Laboratories" Relationship="pintorModel.FK_Laboratory_Room" FromRole="Room" ToRole="Laboratory" />
+    <NavigationProperty Name="Room11" Relationship="pintorModel.FK_Room_Room" FromRole="Room" ToRole="Room1" />
+    <NavigationProperty Name="Room2" Relationship="pintorModel.FK_Room_Room" FromRole="Room1" ToRole="Room" />
+  </EntityType>
+  <EntityType Name="StudentInfo">
+    <Key>
+      <PropertyRef Name="StudentId" />
+    </Key>
+    <Property Type="Int32" Name="StudentId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="FamiliyName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FirstName" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="IdNumber" />
+    <Property Type="String" Name="CourseAndYear" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Incomes" Relationship="pintorModel.FK_Income_StudentInfo" FromRole="StudentInfo" ToRole="Income" />
+    <NavigationProperty Name="Liabilities" Relationship="pintorModel.FK_Liability_StudentInfo" FromRole="StudentInfo" ToRole="Liability" />
+    <NavigationProperty Name="Tables" Relationship="pintorModel.FK_Group_StudentInfo" FromRole="StudentInfo" ToRole="Table" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="principal_id" Nullable="false" />
+    <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="version" />
+    <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="TableId" />
+    </Key>
+    <Property Type="Int32" Name="TableId" Nullable="false" />
+    <Property Type="Int32" Name="TableNo" />
+    <Property Type="Int32" Name="StudentId" />
+    <Property Type="Int32" Name="ClassId" />
+    <NavigationProperty Name="Class" Relationship="pintorModel.FK_Group_Class" FromRole="Table" ToRole="Class" />
+    <NavigationProperty Name="Dispenses" Relationship="pintorModel.FK_Dispense_Table" FromRole="Table" ToRole="Dispense" />
+    <NavigationProperty Name="StudentInfo" Relationship="pintorModel.FK_Group_StudentInfo" FromRole="Table" ToRole="StudentInfo" />
+  </EntityType>
+  <Association Name="FK__aspnet_Me__Appli__66603565">
+    <End Type="pintorModel.aspnet_Applications" Role="aspnet_Applications" Multiplicity="1" />
+    <End Type="pintorModel.aspnet_Membership" Role="aspnet_Membership" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Membership">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pa__Appli__1F98B2C1">
+    <End Type="pintorModel.aspnet_Applications" Role="aspnet_Applications" Multiplicity="1" />
+    <End Type="pintorModel.aspnet_Paths" Role="aspnet_Paths" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Paths">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Ro__Appli__08B54D69">
+    <End Type="pintorModel.aspnet_Applications" Role="aspnet_Applications" Multiplicity="1" />
+    <End Type="pintorModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Roles">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Us__Appli__52593CB8">
+    <End Type="pintorModel.aspnet_Applications" Role="aspnet_Applications" Multiplicity="1" />
+    <End Type="pintorModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Users">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Me__UserI__6754599E">
+    <End Type="pintorModel.aspnet_Users" Role="aspnet_Users" Multiplicity="1" />
+    <End Type="pintorModel.aspnet_Membership" Role="aspnet_Membership" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_Membership">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__PathI__2739D489">
+    <End Type="pintorModel.aspnet_Paths" Role="aspnet_Paths" Multiplicity="1" />
+    <End Type="pintorModel.aspnet_PersonalizationAllUsers" Role="aspnet_PersonalizationAllUsers" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Paths">
+        <PropertyRef Name="PathId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationAllUsers">
+        <PropertyRef Name="PathId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__PathI__2CF2ADDF">
+    <End Type="pintorModel.aspnet_Paths" Role="aspnet_Paths" Multiplicity="0..1" />
+    <End Type="pintorModel.aspnet_PersonalizationPerUser" Role="aspnet_PersonalizationPerUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Paths">
+        <PropertyRef Name="PathId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationPerUser">
+        <PropertyRef Name="PathId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pe__UserI__2DE6D218">
+    <End Type="pintorModel.aspnet_Users" Role="aspnet_Users" Multiplicity="0..1" />
+    <End Type="pintorModel.aspnet_PersonalizationPerUser" Role="aspnet_PersonalizationPerUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_PersonalizationPerUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__aspnet_Pr__UserI__7D439ABD">
+    <End Type="pintorModel.aspnet_Users" Role="aspnet_Users" Multiplicity="1" />
+    <End Type="pintorModel.aspnet_Profile" Role="aspnet_Profile" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="aspnet_Profile">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LaboratoryUser_aspnet_Users">
+    <End Type="pintorModel.aspnet_Users" Role="aspnet_Users" Multiplicity="1" />
+    <End Type="pintorModel.LaboratoryUser" Role="LaboratoryUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="LaboratoryUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Group_Class">
+    <End Type="pintorModel.Class" Role="Class" Multiplicity="0..1" />
+    <End Type="pintorModel.Table" Role="Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Class">
+        <PropertyRef Name="ClassId" />
+      </Principal>
+      <Dependent Role="Table">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dispense_Equipment">
+    <End Type="pintorModel.Equipment" Role="Equipment" Multiplicity="0..1" />
+    <End Type="pintorModel.Dispense" Role="Dispense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="EquipmentId" />
+      </Principal>
+      <Dependent Role="Dispense">
+        <PropertyRef Name="EquipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dispense_Room">
+    <End Type="pintorModel.Room" Role="Room" Multiplicity="0..1" />
+    <End Type="pintorModel.Dispense" Role="Dispense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RoomId" />
+      </Principal>
+      <Dependent Role="Dispense">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dispense_Table">
+    <End Type="pintorModel.Table" Role="Table" Multiplicity="0..1" />
+    <End Type="pintorModel.Dispense" Role="Dispense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Table">
+        <PropertyRef Name="TableId" />
+      </Principal>
+      <Dependent Role="Dispense">
+        <PropertyRef Name="TableId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InventoryCost_Equipment">
+    <End Type="pintorModel.Equipment" Role="Equipment" Multiplicity="0..1" />
+    <End Type="pintorModel.InventoryCost" Role="InventoryCost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="EquipmentId" />
+      </Principal>
+      <Dependent Role="InventoryCost">
+        <PropertyRef Name="EquipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LaboratoryKiosk_Equipment">
+    <End Type="pintorModel.Equipment" Role="Equipment" Multiplicity="0..1" />
+    <End Type="pintorModel.LaboratoryKiosk" Role="LaboratoryKiosk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Equipment">
+        <PropertyRef Name="EquipmentId" />
+      </Principal>
+      <Dependent Role="LaboratoryKiosk">
+        <PropertyRef Name="EquipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Income_StudentInfo">
+    <End Type="pintorModel.StudentInfo" Role="StudentInfo" Multiplicity="0..1" />
+    <End Type="pintorModel.Income" Role="Income" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentInfo">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="Income">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Laboratory_LaboratoryKiosk">
+    <End Type="pintorModel.LaboratoryKiosk" Role="LaboratoryKiosk" Multiplicity="1" />
+    <End Type="pintorModel.Laboratory" Role="Laboratory" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="LaboratoryKiosk">
+        <PropertyRef Name="LaboratoryId" />
+      </Principal>
+      <Dependent Role="Laboratory">
+        <PropertyRef Name="LaboratoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Laboratory_Room">
+    <End Type="pintorModel.Room" Role="Room" Multiplicity="1" />
+    <End Type="pintorModel.Laboratory" Role="Laboratory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RoomId" />
+      </Principal>
+      <Dependent Role="Laboratory">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LaboratoryUser_Laboratory">
+    <End Type="pintorModel.Laboratory" Role="Laboratory" Multiplicity="1" />
+    <End Type="pintorModel.LaboratoryUser" Role="LaboratoryUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratory">
+        <PropertyRef Name="LaboratoryId" />
+      </Principal>
+      <Dependent Role="LaboratoryUser">
+        <PropertyRef Name="LaboratoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LaboratoryKiosk_Material">
+    <End Type="pintorModel.Material" Role="Material" Multiplicity="0..1" />
+    <End Type="pintorModel.LaboratoryKiosk" Role="LaboratoryKiosk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Material">
+        <PropertyRef Name="MaterialId" />
+      </Principal>
+      <Dependent Role="LaboratoryKiosk">
+        <PropertyRef Name="MaterialId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Liability_StudentInfo">
+    <End Type="pintorModel.StudentInfo" Role="StudentInfo" Multiplicity="0..1" />
+    <End Type="pintorModel.Liability" Role="Liability" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentInfo">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="Liability">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Room_Room">
+    <End Type="pintorModel.Room" Role="Room" Multiplicity="1" />
+    <End Type="pintorModel.Room" Role="Room1" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RoomId" />
+      </Principal>
+      <Dependent Role="Room1">
+        <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Group_StudentInfo">
+    <End Type="pintorModel.StudentInfo" Role="StudentInfo" Multiplicity="0..1" />
+    <End Type="pintorModel.Table" Role="Table" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentInfo">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="Table">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="aspnet_UsersInRoles">
+    <End Type="pintorModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
+    <End Type="pintorModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
+  </Association>
+</Schema>

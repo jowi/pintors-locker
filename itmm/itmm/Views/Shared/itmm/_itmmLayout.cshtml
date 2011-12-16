@@ -30,10 +30,17 @@
         <!--end nav-->
         <div id="content">
             <div id="usrnav">
-                <span>Welcome ADMIN!,<a href="#">log out</a></span>
+            @if ((User.Identity.Name).IsEmpty())
+            { 
+                <span><a href="#">Login</a></span>
+            
+            }
+            else
+            {
+                <span>Welcome @User.Identity.Name,<a href="#">log out</a></span>
+            }
             </div>
             <div id="accholder">
-            <span class="ui-corner-tl">dd</span>
                    @RenderBody()
             </div>
             <!--end accholder-->
