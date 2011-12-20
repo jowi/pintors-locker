@@ -1,7 +1,47 @@
 ﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+    var Room = (ViewBag.Room as IQueryable<itmm.Models.Room>);
+    var LabList = (ViewBag.LabList as IQueryable<itmm.Models.Laboratory_Room>);
 }
 
-<h2>Index</h2>
+
 @ViewBag.MyMessage
+<div id="accord">
+    <span id="span_link" style="visibility: hidden"><a id="modal_diag" href="#">Create Laboratory</a></span><br />
+    <div id="modal" title="Fill the form" style="visibility: hidden; height: 0px;">
+        <form method="post" action="test.html">
+        <div>
+            Laboratory Name:<br />
+            <input type="text" name="LabName" style="width:260px;height:23px;" />
+        </div>
+        <div>
+            Laboratory Description:<br />
+            <textarea name="LabDesc" style="width: 528px; height: 204px;" /></textarea>
+        </div>
+        <div>
+            Room:<br />
+            @foreach (var room in Room)
+            {
+            <input type="checkbox" name="room" value="@room.RoomId"/>@room.RoomName<br />               
+            }
+        </div>
+        <input type="submit" value="Create" style="width: 150px; height: 35px" />
+        </form>
+    </div><!-- end dialog -->
+    <div id="room_div"style="visibility: hidden">
+        <table>
+        <tr><th>Laboratory</th><th>Room</th></tr>
+        @foreach (var lablist in LabList)
+        {       
+        <tr><td>@lablist.Laboratory.LaboratoryName</td><td>@lablist.Room.RoomName</td></tr>
+        }
+
+        </table>
+    </div>
+</div><!-- end accord -->
+@section SideNav{
+<ul>
+    <li><a href="javascript:ItmmLoad('@Url.Action("Index", "Admin")')">Laboratory</a></li>
+</ul>
+}

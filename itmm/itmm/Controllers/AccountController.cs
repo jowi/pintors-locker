@@ -31,7 +31,14 @@ namespace itmm.Controllers
 
         public ActionResult LogOn()
         {
-            return View();
+            if (User.Identity.Name != "")
+            {
+                return RedirectToAction("Index", "Error");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
@@ -48,7 +55,15 @@ namespace itmm.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        if (Roles.IsUserInRole(model.UserName, "Dev"))
+                        {
+                            return RedirectToAction("Index", "Admin");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        
                     }
                 }
                 else

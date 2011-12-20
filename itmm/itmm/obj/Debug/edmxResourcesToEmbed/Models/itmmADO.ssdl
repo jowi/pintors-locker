@@ -137,10 +137,6 @@
       <End Role="StudentInfo" EntitySet="StudentInfo" />
       <End Role="Liability" EntitySet="Liability" />
     </AssociationSet>
-    <AssociationSet Name="FK_Room_Room" Association="pintorModel.Store.FK_Room_Room">
-      <End Role="Room" EntitySet="Room" />
-      <End Role="Room1" EntitySet="Room" />
-    </AssociationSet>
   </EntityContainer>
   <EntityType Name="aspnet_Applications">
     <Key>
@@ -345,7 +341,6 @@
       <PropertyRef Name="LaboratoryId" />
     </Key>
     <Property Name="LaboratoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="RoomId" Type="int" />
     <Property Name="LaboratoryDesc" Type="varchar" MaxLength="50" />
     <Property Name="LaboratoryName" Type="varchar" Nullable="false" MaxLength="50" />
   </EntityType>
@@ -353,7 +348,7 @@
     <Key>
       <PropertyRef Name="Laboratory_EquipmentId" />
     </Key>
-    <Property Name="Laboratory_EquipmentId" Type="int" Nullable="false" />
+    <Property Name="Laboratory_EquipmentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="LaboratoryId" Type="int" Nullable="false" />
     <Property Name="EquipmentId" Type="int" Nullable="false" />
   </EntityType>
@@ -361,7 +356,7 @@
     <Key>
       <PropertyRef Name="Laboratory_MaterialId" />
     </Key>
-    <Property Name="Laboratory_MaterialId" Type="int" Nullable="false" />
+    <Property Name="Laboratory_MaterialId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="LaboratoryId" Type="int" Nullable="false" />
     <Property Name="MaterialId" Type="int" Nullable="false" />
   </EntityType>
@@ -369,7 +364,7 @@
     <Key>
       <PropertyRef Name="Laboratory_RoomId" />
     </Key>
-    <Property Name="Laboratory_RoomId" Type="int" Nullable="false" />
+    <Property Name="Laboratory_RoomId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="LaboratoryId" Type="int" Nullable="false" />
     <Property Name="RoomId" Type="int" Nullable="false" />
   </EntityType>
@@ -377,7 +372,7 @@
     <Key>
       <PropertyRef Name="Laboratory_UserId" />
     </Key>
-    <Property Name="Laboratory_UserId" Type="int" Nullable="false" />
+    <Property Name="Laboratory_UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="LaboratoryId" Type="int" Nullable="false" />
     <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
@@ -407,8 +402,7 @@
       <PropertyRef Name="RoomId" />
     </Key>
     <Property Name="RoomId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Room" Type="int" />
-    <Property Name="LaboratoryId" Type="int" />
+    <Property Name="RoomName" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="StudentInfo">
     <Key>
@@ -760,18 +754,6 @@
       </Principal>
       <Dependent Role="Liability">
         <PropertyRef Name="StudentId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Room_Room">
-    <End Role="Room" Type="pintorModel.Store.Room" Multiplicity="1" />
-    <End Role="Room1" Type="pintorModel.Store.Room" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Room">
-        <PropertyRef Name="RoomId" />
-      </Principal>
-      <Dependent Role="Room1">
-        <PropertyRef Name="RoomId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

@@ -18,29 +18,30 @@
 <body>
     <div id="wrapper">
         <div id="nav">
-            <h1>
-               <a href="/Admin/Index">itmm</a></h1>
-            <ul>
-                <li><a href="#">ADL</a></li>
-                <li><a href="#">CBELS</a></li>
-                <li><a href="#">MIT</a></li>
-                <li><a href="#">SAL</a></li>
-            </ul>
+            <h1>itmm</h1> 
+            
+                @if (IsSectionDefined("SideNav"))
+                {
+                    @RenderSection("SideNav");
+                }
+
+            
         </div>
         <!--end nav-->
         <div id="content">
             <div id="usrnav">
             @if ((User.Identity.Name).IsEmpty())
             { 
-                <span><a href="#">Login</a></span>
+                <span>@Html.ActionLink("Login","LogOn","Account")</span>
             
             }
             else
             {
-                <span>Welcome @User.Identity.Name,<a href="#">log out</a></span>
+                <span>Welcome @User.Identity.Name,@Html.ActionLink("Logout","LogOff","Account")</span>
             }
             </div>
             <div id="accholder">
+             
                    @RenderBody()
             </div>
             <!--end accholder-->
@@ -50,35 +51,38 @@
     <!--end wrapper-->
 </body>
 <script type="text/javascript">
-          $(document).ready(function () {
-              $("ul > li > a").click(function () {
+    $(document).ready(function () {
+        $("ul > li > a").click(function () {
 
-                  $("ul > li > a").removeClass("light").css("color", "");
-                  $(this).addClass("light").css("color", "#F7BE81");
+            $("ul > li > a").removeClass("light").css("color", "");
+            $(this).addClass("light").css("color", "#F7BE81");
 
+            $(this).fadeIn("slow");     
+            
+            $("#accholder").empty().html('<img id="loading" src="../Content/images/loading3.gif" />');
+        }); /*.click*/
 
-                  $(this).fadeIn("slow");
+    });   /*.ready*/
 
-
-                  $("#accholder").empty().html('<img id="loading" src="../Content/images/loading3.gif" />');
-                  $("#accholder").load('/Admin/AccordionTest #accord',
-				function () {
-				    //alert('Load was performed.');
-				    //ACCORDION
-				    $("#accordion").accordion({ animated: 'bounceslide' });
-
-				    //MODAL
-				    $("#modal_diag").click(function () {
-				        $("#modal").css("visibility", "visible");
-				        $("#modal").dialog({
-				            modal: true, position: [520, 200],
-				            show: 'slide', hide: 'slide'
-				        });
-				    })/*.dialog*/
-				}
-				);		
-              }); /*.click*/
-
-          }); /*.ready*/       
+    function ItmmLoad(a) {
+        var info = a + ' ' + "#accord";
+        $("#accholder").load(info ,function () {
+            $("#accordion").ready(function () {
+                //ACCORDION
+                $("#accordion").accordion({ animated: 'bounceslide' });
+                $("#span_link,#room_div").css("visibility", "visible");
+                //MODAL
+                $("#modal_diag").click(function () {
+                    $("#modal").css("visibility", "visible");                    
+                    $("#modal").dialog({
+                        modal: true, position: [300, 200],
+                        show: 'slide', hide: 'slide',
+                        width: 750,
+                        resizable:false
+                    }); //.dailog                  
+                })//.click
+            });//ready
+        }); //.load
+    }      
 </script>
 </html>

@@ -1,8 +1,74 @@
 ﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+    var LabList = (ViewBag.LabList as IQueryable<itmm.Models.Laboratory>);
+    var LabInfo = (ViewBag.LabInfo as IQueryable<itmm.Models.Laboratory>);
+   
 }
 
-<h2>Index</h2>
 
-@ViewBag.Message
+@if (ViewBag.LabInfo == null)
+{
+    @ViewBag.Message    
+}
+else
+{ 
+ 
+    <div id="accord">
+        <div id="accordion">
+            <h4>
+                <a href="#">About</a></h4>
+            <div>
+                <span><a id="modal_diag" href="#">Register</a></span><br />
+                <div id="modal" title="Register" style="visibility: hidden;height:0px;">
+                    <form method="post" action="test.html">
+                    <input type="text" name="fname" placeholder="name" /><br />
+                    <input type="text" name="age" placeholder="age" /><br />
+                    <input type="submit" value="save" />
+                    </form>
+                </div>
+                <!--end dialog -->
+                @foreach (var info in LabInfo)
+                {
+                        @info.LaboratoryDesc
+                }
+              <span>check</span><br />
+               <span>check</span><br />
+                <span>check</span><br />
+                 <span>check</span><br />
+            </div>
+            <!-- end form -->
+            <h4>
+                <a href="#">Staff</a></h4>
+            <div>
+                2
+            </div>
+            <h4>
+                <a href="#">Equipments</a></h4>
+            <div>
+                3
+            </div>
+            <h4>
+                <a href="#">Contact</a></h4>
+            <div>
+                4
+            </div>
+                
+        </div>
+        <!--end accordion-->
+    </div>
+}
+@section SideNav{
+<ul>
+
+    @foreach (var lab in LabList)
+    {
+        
+        <li>
+           @* @Html.ActionLink(lab.LaboratoryName, "Index", "Home", new { lab = lab.LaboratoryId}, null)*@
+           <a href="javascript:ItmmLoad('@Url.Action("Index", "Home", new { lab = lab.LaboratoryId })')">@lab.LaboratoryName</a>
+        </li>
+    }
+ 
+</ul>
+}
