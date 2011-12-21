@@ -402,7 +402,7 @@
       <PropertyRef Name="RoomId" />
     </Key>
     <Property Name="RoomId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="RoomName" Type="int" Nullable="false" />
+    <Property Name="RoomName" Type="varchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <EntityType Name="StudentInfo">
     <Key>

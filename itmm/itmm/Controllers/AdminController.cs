@@ -21,10 +21,14 @@ namespace itmm.Controllers
                        select y;
             ViewBag.Room = room;
 
-            var lab = from y in con.Laboratory_Room
+            var labroom = from y in con.Laboratory_Room
                       select y;
-            ViewBag.LabList = lab;
+            ViewBag.LabRoom = labroom;
 
+            var lablist = from y in con.Laboratories
+                          orderby y.LaboratoryName ascending
+                          select y;
+            ViewBag.LabList = lablist;
             return View();
         }
         public ActionResult Manage()

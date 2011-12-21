@@ -2,7 +2,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
     var Room = (ViewBag.Room as IQueryable<itmm.Models.Room>);
-    var LabList = (ViewBag.LabList as IQueryable<itmm.Models.Laboratory_Room>);
+    var LabRoom = (ViewBag.LabRoom as IQueryable<itmm.Models.Laboratory_Room>);
+    var LabList = (ViewBag.LabList as IQueryable<itmm.Models.Laboratory>);
 }
 
 
@@ -30,13 +31,32 @@
         </form>
     </div><!-- end dialog -->
     <div id="room_div"style="visibility: hidden">
-        <table>
-        <tr><th>Laboratory</th><th>Room</th></tr>
+        <table cellspacing="0">
+        <thead><tr><th>Laboratory</th><th>Room</th></tr></thead>
+        <tbody>
         @foreach (var lablist in LabList)
-        {       
-        <tr><td>@lablist.Laboratory.LaboratoryName</td><td>@lablist.Room.RoomName</td></tr>
-        }
+        {
+           string RoomInLab ="none";
+           int cnt = 0;       
+        <tr><td>@lablist.LaboratoryName</td>
+            @foreach (var labroom in LabRoom)
+            {
 
+                if (lablist.LaboratoryId == labroom.LaboratoryId)
+                {
+                    if (cnt == 0)
+                    {
+                        RoomInLab = labroom.Room.RoomName;
+                        cnt++;
+                    }
+                    else
+                    {                      
+                        RoomInLab = RoomInLab + "," + labroom.Room.RoomName;
+                    }
+                }
+            }<td>@RoomInLab</td></tr>
+        }
+        </tbody>
         </table>
     </div>
 </div><!-- end accord -->

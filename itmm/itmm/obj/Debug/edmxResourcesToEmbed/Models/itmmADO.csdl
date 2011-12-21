@@ -95,14 +95,9 @@
     <EntitySet Name="Laboratory_Material" EntityType="pintorModel.Laboratory_Material" />
     <EntitySet Name="Laboratory_Room" EntityType="pintorModel.Laboratory_Room" />
     <EntitySet Name="Laboratory_User" EntityType="pintorModel.Laboratory_User" />
-    <EntitySet Name="Rooms" EntityType="pintorModel.Room" />
     <AssociationSet Name="FK_Laboratory_User_aspnet_Users" Association="pintorModel.FK_Laboratory_User_aspnet_Users">
       <End Role="aspnet_Users" EntitySet="aspnet_Users" />
       <End Role="Laboratory_User" EntitySet="Laboratory_User" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Dispense_Room" Association="pintorModel.FK_Dispense_Room">
-      <End Role="Room" EntitySet="Rooms" />
-      <End Role="Dispense" EntitySet="Dispenses" />
     </AssociationSet>
     <AssociationSet Name="FK_Laboratory_Equipment_Equipment" Association="pintorModel.FK_Laboratory_Equipment_Equipment">
       <End Role="Equipment" EntitySet="Equipments" />
@@ -127,6 +122,11 @@
     <AssociationSet Name="FK_Laboratory_Material_Material" Association="pintorModel.FK_Laboratory_Material_Material">
       <End Role="Material" EntitySet="Materials" />
       <End Role="Laboratory_Material" EntitySet="Laboratory_Material" />
+    </AssociationSet>
+    <EntitySet Name="Rooms" EntityType="pintorModel.Room" />
+    <AssociationSet Name="FK_Dispense_Room" Association="pintorModel.FK_Dispense_Room">
+      <End Role="Room" EntitySet="Rooms" />
+      <End Role="Dispense" EntitySet="Dispenses" />
     </AssociationSet>
     <AssociationSet Name="FK_Laboratory_Room_Room" Association="pintorModel.FK_Laboratory_Room_Room">
       <End Role="Room" EntitySet="Rooms" />
@@ -659,15 +659,6 @@
     <NavigationProperty Name="aspnet_Users" Relationship="pintorModel.FK_Laboratory_User_aspnet_Users" FromRole="Laboratory_User" ToRole="aspnet_Users" />
     <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Laboratory_User_Laboratory_User" FromRole="Laboratory_User" ToRole="Laboratory" />
   </EntityType>
-  <EntityType Name="Room">
-    <Key>
-      <PropertyRef Name="RoomId" />
-    </Key>
-    <Property Type="Int32" Name="RoomId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="Int32" Name="RoomName" Nullable="false" />
-    <NavigationProperty Name="Dispenses" Relationship="pintorModel.FK_Dispense_Room" FromRole="Room" ToRole="Dispense" />
-    <NavigationProperty Name="Laboratory_Room" Relationship="pintorModel.FK_Laboratory_Room_Room" FromRole="Room" ToRole="Laboratory_Room" />
-  </EntityType>
   <Association Name="FK_Laboratory_User_aspnet_Users">
     <End Type="pintorModel.aspnet_Users" Role="aspnet_Users" Multiplicity="1" />
     <End Type="pintorModel.Laboratory_User" Role="Laboratory_User" Multiplicity="*" />
@@ -677,18 +668,6 @@
       </Principal>
       <Dependent Role="Laboratory_User">
         <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Dispense_Room">
-    <End Type="pintorModel.Room" Role="Room" Multiplicity="0..1" />
-    <End Type="pintorModel.Dispense" Role="Dispense" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Room">
-        <PropertyRef Name="RoomId" />
-      </Principal>
-      <Dependent Role="Dispense">
-        <PropertyRef Name="RoomId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -761,6 +740,27 @@
       </Principal>
       <Dependent Role="Laboratory_Material">
         <PropertyRef Name="MaterialId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Room">
+    <Key>
+      <PropertyRef Name="RoomId" />
+    </Key>
+    <Property Type="Int32" Name="RoomId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="RoomName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Dispenses" Relationship="pintorModel.FK_Dispense_Room" FromRole="Room" ToRole="Dispense" />
+    <NavigationProperty Name="Laboratory_Room" Relationship="pintorModel.FK_Laboratory_Room_Room" FromRole="Room" ToRole="Laboratory_Room" />
+  </EntityType>
+  <Association Name="FK_Dispense_Room">
+    <End Type="pintorModel.Room" Role="Room" Multiplicity="0..1" />
+    <End Type="pintorModel.Dispense" Role="Dispense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Room">
+        <PropertyRef Name="RoomId" />
+      </Principal>
+      <Dependent Role="Dispense">
+        <PropertyRef Name="RoomId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

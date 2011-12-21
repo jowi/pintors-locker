@@ -78,5 +78,19 @@
 #modal_diag{
    
 }
-
-
+/*******ADMIN**********/
+#room_div table thead th
+{
+    padding: 5px 250px 5px 10px;
+    font-weight: normal;
+    border-bottom: dashed 1px gray;
+}
+#room_div table tbody td
+{   
+   font-size: 13px;
+   padding: 14px 0 10px 10px;
+}
+#room_div table tbody tr:hover
+{
+background-color:#E6E6E6;   
+}
