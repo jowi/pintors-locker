@@ -21,10 +21,17 @@
             <textarea name="LabDesc" style="width: 528px; height: 204px;" /></textarea>
         </div>
         <div>
-            Room:<br />
+            Availabe Room:<br />
             @foreach (var room in Room)
             {
-            <input type="checkbox" name="room" value="@room.RoomId"/>@room.RoomName<br />               
+                foreach (var labroom in LabRoom)
+                {
+                    if (room.RoomId != labroom.RoomId)
+                    {
+                         <input type="checkbox" name="room" value="@room.RoomId"/>@room.RoomName<br /> 
+                    }
+                }
+
             }
         </div>
         <input type="submit" value="Create" style="width: 150px; height: 35px" />
@@ -36,8 +43,8 @@
         <tbody>
         @foreach (var lablist in LabList)
         {
-           string RoomInLab ="none";
-           int cnt = 0;       
+            string RoomInLab = "none";
+            int cnt = 0;       
         <tr><td>@lablist.LaboratoryName</td>
             @foreach (var labroom in LabRoom)
             {
@@ -50,7 +57,7 @@
                         cnt++;
                     }
                     else
-                    {                      
+                    {
                         RoomInLab = RoomInLab + "," + labroom.Room.RoomName;
                     }
                 }
