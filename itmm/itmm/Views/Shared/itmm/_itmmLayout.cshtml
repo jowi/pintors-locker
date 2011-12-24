@@ -6,12 +6,22 @@
     <link href="../../../Content/themes/smoothness/smoothness/jquery-ui-1.8.16.custom.css" rel="Stylesheet" type="text/css"/>
     <script src="../../../Scripts/itmm_js/jquery-1.6.2.min.js" type="text/javascript"></script>
     <script src="../../../Scripts/itmm_js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
+    <script src="../../../Scripts/itmm_js/jquery-validation.js" type="text/javascript"></script>
     <style type="text/css">
-        #accordion, #modal{
+        #accordion, #modal, #ttool, #tableTool{
             font: 15px "Trebuchet MS" , sans-serif;
         }
-        .ui-dialog-title{
+        .ui-dialog-title, .ui-dialog-buttonset{
             font: 15px "Trebuchet MS" , sans-serif;
+        }
+    </style>
+    <style type="text/css">
+        label.error
+        {
+            float: none;
+            color: red;
+            padding-left: .5em;
+            vertical-align: top;
         }
     </style>
 </head>
@@ -79,10 +89,55 @@
                         show: 'slide', hide: 'slide',
                         width: 750,
                         resizable:false
-                    }); //.dailog                  
+                    }); //.dailog
+                    $("#labform").validate();                  
                 })//.click
             });//ready
         }); //.load
+    }
+    function TableTools(b) {
+        var info = b + ' ' + "#ttool";
+        //alert(info);
+        $("#tableTool").empty().html('<span id="loader"><img id="loading" src="../Content/images/loading3.gif" /></span>');
+        $("#tableTool").load(info, function () {            
+            $("#tableTool").ready(function () {
+                $("#tableTool").dialog({
+                    modal: true, position: [300, 200],
+                    show: 'slide', hide: 'slide',
+                    width: 750,
+                    resizable: false
+                }); //.dailog
+                $("#editlab").validate(); 
+            });
+        });
+    }
+    function TableConfirm(b) {
+        var info = b;
+        $("#tableTool").empty().html('<span id="loader"><img id="loading" src="../Content/images/loading3.gif" /></span>');
+
+        $("#tableTool").ready(function () {
+            $("#tableTool").empty().html("yousure?").dialog({
+                modal: true, position: [300, 200],
+                show: 'slide', hide: 'slide',
+                width: 750,
+                resizable: false,
+                buttons: {
+                    "Delete": function () {
+                        $.ajax({
+                            url: b,
+                            success: function () {
+                                $("#tableTool").dialog("close");
+                                location.reload();
+                            }
+                        });
+                    },
+                    "Cancel": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            }); //.dailog
+        });
+       
     }      
 </script>
 </html>

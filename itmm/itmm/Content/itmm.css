@@ -3,6 +3,10 @@
    margin:0;
    /*overflow-y: scroll;*/
 }
+body a
+{
+    color:#BDBDBD;
+}
 #wrapper{
 /*   height:100%;
    width:100%;*/
@@ -79,9 +83,17 @@
    
 }
 /*******ADMIN**********/
+#room_div
+{
+    margin-top:25px;
+}
+#room_div table
+{
+    margin-bottom:30px;
+}
 #room_div table thead th
 {
-    padding: 5px 250px 5px 10px;
+    padding: 5px 120px 5px 10px;
     font-weight: normal;
     border-bottom: dashed 1px gray;
 }
@@ -94,3 +106,5 @@
 {
 background-color:#E6E6E6;   
 }
+
+

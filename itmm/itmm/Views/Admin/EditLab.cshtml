@@ -1,0 +1,37 @@
+﻿@{
+    var LabInfo = (ViewBag.LabInfo as IQueryable<itmm.Models.Laboratory>);
+    var LabRoom = (ViewBag.Room as IQueryable<itmm.Models.Laboratory_Room>);
+    //var AvlRoom = (ViewBag.AvailRoom as IQueryable<itmm.Models.Room>);
+    var AvlRoom = ViewBag.AvailRoom;
+}
+<div id="ttool">
+
+@foreach (var labinfo in LabInfo)
+{
+    
+<form id="editlab" method="post" action="/Admin/EditLab">
+<div>
+    Laboratory Name:<br />
+    <input type="text" name="LabName" value="@labinfo.LaboratoryName" size=7 class="required" style="width:260px;height:23px;" />
+    <input type="hidden" name="LabId" value="@labinfo.LaboratoryId" />
+</div>
+<div>
+    Laboratory Description:<br />
+    <textarea name="LabDesc" class="required" style="width: 528px; height: 204px;">@labinfo.LaboratoryDesc</textarea>
+</div>
+<div>Available Rooms:<br />
+@foreach (var _LabRoom in LabRoom)
+{
+    <input type="checkbox" checked="checked" name="room" value="@_LabRoom.RoomId"/>@_LabRoom.Room.RoomName<br /> 
+}
+@foreach (var _AvlRoom in AvlRoom)
+{
+    <input type="checkbox"  name="room" value="@_AvlRoom.RoomId"/>@_AvlRoom.RoomName<br /> 
+}
+</div>
+<input type="submit" class="submit" value="Edit" style="width: 150px; height: 35px" />
+</form>
+
+}
+
+</div>

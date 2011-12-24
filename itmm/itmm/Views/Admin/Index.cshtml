@@ -9,37 +9,43 @@
 
 @ViewBag.MyMessage
 <div id="accord">
-    <span id="span_link" style="visibility: hidden"><a id="modal_diag" href="#">Create Laboratory</a></span><br />
+ 
+
+    <span id="span_link" style="visibility: hidden;"><a id="modal_diag" href="#">Create Laboratory</a></span><br />
     <div id="modal" title="Fill the form" style="visibility: hidden; height: 0px;">
-        <form method="post" action="test.html">
+        <form id="labform" method="post" action="/Admin/Index">
         <div>
             Laboratory Name:<br />
-            <input type="text" name="LabName" style="width:260px;height:23px;" />
+            <input type="text" name="LabName" class="required" size=7 style="width:260px;height:23px;" />
         </div>
         <div>
             Laboratory Description:<br />
-            <textarea name="LabDesc" style="width: 528px; height: 204px;" /></textarea>
+            <textarea name="LabDesc" class="required" style="width: 528px; height: 204px;" /></textarea>
         </div>
         <div>
             Availabe Room:<br />
             @foreach (var room in Room)
             {
-                foreach (var labroom in LabRoom)
-                {
-                    if (room.RoomId != labroom.RoomId)
+                int flag = 0;
+                    foreach (var labroom in LabRoom)
                     {
-                         <input type="checkbox" name="room" value="@room.RoomId"/>@room.RoomName<br /> 
+                        if (room.RoomId == labroom.RoomId)
+                        {
+                            flag = 1;
+                        }
                     }
-                }
-
+                if (flag == 0)
+                {
+                <input type="checkbox" name="room" value="@room.RoomId"/>@room.RoomName<br />  
+                }             
             }
         </div>
-        <input type="submit" value="Create" style="width: 150px; height: 35px" />
+        <input type="submit" class="submit" value="Create" style="width: 150px; height: 35px" />
         </form>
     </div><!-- end dialog -->
     <div id="room_div"style="visibility: hidden">
         <table cellspacing="0">
-        <thead><tr><th>Laboratory</th><th>Room</th></tr></thead>
+        <thead><tr><th>Laboratory</th><th>Head</th><th>Room</th></tr></thead>
         <tbody>
         @foreach (var lablist in LabList)
         {
@@ -48,7 +54,6 @@
         <tr><td>@lablist.LaboratoryName</td>
             @foreach (var labroom in LabRoom)
             {
-
                 if (lablist.LaboratoryId == labroom.LaboratoryId)
                 {
                     if (cnt == 0)
@@ -61,12 +66,16 @@
                         RoomInLab = RoomInLab + "," + labroom.Room.RoomName;
                     }
                 }
-            }<td>@RoomInLab</td></tr>
+            }<td>head</td><td>@RoomInLab</td>
+            <td><a href="javascript:TableTools('@Url.Action("EditLab", "Admin", new { LabId = lablist.LaboratoryId})')">edit</a>
+            &nbsp<a href="javascript:TableConfirm('@Url.Action("DeleteLab", "Admin", new { LabId = lablist.LaboratoryId})')">delete</a>&nbsp</td></tr>
         }
         </tbody>
         </table>
     </div>
+    <div id="tableTool"></div>
 </div><!-- end accord -->
+   
 @section SideNav{
 <ul>
     <li><a href="javascript:ItmmLoad('@Url.Action("Index", "Admin")')">Laboratory</a></li>

@@ -27,23 +27,23 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("pintorModel", "FK__aspnet_Pe__PathI__2CF2ADDF", "aspnet_Paths", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.aspnet_Paths), "aspnet_PersonalizationPerUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.aspnet_PersonalizationPerUser), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK__aspnet_Pe__UserI__2DE6D218", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.aspnet_Users), "aspnet_PersonalizationPerUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.aspnet_PersonalizationPerUser), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK__aspnet_Pr__UserI__7D439ABD", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.aspnet_Users), "aspnet_Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.aspnet_Profile), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_User_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.aspnet_Users), "Laboratory_User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_User), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Group_Class", "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Class), "Table", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Table), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Dispense_Equipment", "Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Equipment), "Dispense", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Dispense), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Dispense_Room", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Room), "Dispense", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Dispense), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Dispense_Table", "Table", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Table), "Dispense", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Dispense), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_InventoryCost_Equipment", "Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Equipment), "InventoryCost", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.InventoryCost), true)]
-[assembly: EdmRelationshipAttribute("pintorModel", "FK_Income_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.StudentInfo), "Income", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Income), true)]
-[assembly: EdmRelationshipAttribute("pintorModel", "FK_Liability_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.StudentInfo), "Liability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Liability), true)]
-[assembly: EdmRelationshipAttribute("pintorModel", "FK_Group_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.StudentInfo), "Table", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Table), true)]
-[assembly: EdmRelationshipAttribute("pintorModel", "aspnet_UsersInRoles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.aspnet_Roles), "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.aspnet_Users))]
-[assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_User_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.aspnet_Users), "Laboratory_User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_User), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Equipment_Equipment", "Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Equipment), "Laboratory_Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Equipment), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Income_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.StudentInfo), "Income", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Income), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Equipment_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Equipment), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Material_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Material", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Material), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Room_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Room), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_User_Laboratory_User", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_User), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Material_Material", "Material", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Material), "Laboratory_Material", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Material), true)]
-[assembly: EdmRelationshipAttribute("pintorModel", "FK_Dispense_Room", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Room), "Dispense", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Dispense), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Room_Room", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Room), "Laboratory_Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Room), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Liability_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.StudentInfo), "Liability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Liability), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Group_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.StudentInfo), "Table", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Table), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "aspnet_UsersInRoles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.aspnet_Roles), "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.aspnet_Users))]
 
 #endregion
 
@@ -354,86 +354,6 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Liability> Liabilities
-        {
-            get
-            {
-                if ((_Liabilities == null))
-                {
-                    _Liabilities = base.CreateObjectSet<Liability>("Liabilities");
-                }
-                return _Liabilities;
-            }
-        }
-        private ObjectSet<Liability> _Liabilities;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Material> Materials
-        {
-            get
-            {
-                if ((_Materials == null))
-                {
-                    _Materials = base.CreateObjectSet<Material>("Materials");
-                }
-                return _Materials;
-            }
-        }
-        private ObjectSet<Material> _Materials;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<StudentInfo> StudentInfoes
-        {
-            get
-            {
-                if ((_StudentInfoes == null))
-                {
-                    _StudentInfoes = base.CreateObjectSet<StudentInfo>("StudentInfoes");
-                }
-                return _StudentInfoes;
-            }
-        }
-        private ObjectSet<StudentInfo> _StudentInfoes;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<sysdiagram> sysdiagrams
-        {
-            get
-            {
-                if ((_sysdiagrams == null))
-                {
-                    _sysdiagrams = base.CreateObjectSet<sysdiagram>("sysdiagrams");
-                }
-                return _sysdiagrams;
-            }
-        }
-        private ObjectSet<sysdiagram> _sysdiagrams;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Table> Tables
-        {
-            get
-            {
-                if ((_Tables == null))
-                {
-                    _Tables = base.CreateObjectSet<Table>("Tables");
-                }
-                return _Tables;
-            }
-        }
-        private ObjectSet<Table> _Tables;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Laboratory> Laboratories
         {
             get
@@ -514,6 +434,38 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Liability> Liabilities
+        {
+            get
+            {
+                if ((_Liabilities == null))
+                {
+                    _Liabilities = base.CreateObjectSet<Liability>("Liabilities");
+                }
+                return _Liabilities;
+            }
+        }
+        private ObjectSet<Liability> _Liabilities;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Material> Materials
+        {
+            get
+            {
+                if ((_Materials == null))
+                {
+                    _Materials = base.CreateObjectSet<Material>("Materials");
+                }
+                return _Materials;
+            }
+        }
+        private ObjectSet<Material> _Materials;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Room> Rooms
         {
             get
@@ -526,6 +478,54 @@ namespace itmm.Models
             }
         }
         private ObjectSet<Room> _Rooms;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<StudentInfo> StudentInfoes
+        {
+            get
+            {
+                if ((_StudentInfoes == null))
+                {
+                    _StudentInfoes = base.CreateObjectSet<StudentInfo>("StudentInfoes");
+                }
+                return _StudentInfoes;
+            }
+        }
+        private ObjectSet<StudentInfo> _StudentInfoes;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<sysdiagram> sysdiagrams
+        {
+            get
+            {
+                if ((_sysdiagrams == null))
+                {
+                    _sysdiagrams = base.CreateObjectSet<sysdiagram>("sysdiagrams");
+                }
+                return _sysdiagrams;
+            }
+        }
+        private ObjectSet<sysdiagram> _sysdiagrams;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Table> Tables
+        {
+            get
+            {
+                if ((_Tables == null))
+                {
+                    _Tables = base.CreateObjectSet<Table>("Tables");
+                }
+                return _Tables;
+            }
+        }
+        private ObjectSet<Table> _Tables;
 
         #endregion
         #region AddTo Methods
@@ -659,46 +659,6 @@ namespace itmm.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Liabilities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToLiabilities(Liability liability)
-        {
-            base.AddObject("Liabilities", liability);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Materials EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToMaterials(Material material)
-        {
-            base.AddObject("Materials", material);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the StudentInfoes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToStudentInfoes(StudentInfo studentInfo)
-        {
-            base.AddObject("StudentInfoes", studentInfo);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the sysdiagrams EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTosysdiagrams(sysdiagram sysdiagram)
-        {
-            base.AddObject("sysdiagrams", sysdiagram);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Tables EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToTables(Table table)
-        {
-            base.AddObject("Tables", table);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Laboratories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToLaboratories(Laboratory laboratory)
@@ -739,11 +699,51 @@ namespace itmm.Models
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the Liabilities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToLiabilities(Liability liability)
+        {
+            base.AddObject("Liabilities", liability);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Materials EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToMaterials(Material material)
+        {
+            base.AddObject("Materials", material);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Rooms EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToRooms(Room room)
         {
             base.AddObject("Rooms", room);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the StudentInfoes EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToStudentInfoes(StudentInfo studentInfo)
+        {
+            base.AddObject("StudentInfoes", studentInfo);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the sysdiagrams EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTosysdiagrams(sysdiagram sysdiagram)
+        {
+            base.AddObject("sysdiagrams", sysdiagram);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Tables EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToTables(Table table)
+        {
+            base.AddObject("Tables", table);
         }
 
         #endregion
@@ -3115,28 +3115,6 @@ namespace itmm.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "aspnet_UsersInRoles", "aspnet_Roles")]
-        public EntityCollection<aspnet_Roles> aspnet_Roles
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<aspnet_Roles>("pintorModel.aspnet_UsersInRoles", "aspnet_Roles");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<aspnet_Roles>("pintorModel.aspnet_UsersInRoles", "aspnet_Roles", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Laboratory_User_aspnet_Users", "Laboratory_User")]
         public EntityCollection<Laboratory_User> Laboratory_User
         {
@@ -3149,6 +3127,28 @@ namespace itmm.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Laboratory_User>("pintorModel.FK_Laboratory_User_aspnet_Users", "Laboratory_User", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "aspnet_UsersInRoles", "aspnet_Roles")]
+        public EntityCollection<aspnet_Roles> aspnet_Roles
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<aspnet_Roles>("pintorModel.aspnet_UsersInRoles", "aspnet_Roles");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<aspnet_Roles>("pintorModel.aspnet_UsersInRoles", "aspnet_Roles", value);
                 }
             }
         }
@@ -4006,44 +4006,6 @@ namespace itmm.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Dispense_Table", "Table")]
-        public Table Table
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Table>("pintorModel.FK_Dispense_Table", "Table").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Table>("pintorModel.FK_Dispense_Table", "Table").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Table> TableReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Table>("pintorModel.FK_Dispense_Table", "Table");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Table>("pintorModel.FK_Dispense_Table", "Table", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Dispense_Room", "Room")]
         public Room Room
         {
@@ -4072,6 +4034,44 @@ namespace itmm.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Room>("pintorModel.FK_Dispense_Room", "Room", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Dispense_Table", "Table")]
+        public Table Table
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Table>("pintorModel.FK_Dispense_Table", "Table").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Table>("pintorModel.FK_Dispense_Table", "Table").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Table> TableReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Table>("pintorModel.FK_Dispense_Table", "Table");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Table>("pintorModel.FK_Dispense_Table", "Table", value);
                 }
             }
         }
