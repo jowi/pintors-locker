@@ -1,0 +1,60 @@
+﻿@{
+    var LabList = (ViewBag.LabList as IQueryable<itmm.Models.Laboratory>);
+}
+<div id="accord">
+<span id="span_link" style="visibility: hidden;"><a id="modal_diag" href="#">Create Head Account</a></span><br />
+ <div id="modal" title="Fill the form" style="visibility: hidden; height: 0px;">
+        <form id="labform" method="post" action="/Admin/Head">
+        <div style="height:280px;>
+        <div  style="position:absolute;">
+        <div>
+        First Name:<br />
+            <input type="text" name="fname" class="required"/>
+        </div>
+        <div>
+        Last Name:<br />
+            <input type="text" name="lname" class="required"/>
+        </div>
+        <div>
+          Contact Number:<br />
+            <input type="text" name="cnum" class="required"/>
+        </div>
+         <div>
+          Email Address:<br />
+            <input type="text"  name="eadd" class="required"/>
+        </div>
+         <div>
+        Section:<br />
+        <select name=LabId>
+        @foreach (var lablist in LabList)
+        {
+            <option value="@lablist.LaboratoryId">@lablist.LaboratoryName</option>
+        }
+        </select>
+        </div></div>
+
+        <div style="position:absolute;top:5px;left:380px;">
+        <div>
+          Username:<br />
+            <input type="text" name="uname" class="required"/>
+        </div>
+        <div>
+        Password:<br />
+            <input type="text" name="password" class="required"/>
+        </div>
+        <div>
+         Re-Type Password:<br />
+            <input type="text" name="rpassword" class="required"/>
+        </div>          
+        </div>
+        
+
+        <br />
+        <div style="position:absolute;top:250px">
+        <input type="submit" class="submit" value="Create" style="width: 150px; height: 35px" />
+        </div>
+        </form>
+        </div>
+
+
+</div><!-- end accord-->

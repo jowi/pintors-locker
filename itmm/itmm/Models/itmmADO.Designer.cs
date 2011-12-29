@@ -27,7 +27,6 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("pintorModel", "FK__aspnet_Pe__PathI__2CF2ADDF", "aspnet_Paths", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.aspnet_Paths), "aspnet_PersonalizationPerUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.aspnet_PersonalizationPerUser), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK__aspnet_Pe__UserI__2DE6D218", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.aspnet_Users), "aspnet_PersonalizationPerUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.aspnet_PersonalizationPerUser), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK__aspnet_Pr__UserI__7D439ABD", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.aspnet_Users), "aspnet_Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.aspnet_Profile), true)]
-[assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_User_aspnet_Users", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.aspnet_Users), "Laboratory_User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_User), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Group_Class", "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Class), "Table", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Table), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Dispense_Equipment", "Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Equipment), "Dispense", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Dispense), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Dispense_Room", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Room), "Dispense", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Dispense), true)]
@@ -36,9 +35,9 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Equipment_Equipment", "Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Equipment), "Laboratory_Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Equipment), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Income_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.StudentInfo), "Income", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Income), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Equipment_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Equipment), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Head_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Head", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Head), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Material_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Material", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Material), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Room_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Room), true)]
-[assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_User_Laboratory_User", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_User", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_User), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Material_Material", "Material", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Material), "Laboratory_Material", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Material), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Room_Room", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Room), "Laboratory_Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Room), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Liability_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.StudentInfo), "Liability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Liability), true)]
@@ -386,6 +385,22 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Laboratory_Head> Laboratory_Head
+        {
+            get
+            {
+                if ((_Laboratory_Head == null))
+                {
+                    _Laboratory_Head = base.CreateObjectSet<Laboratory_Head>("Laboratory_Head");
+                }
+                return _Laboratory_Head;
+            }
+        }
+        private ObjectSet<Laboratory_Head> _Laboratory_Head;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Laboratory_Material> Laboratory_Material
         {
             get
@@ -414,22 +429,6 @@ namespace itmm.Models
             }
         }
         private ObjectSet<Laboratory_Room> _Laboratory_Room;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Laboratory_User> Laboratory_User
-        {
-            get
-            {
-                if ((_Laboratory_User == null))
-                {
-                    _Laboratory_User = base.CreateObjectSet<Laboratory_User>("Laboratory_User");
-                }
-                return _Laboratory_User;
-            }
-        }
-        private ObjectSet<Laboratory_User> _Laboratory_User;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -675,6 +674,14 @@ namespace itmm.Models
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the Laboratory_Head EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToLaboratory_Head(Laboratory_Head laboratory_Head)
+        {
+            base.AddObject("Laboratory_Head", laboratory_Head);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Laboratory_Material EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToLaboratory_Material(Laboratory_Material laboratory_Material)
@@ -688,14 +695,6 @@ namespace itmm.Models
         public void AddToLaboratory_Room(Laboratory_Room laboratory_Room)
         {
             base.AddObject("Laboratory_Room", laboratory_Room);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Laboratory_User EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToLaboratory_User(Laboratory_User laboratory_User)
-        {
-            base.AddObject("Laboratory_User", laboratory_User);
         }
     
         /// <summary>
@@ -1004,7 +1003,7 @@ namespace itmm.Models
         /// <param name="failedPasswordAttemptWindowStart">Initial value of the FailedPasswordAttemptWindowStart property.</param>
         /// <param name="failedPasswordAnswerAttemptCount">Initial value of the FailedPasswordAnswerAttemptCount property.</param>
         /// <param name="failedPasswordAnswerAttemptWindowStart">Initial value of the FailedPasswordAnswerAttemptWindowStart property.</param>
-        public static aspnet_Membership Createaspnet_Membership(global::System.Guid applicationId, global::System.Guid userId, global::System.String password, global::System.Int32 passwordFormat, global::System.String passwordSalt, global::System.Boolean isApproved, global::System.Boolean isLockedOut, global::System.DateTime createDate, global::System.DateTime lastLoginDate, global::System.DateTime lastPasswordChangedDate, global::System.DateTime lastLockoutDate, global::System.Int32 failedPasswordAttemptCount, global::System.DateTime failedPasswordAttemptWindowStart, global::System.Int32 failedPasswordAnswerAttemptCount, global::System.DateTime failedPasswordAnswerAttemptWindowStart)
+        public static aspnet_Membership Createaspnet_Membership(global::System.Guid applicationId, global::System.String userId, global::System.String password, global::System.Int32 passwordFormat, global::System.String passwordSalt, global::System.Boolean isApproved, global::System.Boolean isLockedOut, global::System.DateTime createDate, global::System.DateTime lastLoginDate, global::System.DateTime lastPasswordChangedDate, global::System.DateTime lastLockoutDate, global::System.Int32 failedPasswordAttemptCount, global::System.DateTime failedPasswordAttemptWindowStart, global::System.Int32 failedPasswordAnswerAttemptCount, global::System.DateTime failedPasswordAnswerAttemptWindowStart)
         {
             aspnet_Membership aspnet_Membership = new aspnet_Membership();
             aspnet_Membership.ApplicationId = applicationId;
@@ -1057,7 +1056,7 @@ namespace itmm.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Guid UserId
+        public global::System.String UserId
         {
             get
             {
@@ -1069,14 +1068,14 @@ namespace itmm.Models
                 {
                     OnUserIdChanging(value);
                     ReportPropertyChanging("UserId");
-                    _UserId = StructuralObject.SetValidValue(value);
+                    _UserId = StructuralObject.SetValidValue(value, false);
                     ReportPropertyChanged("UserId");
                     OnUserIdChanged();
                 }
             }
         }
-        private global::System.Guid _UserId;
-        partial void OnUserIdChanging(global::System.Guid value);
+        private global::System.String _UserId;
+        partial void OnUserIdChanging(global::System.String value);
         partial void OnUserIdChanged();
     
         /// <summary>
@@ -2084,7 +2083,7 @@ namespace itmm.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Guid> UserId
+        public global::System.String UserId
         {
             get
             {
@@ -2094,13 +2093,13 @@ namespace itmm.Models
             {
                 OnUserIdChanging(value);
                 ReportPropertyChanging("UserId");
-                _UserId = StructuralObject.SetValidValue(value);
+                _UserId = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("UserId");
                 OnUserIdChanged();
             }
         }
-        private Nullable<global::System.Guid> _UserId;
-        partial void OnUserIdChanging(Nullable<global::System.Guid> value);
+        private global::System.String _UserId;
+        partial void OnUserIdChanging(global::System.String value);
         partial void OnUserIdChanged();
     
         /// <summary>
@@ -2252,7 +2251,7 @@ namespace itmm.Models
         /// <param name="propertyValuesString">Initial value of the PropertyValuesString property.</param>
         /// <param name="propertyValuesBinary">Initial value of the PropertyValuesBinary property.</param>
         /// <param name="lastUpdatedDate">Initial value of the LastUpdatedDate property.</param>
-        public static aspnet_Profile Createaspnet_Profile(global::System.Guid userId, global::System.String propertyNames, global::System.String propertyValuesString, global::System.Byte[] propertyValuesBinary, global::System.DateTime lastUpdatedDate)
+        public static aspnet_Profile Createaspnet_Profile(global::System.String userId, global::System.String propertyNames, global::System.String propertyValuesString, global::System.Byte[] propertyValuesBinary, global::System.DateTime lastUpdatedDate)
         {
             aspnet_Profile aspnet_Profile = new aspnet_Profile();
             aspnet_Profile.UserId = userId;
@@ -2271,7 +2270,7 @@ namespace itmm.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Guid UserId
+        public global::System.String UserId
         {
             get
             {
@@ -2283,14 +2282,14 @@ namespace itmm.Models
                 {
                     OnUserIdChanging(value);
                     ReportPropertyChanging("UserId");
-                    _UserId = StructuralObject.SetValidValue(value);
+                    _UserId = StructuralObject.SetValidValue(value, false);
                     ReportPropertyChanged("UserId");
                     OnUserIdChanged();
                 }
             }
         }
-        private global::System.Guid _UserId;
-        partial void OnUserIdChanging(global::System.Guid value);
+        private global::System.String _UserId;
+        partial void OnUserIdChanging(global::System.String value);
         partial void OnUserIdChanged();
     
         /// <summary>
@@ -2783,7 +2782,7 @@ namespace itmm.Models
         /// <param name="loweredUserName">Initial value of the LoweredUserName property.</param>
         /// <param name="isAnonymous">Initial value of the IsAnonymous property.</param>
         /// <param name="lastActivityDate">Initial value of the LastActivityDate property.</param>
-        public static aspnet_Users Createaspnet_Users(global::System.Guid applicationId, global::System.Guid userId, global::System.String userName, global::System.String loweredUserName, global::System.Boolean isAnonymous, global::System.DateTime lastActivityDate)
+        public static aspnet_Users Createaspnet_Users(global::System.Guid applicationId, global::System.String userId, global::System.String userName, global::System.String loweredUserName, global::System.Boolean isAnonymous, global::System.DateTime lastActivityDate)
         {
             aspnet_Users aspnet_Users = new aspnet_Users();
             aspnet_Users.ApplicationId = applicationId;
@@ -2827,7 +2826,7 @@ namespace itmm.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Guid UserId
+        public global::System.String UserId
         {
             get
             {
@@ -2839,14 +2838,14 @@ namespace itmm.Models
                 {
                     OnUserIdChanging(value);
                     ReportPropertyChanging("UserId");
-                    _UserId = StructuralObject.SetValidValue(value);
+                    _UserId = StructuralObject.SetValidValue(value, false);
                     ReportPropertyChanged("UserId");
                     OnUserIdChanged();
                 }
             }
         }
-        private global::System.Guid _UserId;
-        partial void OnUserIdChanging(global::System.Guid value);
+        private global::System.String _UserId;
+        partial void OnUserIdChanging(global::System.String value);
         partial void OnUserIdChanged();
     
         /// <summary>
@@ -3105,28 +3104,6 @@ namespace itmm.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<aspnet_Profile>("pintorModel.FK__aspnet_Pr__UserI__7D439ABD", "aspnet_Profile", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Laboratory_User_aspnet_Users", "Laboratory_User")]
-        public EntityCollection<Laboratory_User> Laboratory_User
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Laboratory_User>("pintorModel.FK_Laboratory_User_aspnet_Users", "Laboratory_User");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Laboratory_User>("pintorModel.FK_Laboratory_User_aspnet_Users", "Laboratory_User", value);
                 }
             }
         }
@@ -5030,6 +5007,30 @@ namespace itmm.Models
         private global::System.String _LaboratoryName;
         partial void OnLaboratoryNameChanging(global::System.String value);
         partial void OnLaboratoryNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String UserName
+        {
+            get
+            {
+                return _UserName;
+            }
+            set
+            {
+                OnUserNameChanging(value);
+                ReportPropertyChanging("UserName");
+                _UserName = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("UserName");
+                OnUserNameChanged();
+            }
+        }
+        private global::System.String _UserName;
+        partial void OnUserNameChanging(global::System.String value);
+        partial void OnUserNameChanged();
 
         #endregion
     
@@ -5053,6 +5054,28 @@ namespace itmm.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Laboratory_Equipment>("pintorModel.FK_Laboratory_Equipment_Laboratory", "Laboratory_Equipment", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Laboratory_Head_Laboratory", "Laboratory_Head")]
+        public EntityCollection<Laboratory_Head> Laboratory_Head
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Laboratory_Head>("pintorModel.FK_Laboratory_Head_Laboratory", "Laboratory_Head");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Laboratory_Head>("pintorModel.FK_Laboratory_Head_Laboratory", "Laboratory_Head", value);
                 }
             }
         }
@@ -5097,28 +5120,6 @@ namespace itmm.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Laboratory_Room>("pintorModel.FK_Laboratory_Room_Laboratory", "Laboratory_Room", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Laboratory_User_Laboratory_User", "Laboratory_User")]
-        public EntityCollection<Laboratory_User> Laboratory_User
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Laboratory_User>("pintorModel.FK_Laboratory_User_Laboratory_User", "Laboratory_User");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Laboratory_User>("pintorModel.FK_Laboratory_User_Laboratory_User", "Laboratory_User", value);
                 }
             }
         }
@@ -5305,6 +5306,258 @@ namespace itmm.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Equipment_Laboratory", "Laboratory", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="pintorModel", Name="Laboratory_Head")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Laboratory_Head : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Laboratory_Head object.
+        /// </summary>
+        /// <param name="laboratory_HeadId">Initial value of the Laboratory_HeadId property.</param>
+        /// <param name="laboratoryId">Initial value of the LaboratoryId property.</param>
+        /// <param name="userName">Initial value of the UserName property.</param>
+        /// <param name="firstName">Initial value of the FirstName property.</param>
+        /// <param name="lastName">Initial value of the LastName property.</param>
+        /// <param name="emailAdd">Initial value of the EmailAdd property.</param>
+        /// <param name="contactNum">Initial value of the ContactNum property.</param>
+        public static Laboratory_Head CreateLaboratory_Head(global::System.Int32 laboratory_HeadId, global::System.Int32 laboratoryId, global::System.String userName, global::System.String firstName, global::System.String lastName, global::System.String emailAdd, global::System.String contactNum)
+        {
+            Laboratory_Head laboratory_Head = new Laboratory_Head();
+            laboratory_Head.Laboratory_HeadId = laboratory_HeadId;
+            laboratory_Head.LaboratoryId = laboratoryId;
+            laboratory_Head.UserName = userName;
+            laboratory_Head.FirstName = firstName;
+            laboratory_Head.LastName = lastName;
+            laboratory_Head.EmailAdd = emailAdd;
+            laboratory_Head.ContactNum = contactNum;
+            return laboratory_Head;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Laboratory_HeadId
+        {
+            get
+            {
+                return _Laboratory_HeadId;
+            }
+            set
+            {
+                if (_Laboratory_HeadId != value)
+                {
+                    OnLaboratory_HeadIdChanging(value);
+                    ReportPropertyChanging("Laboratory_HeadId");
+                    _Laboratory_HeadId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Laboratory_HeadId");
+                    OnLaboratory_HeadIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Laboratory_HeadId;
+        partial void OnLaboratory_HeadIdChanging(global::System.Int32 value);
+        partial void OnLaboratory_HeadIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LaboratoryId
+        {
+            get
+            {
+                return _LaboratoryId;
+            }
+            set
+            {
+                OnLaboratoryIdChanging(value);
+                ReportPropertyChanging("LaboratoryId");
+                _LaboratoryId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LaboratoryId");
+                OnLaboratoryIdChanged();
+            }
+        }
+        private global::System.Int32 _LaboratoryId;
+        partial void OnLaboratoryIdChanging(global::System.Int32 value);
+        partial void OnLaboratoryIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String UserName
+        {
+            get
+            {
+                return _UserName;
+            }
+            set
+            {
+                OnUserNameChanging(value);
+                ReportPropertyChanging("UserName");
+                _UserName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("UserName");
+                OnUserNameChanged();
+            }
+        }
+        private global::System.String _UserName;
+        partial void OnUserNameChanging(global::System.String value);
+        partial void OnUserNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String FirstName
+        {
+            get
+            {
+                return _FirstName;
+            }
+            set
+            {
+                OnFirstNameChanging(value);
+                ReportPropertyChanging("FirstName");
+                _FirstName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("FirstName");
+                OnFirstNameChanged();
+            }
+        }
+        private global::System.String _FirstName;
+        partial void OnFirstNameChanging(global::System.String value);
+        partial void OnFirstNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String LastName
+        {
+            get
+            {
+                return _LastName;
+            }
+            set
+            {
+                OnLastNameChanging(value);
+                ReportPropertyChanging("LastName");
+                _LastName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("LastName");
+                OnLastNameChanged();
+            }
+        }
+        private global::System.String _LastName;
+        partial void OnLastNameChanging(global::System.String value);
+        partial void OnLastNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String EmailAdd
+        {
+            get
+            {
+                return _EmailAdd;
+            }
+            set
+            {
+                OnEmailAddChanging(value);
+                ReportPropertyChanging("EmailAdd");
+                _EmailAdd = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("EmailAdd");
+                OnEmailAddChanged();
+            }
+        }
+        private global::System.String _EmailAdd;
+        partial void OnEmailAddChanging(global::System.String value);
+        partial void OnEmailAddChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ContactNum
+        {
+            get
+            {
+                return _ContactNum;
+            }
+            set
+            {
+                OnContactNumChanging(value);
+                ReportPropertyChanging("ContactNum");
+                _ContactNum = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ContactNum");
+                OnContactNumChanged();
+            }
+        }
+        private global::System.String _ContactNum;
+        partial void OnContactNumChanging(global::System.String value);
+        partial void OnContactNumChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Laboratory_Head_Laboratory", "Laboratory")]
+        public Laboratory Laboratory
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Head_Laboratory", "Laboratory").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Head_Laboratory", "Laboratory").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Laboratory> LaboratoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Head_Laboratory", "Laboratory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Head_Laboratory", "Laboratory", value);
                 }
             }
         }
@@ -5677,192 +5930,6 @@ namespace itmm.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Room>("pintorModel.FK_Laboratory_Room_Room", "Room", value);
-                }
-            }
-        }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="pintorModel", Name="Laboratory_User")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class Laboratory_User : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new Laboratory_User object.
-        /// </summary>
-        /// <param name="laboratory_UserId">Initial value of the Laboratory_UserId property.</param>
-        /// <param name="laboratoryId">Initial value of the LaboratoryId property.</param>
-        /// <param name="userId">Initial value of the UserId property.</param>
-        public static Laboratory_User CreateLaboratory_User(global::System.Int32 laboratory_UserId, global::System.Int32 laboratoryId, global::System.Guid userId)
-        {
-            Laboratory_User laboratory_User = new Laboratory_User();
-            laboratory_User.Laboratory_UserId = laboratory_UserId;
-            laboratory_User.LaboratoryId = laboratoryId;
-            laboratory_User.UserId = userId;
-            return laboratory_User;
-        }
-
-        #endregion
-        #region Primitive Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 Laboratory_UserId
-        {
-            get
-            {
-                return _Laboratory_UserId;
-            }
-            set
-            {
-                if (_Laboratory_UserId != value)
-                {
-                    OnLaboratory_UserIdChanging(value);
-                    ReportPropertyChanging("Laboratory_UserId");
-                    _Laboratory_UserId = StructuralObject.SetValidValue(value);
-                    ReportPropertyChanged("Laboratory_UserId");
-                    OnLaboratory_UserIdChanged();
-                }
-            }
-        }
-        private global::System.Int32 _Laboratory_UserId;
-        partial void OnLaboratory_UserIdChanging(global::System.Int32 value);
-        partial void OnLaboratory_UserIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 LaboratoryId
-        {
-            get
-            {
-                return _LaboratoryId;
-            }
-            set
-            {
-                OnLaboratoryIdChanging(value);
-                ReportPropertyChanging("LaboratoryId");
-                _LaboratoryId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("LaboratoryId");
-                OnLaboratoryIdChanged();
-            }
-        }
-        private global::System.Int32 _LaboratoryId;
-        partial void OnLaboratoryIdChanging(global::System.Int32 value);
-        partial void OnLaboratoryIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Guid UserId
-        {
-            get
-            {
-                return _UserId;
-            }
-            set
-            {
-                OnUserIdChanging(value);
-                ReportPropertyChanging("UserId");
-                _UserId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("UserId");
-                OnUserIdChanged();
-            }
-        }
-        private global::System.Guid _UserId;
-        partial void OnUserIdChanging(global::System.Guid value);
-        partial void OnUserIdChanged();
-
-        #endregion
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Laboratory_User_aspnet_Users", "aspnet_Users")]
-        public aspnet_Users aspnet_Users
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aspnet_Users>("pintorModel.FK_Laboratory_User_aspnet_Users", "aspnet_Users").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aspnet_Users>("pintorModel.FK_Laboratory_User_aspnet_Users", "aspnet_Users").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<aspnet_Users> aspnet_UsersReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<aspnet_Users>("pintorModel.FK_Laboratory_User_aspnet_Users", "aspnet_Users");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<aspnet_Users>("pintorModel.FK_Laboratory_User_aspnet_Users", "aspnet_Users", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Laboratory_User_Laboratory_User", "Laboratory")]
-        public Laboratory Laboratory
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Laboratory_User_Laboratory_User", "Laboratory").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Laboratory_User_Laboratory_User", "Laboratory").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Laboratory> LaboratoryReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Laboratory_User_Laboratory_User", "Laboratory");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Laboratory>("pintorModel.FK_Laboratory_User_Laboratory_User", "Laboratory", value);
                 }
             }
         }

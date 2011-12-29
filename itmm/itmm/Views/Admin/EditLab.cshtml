@@ -12,7 +12,7 @@
 <form id="editlab" method="post" action="/Admin/EditLab">
 <div>
     Laboratory Name:<br />
-    <input type="text" name="LabName" value="@labinfo.LaboratoryName" size=7 class="required" style="width:260px;height:23px;" />
+    <input type="text" name="LabName" value="@labinfo.LaboratoryName" maxlength=13 class="required" style="width:260px;height:23px;" />
     <input type="hidden" name="LabId" value="@labinfo.LaboratoryId" />
 </div>
 <div>
@@ -26,7 +26,7 @@
 }
 @foreach (var _AvlRoom in AvlRoom)
 {
-    <input type="checkbox"  name="room" value="@_AvlRoom.RoomId"/>@_AvlRoom.RoomName<br /> 
+    <input type="checkbox"  name="room" value="@_AvlRoom.RoomId"/>@_AvlRoom.RoomName<br />
 }
 </div>
 <input type="submit" class="submit" value="Edit" style="width: 150px; height: 35px" />

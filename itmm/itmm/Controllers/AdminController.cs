@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web.Security;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using itmm.Models;
+
+
+
 
 namespace itmm.Controllers
 {
@@ -12,7 +16,7 @@ namespace itmm.Controllers
         public pintorEntities con = new pintorEntities();
         //
         // GET: /Admin/
-        [Authorize(Roles="Dev")]
+        [Authorize(Roles = "Dev")]
         public ActionResult Index()
         {
             ViewBag.MyMessage = "Welcome to administrator page <- Message brought to you by ViewBag";
@@ -22,13 +26,17 @@ namespace itmm.Controllers
             ViewBag.Room = room;
 
             var labroom = from y in con.Laboratory_Room
-                      select y;
+                          select y;
             ViewBag.LabRoom = labroom;
 
             var lablist = from y in con.Laboratories
                           orderby y.LaboratoryName ascending
                           select y;
             ViewBag.LabList = lablist;
+
+            //LabHead
+
+
             return View();
         }
         [Authorize(Roles = "Dev")]
@@ -50,22 +58,20 @@ namespace itmm.Controllers
                     Laboratory_Room a = new Laboratory_Room();
                     a.LaboratoryId = f.LaboratoryId;
                     var x = (from y in con.Rooms
-                            where y.RoomId == Room
-                            select y.RoomId).FirstOrDefault();
+                             where y.RoomId == Room
+                             select y.RoomId).FirstOrDefault();
                     a.RoomId = x;
 
                     con.AddToLaboratory_Room(a);
                     con.SaveChanges();
                 }
             }
-            return RedirectToAction("Index","Admin");
+            return RedirectToAction("Index", "Admin");
         }
-    
+
         [Authorize(Roles = "Dev")]
         public ActionResult EditLab(int? LabId)
         {
-     
-    
             var lablist = from y in con.Laboratories
                           select y;
 
@@ -123,7 +129,7 @@ namespace itmm.Controllers
                     select y;
             x.LaboratoryName = LabName;
             x.LaboratoryDesc = LabDesc;
-          
+
 
             foreach (var _z in z)
             {
@@ -143,9 +149,9 @@ namespace itmm.Controllers
                     a.LaboratoryId = LabId;
 
                     con.AddToLaboratory_Room(a);
-                    
                 }
-            }catch(Exception){}
+            }
+            catch (Exception) { }
             con.SaveChanges();
             return RedirectToAction("Index", "Admin");
         }
@@ -153,13 +159,139 @@ namespace itmm.Controllers
         public ActionResult DeleteLab(int LabId)
         {
             var x = (from y in con.Laboratories
-                    where y.LaboratoryId == LabId
-                    select y).FirstOrDefault();
+                     where y.LaboratoryId == LabId
+                     select y).FirstOrDefault();
             con.DeleteObject(x);
             con.SaveChanges();
             return RedirectToAction("Index", "Admin");
         }
- 
+        [Authorize(Roles = "Dev")]
+        public ActionResult Room()
+        {
+            var x = from y in con.Rooms
+                    select y;
+            ViewBag.RoomList = x;
+            return View();
+        }
+        [Authorize(Roles = "Dev")]
+        [HttpPost]
+        public ActionResult Room(String RoomName)
+        {
+                Room a = new Room();
+                a.RoomName = RoomName;
+                con.AddToRooms(a);
+                con.SaveChanges();
+                return RedirectToAction("Index", "Admin");
+        }
+        [Authorize(Roles = "Dev")]
+        public ActionResult EditRoom(int RoomId)
+        {
+            try
+            {
+                var x = from y in con.Rooms
+                        where y.RoomId == RoomId
+                        select y;
+                ViewBag.RoomInfo = x;
+            }
+            catch (Exception)
+            {
+      
+            }
+            return PartialView();
+        }
+        [HttpPost]
+        public ActionResult EditRoom(int RoomId,string RoomName)
+        {
+            try
+            {
+                var x = (from y in con.Rooms
+                        where y.RoomId == RoomId
+                        select y).FirstOrDefault();
+                x.RoomName = RoomName;
+                con.SaveChanges();
+
+            }
+            catch (Exception)
+            {
+                
+            }
+            return RedirectToAction("Index", "Admin");
+        }
+        [Authorize]
+        public ActionResult DeleteRoom(int RoomId)
+        {
+            try
+            {
+                var x = (from y in con.Rooms
+                         where y.RoomId == RoomId
+                         select y).FirstOrDefault();
+                con.DeleteObject(x);
+                con.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+            }
+            return RedirectToAction("Index", "Admin");
+        }
+
+       [Authorize]
+        public ActionResult Head()
+        {
+            var x = from y in con.Laboratories
+                    orderby y.LaboratoryName ascending
+                    select y;
+            ViewBag.LabList = x;
+            return PartialView();
+        }
+       [HttpPost]
+       public ActionResult Head(itmmAdminHead model, int section)
+       {
+
+           if (ModelState.IsValid)
+           {
+               AccountMembershipService MembershipService = new AccountMembershipService();
+               MembershipCreateStatus createStatus = MembershipService.CreateUser(model.uname, model.password, model.eadd);
+               if (createStatus == MembershipCreateStatus.Success)
+               {
+                   Roles.AddUserToRole(model.uname, "Dev");
+                   Laboratory_Head a = new Laboratory_Head();
+                   a.FirstName = model.fname;
+                   a.LastName = model.lname;
+                   a.UserName = model.uname;
+                   a.ContactNum = model.cnum;
+                   a.EmailAdd = model.eadd;
+                   a.LaboratoryId = section;
+
+                   var x = (from y in con.Laboratories
+                           where y.LaboratoryId == section
+                           select y).FirstOrDefault();
+
+                   x.UserName = model.uname;
+
+                   con.AddToLaboratory_Head(a);
+                  
+                   con.SaveChanges();
+
+
+                   return RedirectToAction("Head", "Admin");
+               }
+               else
+               {
+                   var x = from y in con.Laboratories
+                           orderby y.LaboratoryName ascending
+                           select y;
+                   ViewBag.LabList = x;
+  
+                   ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
+               }
+        
+           }
+           return View(model);
+           
+       }
+
+
 
     }
 }

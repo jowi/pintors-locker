@@ -1,4 +1,5 @@
-﻿@{
+﻿@using itmm.Models;
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
     var Room = (ViewBag.Room as IQueryable<itmm.Models.Room>);
@@ -7,16 +8,15 @@
 }
 
 
+
 @ViewBag.MyMessage
 <div id="accord">
- 
-
     <span id="span_link" style="visibility: hidden;"><a id="modal_diag" href="#">Create Laboratory</a></span><br />
     <div id="modal" title="Fill the form" style="visibility: hidden; height: 0px;">
         <form id="labform" method="post" action="/Admin/Index">
         <div>
             Laboratory Name:<br />
-            <input type="text" name="LabName" class="required" size=7 style="width:260px;height:23px;" />
+            <input type="text" name="LabName" class="required" maxlength=13 style="width:260px;height:23px;" />
         </div>
         <div>
             Laboratory Description:<br />
@@ -44,8 +44,8 @@
         </form>
     </div><!-- end dialog -->
     <div id="room_div"style="visibility: hidden">
-        <table cellspacing="0">
-        <thead><tr><th>Laboratory</th><th>Head</th><th>Room</th></tr></thead>
+        <table cellspacing="0" id="dtable" style="position:relative;left:15%">
+        <thead><tr><th>Laboratory</th><th>Head</th><th>Room</th><th></th></tr></thead>
         <tbody>
         @foreach (var lablist in LabList)
         {
@@ -66,7 +66,23 @@
                         RoomInLab = RoomInLab + "," + labroom.Room.RoomName;
                     }
                 }
-            }<td>head</td><td>@RoomInLab</td>
+            }
+            <td>@{pintorEntities p = new pintorEntities();
+                  var z = p.Laboratory_Head.FirstOrDefault(x => x.UserName == lablist.UserName);
+                  string head;
+                  if (z != null)
+                  {
+                      head = z.FirstName + " " + z.LastName;
+                  }
+                  else
+                  {
+                      head = "none";
+                  }
+                  
+                  }
+                  @head
+            </td>
+            <td>@RoomInLab</td>
             <td><a href="javascript:TableTools('@Url.Action("EditLab", "Admin", new { LabId = lablist.LaboratoryId})')">edit</a>
             &nbsp<a href="javascript:TableConfirm('@Url.Action("DeleteLab", "Admin", new { LabId = lablist.LaboratoryId})')">delete</a>&nbsp</td></tr>
         }
@@ -78,6 +94,8 @@
    
 @section SideNav{
 <ul>
+    <li><a href="javascript:ItmmLoad('@Url.Action("Room", "Admin")')">Room</a></li>
     <li><a href="javascript:ItmmLoad('@Url.Action("Index", "Admin")')">Laboratory</a></li>
+    <li><a href="javascript:ItmmLoad('@Url.Action("Head", "Admin")')">Head Accounts</a></li>
 </ul>
 }

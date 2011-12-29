@@ -1,0 +1,20 @@
+﻿@{
+    var _RoomInfo = (ViewBag.RoomInfo as IQueryable<itmm.Models.Room>);
+}
+<div id="ttool">
+
+@foreach (var roominfo in _RoomInfo)
+{
+    
+<form id="editlab" method="post" action="/Admin/EditRoom">
+<div>
+    Laboratory Name:<br />
+    <input type="text" name="RoomName" value="@roominfo.RoomName" maxlength=10 class="required" style="width:260px;height:23px;" />
+    <input type="hidden" name="RoomId" value="@roominfo.RoomId" />
+</div>
+<input type="submit" class="submit" value="Edit" style="width: 150px; height: 35px" />
+</form>
+
+}
+
+</div>

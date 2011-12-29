@@ -209,6 +209,7 @@
     <EntitySetMapping Name="Laboratories">
       <EntityTypeMapping TypeName="pintorModel.Laboratory">
         <MappingFragment StoreEntitySet="Laboratory">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="LaboratoryName" ColumnName="LaboratoryName" />
           <ScalarProperty Name="LaboratoryDesc" ColumnName="LaboratoryDesc" />
           <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
@@ -221,6 +222,19 @@
           <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
           <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
           <ScalarProperty Name="Laboratory_EquipmentId" ColumnName="Laboratory_EquipmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Laboratory_Head">
+      <EntityTypeMapping TypeName="pintorModel.Laboratory_Head">
+        <MappingFragment StoreEntitySet="Laboratory_Head">
+          <ScalarProperty Name="ContactNum" ColumnName="ContactNum" />
+          <ScalarProperty Name="EmailAdd" ColumnName="EmailAdd" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
+          <ScalarProperty Name="Laboratory_HeadId" ColumnName="Laboratory_HeadId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -239,15 +253,6 @@
           <ScalarProperty Name="RoomId" ColumnName="RoomId" />
           <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
           <ScalarProperty Name="Laboratory_RoomId" ColumnName="Laboratory_RoomId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Laboratory_User">
-      <EntityTypeMapping TypeName="pintorModel.Laboratory_User">
-        <MappingFragment StoreEntitySet="Laboratory_User">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
-          <ScalarProperty Name="Laboratory_UserId" ColumnName="Laboratory_UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

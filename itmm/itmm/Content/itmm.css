@@ -82,15 +82,20 @@ body a
 #modal_diag{
    
 }
+#lab_form input
+{
+width:260px;
+height:23px;  
+}
 /*******ADMIN**********/
 #room_div
 {
     margin-top:25px;
 }
-#room_div table
+/*#room_div table
 {
     margin-bottom:30px;
-}
+}*/
 #room_div table thead th
 {
     padding: 5px 120px 5px 10px;
@@ -106,5 +111,6 @@ body a
 {
 background-color:#E6E6E6;   
 }
+
 
 

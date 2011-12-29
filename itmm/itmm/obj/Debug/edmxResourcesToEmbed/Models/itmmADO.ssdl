@@ -20,9 +20,9 @@
     <EntitySet Name="InventoryCost" EntityType="pintorModel.Store.InventoryCost" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Laboratory" EntityType="pintorModel.Store.Laboratory" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Laboratory_Equipment" EntityType="pintorModel.Store.Laboratory_Equipment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Laboratory_Head" EntityType="pintorModel.Store.Laboratory_Head" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Laboratory_Material" EntityType="pintorModel.Store.Laboratory_Material" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Laboratory_Room" EntityType="pintorModel.Store.Laboratory_Room" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Laboratory_User" EntityType="pintorModel.Store.Laboratory_User" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Liability" EntityType="pintorModel.Store.Liability" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Material" EntityType="pintorModel.Store.Material" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Room" EntityType="pintorModel.Store.Room" store:Type="Tables" Schema="dbo" />
@@ -109,6 +109,10 @@
       <End Role="Laboratory" EntitySet="Laboratory" />
       <End Role="Laboratory_Equipment" EntitySet="Laboratory_Equipment" />
     </AssociationSet>
+    <AssociationSet Name="FK_Laboratory_Head_Laboratory" Association="pintorModel.Store.FK_Laboratory_Head_Laboratory">
+      <End Role="Laboratory" EntitySet="Laboratory" />
+      <End Role="Laboratory_Head" EntitySet="Laboratory_Head" />
+    </AssociationSet>
     <AssociationSet Name="FK_Laboratory_Material_Laboratory" Association="pintorModel.Store.FK_Laboratory_Material_Laboratory">
       <End Role="Laboratory" EntitySet="Laboratory" />
       <End Role="Laboratory_Material" EntitySet="Laboratory_Material" />
@@ -124,14 +128,6 @@
     <AssociationSet Name="FK_Laboratory_Room_Room" Association="pintorModel.Store.FK_Laboratory_Room_Room">
       <End Role="Room" EntitySet="Room" />
       <End Role="Laboratory_Room" EntitySet="Laboratory_Room" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Laboratory_User_aspnet_Users" Association="pintorModel.Store.FK_Laboratory_User_aspnet_Users">
-      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-      <End Role="Laboratory_User" EntitySet="Laboratory_User" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Laboratory_User_Laboratory_User" Association="pintorModel.Store.FK_Laboratory_User_Laboratory_User">
-      <End Role="Laboratory" EntitySet="Laboratory" />
-      <End Role="Laboratory_User" EntitySet="Laboratory_User" />
     </AssociationSet>
     <AssociationSet Name="FK_Liability_StudentInfo" Association="pintorModel.Store.FK_Liability_StudentInfo">
       <End Role="StudentInfo" EntitySet="StudentInfo" />
@@ -152,7 +148,7 @@
       <PropertyRef Name="UserId" />
     </Key>
     <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="256" />
     <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
     <Property Name="PasswordFormat" Type="int" Nullable="false" />
     <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
@@ -196,7 +192,7 @@
     </Key>
     <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
     <Property Name="PathId" Type="uniqueidentifier" />
-    <Property Name="UserId" Type="uniqueidentifier" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="256" />
     <Property Name="PageSettings" Type="image" Nullable="false" />
     <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
   </EntityType>
@@ -204,7 +200,7 @@
     <Key>
       <PropertyRef Name="UserId" />
     </Key>
-    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="256" />
     <Property Name="PropertyNames" Type="ntext" Nullable="false" />
     <Property Name="PropertyValuesString" Type="ntext" Nullable="false" />
     <Property Name="PropertyValuesBinary" Type="image" Nullable="false" />
@@ -234,7 +230,7 @@
       <PropertyRef Name="UserId" />
     </Key>
     <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="256" />
     <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
     <Property Name="LoweredUserName" Type="nvarchar" Nullable="false" MaxLength="256" />
     <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
@@ -246,7 +242,7 @@
       <PropertyRef Name="UserId" />
       <PropertyRef Name="RoleId" />
     </Key>
-    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" Nullable="false" MaxLength="256" />
     <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="aspnet_WebEvent_Events">
@@ -343,6 +339,7 @@
     <Property Name="LaboratoryId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="LaboratoryDesc" Type="varchar(max)" />
     <Property Name="LaboratoryName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" />
   </EntityType>
   <EntityType Name="Laboratory_Equipment">
     <Key>
@@ -351,6 +348,18 @@
     <Property Name="Laboratory_EquipmentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="LaboratoryId" Type="int" Nullable="false" />
     <Property Name="EquipmentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Laboratory_Head">
+    <Key>
+      <PropertyRef Name="Laboratory_HeadId" />
+    </Key>
+    <Property Name="Laboratory_HeadId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="LaboratoryId" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="EmailAdd" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ContactNum" Type="varchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <EntityType Name="Laboratory_Material">
     <Key>
@@ -367,14 +376,6 @@
     <Property Name="Laboratory_RoomId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="LaboratoryId" Type="int" Nullable="false" />
     <Property Name="RoomId" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Laboratory_User">
-    <Key>
-      <PropertyRef Name="Laboratory_UserId" />
-    </Key>
-    <Property Name="Laboratory_UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="LaboratoryId" Type="int" Nullable="false" />
-    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="Liability">
     <Key>
@@ -673,6 +674,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Laboratory_Head_Laboratory">
+    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1" />
+    <End Role="Laboratory_Head" Type="pintorModel.Store.Laboratory_Head" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratory">
+        <PropertyRef Name="LaboratoryId" />
+      </Principal>
+      <Dependent Role="Laboratory_Head">
+        <PropertyRef Name="LaboratoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Laboratory_Material_Laboratory">
     <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1" />
     <End Role="Laboratory_Material" Type="pintorModel.Store.Laboratory_Material" Multiplicity="*" />
@@ -718,30 +731,6 @@
       </Principal>
       <Dependent Role="Laboratory_Room">
         <PropertyRef Name="RoomId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Laboratory_User_aspnet_Users">
-    <End Role="aspnet_Users" Type="pintorModel.Store.aspnet_Users" Multiplicity="1" />
-    <End Role="Laboratory_User" Type="pintorModel.Store.Laboratory_User" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="aspnet_Users">
-        <PropertyRef Name="UserId" />
-      </Principal>
-      <Dependent Role="Laboratory_User">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Laboratory_User_Laboratory_User">
-    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1" />
-    <End Role="Laboratory_User" Type="pintorModel.Store.Laboratory_User" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Laboratory">
-        <PropertyRef Name="LaboratoryId" />
-      </Principal>
-      <Dependent Role="Laboratory_User">
-        <PropertyRef Name="LaboratoryId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
