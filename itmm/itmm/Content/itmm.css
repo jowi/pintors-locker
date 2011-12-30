@@ -113,4 +113,9 @@ background-color:#E6E6E6;
 }
 
 
-
+/*form*/
+#editlab input
+{
+    width:260px;
+    height:23px;
+}

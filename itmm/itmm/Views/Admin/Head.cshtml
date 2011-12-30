@@ -1,23 +1,44 @@
 ﻿@model itmm.Models.itmmAdminHead
+@using itmm.Models;
 
 @{
     ViewBag.Title = "Head";
     Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
     var LabList = (ViewBag.LabList as IQueryable<itmm.Models.Laboratory>);
+    var HeadList = (ViewBag.HeadList as IQueryable<itmm.Models.Laboratory_Head>);
 }
 
 
 <div id="accord">
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <style type="text/css">
+     /*   #room_div
+        {
+            position: relative;
+            top: 70px;
+        }*/
+        #room_div table
+        {
+            position: relative;
+            left: 30px;
+        }
+        #room_div table thead th
+        {
+            padding-right: 50px;
+        }
+    </style>
 
+
+<div id="form_holder" >
 @using (Html.BeginForm())
 {
-    <div style="position:absolute;top:420px">
+    <div >
     @Html.ValidationSummary(true)
+    </div>
    
-        
-        </div>
+
+    <div style="float:left;margin-bottom:100px">
         <div class="editor-label">
             @Html.LabelFor(model => model.fname)
         </div>
@@ -61,9 +82,9 @@
         }
         </select>
         </div>
-    
+    </div>
   
-   <div style="position:absolute;top:65px;left:525px;">
+   <div  style="float:right;padding-right:170px"><!--style="position:relative;top:-340px;left:525px;"-->
         <div class="editor-label">
             @Html.LabelFor(model => model.uname)
         </div>
@@ -91,16 +112,60 @@
         <p>
             <input type="submit" value="Create" />
         </p>
-  </div>   
+ 
+  </div>
 }
+</div><!-- form_holder-->
+
+
+<div id="room_div"><!-- style="position:relative;top:-200px;background-colo:red"-->
+<table id="dtable" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Section</th>
+            <th>Contact Number</th>
+           <th>Email Address</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var headlist in HeadList)
+    { 
+        <tr>
+            <td>@headlist.FirstName</td>
+            <td>@headlist.LastName</td>
+            @{
+           pintorEntities p = new pintorEntities();
+           var x = p.Laboratories.FirstOrDefault(y => y.UserName == headlist.UserName);
+           string LabName;
+           if (x == null) { LabName = "none"; } else { LabName = x.LaboratoryName; }
+          
+             }
+                  
+            <td>@LabName</td>
+            <td>@headlist.ContactNum</td>
+            <td>@headlist.EmailAdd</td>
+            <td><a href="javascript:TableTools('@Url.Action("EditHead", "Admin", new { LabHeadId = headlist.Laboratory_HeadId })')">edit</a>                       
+        &nbsp<a href="javascript:TableConfirm('@Url.Action("DeleteHead", "Admin", new { UserName = headlist.UserName })')">delete</a>&nbsp
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+</div><!--dataTable-->
+
 <script type="text/javascript">
     $(document).ready(function () {
-        //alert("hi");
         $("#light").addClass("light").css("color", "#F7BE81");
+        $("#dtable").dataTable();
     });
 </script>
-
+<div id="tableTool"></div>
 </div>
+
+
 @section SideNav{
 <ul>
     <li><a href="javascript:ItmmLoad('@Url.Action("Room", "Admin")')">Room</a></li>

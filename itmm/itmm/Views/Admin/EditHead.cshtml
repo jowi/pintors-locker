@@ -1,0 +1,48 @@
+﻿@{
+   var LabHeadInfo = (ViewBag.LabHeadInfo as IQueryable<itmm.Models.Laboratory_Head>);
+   var LabList = (ViewBag.LabList as IQueryable<itmm.Models.Laboratory>);
+      
+}
+
+
+<div id="ttool">
+
+<form id="editlab" method="post" action="/Admin/EditHead">
+@foreach (var labHeadInfo in LabHeadInfo)
+{
+    <div>
+        Firstname<br />
+        <input type="text" name="fname" value="@labHeadInfo.FirstName" class="required" /></div>
+    <div>
+        Lastname<br />
+        <input type="text" name="lname" value="@labHeadInfo.LastName" class="required" /></div>   
+    <div>
+        Contact Number<br />
+        <input type="text" name="cnum" value="@labHeadInfo.ContactNum" class="required" /></div>  
+    <div>
+        Email Address<br />
+        <input type="text" name="eadd" value="@labHeadInfo.EmailAdd" class="required" /></div>  
+    <div>
+       Section:<br />
+       <select name="section">
+       @foreach (var labList in LabList)
+	    {
+            if (labList.LaboratoryId == labHeadInfo.LaboratoryId) {
+                <option value="@labList.LaboratoryId" selected="selected">@labList.LaboratoryName</option>  
+            }
+            else
+            {
+                <option value="@labList.LaboratoryId">@labList.LaboratoryName</option> 
+            }
+
+        }
+    </select>
+    <input type="hidden" name="LabHeadId" value="@labHeadInfo.Laboratory_HeadId" />
+    </div><br /> 
+    <input type="submit" class="submit" value="Edit" style="width: 150px; height: 35px"/>
+    
+}
+
+</form>
+
+</div>

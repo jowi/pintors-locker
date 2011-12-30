@@ -217,7 +217,7 @@ namespace itmm.Controllers
             }
             return RedirectToAction("Index", "Admin");
         }
-        [Authorize]
+        [Authorize(Roles = "Dev")]
         public ActionResult DeleteRoom(int RoomId)
         {
             try
@@ -235,18 +235,28 @@ namespace itmm.Controllers
             return RedirectToAction("Index", "Admin");
         }
 
-       [Authorize]
+       [Authorize(Roles = "Dev")]
         public ActionResult Head()
         {
             var x = from y in con.Laboratories
                     orderby y.LaboratoryName ascending
                     select y;
             ViewBag.LabList = x;
+            var b = from y in con.Laboratory_Head
+                    select y;
+            ViewBag.HeadList = b;
             return PartialView();
         }
        [HttpPost]
        public ActionResult Head(itmmAdminHead model, int section)
        {
+           var l = from y in con.Laboratories
+                   orderby y.LaboratoryName ascending
+                   select y;
+           ViewBag.LabList = l;
+           var b = from y in con.Laboratory_Head
+                   select y;
+           ViewBag.HeadList = b;
 
            if (ModelState.IsValid)
            {
@@ -278,18 +288,68 @@ namespace itmm.Controllers
                }
                else
                {
-                   var x = from y in con.Laboratories
-                           orderby y.LaboratoryName ascending
-                           select y;
-                   ViewBag.LabList = x;
-  
                    ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
-               }
-        
+               }       
            }
            return View(model);
            
        }
+        [Authorize(Roles = "Dev")]
+       public ActionResult EditHead(int LabHeadId)
+       {
+           var x = from y in con.Laboratory_Head
+                   where y.Laboratory_HeadId == LabHeadId
+                   select y;
+           ViewBag.LabHeadInfo = x;
+           var a = from y in con.Laboratories
+                   select y;
+           ViewBag.LabList = a;
+           return View();
+       }
+        [Authorize(Roles = "Dev")]
+        [HttpPost]
+        public ActionResult EditHead(int LabHeadId,string fname,string lname,string cnum,string eadd,int section)
+        {
+            var x = (from y in con.Laboratory_Head
+                     where y.Laboratory_HeadId == LabHeadId
+                     select y).FirstOrDefault();
+            x.FirstName = fname;
+            x.LastName = lname;
+            x.ContactNum = cnum;
+            x.EmailAdd = eadd;
+            var z = (from y in con.Laboratories
+                     where y.LaboratoryId == section
+                     select y).FirstOrDefault();
+            z.UserName = x.UserName;
+            con.SaveChanges();
+
+            return RedirectToAction("Index", "Admin");
+        }
+        [Authorize(Roles = "Dev")]
+        public ActionResult DeleteHead(string UserName)
+        {
+            try
+            {
+                Membership.DeleteUser(UserName);
+                //delete head on Laboratory
+                var x = (from y in con.Laboratories
+                         where y.UserName == UserName
+                         select y).FirstOrDefault();
+                x.UserName = null;
+                //delete head on Laborator_Head
+                var z = (from y in con.Laboratory_Head
+                         where y.UserName == UserName
+                         select y).FirstOrDefault();
+               
+                con.DeleteObject(z);
+                con.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return View();
+            }
+            return RedirectToAction("Index", "Admin");
+        }
 
 
 
