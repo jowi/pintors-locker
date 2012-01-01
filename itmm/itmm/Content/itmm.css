@@ -119,3 +119,8 @@ background-color:#E6E6E6;
     width:260px;
     height:23px;
 }
+/*DEBUGGER CSS*/
+#content_wrapper
+{
+    border: dashed 1px #E6E6E6;
+    }

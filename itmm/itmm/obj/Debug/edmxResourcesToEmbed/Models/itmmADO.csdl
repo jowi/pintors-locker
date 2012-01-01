@@ -128,6 +128,11 @@
       <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
       <End Role="aspnet_Users" EntitySet="aspnet_Users" />
     </AssociationSet>
+    <EntitySet Name="Laboratory_Staff" EntityType="pintorModel.Laboratory_Staff" />
+    <AssociationSet Name="FK_Laboratory_Staff_Laboratory_Staff" Association="pintorModel.FK_Laboratory_Staff_Laboratory_Staff">
+      <End Role="Laboratory" EntitySet="Laboratories" />
+      <End Role="Laboratory_Staff" EntitySet="Laboratory_Staff" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="aspnet_Applications">
     <Key>
@@ -360,6 +365,7 @@
     <NavigationProperty Name="Laboratory_Head" Relationship="pintorModel.FK_Laboratory_Head_Laboratory" FromRole="Laboratory" ToRole="Laboratory_Head" />
     <NavigationProperty Name="Laboratory_Material" Relationship="pintorModel.FK_Laboratory_Material_Laboratory" FromRole="Laboratory" ToRole="Laboratory_Material" />
     <NavigationProperty Name="Laboratory_Room" Relationship="pintorModel.FK_Laboratory_Room_Laboratory" FromRole="Laboratory" ToRole="Laboratory_Room" />
+    <NavigationProperty Name="Laboratory_Staff" Relationship="pintorModel.FK_Laboratory_Staff_Laboratory_Staff" FromRole="Laboratory" ToRole="Laboratory_Staff" />
   </EntityType>
   <EntityType Name="Laboratory_Equipment">
     <Key>
@@ -762,5 +768,32 @@
   <Association Name="aspnet_UsersInRoles">
     <End Type="pintorModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
     <End Type="pintorModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Laboratory_Staff">
+    <Key>
+      <PropertyRef Name="StaffId" />
+    </Key>
+    <Property Type="Int32" Name="StaffId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="LastName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EmailAddress" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="IdNumber" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="CourseAndYear" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Type" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="LaboratoryId" Nullable="false" />
+    <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Laboratory_Staff_Laboratory_Staff" FromRole="Laboratory_Staff" ToRole="Laboratory" />
+  </EntityType>
+  <Association Name="FK_Laboratory_Staff_Laboratory_Staff">
+    <End Type="pintorModel.Laboratory" Role="Laboratory" Multiplicity="1" />
+    <End Type="pintorModel.Laboratory_Staff" Role="Laboratory_Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratory">
+        <PropertyRef Name="LaboratoryId" />
+      </Principal>
+      <Dependent Role="Laboratory_Staff">
+        <PropertyRef Name="LaboratoryId" />
+      </Dependent>
+    </ReferentialConstraint>
   </Association>
 </Schema>

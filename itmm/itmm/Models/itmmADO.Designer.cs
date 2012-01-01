@@ -43,6 +43,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Liability_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.StudentInfo), "Liability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Liability), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Group_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.StudentInfo), "Table", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Table), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "aspnet_UsersInRoles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.aspnet_Roles), "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.aspnet_Users))]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Staff_Laboratory_Staff", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Staff", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Staff), true)]
 
 #endregion
 
@@ -525,6 +526,22 @@ namespace itmm.Models
             }
         }
         private ObjectSet<Table> _Tables;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Laboratory_Staff> Laboratory_Staff
+        {
+            get
+            {
+                if ((_Laboratory_Staff == null))
+                {
+                    _Laboratory_Staff = base.CreateObjectSet<Laboratory_Staff>("Laboratory_Staff");
+                }
+                return _Laboratory_Staff;
+            }
+        }
+        private ObjectSet<Laboratory_Staff> _Laboratory_Staff;
 
         #endregion
         #region AddTo Methods
@@ -743,6 +760,14 @@ namespace itmm.Models
         public void AddToTables(Table table)
         {
             base.AddObject("Tables", table);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Laboratory_Staff EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToLaboratory_Staff(Laboratory_Staff laboratory_Staff)
+        {
+            base.AddObject("Laboratory_Staff", laboratory_Staff);
         }
 
         #endregion
@@ -5123,6 +5148,28 @@ namespace itmm.Models
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Laboratory_Staff_Laboratory_Staff", "Laboratory_Staff")]
+        public EntityCollection<Laboratory_Staff> Laboratory_Staff
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Laboratory_Staff>("pintorModel.FK_Laboratory_Staff_Laboratory_Staff", "Laboratory_Staff");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Laboratory_Staff>("pintorModel.FK_Laboratory_Staff_Laboratory_Staff", "Laboratory_Staff", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -5930,6 +5977,310 @@ namespace itmm.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Room>("pintorModel.FK_Laboratory_Room_Room", "Room", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="pintorModel", Name="Laboratory_Staff")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Laboratory_Staff : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Laboratory_Staff object.
+        /// </summary>
+        /// <param name="staffId">Initial value of the StaffId property.</param>
+        /// <param name="firstName">Initial value of the FirstName property.</param>
+        /// <param name="lastName">Initial value of the LastName property.</param>
+        /// <param name="emailAddress">Initial value of the EmailAddress property.</param>
+        /// <param name="idNumber">Initial value of the IdNumber property.</param>
+        /// <param name="courseAndYear">Initial value of the CourseAndYear property.</param>
+        /// <param name="type">Initial value of the Type property.</param>
+        /// <param name="userName">Initial value of the UserName property.</param>
+        /// <param name="laboratoryId">Initial value of the LaboratoryId property.</param>
+        public static Laboratory_Staff CreateLaboratory_Staff(global::System.Int32 staffId, global::System.String firstName, global::System.String lastName, global::System.String emailAddress, global::System.String idNumber, global::System.String courseAndYear, global::System.String type, global::System.String userName, global::System.Int32 laboratoryId)
+        {
+            Laboratory_Staff laboratory_Staff = new Laboratory_Staff();
+            laboratory_Staff.StaffId = staffId;
+            laboratory_Staff.FirstName = firstName;
+            laboratory_Staff.LastName = lastName;
+            laboratory_Staff.EmailAddress = emailAddress;
+            laboratory_Staff.IdNumber = idNumber;
+            laboratory_Staff.CourseAndYear = courseAndYear;
+            laboratory_Staff.Type = type;
+            laboratory_Staff.UserName = userName;
+            laboratory_Staff.LaboratoryId = laboratoryId;
+            return laboratory_Staff;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 StaffId
+        {
+            get
+            {
+                return _StaffId;
+            }
+            set
+            {
+                if (_StaffId != value)
+                {
+                    OnStaffIdChanging(value);
+                    ReportPropertyChanging("StaffId");
+                    _StaffId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("StaffId");
+                    OnStaffIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _StaffId;
+        partial void OnStaffIdChanging(global::System.Int32 value);
+        partial void OnStaffIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String FirstName
+        {
+            get
+            {
+                return _FirstName;
+            }
+            set
+            {
+                OnFirstNameChanging(value);
+                ReportPropertyChanging("FirstName");
+                _FirstName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("FirstName");
+                OnFirstNameChanged();
+            }
+        }
+        private global::System.String _FirstName;
+        partial void OnFirstNameChanging(global::System.String value);
+        partial void OnFirstNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String LastName
+        {
+            get
+            {
+                return _LastName;
+            }
+            set
+            {
+                OnLastNameChanging(value);
+                ReportPropertyChanging("LastName");
+                _LastName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("LastName");
+                OnLastNameChanged();
+            }
+        }
+        private global::System.String _LastName;
+        partial void OnLastNameChanging(global::System.String value);
+        partial void OnLastNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String EmailAddress
+        {
+            get
+            {
+                return _EmailAddress;
+            }
+            set
+            {
+                OnEmailAddressChanging(value);
+                ReportPropertyChanging("EmailAddress");
+                _EmailAddress = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("EmailAddress");
+                OnEmailAddressChanged();
+            }
+        }
+        private global::System.String _EmailAddress;
+        partial void OnEmailAddressChanging(global::System.String value);
+        partial void OnEmailAddressChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String IdNumber
+        {
+            get
+            {
+                return _IdNumber;
+            }
+            set
+            {
+                OnIdNumberChanging(value);
+                ReportPropertyChanging("IdNumber");
+                _IdNumber = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("IdNumber");
+                OnIdNumberChanged();
+            }
+        }
+        private global::System.String _IdNumber;
+        partial void OnIdNumberChanging(global::System.String value);
+        partial void OnIdNumberChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String CourseAndYear
+        {
+            get
+            {
+                return _CourseAndYear;
+            }
+            set
+            {
+                OnCourseAndYearChanging(value);
+                ReportPropertyChanging("CourseAndYear");
+                _CourseAndYear = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("CourseAndYear");
+                OnCourseAndYearChanged();
+            }
+        }
+        private global::System.String _CourseAndYear;
+        partial void OnCourseAndYearChanging(global::System.String value);
+        partial void OnCourseAndYearChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Type
+        {
+            get
+            {
+                return _Type;
+            }
+            set
+            {
+                OnTypeChanging(value);
+                ReportPropertyChanging("Type");
+                _Type = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Type");
+                OnTypeChanged();
+            }
+        }
+        private global::System.String _Type;
+        partial void OnTypeChanging(global::System.String value);
+        partial void OnTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String UserName
+        {
+            get
+            {
+                return _UserName;
+            }
+            set
+            {
+                OnUserNameChanging(value);
+                ReportPropertyChanging("UserName");
+                _UserName = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("UserName");
+                OnUserNameChanged();
+            }
+        }
+        private global::System.String _UserName;
+        partial void OnUserNameChanging(global::System.String value);
+        partial void OnUserNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LaboratoryId
+        {
+            get
+            {
+                return _LaboratoryId;
+            }
+            set
+            {
+                OnLaboratoryIdChanging(value);
+                ReportPropertyChanging("LaboratoryId");
+                _LaboratoryId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LaboratoryId");
+                OnLaboratoryIdChanged();
+            }
+        }
+        private global::System.Int32 _LaboratoryId;
+        partial void OnLaboratoryIdChanging(global::System.Int32 value);
+        partial void OnLaboratoryIdChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Laboratory_Staff_Laboratory_Staff", "Laboratory")]
+        public Laboratory Laboratory
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Staff_Laboratory_Staff", "Laboratory").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Staff_Laboratory_Staff", "Laboratory").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Laboratory> LaboratoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Staff_Laboratory_Staff", "Laboratory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Staff_Laboratory_Staff", "Laboratory", value);
                 }
             }
         }

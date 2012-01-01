@@ -59,6 +59,12 @@ namespace itmm.Controllers
                         {
                             return RedirectToAction("Index", "Admin");
                         }
+                        else if(Roles.IsUserInRole(model.UserName,"Head")){
+                            return RedirectToAction("Index", "Head");
+                        }
+                        else if(Roles.IsUserInRole(model.UserName,"Staff")){
+                            return RedirectToAction("Index", "Head");
+                        }
                         else
                         {
                             return RedirectToAction("Index", "Home");

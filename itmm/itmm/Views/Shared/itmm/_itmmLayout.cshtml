@@ -31,7 +31,36 @@
             vertical-align: top;
         }
     </style>
-
+    <!-- debugger css##############-->
+    <style type="text/css">
+    #zero_div
+    {
+         background-color:red;
+         /*1.2 escapes 0 div*/
+         overflow: auto;
+        }
+    #first_div
+    {
+       background-color:lightblue;
+       padding: 0 0 0 15px;
+       width: 280px;
+       float:left;
+        }
+     #second_div
+     {
+         background-color:lightgreen;
+         padding: 0 10px 0 0;
+         width: 550px;
+         float:right;
+         }
+    #dataTable
+     {
+         background-color:lightblue;
+         margin-top:30px;
+         clear:right;
+             }
+</style>
+ <!-- debugger css###################-->
 </head>
 <body>
     <div id="wrapper">
@@ -68,6 +97,13 @@
     </div>
     <!--end wrapper-->
 </body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#light").addClass("light").css("color", "#F7BE81");
+        $("#dtable").dataTable();
+    });
+</script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $("ul > li > a").click(function () {

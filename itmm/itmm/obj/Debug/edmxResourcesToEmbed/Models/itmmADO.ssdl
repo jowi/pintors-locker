@@ -23,6 +23,7 @@
     <EntitySet Name="Laboratory_Head" EntityType="pintorModel.Store.Laboratory_Head" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Laboratory_Material" EntityType="pintorModel.Store.Laboratory_Material" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Laboratory_Room" EntityType="pintorModel.Store.Laboratory_Room" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Laboratory_Staff" EntityType="pintorModel.Store.Laboratory_Staff" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Liability" EntityType="pintorModel.Store.Liability" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Material" EntityType="pintorModel.Store.Material" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Room" EntityType="pintorModel.Store.Room" store:Type="Tables" Schema="dbo" />
@@ -128,6 +129,10 @@
     <AssociationSet Name="FK_Laboratory_Room_Room" Association="pintorModel.Store.FK_Laboratory_Room_Room">
       <End Role="Room" EntitySet="Room" />
       <End Role="Laboratory_Room" EntitySet="Laboratory_Room" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Laboratory_Staff_Laboratory_Staff" Association="pintorModel.Store.FK_Laboratory_Staff_Laboratory_Staff">
+      <End Role="Laboratory" EntitySet="Laboratory" />
+      <End Role="Laboratory_Staff" EntitySet="Laboratory_Staff" />
     </AssociationSet>
     <AssociationSet Name="FK_Liability_StudentInfo" Association="pintorModel.Store.FK_Liability_StudentInfo">
       <End Role="StudentInfo" EntitySet="StudentInfo" />
@@ -376,6 +381,20 @@
     <Property Name="Laboratory_RoomId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="LaboratoryId" Type="int" Nullable="false" />
     <Property Name="RoomId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Laboratory_Staff">
+    <Key>
+      <PropertyRef Name="StaffId" />
+    </Key>
+    <Property Name="StaffId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="EmailAddress" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="IdNumber" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="CourseAndYear" Type="varchar" Nullable="false" MaxLength="250" />
+    <Property Name="Type" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="LaboratoryId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Liability">
     <Key>
@@ -731,6 +750,18 @@
       </Principal>
       <Dependent Role="Laboratory_Room">
         <PropertyRef Name="RoomId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Laboratory_Staff_Laboratory_Staff">
+    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1" />
+    <End Role="Laboratory_Staff" Type="pintorModel.Store.Laboratory_Staff" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratory">
+        <PropertyRef Name="LaboratoryId" />
+      </Principal>
+      <Dependent Role="Laboratory_Staff">
+        <PropertyRef Name="LaboratoryId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

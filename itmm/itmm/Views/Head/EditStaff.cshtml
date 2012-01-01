@@ -1,0 +1,72 @@
+﻿@model itmm.Models.itmmAdminStaff
+
+@{
+    ViewBag.Title = "EditStaff";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+}
+
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div id="content_wrapper">
+<div id="zero_div">
+<div id="first_div">
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    
+        <div class="editor-label">
+            @Html.LabelFor(model => model.fname)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.fname)
+            @Html.ValidationMessageFor(model => model.fname)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.lname)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.lname)
+            @Html.ValidationMessageFor(model => model.lname)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cnum)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cnum)
+            @Html.ValidationMessageFor(model => model.cnum)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.course)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.course)
+            @Html.ValidationMessageFor(model => model.course)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.eadd)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.eadd)
+            @Html.ValidationMessageFor(model => model.eadd)
+        </div>
+        <div class="editor-field">
+            @Html.HiddenFor(model => model.uname)
+
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+  
+}
+
+<div>
+    @Html.ActionLink("Go Back..", "Staff")
+</div>
+</div>
+</div><!--zero_div-->
+</div><!-- content_wrapper-->

@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+}
+
+@ViewBag.Welcome
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#light").addClass("light").css("color", "#F7BE81");
+        $("#dtable").dataTable();
+    });
+</script>
+@section SideNav{
+<ul>
+    <li>@Html.ActionLink("Home", "Index", "Head",null, new { id = "light"})</li>
+    <li>@Html.ActionLink("Staff", "Staff", "Head")</li>
+    <li>@Html.ActionLink("Equipment", "Equipment", "Head")</li>
+</ul>
+}
+
+
+

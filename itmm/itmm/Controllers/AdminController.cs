@@ -264,7 +264,7 @@ namespace itmm.Controllers
                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.uname, model.password, model.eadd);
                if (createStatus == MembershipCreateStatus.Success)
                {
-                   Roles.AddUserToRole(model.uname, "Dev");
+                   Roles.AddUserToRole(model.uname, "Head");
                    Laboratory_Head a = new Laboratory_Head();
                    a.FirstName = model.fname;
                    a.LastName = model.lname;
