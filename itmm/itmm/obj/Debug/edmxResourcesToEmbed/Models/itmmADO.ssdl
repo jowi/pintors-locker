@@ -298,14 +298,14 @@
       <PropertyRef Name="EquipmentId" />
     </Key>
     <Property Name="EquipmentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="Make" Type="varbinary" MaxLength="50" />
-    <Property Name="Description" Type="varchar(max)" />
-    <Property Name="Location" Type="varbinary" MaxLength="50" />
-    <Property Name="SerialNumber" Type="int" />
-    <Property Name="Barcode" Type="varchar" MaxLength="50" />
-    <Property Name="Status" Type="varchar" MaxLength="50" />
-    <Property Name="DateReceived" Type="datetime2" />
-    <Property Name="LifeExpectancy" Type="datetime2" />
+    <Property Name="Make" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="varchar(max)" Nullable="false" />
+    <Property Name="Location" Type="varchar" Nullable="false" MaxLength="150" />
+    <Property Name="SerialNumber" Type="varchar" Nullable="false" MaxLength="150" />
+    <Property Name="Barcode" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Status" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="DateReceived" Type="datetime2" Nullable="false" />
+    <Property Name="LifeExpectancy" Type="varchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <EntityType Name="Event">
     <Key>

@@ -1,0 +1,81 @@
+﻿@model itmm.Models.itmmAdminEquipment
+
+@{
+    ViewBag.Title = "EditEquipment";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+}
+
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div id="content_wrapper">
+<div id="zero_div">
+<div id="first_div">
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.make)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.make)
+            @Html.ValidationMessageFor(model => model.make)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.description)
+            @Html.ValidationMessageFor(model => model.description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.location)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.location)
+            @Html.ValidationMessageFor(model => model.location)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.serial)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.serial)
+            @Html.ValidationMessageFor(model => model.serial)
+        </div>
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.status)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.status)
+            @Html.ValidationMessageFor(model => model.status)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.life)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.life)
+            @Html.ValidationMessageFor(model => model.life)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+        
+       
+}
+
+<div>
+    @Html.ActionLink("Back to Equipment", "Equipment")
+</div>
+
+</div><!--first_div-->
+ </div><!--zero_div-->
+</div><!--content_wrapper-->

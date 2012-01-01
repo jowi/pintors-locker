@@ -66,6 +66,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HeadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StaffController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,6 +211,9 @@
     <Content Include="Views\Head\Error.cshtml" />
     <Content Include="Views\Head\Staff.cshtml" />
     <Content Include="Views\Head\EditStaff.cshtml" />
+    <Content Include="Views\Staff\Index.cshtml" />
+    <Content Include="Views\Head\Equipment.cshtml" />
+    <Content Include="Views\Head\EditEquipment.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

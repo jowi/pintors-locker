@@ -87,4 +87,35 @@ namespace itmm.Models
         public string c_password { get; set; }
 
     }
+    public class itmmAdminEquipment
+    {
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Make")]
+        public string make { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Description")]
+        public string description { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Location")]
+        public string location { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Serial Number")]
+        public string serial { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Barcode")]
+        public string barcode { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Status")]
+        public string status { get; set; }
+
+ 
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Life (e.g. 4 years)")]
+        public string life { get; set; }
+    }
 }

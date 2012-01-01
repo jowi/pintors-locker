@@ -1,0 +1,128 @@
+﻿@model itmm.Models.itmmAdminEquipment
+
+@{
+    ViewBag.Title = "Equipment";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+    var EquipList =(ViewBag.EquipList as IQueryable<itmm.Models.Equipment>);
+}
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div id="content_wrapper">
+<div id="zero_div">
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)  
+<div id="first_div">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.make)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.make)
+            @Html.ValidationMessageFor(model => model.make)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.description)
+            @Html.ValidationMessageFor(model => model.description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.location)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.location)
+            @Html.ValidationMessageFor(model => model.location)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.serial)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.serial)
+            @Html.ValidationMessageFor(model => model.serial)
+        </div>
+</div>
+<div id="second_div">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.barcode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.barcode)
+            @Html.ValidationMessageFor(model => model.barcode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.status)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.status)
+            @Html.ValidationMessageFor(model => model.status)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.life)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.life)
+            @Html.ValidationMessageFor(model => model.life)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+  </div>  
+}
+</div><!--zero_div-->
+@if (EquipList.Count() != 0)
+{
+<div id="dataTable"><span>data tables here!</span>
+<table cellspacing="0">
+    <thead>
+        <tr>
+            <th>Make</th>
+            <th>Description</th>
+            <th>Location</th>
+            <th>Serial Number</th>
+            <th>Barcode</th>
+            <th>Status</th>
+            <th>Date Received</th>
+            <th>Life</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var x in EquipList)
+       { 
+        <tr>
+            <td>@x.Make</td>
+            <td>@x.Description</td>  
+            <td>@x.Location</td>
+            <td>@x.SerialNumber</td>
+            <td>@x.Barcode</td>
+            <td>@x.Status</td>
+            <td>@x.DateReceived</td>
+            <td>@x.LifeExpectancy</td>
+            <td>
+            @Html.ActionLink("edit", "EditEquipment", "Head", new { EquipId = x.EquipmentId }, null)
+            @Html.ActionLink("delete", "DeleteEquipment", "Head", new { EquipId = x.EquipmentId }, null)
+            </td>
+        </tr>
+       }
+ 
+    </tbody>
+</table>
+</div><!-- dataTables -->
+}
+</div><!--content_wrapper-->
+
+@section SideNav{
+<ul>
+    <li>@Html.ActionLink("Home", "Index", "Head")</li>
+    <li>@Html.ActionLink("Staff", "Staff", "Head")</li>
+    <li>@Html.ActionLink("Equipment", "Equipment", "Head", null, new { id = "light" })</li>
+</ul>
+}

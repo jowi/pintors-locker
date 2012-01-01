@@ -158,21 +158,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Equipments">
-      <EntityTypeMapping TypeName="pintorModel.Equipment">
-        <MappingFragment StoreEntitySet="Equipment">
-          <ScalarProperty Name="LifeExpectancy" ColumnName="LifeExpectancy" />
-          <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="Barcode" ColumnName="Barcode" />
-          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
-          <ScalarProperty Name="Location" ColumnName="Location" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Make" ColumnName="Make" />
-          <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Events">
       <EntityTypeMapping TypeName="pintorModel.Event">
         <MappingFragment StoreEntitySet="Event">
@@ -339,6 +324,21 @@
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipments">
+      <EntityTypeMapping TypeName="pintorModel.Equipment">
+        <MappingFragment StoreEntitySet="Equipment">
+          <ScalarProperty Name="LifeExpectancy" ColumnName="LifeExpectancy" />
+          <ScalarProperty Name="DateReceived" ColumnName="DateReceived" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Barcode" ColumnName="Barcode" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Make" ColumnName="Make" />
+          <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

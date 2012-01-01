@@ -94,6 +94,8 @@
 </div><!--second_div-->
 </div>
 }
+@if (StaffList.Count() != 0)
+{
 <div id="dataTable"><span>data tables here!</span>
 <table cellspacing="0">
     <thead>
@@ -125,8 +127,8 @@
     }
     </tbody>
 </table>
-
-</div>
+</div><!-- dataTables -->
+}
 </div><!--content_wrapper-->
 @section SideNav{
 <ul>
