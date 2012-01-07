@@ -118,4 +118,26 @@ namespace itmm.Models
         [Display(Name = "Life (e.g. 4 years)")]
         public string life { get; set; }
     }
+    public class itmmNotification 
+    {
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "What")]
+        public string what { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "When")]
+        public string whin { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Where")]
+        public string whire { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Who")]
+        public string who { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "time")]
+        public string time { get; set; }
+    }
 }

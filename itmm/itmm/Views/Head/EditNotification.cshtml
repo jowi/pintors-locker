@@ -1,0 +1,71 @@
+﻿@model itmm.Models.itmmNotification
+
+@{
+    ViewBag.Title = "EditNotification";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+}
+
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div id="content_wrapper">
+<div id="zero_div">
+<div id="first_div">
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.what)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.what)
+            @Html.ValidationMessageFor(model => model.what)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.whin)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.whin)
+            @Html.ValidationMessageFor(model => model.whin)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.whire)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.whire)
+            @Html.ValidationMessageFor(model => model.whire)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.who)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.who)
+            @Html.ValidationMessageFor(model => model.who)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.time)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.time)
+            @Html.ValidationMessageFor(model => model.time)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Notification","Head")
+</div>
+
+</div><!--first_div-->
+</div><!--zero_div-->
+</div><!--content_wrapper-->

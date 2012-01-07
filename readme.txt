@@ -7,6 +7,8 @@ Can now create the ff:
 4. Lab
 5. LabRoom
 
+-6. added notification, no gritter
+
 
 
 @jan 1

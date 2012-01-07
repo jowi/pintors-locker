@@ -26,6 +26,7 @@
     <EntitySet Name="Laboratory_Staff" EntityType="pintorModel.Store.Laboratory_Staff" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Liability" EntityType="pintorModel.Store.Liability" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Material" EntityType="pintorModel.Store.Material" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Notification" EntityType="pintorModel.Store.Notification" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Room" EntityType="pintorModel.Store.Room" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="StudentInfo" EntityType="pintorModel.Store.StudentInfo" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="sysdiagrams" EntityType="pintorModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
@@ -137,6 +138,10 @@
     <AssociationSet Name="FK_Liability_StudentInfo" Association="pintorModel.Store.FK_Liability_StudentInfo">
       <End Role="StudentInfo" EntitySet="StudentInfo" />
       <End Role="Liability" EntitySet="Liability" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Notification_Laboratory" Association="pintorModel.Store.FK_Notification_Laboratory">
+      <End Role="Laboratory" EntitySet="Laboratory" />
+      <End Role="Notification" EntitySet="Notification" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="aspnet_Applications">
@@ -416,6 +421,18 @@
     <Property Name="Description" Type="varchar" MaxLength="50" />
     <Property Name="DateReceived" Type="datetime2" />
     <Property Name="Quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="NotificationId" />
+    </Key>
+    <Property Name="NotificationId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="LaboratoryId" Type="int" Nullable="false" />
+    <Property Name="What" Type="varchar(max)" Nullable="false" />
+    <Property Name="Whin" Type="varchar(max)" Nullable="false" />
+    <Property Name="Whire" Type="varchar(max)" Nullable="false" />
+    <Property Name="Who" Type="varchar(max)" Nullable="false" />
+    <Property Name="Time" Type="varchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Room">
     <Key>
@@ -774,6 +791,18 @@
       </Principal>
       <Dependent Role="Liability">
         <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Notification_Laboratory">
+    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1" />
+    <End Role="Notification" Type="pintorModel.Store.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratory">
+        <PropertyRef Name="LaboratoryId" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="LaboratoryId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

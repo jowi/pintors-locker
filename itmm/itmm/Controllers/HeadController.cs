@@ -267,5 +267,84 @@ namespace itmm.Controllers
        con.SaveChanges();
        return RedirectToAction("Equipment", "Head");
    }
+  [Authorize(Roles = "Head")]
+  public ActionResult Notification()
+  {
+      if (IsStillHead())
+      {
+          return RedirectToAction("Error");
+      }
+      int labid = getLabId();
+      var x = from y in con.Notifications
+              where y.LaboratoryId == labid
+              select y;
+      ViewBag.NoticeList = x;
+      return View();
+  }
+
+  [HttpPost]
+  public ActionResult Notification(itmmNotification model)
+  {
+
+      Notification a = new Notification();
+      a.LaboratoryId = getLabId();
+      a.What = model.what;
+      a.Whin = model.whin;
+      a.Whire = model.whire;
+      a.Who = model.who;
+      a.Time = model.time;
+
+      con.AddToNotifications(a);
+      con.SaveChanges();
+      return RedirectToAction("Notification", "Head");
+  }
+  [Authorize(Roles = "Head")]
+  public ActionResult EditNotification(int NoticeId)
+  {
+      if (IsStillHead())
+      {
+          return RedirectToAction("Error");
+      }
+      var x = (from y in con.Notifications
+               where y.NotificationId == NoticeId
+               select y).FirstOrDefault();
+      itmmNotification a = new itmmNotification();
+      a.what = x.What;
+      a.whin = x.Whin;
+      a.whire = x.Whire;
+      a.who = x.Who;
+      a.time = x.Time;
+     
+      return View(a);
+  }
+  [Authorize(Roles = "Head")]
+  [HttpPost]
+  public ActionResult EditNotification(itmmNotification model, int NoticeId)
+  {
+      var a = (from y in con.Notifications
+               where y.NotificationId == NoticeId
+               select y).FirstOrDefault();
+      a.LaboratoryId = getLabId();
+      a.What = model.what;
+      a.Whin = model.whin;
+      a.Whire = model.whire;
+      a.Who = model.who;
+      a.Time = model.time;
+
+      con.SaveChanges();
+      return RedirectToAction("Notification", "Head");
+  }
+  [Authorize(Roles = "Head")]
+  public ActionResult DeleteNotification(int NoticeId)
+  {
+      var x = (from y in con.Notifications
+              where y.NotificationId == NoticeId
+              select y).FirstOrDefault();
+      con.DeleteObject(x);
+      con.SaveChanges();
+
+      return RedirectToAction("Notification", "Head");
+  }
+
     }
 }

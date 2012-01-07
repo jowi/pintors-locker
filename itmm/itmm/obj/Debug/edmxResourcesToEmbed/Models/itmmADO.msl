@@ -342,5 +342,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="pintorModel.Notification">
+        <MappingFragment StoreEntitySet="Notification">
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Who" ColumnName="Who" />
+          <ScalarProperty Name="Whire" ColumnName="Whire" />
+          <ScalarProperty Name="Whin" ColumnName="Whin" />
+          <ScalarProperty Name="What" ColumnName="What" />
+          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
+          <ScalarProperty Name="NotificationId" ColumnName="NotificationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

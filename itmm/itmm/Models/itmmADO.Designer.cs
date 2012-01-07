@@ -44,6 +44,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Dispense_Equipment", "Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Equipment), "Dispense", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Dispense), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_InventoryCost_Equipment", "Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Equipment), "InventoryCost", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.InventoryCost), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Equipment_Equipment", "Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Equipment), "Laboratory_Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Equipment), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Notification_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Notification", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Notification), true)]
 
 #endregion
 
@@ -542,6 +543,22 @@ namespace itmm.Models
             }
         }
         private ObjectSet<Equipment> _Equipments;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Notification> Notifications
+        {
+            get
+            {
+                if ((_Notifications == null))
+                {
+                    _Notifications = base.CreateObjectSet<Notification>("Notifications");
+                }
+                return _Notifications;
+            }
+        }
+        private ObjectSet<Notification> _Notifications;
 
         #endregion
         #region AddTo Methods
@@ -768,6 +785,14 @@ namespace itmm.Models
         public void AddToEquipments(Equipment equipment)
         {
             base.AddObject("Equipments", equipment);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Notifications EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToNotifications(Notification notification)
+        {
+            base.AddObject("Notifications", notification);
         }
 
         #endregion
@@ -5186,6 +5211,28 @@ namespace itmm.Models
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Notification_Laboratory", "Notification")]
+        public EntityCollection<Notification> Notifications
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Notification>("pintorModel.FK_Notification_Laboratory", "Notification");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Notification>("pintorModel.FK_Notification_Laboratory", "Notification", value);
+                }
+            }
+        }
 
         #endregion
     }
@@ -6691,6 +6738,258 @@ namespace itmm.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Laboratory_Material>("pintorModel.FK_Laboratory_Material_Material", "Laboratory_Material", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="pintorModel", Name="Notification")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Notification : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Notification object.
+        /// </summary>
+        /// <param name="notificationId">Initial value of the NotificationId property.</param>
+        /// <param name="laboratoryId">Initial value of the LaboratoryId property.</param>
+        /// <param name="what">Initial value of the What property.</param>
+        /// <param name="whin">Initial value of the Whin property.</param>
+        /// <param name="whire">Initial value of the Whire property.</param>
+        /// <param name="who">Initial value of the Who property.</param>
+        /// <param name="time">Initial value of the Time property.</param>
+        public static Notification CreateNotification(global::System.Int32 notificationId, global::System.Int32 laboratoryId, global::System.String what, global::System.String whin, global::System.String whire, global::System.String who, global::System.String time)
+        {
+            Notification notification = new Notification();
+            notification.NotificationId = notificationId;
+            notification.LaboratoryId = laboratoryId;
+            notification.What = what;
+            notification.Whin = whin;
+            notification.Whire = whire;
+            notification.Who = who;
+            notification.Time = time;
+            return notification;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 NotificationId
+        {
+            get
+            {
+                return _NotificationId;
+            }
+            set
+            {
+                if (_NotificationId != value)
+                {
+                    OnNotificationIdChanging(value);
+                    ReportPropertyChanging("NotificationId");
+                    _NotificationId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("NotificationId");
+                    OnNotificationIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _NotificationId;
+        partial void OnNotificationIdChanging(global::System.Int32 value);
+        partial void OnNotificationIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LaboratoryId
+        {
+            get
+            {
+                return _LaboratoryId;
+            }
+            set
+            {
+                OnLaboratoryIdChanging(value);
+                ReportPropertyChanging("LaboratoryId");
+                _LaboratoryId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LaboratoryId");
+                OnLaboratoryIdChanged();
+            }
+        }
+        private global::System.Int32 _LaboratoryId;
+        partial void OnLaboratoryIdChanging(global::System.Int32 value);
+        partial void OnLaboratoryIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String What
+        {
+            get
+            {
+                return _What;
+            }
+            set
+            {
+                OnWhatChanging(value);
+                ReportPropertyChanging("What");
+                _What = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("What");
+                OnWhatChanged();
+            }
+        }
+        private global::System.String _What;
+        partial void OnWhatChanging(global::System.String value);
+        partial void OnWhatChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Whin
+        {
+            get
+            {
+                return _Whin;
+            }
+            set
+            {
+                OnWhinChanging(value);
+                ReportPropertyChanging("Whin");
+                _Whin = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Whin");
+                OnWhinChanged();
+            }
+        }
+        private global::System.String _Whin;
+        partial void OnWhinChanging(global::System.String value);
+        partial void OnWhinChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Whire
+        {
+            get
+            {
+                return _Whire;
+            }
+            set
+            {
+                OnWhireChanging(value);
+                ReportPropertyChanging("Whire");
+                _Whire = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Whire");
+                OnWhireChanged();
+            }
+        }
+        private global::System.String _Whire;
+        partial void OnWhireChanging(global::System.String value);
+        partial void OnWhireChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Who
+        {
+            get
+            {
+                return _Who;
+            }
+            set
+            {
+                OnWhoChanging(value);
+                ReportPropertyChanging("Who");
+                _Who = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Who");
+                OnWhoChanged();
+            }
+        }
+        private global::System.String _Who;
+        partial void OnWhoChanging(global::System.String value);
+        partial void OnWhoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Time
+        {
+            get
+            {
+                return _Time;
+            }
+            set
+            {
+                OnTimeChanging(value);
+                ReportPropertyChanging("Time");
+                _Time = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Time");
+                OnTimeChanged();
+            }
+        }
+        private global::System.String _Time;
+        partial void OnTimeChanging(global::System.String value);
+        partial void OnTimeChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Notification_Laboratory", "Laboratory")]
+        public Laboratory Laboratory
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Notification_Laboratory", "Laboratory").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Notification_Laboratory", "Laboratory").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Laboratory> LaboratoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Notification_Laboratory", "Laboratory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Laboratory>("pintorModel.FK_Notification_Laboratory", "Laboratory", value);
                 }
             }
         }

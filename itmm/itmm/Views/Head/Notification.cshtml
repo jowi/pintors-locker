@@ -1,0 +1,116 @@
+﻿@model itmm.Models.itmmNotification
+
+@{
+    ViewBag.Title = "Notification";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+    var NoticeList = (ViewBag.NoticeList as IQueryable<itmm.Models.Notification>);
+}
+
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div id="content_wrapper">
+<div id="zero_div">
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+
+<div id="first_div">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.what)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.what)
+            @Html.ValidationMessageFor(model => model.what)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.whin)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.whin)
+            @Html.ValidationMessageFor(model => model.whin)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.whire)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.whire)
+            @Html.ValidationMessageFor(model => model.whire)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.who)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.who)
+            @Html.ValidationMessageFor(model => model.who)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.time)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.time)
+            @Html.ValidationMessageFor(model => model.time)
+        </div>
+      
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+</div>
+}
+</div><!--zero_div-->
+
+
+@if (NoticeList.Count() != 0)
+{
+<div id="dataTable"><span>data tables here!</span>
+<table cellspacing="0">
+    <thead>
+        <tr>
+            <th>Notification Id</th>
+            <th>What</th>
+            <th>When</th>
+            <th>Where</th>
+            <th>Who</th>
+            <th>Time</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var x in NoticeList)
+       { 
+        <tr>
+            <td>@x.NotificationId</td>
+            <td>@x.What</td>  
+            <td>@x.Whin</td>
+            <td>@x.Whire</td>
+            <td>@x.Who</td>
+            <td>@x.Time</td>
+            <td>
+            @Html.ActionLink("edit", "EditNotification", "Head", new { NoticeId = x.NotificationId }, null)
+            @Html.ActionLink("delete", "DeleteNotification", "Head", new { NoticeId = x.NotificationId }, null)
+            </td>
+        </tr>
+       }
+ 
+    </tbody>
+</table>
+
+</div><!--dataTable-->
+}
+</div><!--content_wrapper-->
+
+
+
+@section SideNav{
+<ul>
+    <li>@Html.ActionLink("Home", "Index", "Head")</li>
+    <li>@Html.ActionLink("Staff", "Staff", "Head")</li>
+    <li>@Html.ActionLink("Equipment", "Equipment", "Head")</li>
+    <li>@Html.ActionLink("Notification", "Notification", "Head", null, new { id = "light" })</li>
+</ul>
+}
