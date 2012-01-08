@@ -119,8 +119,16 @@ background-color:#E6E6E6;
     width:260px;
     height:23px;
 }
+
+/*gritter*/
+#notices
+{
+    visibility:hidden;
+    height:0px;
+}
+
 /*DEBUGGER CSS*/
 #content_wrapper
 {
     border: dashed 1px #E6E6E6;
-    }
+}

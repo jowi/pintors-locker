@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "grit";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+}
+
+<h2>grit test</h2>
+
+<div id="notice0">
+<span id="title">a title from div no.0</span>
+<span id="text">
+When: today at 6:00pm<br/>
+Where: usc san carlose bunzel lab<br/>
+What: eat food
+</span>
+</div>
+<div id="notice1">
+<span id="title">a title from div no.1</span>
+<span id="text">content form div no.11</span>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        // $("#notice0").append("<h3>hi</h3>");
+
+        for (var x = 0; x < 2; x++) {
+
+            var div = "#notice" + x;
+            var titles = $(div + "> #title").html();
+            var texts = $(div + "> #text").html();
+
+
+
+
+            $.gritter.add({
+                // (string | mandatory) the heading of the notification
+                title: titles,
+                // (string | mandatory) the text inside the notification
+                text: texts,
+                // (bool | optional) if you want it to fade out on its own or just sit there
+                sticky: true
+            });
+
+
+        } //loop
+
+    });
+</script>

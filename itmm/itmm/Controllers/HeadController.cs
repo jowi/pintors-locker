@@ -275,10 +275,17 @@ namespace itmm.Controllers
           return RedirectToAction("Error");
       }
       int labid = getLabId();
+      //for dataTables
       var x = from y in con.Notifications
               where y.LaboratoryId == labid
               select y;
       ViewBag.NoticeList = x;
+      //for active notification
+      var time = DateTime.Now.ToString("MM/dd/yyyy");
+      var a = from y in con.Notifications
+              where y.Whin == time
+              select y;
+      ViewBag.Notice = a;
       return View();
   }
 
@@ -344,6 +351,10 @@ namespace itmm.Controllers
       con.SaveChanges();
 
       return RedirectToAction("Notification", "Head");
+  }
+  public ActionResult grit()
+  {
+      return View();
   }
 
     }
