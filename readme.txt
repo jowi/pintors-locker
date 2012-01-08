@@ -1,4 +1,4 @@
-SuperAdmin - super ; Pass1234
+
 
 Can now create the ff:
 1. LabHead
@@ -7,12 +7,21 @@ Can now create the ff:
 4. Lab
 5. LabRoom
 
-6. added notification, go to notifications @ Head menu!!
-   added notification @ Head/Index
+6. added notification-gritter and is lab exclusive
 
 
 
 @jan 1
 -update on inital staff gui pls visit /Staff or login on a staff account
+@jan 8
+-update on gritter notification
+
+Step 1:
+login as Super Admin
+id:super
+pass:Pass1234
+
+Step 2:
+from there u can create lab heads!
 
 

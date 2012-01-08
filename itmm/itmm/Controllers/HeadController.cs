@@ -50,10 +50,11 @@ namespace itmm.Controllers
                          select y).FirstOrDefault();
                 ViewBag.Welcome = "Welcome to" + " " + x.LaboratoryName;
             }
-            //for active notification
+            //for active notification and is lab exclusive
+            int labid = getLabId();
             var time = DateTime.Now.ToString("MM/dd/yyyy");
             var a = from y in con.Notifications
-                    where y.Whin == time
+                    where y.Whin == time && y.LaboratoryId == labid
                     select y;
             ViewBag.Notice = a;
            
@@ -286,9 +287,10 @@ namespace itmm.Controllers
               select y;
       ViewBag.NoticeList = x;
       //for active notification
+     
       var time = DateTime.Now.ToString("MM/dd/yyyy");
       var a = from y in con.Notifications
-              where y.Whin == time
+              where y.Whin == time && y.LaboratoryId == labid
               select y;
       ViewBag.Notice = a;
       return View();
