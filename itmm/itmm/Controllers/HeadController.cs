@@ -50,7 +50,12 @@ namespace itmm.Controllers
                          select y).FirstOrDefault();
                 ViewBag.Welcome = "Welcome to" + " " + x.LaboratoryName;
             }
-
+            //for active notification
+            var time = DateTime.Now.ToString("MM/dd/yyyy");
+            var a = from y in con.Notifications
+                    where y.Whin == time
+                    select y;
+            ViewBag.Notice = a;
            
             return View();
         }
@@ -352,10 +357,8 @@ namespace itmm.Controllers
 
       return RedirectToAction("Notification", "Head");
   }
-  public ActionResult grit()
-  {
-      return View();
-  }
+
+
 
     }
 }

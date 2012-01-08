@@ -8,6 +8,7 @@ Can now create the ff:
 5. LabRoom
 
 6. added notification, go to notifications @ Head menu!!
+   added notification @ Head/Index
 
 
 
