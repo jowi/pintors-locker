@@ -71,7 +71,8 @@
 <body>
     <div id="wrapper">
         <div id="nav">
-            <h1>itmm</h1> 
+        
+           <h1>@Html.ActionLink("INVETORY", "GoNow", "Error")</h1> 
             
                 @if (IsSectionDefined("SideNav"))
                 {
@@ -90,7 +91,7 @@
             }
             else
             {
-                <span>Welcome @User.Identity.Name,@Html.ActionLink("Logout","LogOff","Account")</span>
+                <span>Welcome @Html.ActionLink(@User.Identity.Name, "ChangePassword", "Account"),@Html.ActionLink("Logout","LogOff","Account")</span>
             }
             </div>
             <div id="accholder">
@@ -108,6 +109,7 @@
         $("#light").addClass("light").css("color", "#F7BE81");
         $("#dtable").dataTable();
         $("#whin").datepicker();
+        $("#myform").validate();
     });
 </script>
 

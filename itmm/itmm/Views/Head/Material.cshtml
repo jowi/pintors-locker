@@ -1,0 +1,90 @@
+﻿@model itmm.Models.itmmMaterial
+
+@{
+    ViewBag.Title = "Material";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+    var MatList = (ViewBag.MatList as IQueryable<itmm.Models.Material>);
+}
+
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div id="content_wrapper">
+<div id="zero_div">
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+<div id="first_div">
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Quantity)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Quantity)
+            @Html.ValidationMessageFor(model => model.Quantity)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+ 
+    </div><!--first_div-->
+}
+</div><!--zero_div-->
+@if (MatList.Count() != 0) { 
+<div id="dataTable"><span>data tables here!</span>
+<table cellspacing="0">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>DateUpdated</th>
+        
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var x in MatList)
+       { 
+        <tr>
+            <td>@x.Name</td>
+            <td>@x.Description</td>  
+            <td>@x.Quantity</td>
+            <td>@x.DateUpdated</td>
+
+        </tr>
+       }
+ 
+    </tbody>
+</table>
+</div><!--dataTable-->
+    }
+</div><!--content_wrapper-->
+
+@section SideNav{
+<ul>
+    <li>@Html.ActionLink("Home", "Index", "Head")</li>
+    <li>@Html.ActionLink("Staff", "Staff", "Head")</li>
+    <li>@Html.ActionLink("Material", "Material", "Head", null, new { id = "light" })</li>
+    <li>@Html.ActionLink("Equipment", "Equipment", "Head")</li>
+    <li>@Html.ActionLink("Notification", "Notification", "Head")</li>
+</ul>
+}

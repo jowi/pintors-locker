@@ -112,6 +112,15 @@ height:23px;
 background-color:#E6E6E6;   
 }
 
+/*
+REPORT NAV
+*/
+#r_submenu
+{
+   font-size: 80%;
+}
+
+
 
 /*form*/
 #editlab input

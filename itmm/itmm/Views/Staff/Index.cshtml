@@ -3,8 +3,7 @@
     Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
 }
 
-<h2>Index</h2>
-content goes here.....
+
 
 
 
@@ -15,8 +14,10 @@ content goes here.....
 
 @section SideNav{
 <ul>
-    <li>@Html.ActionLink("Nav 1", "Index", "Head", null, new { id = "light" })</li>
-    <li>@Html.ActionLink("Nav 2", "Staff", "Head")</li>
-    <li>@Html.ActionLink("Nav 3", "Equipment", "Head")</li>
+    <li>@Html.ActionLink("Home", "Index", "Staff", null, new { id = "light" })</li>
+    <li>@Html.ActionLink("Class Schedule", "Schedule", "Staff")</li>
+    <li>@Html.ActionLink("Dispense", "Dispense", "Staff")</li>
+    <li>@Html.ActionLink("Report", "Report", "Staff")</li>
+   
 </ul>
 }

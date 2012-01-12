@@ -180,6 +180,41 @@ namespace itmm.Controllers
         return RedirectToAction("Staff", "Head");
     }
     [Authorize(Roles = "Head")]
+    public ActionResult Material()
+    {
+        if (IsStillHead())
+        {
+            return RedirectToAction("Error");
+        }
+        var labid = getLabId();
+        var x = from y in con.Laboratory_Material
+               where y.LaboratoryId == labid
+                select y.Material;
+        ViewBag.MatList = x;
+
+        return View();
+    }
+    [HttpPost]
+    public ActionResult Material(itmmMaterial a)
+    {
+        int labid = getLabId();
+        Material b = new Material();
+        b.Name = a.Name;
+        b.Description = a.Description;
+        b.Quantity = a.Quantity;
+        b.DateUpdated = DateTime.Now;
+
+        con.AddToMaterials(b);
+        
+        Laboratory_Material c = new Laboratory_Material();
+        c.LaboratoryId = labid;
+        c.MaterialId = b.MaterialId;
+        con.AddToLaboratory_Material(c);
+
+        con.SaveChanges();
+        return RedirectToAction("Material");
+    }
+    [Authorize(Roles = "Head")]
     public ActionResult Equipment()
     {
         if (IsStillHead())

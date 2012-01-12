@@ -1,0 +1,129 @@
+﻿@model itmm.Models.itmmSchedule
+
+@{
+    ViewBag.Title = "Schedule";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+    var RoomList = (ViewBag.RoomList as IQueryable<itmm.Models.Room>);
+    var SkedList = (ViewBag.SkedList as IQueryable<itmm.Models.Class>);
+}
+
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div id="content_wrapper">
+<div id="zero_div">
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+      
+<div id="first_div">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GroupNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GroupNo)
+            @Html.ValidationMessageFor(model => model.GroupNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CourseCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CourseCode)
+            @Html.ValidationMessageFor(model => model.CourseCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CourseDesc)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CourseDesc)
+            @Html.ValidationMessageFor(model => model.CourseDesc)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Day)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Day)
+            @Html.ValidationMessageFor(model => model.Day)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Schedule)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Schedule)
+            @Html.ValidationMessageFor(model => model.Schedule)
+        </div>
+        <div>
+        Room <br />
+    <select name="room">
+        @foreach (var x in RoomList)
+	{
+            <option value="@x.RoomName">@x.RoomName</option>
+	}   
+   </select>
+    </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Instructor)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Instructor)
+            @Html.ValidationMessageFor(model => model.Instructor)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+</div><!--first_div-->
+}
+</div><!--zero_div-->
+
+ <div id="dataTable"><span>data tables here!</span>
+ <table cellspacing="0">
+    <thead>
+        <tr>
+            <th>Group No</th>
+            <th>Course Code</th>
+            <th>Course Description</th>
+            <th>Day</th>
+            <th>Schedule</th>
+            <th>Room</th>
+            <th>Instructor</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var x in SkedList)
+       { 
+        <tr>
+            <td>@x.GroupNo</td>
+            <td>@x.CourseCode</td>  
+            <td>@x.CourseDescription</td>
+            <td>@x.Day</td>
+            <td>@x.Schedule</td>
+            <td>@x.Room</td>
+            <td>@x.Instructor</td>
+            <td>
+            @Html.ActionLink("edit", "EditSked", "Staff", new { SkedId = x.ClassId }, null)
+            @Html.ActionLink("delete", "DeleteSked", "Staff", new { SkedId = x.ClassId }, null)
+            </td>
+        </tr>
+       }
+ 
+    </tbody>
+</table>
+ </div><!--dataTable-->
+ </div><!--content_wrapper-->
+@section SideNav{
+<ul>
+    <li>@Html.ActionLink("Home", "Index", "Staff")</li>
+    <li>@Html.ActionLink("Class Schedule", "Schedule", "Staff", null, new { id = "light" })</li>
+    <li>@Html.ActionLink("Dispense", "Dispense", "Staff")</li>
+    <li>@Html.ActionLink("Report", "Report", "Staff")</li>
+    
+</ul>
+}
+

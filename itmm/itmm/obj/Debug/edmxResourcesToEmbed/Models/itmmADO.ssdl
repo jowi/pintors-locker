@@ -75,6 +75,10 @@
       <End Role="aspnet_Users" EntitySet="aspnet_Users" />
       <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
     </AssociationSet>
+    <AssociationSet Name="FK_Class_Laboratory" Association="pintorModel.Store.FK_Class_Laboratory">
+      <End Role="Laboratory" EntitySet="Laboratory" />
+      <End Role="Class" EntitySet="Class" />
+    </AssociationSet>
     <AssociationSet Name="FK_Dispense_Equipment" Association="pintorModel.Store.FK_Dispense_Equipment">
       <End Role="Equipment" EntitySet="Equipment" />
       <End Role="Dispense" EntitySet="Dispense" />
@@ -98,10 +102,6 @@
     <AssociationSet Name="FK_Income_StudentInfo" Association="pintorModel.Store.FK_Income_StudentInfo">
       <End Role="StudentInfo" EntitySet="StudentInfo" />
       <End Role="Income" EntitySet="Income" />
-    </AssociationSet>
-    <AssociationSet Name="FK_InventoryCost_Equipment" Association="pintorModel.Store.FK_InventoryCost_Equipment">
-      <End Role="Equipment" EntitySet="Equipment" />
-      <End Role="InventoryCost" EntitySet="InventoryCost" />
     </AssociationSet>
     <AssociationSet Name="FK_Laboratory_Equipment_Equipment" Association="pintorModel.Store.FK_Laboratory_Equipment_Equipment">
       <End Role="Equipment" EntitySet="Equipment" />
@@ -280,12 +280,14 @@
       <PropertyRef Name="ClassId" />
     </Key>
     <Property Name="ClassId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="GroupNo" Type="int" />
-    <Property Name="CourseCode" Type="varchar" MaxLength="50" />
-    <Property Name="CourseDescription" Type="varchar(max)" />
-    <Property Name="Day" Type="varchar" MaxLength="50" />
-    <Property Name="Schedule" Type="varchar" MaxLength="50" />
-    <Property Name="Instructor" Type="varchar" MaxLength="50" />
+    <Property Name="GroupNo" Type="int" Nullable="false" />
+    <Property Name="CourseCode" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="CourseDescription" Type="varchar(max)" Nullable="false" />
+    <Property Name="Day" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Schedule" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Room" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Instructor" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="LabId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Dispense">
     <Key>
@@ -302,7 +304,7 @@
     <Key>
       <PropertyRef Name="EquipmentId" />
     </Key>
-    <Property Name="EquipmentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EquipmentId" Type="int" Nullable="false" />
     <Property Name="Make" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Description" Type="varchar(max)" Nullable="false" />
     <Property Name="Location" Type="varchar" Nullable="false" MaxLength="150" />
@@ -337,10 +339,9 @@
       <PropertyRef Name="MaterialId" />
     </Key>
     <Property Name="MaterialId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="EquipmentId" Type="int" />
-    <Property Name="TotalCost" Type="money" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
     <Property Name="Remaining" Type="int" />
-    <Property Name="Saved" Type="int" />
+    <Property Name="Saved" Type="datetime" />
   </EntityType>
   <EntityType Name="Laboratory">
     <Key>
@@ -416,11 +417,10 @@
       <PropertyRef Name="MaterialId" />
     </Key>
     <Property Name="MaterialId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="LaboratoryId" Type="int" Nullable="false" />
-    <Property Name="Name" Type="varchar" MaxLength="50" />
-    <Property Name="Description" Type="varchar" MaxLength="50" />
-    <Property Name="DateReceived" Type="datetime2" />
-    <Property Name="Quantity" Type="int" />
+    <Property Name="Name" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Quantity" Type="int" Nullable="false" />
+    <Property Name="DateUpdated" Type="datetime2" />
   </EntityType>
   <EntityType Name="Notification">
     <Key>
@@ -602,6 +602,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Class_Laboratory">
+    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1" />
+    <End Role="Class" Type="pintorModel.Store.Class" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratory">
+        <PropertyRef Name="LaboratoryId" />
+      </Principal>
+      <Dependent Role="Class">
+        <PropertyRef Name="LabId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Dispense_Equipment">
     <End Role="Equipment" Type="pintorModel.Store.Equipment" Multiplicity="0..1" />
     <End Role="Dispense" Type="pintorModel.Store.Dispense" Multiplicity="*" />
@@ -671,18 +683,6 @@
       </Principal>
       <Dependent Role="Income">
         <PropertyRef Name="StudentId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_InventoryCost_Equipment">
-    <End Role="Equipment" Type="pintorModel.Store.Equipment" Multiplicity="0..1" />
-    <End Role="InventoryCost" Type="pintorModel.Store.InventoryCost" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Equipment">
-        <PropertyRef Name="EquipmentId" />
-      </Principal>
-      <Dependent Role="InventoryCost">
-        <PropertyRef Name="EquipmentId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

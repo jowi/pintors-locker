@@ -168,8 +168,6 @@
     <Content Include="Scripts\MicrosoftMvcValidation.js" />
     <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\ChangePassword.cshtml" />
-    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
@@ -225,6 +223,12 @@
     <Content Include="Views\Head\EditEquipment.cshtml" />
     <Content Include="Views\Head\Notification.cshtml" />
     <Content Include="Views\Head\EditNotification.cshtml" />
+    <Content Include="Views\Staff\Schedule.cshtml" />
+    <Content Include="Views\Staff\EditSked.cshtml" />
+    <Content Include="Views\Staff\Report.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
+    <Content Include="Views\Head\Material.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

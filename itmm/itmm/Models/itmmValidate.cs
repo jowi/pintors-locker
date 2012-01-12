@@ -140,4 +140,46 @@ namespace itmm.Models
         [Display(Name = "time")]
         public string time { get; set; }
     }
+    public class itmmSchedule {
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Group No.")]
+        public int GroupNo { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Course Code")]
+        public string CourseCode { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Course Description")]
+        public string CourseDesc { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Day (e.g.Monday)")]
+        public string Day { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Schedule")]
+        public string Schedule { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Instructor")]
+        public string Instructor { get; set; }
+    }
+    public class itmmMaterial
+    {
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Description")]
+        public string Description { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Quantity")]
+        public int Quantity { get; set; }
+
+      
+    }
+
 }

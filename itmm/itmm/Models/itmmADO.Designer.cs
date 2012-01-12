@@ -27,24 +27,24 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("pintorModel", "FK__aspnet_Pe__PathI__2CF2ADDF", "aspnet_Paths", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.aspnet_Paths), "aspnet_PersonalizationPerUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.aspnet_PersonalizationPerUser), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK__aspnet_Pe__UserI__2DE6D218", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.aspnet_Users), "aspnet_PersonalizationPerUser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.aspnet_PersonalizationPerUser), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK__aspnet_Pr__UserI__7D439ABD", "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.aspnet_Users), "aspnet_Profile", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.aspnet_Profile), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Class_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Class), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Group_Class", "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Class), "Table", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Table), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Dispense_Equipment", "Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Equipment), "Dispense", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Dispense), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Dispense_Room", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Room), "Dispense", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Dispense), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Dispense_Table", "Table", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Table), "Dispense", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Dispense), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Equipment_Equipment", "Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Equipment), "Laboratory_Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Equipment), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Income_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.StudentInfo), "Income", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Income), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Equipment_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Equipment), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Head_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Head", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Head), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Material_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Material", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Material), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Room_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Room), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Staff_Laboratory_Staff", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Staff", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Staff), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Notification_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Notification", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Notification), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Material_Material", "Material", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Material), "Laboratory_Material", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Material), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Room_Room", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Room), "Laboratory_Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Room), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Liability_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.StudentInfo), "Liability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Liability), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Group_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.StudentInfo), "Table", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Table), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "aspnet_UsersInRoles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.aspnet_Roles), "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.aspnet_Users))]
-[assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Staff_Laboratory_Staff", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Staff", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Staff), true)]
-[assembly: EdmRelationshipAttribute("pintorModel", "FK_Dispense_Equipment", "Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Equipment), "Dispense", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Dispense), true)]
-[assembly: EdmRelationshipAttribute("pintorModel", "FK_InventoryCost_Equipment", "Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Equipment), "InventoryCost", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.InventoryCost), true)]
-[assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Equipment_Equipment", "Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Equipment), "Laboratory_Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Equipment), true)]
-[assembly: EdmRelationshipAttribute("pintorModel", "FK_Notification_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Notification", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Notification), true)]
 
 #endregion
 
@@ -291,6 +291,22 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Equipment> Equipments
+        {
+            get
+            {
+                if ((_Equipments == null))
+                {
+                    _Equipments = base.CreateObjectSet<Equipment>("Equipments");
+                }
+                return _Equipments;
+            }
+        }
+        private ObjectSet<Equipment> _Equipments;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Event> Events
         {
             get
@@ -419,6 +435,22 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<Laboratory_Staff> Laboratory_Staff
+        {
+            get
+            {
+                if ((_Laboratory_Staff == null))
+                {
+                    _Laboratory_Staff = base.CreateObjectSet<Laboratory_Staff>("Laboratory_Staff");
+                }
+                return _Laboratory_Staff;
+            }
+        }
+        private ObjectSet<Laboratory_Staff> _Laboratory_Staff;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<Liability> Liabilities
         {
             get
@@ -447,6 +479,22 @@ namespace itmm.Models
             }
         }
         private ObjectSet<Material> _Materials;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Notification> Notifications
+        {
+            get
+            {
+                if ((_Notifications == null))
+                {
+                    _Notifications = base.CreateObjectSet<Notification>("Notifications");
+                }
+                return _Notifications;
+            }
+        }
+        private ObjectSet<Notification> _Notifications;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -511,54 +559,6 @@ namespace itmm.Models
             }
         }
         private ObjectSet<Table> _Tables;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Laboratory_Staff> Laboratory_Staff
-        {
-            get
-            {
-                if ((_Laboratory_Staff == null))
-                {
-                    _Laboratory_Staff = base.CreateObjectSet<Laboratory_Staff>("Laboratory_Staff");
-                }
-                return _Laboratory_Staff;
-            }
-        }
-        private ObjectSet<Laboratory_Staff> _Laboratory_Staff;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Equipment> Equipments
-        {
-            get
-            {
-                if ((_Equipments == null))
-                {
-                    _Equipments = base.CreateObjectSet<Equipment>("Equipments");
-                }
-                return _Equipments;
-            }
-        }
-        private ObjectSet<Equipment> _Equipments;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<Notification> Notifications
-        {
-            get
-            {
-                if ((_Notifications == null))
-                {
-                    _Notifications = base.CreateObjectSet<Notification>("Notifications");
-                }
-                return _Notifications;
-            }
-        }
-        private ObjectSet<Notification> _Notifications;
 
         #endregion
         #region AddTo Methods
@@ -660,6 +660,14 @@ namespace itmm.Models
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the Equipments EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToEquipments(Equipment equipment)
+        {
+            base.AddObject("Equipments", equipment);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Events EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToEvents(Event @event)
@@ -724,6 +732,14 @@ namespace itmm.Models
         }
     
         /// <summary>
+        /// Deprecated Method for adding a new object to the Laboratory_Staff EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToLaboratory_Staff(Laboratory_Staff laboratory_Staff)
+        {
+            base.AddObject("Laboratory_Staff", laboratory_Staff);
+        }
+    
+        /// <summary>
         /// Deprecated Method for adding a new object to the Liabilities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToLiabilities(Liability liability)
@@ -737,6 +753,14 @@ namespace itmm.Models
         public void AddToMaterials(Material material)
         {
             base.AddObject("Materials", material);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Notifications EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToNotifications(Notification notification)
+        {
+            base.AddObject("Notifications", notification);
         }
     
         /// <summary>
@@ -769,30 +793,6 @@ namespace itmm.Models
         public void AddToTables(Table table)
         {
             base.AddObject("Tables", table);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Laboratory_Staff EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToLaboratory_Staff(Laboratory_Staff laboratory_Staff)
-        {
-            base.AddObject("Laboratory_Staff", laboratory_Staff);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Equipments EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToEquipments(Equipment equipment)
-        {
-            base.AddObject("Equipments", equipment);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the Notifications EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToNotifications(Notification notification)
-        {
-            base.AddObject("Notifications", notification);
         }
 
         #endregion
@@ -3604,10 +3604,26 @@ namespace itmm.Models
         /// Create a new Class object.
         /// </summary>
         /// <param name="classId">Initial value of the ClassId property.</param>
-        public static Class CreateClass(global::System.Int32 classId)
+        /// <param name="groupNo">Initial value of the GroupNo property.</param>
+        /// <param name="courseCode">Initial value of the CourseCode property.</param>
+        /// <param name="courseDescription">Initial value of the CourseDescription property.</param>
+        /// <param name="day">Initial value of the Day property.</param>
+        /// <param name="schedule">Initial value of the Schedule property.</param>
+        /// <param name="room">Initial value of the Room property.</param>
+        /// <param name="instructor">Initial value of the Instructor property.</param>
+        /// <param name="labId">Initial value of the LabId property.</param>
+        public static Class CreateClass(global::System.Int32 classId, global::System.Int32 groupNo, global::System.String courseCode, global::System.String courseDescription, global::System.String day, global::System.String schedule, global::System.String room, global::System.String instructor, global::System.Int32 labId)
         {
             Class @class = new Class();
             @class.ClassId = classId;
+            @class.GroupNo = groupNo;
+            @class.CourseCode = courseCode;
+            @class.CourseDescription = courseDescription;
+            @class.Day = day;
+            @class.Schedule = schedule;
+            @class.Room = room;
+            @class.Instructor = instructor;
+            @class.LabId = labId;
             return @class;
         }
 
@@ -3644,9 +3660,9 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> GroupNo
+        public global::System.Int32 GroupNo
         {
             get
             {
@@ -3661,14 +3677,14 @@ namespace itmm.Models
                 OnGroupNoChanged();
             }
         }
-        private Nullable<global::System.Int32> _GroupNo;
-        partial void OnGroupNoChanging(Nullable<global::System.Int32> value);
+        private global::System.Int32 _GroupNo;
+        partial void OnGroupNoChanging(global::System.Int32 value);
         partial void OnGroupNoChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String CourseCode
         {
@@ -3680,7 +3696,7 @@ namespace itmm.Models
             {
                 OnCourseCodeChanging(value);
                 ReportPropertyChanging("CourseCode");
-                _CourseCode = StructuralObject.SetValidValue(value, true);
+                _CourseCode = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("CourseCode");
                 OnCourseCodeChanged();
             }
@@ -3692,7 +3708,7 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String CourseDescription
         {
@@ -3704,7 +3720,7 @@ namespace itmm.Models
             {
                 OnCourseDescriptionChanging(value);
                 ReportPropertyChanging("CourseDescription");
-                _CourseDescription = StructuralObject.SetValidValue(value, true);
+                _CourseDescription = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("CourseDescription");
                 OnCourseDescriptionChanged();
             }
@@ -3716,7 +3732,7 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String Day
         {
@@ -3728,7 +3744,7 @@ namespace itmm.Models
             {
                 OnDayChanging(value);
                 ReportPropertyChanging("Day");
-                _Day = StructuralObject.SetValidValue(value, true);
+                _Day = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("Day");
                 OnDayChanged();
             }
@@ -3740,7 +3756,7 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String Schedule
         {
@@ -3752,7 +3768,7 @@ namespace itmm.Models
             {
                 OnScheduleChanging(value);
                 ReportPropertyChanging("Schedule");
-                _Schedule = StructuralObject.SetValidValue(value, true);
+                _Schedule = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("Schedule");
                 OnScheduleChanged();
             }
@@ -3764,7 +3780,31 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Room
+        {
+            get
+            {
+                return _Room;
+            }
+            set
+            {
+                OnRoomChanging(value);
+                ReportPropertyChanging("Room");
+                _Room = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Room");
+                OnRoomChanged();
+            }
+        }
+        private global::System.String _Room;
+        partial void OnRoomChanging(global::System.String value);
+        partial void OnRoomChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String Instructor
         {
@@ -3776,7 +3816,7 @@ namespace itmm.Models
             {
                 OnInstructorChanging(value);
                 ReportPropertyChanging("Instructor");
-                _Instructor = StructuralObject.SetValidValue(value, true);
+                _Instructor = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("Instructor");
                 OnInstructorChanged();
             }
@@ -3784,10 +3824,72 @@ namespace itmm.Models
         private global::System.String _Instructor;
         partial void OnInstructorChanging(global::System.String value);
         partial void OnInstructorChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LabId
+        {
+            get
+            {
+                return _LabId;
+            }
+            set
+            {
+                OnLabIdChanging(value);
+                ReportPropertyChanging("LabId");
+                _LabId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LabId");
+                OnLabIdChanged();
+            }
+        }
+        private global::System.Int32 _LabId;
+        partial void OnLabIdChanging(global::System.Int32 value);
+        partial void OnLabIdChanged();
 
         #endregion
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Class_Laboratory", "Laboratory")]
+        public Laboratory Laboratory
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Class_Laboratory", "Laboratory").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Class_Laboratory", "Laboratory").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Laboratory> LaboratoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Class_Laboratory", "Laboratory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Laboratory>("pintorModel.FK_Class_Laboratory", "Laboratory", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -3995,6 +4097,44 @@ namespace itmm.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Dispense_Equipment", "Equipment")]
+        public Equipment Equipment
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Equipment>("pintorModel.FK_Dispense_Equipment", "Equipment").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Equipment>("pintorModel.FK_Dispense_Equipment", "Equipment").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Equipment> EquipmentReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Equipment>("pintorModel.FK_Dispense_Equipment", "Equipment");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Equipment>("pintorModel.FK_Dispense_Equipment", "Equipment", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Dispense_Room", "Room")]
         public Room Room
         {
@@ -4061,44 +4201,6 @@ namespace itmm.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Table>("pintorModel.FK_Dispense_Table", "Table", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Dispense_Equipment", "Equipment")]
-        public Equipment Equipment
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Equipment>("pintorModel.FK_Dispense_Equipment", "Equipment").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Equipment>("pintorModel.FK_Dispense_Equipment", "Equipment").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Equipment> EquipmentReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Equipment>("pintorModel.FK_Dispense_Equipment", "Equipment");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Equipment>("pintorModel.FK_Dispense_Equipment", "Equipment", value);
                 }
             }
         }
@@ -4387,28 +4489,6 @@ namespace itmm.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Dispense>("pintorModel.FK_Dispense_Equipment", "Dispense", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_InventoryCost_Equipment", "InventoryCost")]
-        public EntityCollection<InventoryCost> InventoryCosts
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<InventoryCost>("pintorModel.FK_InventoryCost_Equipment", "InventoryCost");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<InventoryCost>("pintorModel.FK_InventoryCost_Equipment", "InventoryCost", value);
                 }
             }
         }
@@ -4837,48 +4917,24 @@ namespace itmm.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> EquipmentId
+        public global::System.String Name
         {
             get
             {
-                return _EquipmentId;
+                return _Name;
             }
             set
             {
-                OnEquipmentIdChanging(value);
-                ReportPropertyChanging("EquipmentId");
-                _EquipmentId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("EquipmentId");
-                OnEquipmentIdChanged();
+                OnNameChanging(value);
+                ReportPropertyChanging("Name");
+                _Name = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Name");
+                OnNameChanged();
             }
         }
-        private Nullable<global::System.Int32> _EquipmentId;
-        partial void OnEquipmentIdChanging(Nullable<global::System.Int32> value);
-        partial void OnEquipmentIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> TotalCost
-        {
-            get
-            {
-                return _TotalCost;
-            }
-            set
-            {
-                OnTotalCostChanging(value);
-                ReportPropertyChanging("TotalCost");
-                _TotalCost = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("TotalCost");
-                OnTotalCostChanged();
-            }
-        }
-        private Nullable<global::System.Decimal> _TotalCost;
-        partial void OnTotalCostChanging(Nullable<global::System.Decimal> value);
-        partial void OnTotalCostChanged();
+        private global::System.String _Name;
+        partial void OnNameChanging(global::System.String value);
+        partial void OnNameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -4909,7 +4965,7 @@ namespace itmm.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> Saved
+        public Nullable<global::System.DateTime> Saved
         {
             get
             {
@@ -4924,53 +4980,12 @@ namespace itmm.Models
                 OnSavedChanged();
             }
         }
-        private Nullable<global::System.Int32> _Saved;
-        partial void OnSavedChanging(Nullable<global::System.Int32> value);
+        private Nullable<global::System.DateTime> _Saved;
+        partial void OnSavedChanging(Nullable<global::System.DateTime> value);
         partial void OnSavedChanged();
 
         #endregion
     
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_InventoryCost_Equipment", "Equipment")]
-        public Equipment Equipment
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Equipment>("pintorModel.FK_InventoryCost_Equipment", "Equipment").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Equipment>("pintorModel.FK_InventoryCost_Equipment", "Equipment").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Equipment> EquipmentReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Equipment>("pintorModel.FK_InventoryCost_Equipment", "Equipment");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Equipment>("pintorModel.FK_InventoryCost_Equipment", "Equipment", value);
-                }
-            }
-        }
-
-        #endregion
     }
     
     /// <summary>
@@ -5101,6 +5116,28 @@ namespace itmm.Models
         #endregion
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Class_Laboratory", "Class")]
+        public EntityCollection<Class> Classes
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Class>("pintorModel.FK_Class_Laboratory", "Class");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Class>("pintorModel.FK_Class_Laboratory", "Class", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -5350,44 +5387,6 @@ namespace itmm.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Laboratory_Equipment_Laboratory", "Laboratory")]
-        public Laboratory Laboratory
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Equipment_Laboratory", "Laboratory").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Equipment_Laboratory", "Laboratory").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<Laboratory> LaboratoryReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Equipment_Laboratory", "Laboratory");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Equipment_Laboratory", "Laboratory", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Laboratory_Equipment_Equipment", "Equipment")]
         public Equipment Equipment
         {
@@ -5416,6 +5415,44 @@ namespace itmm.Models
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Equipment>("pintorModel.FK_Laboratory_Equipment_Equipment", "Equipment", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Laboratory_Equipment_Laboratory", "Laboratory")]
+        public Laboratory Laboratory
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Equipment_Laboratory", "Laboratory").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Equipment_Laboratory", "Laboratory").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Laboratory> LaboratoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Equipment_Laboratory", "Laboratory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Laboratory>("pintorModel.FK_Laboratory_Equipment_Laboratory", "Laboratory", value);
                 }
             }
         }
@@ -6557,12 +6594,16 @@ namespace itmm.Models
         /// Create a new Material object.
         /// </summary>
         /// <param name="materialId">Initial value of the MaterialId property.</param>
-        /// <param name="laboratoryId">Initial value of the LaboratoryId property.</param>
-        public static Material CreateMaterial(global::System.Int32 materialId, global::System.Int32 laboratoryId)
+        /// <param name="name">Initial value of the Name property.</param>
+        /// <param name="description">Initial value of the Description property.</param>
+        /// <param name="quantity">Initial value of the Quantity property.</param>
+        public static Material CreateMaterial(global::System.Int32 materialId, global::System.String name, global::System.String description, global::System.Int32 quantity)
         {
             Material material = new Material();
             material.MaterialId = materialId;
-            material.LaboratoryId = laboratoryId;
+            material.Name = name;
+            material.Description = description;
+            material.Quantity = quantity;
             return material;
         }
 
@@ -6601,30 +6642,6 @@ namespace itmm.Models
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public global::System.Int32 LaboratoryId
-        {
-            get
-            {
-                return _LaboratoryId;
-            }
-            set
-            {
-                OnLaboratoryIdChanging(value);
-                ReportPropertyChanging("LaboratoryId");
-                _LaboratoryId = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("LaboratoryId");
-                OnLaboratoryIdChanged();
-            }
-        }
-        private global::System.Int32 _LaboratoryId;
-        partial void OnLaboratoryIdChanging(global::System.Int32 value);
-        partial void OnLaboratoryIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String Name
         {
             get
@@ -6635,7 +6652,7 @@ namespace itmm.Models
             {
                 OnNameChanging(value);
                 ReportPropertyChanging("Name");
-                _Name = StructuralObject.SetValidValue(value, true);
+                _Name = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("Name");
                 OnNameChanged();
             }
@@ -6647,7 +6664,7 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String Description
         {
@@ -6659,7 +6676,7 @@ namespace itmm.Models
             {
                 OnDescriptionChanging(value);
                 ReportPropertyChanging("Description");
-                _Description = StructuralObject.SetValidValue(value, true);
+                _Description = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("Description");
                 OnDescriptionChanged();
             }
@@ -6671,33 +6688,9 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.DateTime> DateReceived
-        {
-            get
-            {
-                return _DateReceived;
-            }
-            set
-            {
-                OnDateReceivedChanging(value);
-                ReportPropertyChanging("DateReceived");
-                _DateReceived = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("DateReceived");
-                OnDateReceivedChanged();
-            }
-        }
-        private Nullable<global::System.DateTime> _DateReceived;
-        partial void OnDateReceivedChanging(Nullable<global::System.DateTime> value);
-        partial void OnDateReceivedChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> Quantity
+        public global::System.Int32 Quantity
         {
             get
             {
@@ -6712,9 +6705,33 @@ namespace itmm.Models
                 OnQuantityChanged();
             }
         }
-        private Nullable<global::System.Int32> _Quantity;
-        partial void OnQuantityChanging(Nullable<global::System.Int32> value);
+        private global::System.Int32 _Quantity;
+        partial void OnQuantityChanging(global::System.Int32 value);
         partial void OnQuantityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> DateUpdated
+        {
+            get
+            {
+                return _DateUpdated;
+            }
+            set
+            {
+                OnDateUpdatedChanging(value);
+                ReportPropertyChanging("DateUpdated");
+                _DateUpdated = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateUpdated");
+                OnDateUpdatedChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _DateUpdated;
+        partial void OnDateUpdatedChanging(Nullable<global::System.DateTime> value);
+        partial void OnDateUpdatedChanged();
 
         #endregion
     
