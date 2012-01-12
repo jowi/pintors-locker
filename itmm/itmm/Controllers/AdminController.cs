@@ -158,12 +158,13 @@ namespace itmm.Controllers
         [Authorize(Roles = "Dev")]
         public ActionResult DeleteLab(int LabId)
         {
-            var x = (from y in con.Laboratories
-                     where y.LaboratoryId == LabId
-                     select y).FirstOrDefault();
-            con.DeleteObject(x);
-            con.SaveChanges();
-            return RedirectToAction("Index", "Admin");
+                var x = (from y in con.Laboratories
+                         where y.LaboratoryId == LabId
+                         select y).FirstOrDefault();
+                con.DeleteObject(x);
+                con.SaveChanges();
+                return RedirectToAction("Index", "Admin");      
+            
         }
         [Authorize(Roles = "Dev")]
         public ActionResult Room()

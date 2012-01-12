@@ -39,10 +39,11 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Material_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Material", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Material), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Room_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Room), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Staff_Laboratory_Staff", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Staff", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Staff), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Liability_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Liability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Liability), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Notification_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Notification", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Notification), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Material_Material", "Material", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Material), "Laboratory_Material", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Material), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Room_Room", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Room), "Laboratory_Room", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Room), true)]
-[assembly: EdmRelationshipAttribute("pintorModel", "FK_Liability_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.StudentInfo), "Liability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Liability), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Liability_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.StudentInfo), "Liability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Liability), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Group_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.StudentInfo), "Table", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Table), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "aspnet_UsersInRoles", "aspnet_Roles", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.aspnet_Roles), "aspnet_Users", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.aspnet_Users))]
 
@@ -5255,6 +5256,28 @@ namespace itmm.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Liability_Laboratory", "Liability")]
+        public EntityCollection<Liability> Liabilities
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Liability>("pintorModel.FK_Liability_Laboratory", "Liability");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Liability>("pintorModel.FK_Liability_Laboratory", "Liability", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Notification_Laboratory", "Notification")]
         public EntityCollection<Notification> Notifications
         {
@@ -6402,10 +6425,20 @@ namespace itmm.Models
         /// Create a new Liability object.
         /// </summary>
         /// <param name="liabilityId">Initial value of the LiabilityId property.</param>
-        public static Liability CreateLiability(global::System.Int32 liabilityId)
+        /// <param name="studentId">Initial value of the StudentId property.</param>
+        /// <param name="equipment">Initial value of the Equipment property.</param>
+        /// <param name="fine">Initial value of the Fine property.</param>
+        /// <param name="status">Initial value of the Status property.</param>
+        /// <param name="laboratoryId">Initial value of the LaboratoryId property.</param>
+        public static Liability CreateLiability(global::System.Int32 liabilityId, global::System.Int32 studentId, global::System.String equipment, global::System.Int32 fine, global::System.String status, global::System.Int32 laboratoryId)
         {
             Liability liability = new Liability();
             liability.LiabilityId = liabilityId;
+            liability.StudentId = studentId;
+            liability.Equipment = equipment;
+            liability.Fine = fine;
+            liability.Status = status;
+            liability.LaboratoryId = laboratoryId;
             return liability;
         }
 
@@ -6442,9 +6475,9 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> StudentId
+        public global::System.Int32 StudentId
         {
             get
             {
@@ -6459,14 +6492,14 @@ namespace itmm.Models
                 OnStudentIdChanged();
             }
         }
-        private Nullable<global::System.Int32> _StudentId;
-        partial void OnStudentIdChanging(Nullable<global::System.Int32> value);
+        private global::System.Int32 _StudentId;
+        partial void OnStudentIdChanging(global::System.Int32 value);
         partial void OnStudentIdChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String Equipment
         {
@@ -6478,7 +6511,7 @@ namespace itmm.Models
             {
                 OnEquipmentChanging(value);
                 ReportPropertyChanging("Equipment");
-                _Equipment = StructuralObject.SetValidValue(value, true);
+                _Equipment = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("Equipment");
                 OnEquipmentChanged();
             }
@@ -6490,9 +6523,9 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Decimal> Fine
+        public global::System.Int32 Fine
         {
             get
             {
@@ -6507,14 +6540,14 @@ namespace itmm.Models
                 OnFineChanged();
             }
         }
-        private Nullable<global::System.Decimal> _Fine;
-        partial void OnFineChanging(Nullable<global::System.Decimal> value);
+        private global::System.Int32 _Fine;
+        partial void OnFineChanging(global::System.Int32 value);
         partial void OnFineChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String Status
         {
@@ -6526,7 +6559,7 @@ namespace itmm.Models
             {
                 OnStatusChanging(value);
                 ReportPropertyChanging("Status");
-                _Status = StructuralObject.SetValidValue(value, true);
+                _Status = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("Status");
                 OnStatusChanged();
             }
@@ -6534,10 +6567,72 @@ namespace itmm.Models
         private global::System.String _Status;
         partial void OnStatusChanging(global::System.String value);
         partial void OnStatusChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LaboratoryId
+        {
+            get
+            {
+                return _LaboratoryId;
+            }
+            set
+            {
+                OnLaboratoryIdChanging(value);
+                ReportPropertyChanging("LaboratoryId");
+                _LaboratoryId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LaboratoryId");
+                OnLaboratoryIdChanged();
+            }
+        }
+        private global::System.Int32 _LaboratoryId;
+        partial void OnLaboratoryIdChanging(global::System.Int32 value);
+        partial void OnLaboratoryIdChanged();
 
         #endregion
     
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Liability_Laboratory", "Laboratory")]
+        public Laboratory Laboratory
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Liability_Laboratory", "Laboratory").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Liability_Laboratory", "Laboratory").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Laboratory> LaboratoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Liability_Laboratory", "Laboratory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Laboratory>("pintorModel.FK_Liability_Laboratory", "Laboratory", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -7156,10 +7251,18 @@ namespace itmm.Models
         /// Create a new StudentInfo object.
         /// </summary>
         /// <param name="studentId">Initial value of the StudentId property.</param>
-        public static StudentInfo CreateStudentInfo(global::System.Int32 studentId)
+        /// <param name="familiyName">Initial value of the FamiliyName property.</param>
+        /// <param name="firstName">Initial value of the FirstName property.</param>
+        /// <param name="idNumber">Initial value of the IdNumber property.</param>
+        /// <param name="courseAndYear">Initial value of the CourseAndYear property.</param>
+        public static StudentInfo CreateStudentInfo(global::System.Int32 studentId, global::System.String familiyName, global::System.String firstName, global::System.Int32 idNumber, global::System.String courseAndYear)
         {
             StudentInfo studentInfo = new StudentInfo();
             studentInfo.StudentId = studentId;
+            studentInfo.FamiliyName = familiyName;
+            studentInfo.FirstName = firstName;
+            studentInfo.IdNumber = idNumber;
+            studentInfo.CourseAndYear = courseAndYear;
             return studentInfo;
         }
 
@@ -7196,7 +7299,7 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String FamiliyName
         {
@@ -7208,7 +7311,7 @@ namespace itmm.Models
             {
                 OnFamiliyNameChanging(value);
                 ReportPropertyChanging("FamiliyName");
-                _FamiliyName = StructuralObject.SetValidValue(value, true);
+                _FamiliyName = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("FamiliyName");
                 OnFamiliyNameChanged();
             }
@@ -7220,7 +7323,7 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String FirstName
         {
@@ -7232,7 +7335,7 @@ namespace itmm.Models
             {
                 OnFirstNameChanging(value);
                 ReportPropertyChanging("FirstName");
-                _FirstName = StructuralObject.SetValidValue(value, true);
+                _FirstName = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("FirstName");
                 OnFirstNameChanged();
             }
@@ -7244,9 +7347,9 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> IdNumber
+        public global::System.Int32 IdNumber
         {
             get
             {
@@ -7261,14 +7364,14 @@ namespace itmm.Models
                 OnIdNumberChanged();
             }
         }
-        private Nullable<global::System.Int32> _IdNumber;
-        partial void OnIdNumberChanging(Nullable<global::System.Int32> value);
+        private global::System.Int32 _IdNumber;
+        partial void OnIdNumberChanging(global::System.Int32 value);
         partial void OnIdNumberChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String CourseAndYear
         {
@@ -7280,7 +7383,7 @@ namespace itmm.Models
             {
                 OnCourseAndYearChanging(value);
                 ReportPropertyChanging("CourseAndYear");
-                _CourseAndYear = StructuralObject.SetValidValue(value, true);
+                _CourseAndYear = StructuralObject.SetValidValue(value, false);
                 ReportPropertyChanged("CourseAndYear");
                 OnCourseAndYearChanged();
             }

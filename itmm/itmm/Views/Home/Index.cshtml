@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
     var LabList = (ViewBag.LabList as IQueryable<itmm.Models.Laboratory>);
     var LabInfo = (ViewBag.LabInfo as IQueryable<itmm.Models.Laboratory>);
+    var StaffList= (ViewBag.StaffList as IQueryable<itmm.Models.Laboratory_Staff>);
    
 }
 
@@ -19,39 +20,41 @@ else
             <h4>
                 <a href="#">About</a></h4>
             <div>
-                <span><a id="modal_diag" href="#">Register</a></span><br />
+@*                <span><a id="modal_diag" href="#">Register</a></span><br />
                 <div id="modal" title="Register" style="visibility: hidden;height:0px;">
                     <form method="post" action="test.html">
                     <input type="text" name="fname" placeholder="name" /><br />
                     <input type="text" name="age" placeholder="age" /><br />
                     <input type="submit" value="save" />
                     </form>
-                </div>
+                </div>*@
                 <!--end dialog -->
-                @foreach (var info in LabInfo)
+@*                @foreach (var info in LabInfo)
                 {
                         @info.LaboratoryDesc
-                }
-              <span>check</span><br />
-               <span>check</span><br />
-                <span>check</span><br />
-                 <span>check</span><br />
+                }*@
+                "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga." 
+    
             </div>
             <!-- end form -->
             <h4>
                 <a href="#">Staff</a></h4>
             <div>
-                2
+                @foreach (var x in StaffList)
+	{
+        string c = x.FirstName + " " + x.LastName;
+		 <span>@c</span><br/>
+	}
             </div>
-            <h4>
+ @*           <h4>
                 <a href="#">Equipments</a></h4>
             <div>
                 3
-            </div>
+            </div>*@
             <h4>
                 <a href="#">Contact</a></h4>
             <div>
-                4
+                ossimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente 
             </div>
                 
         </div>

@@ -136,13 +136,92 @@ namespace itmm.Controllers
         }
 
         [Authorize(Roles = "Staff")]
-        public ActionResult Income()
+        public ActionResult Liability()
         {
+            var labid = getLabId();
+            var x = from y in con.Liabilities
+                    where y.LaboratoryId == labid
+                    select y;
+            ViewBag.LList = x;
+
             return View();
         }
+        [HttpPost]
+        public ActionResult Liability(itmmLiability a)
+        {
 
+            StudentInfo c = new StudentInfo();
+            c.FamiliyName = a.FamilyName;
+            c.FirstName = a.FirstName;
+            c.IdNumber = a.IdNumber;
+            c.CourseAndYear = a.Course;
+            con.AddToStudentInfoes(c);
+
+
+            var labid = getLabId();
+            Liability b = new Liability();
+            b.Equipment = a.Equipment;
+            b.Fine = a.Fine;
+            b.Status = a.Status;
+            b.LaboratoryId = labid;
+            b.StudentId = c.StudentId;
+            con.AddToLiabilities(b);
+
+            con.SaveChanges();
+
+
+            return RedirectToAction("Liability");
+        }
         [Authorize(Roles = "Staff")]
-        public ActionResult Material()
+        public ActionResult EditLiability(int LiabilityId)
+        {
+            var c = (from y in con.Liabilities
+                     where y.LiabilityId == LiabilityId
+                     select y).FirstOrDefault();
+
+            var b = (from y in con.Liabilities
+                     where y.LiabilityId == LiabilityId
+                     select y.StudentInfo).FirstOrDefault();
+
+            itmmLiability a = new itmmLiability();
+            a.FamilyName = b.FamiliyName;
+            a.FirstName=b.FirstName;
+            a.IdNumber=b.IdNumber;
+            a.Course=b.CourseAndYear;
+
+            a.Equipment = c.Equipment;
+            a.Fine = c.Fine;
+            a.Status = c.Status;
+
+            return View(a);
+        }
+    [HttpPost]
+        public ActionResult EditLiability(int LiabilityId, itmmLiability a)
+        {
+            var c = (from y in con.Liabilities
+                     where y.LiabilityId == LiabilityId
+                     select y).FirstOrDefault();
+
+            var b = (from y in con.Liabilities
+                     where y.LiabilityId == LiabilityId
+                     select y.StudentInfo).FirstOrDefault();
+
+            b.FamiliyName = a.FamilyName;
+            b.FirstName = a.FirstName;
+            b.IdNumber = a.IdNumber;
+            b.CourseAndYear = a.Course;
+
+
+            c.Equipment = a.Equipment;
+            c.Fine = a.Fine;
+            c.Status = a.Status;
+
+            con.SaveChanges();
+
+            return RedirectToAction("Liability");
+        }
+         [Authorize(Roles = "Staff")]
+        public ActionResult InventoryCost()
         {
             var labid = getLabId();
             var x = from y in con.Laboratory_Material
@@ -152,7 +231,50 @@ namespace itmm.Controllers
 
             return View();
         }
+        [Authorize(Roles = "Staff")]
+         public ActionResult EditMaterial(int MatId)
+         {
+             var x = (from y in con.Materials
+                      where y.MaterialId == MatId
+                      select y).FirstOrDefault();
 
+             itmmMaterial a = new itmmMaterial();
+             a.Name = x.Name;
+             a.Description = x.Description;
+             a.Quantity = x.Quantity;
+             return View(a);
+         }
+       [HttpPost]
+        public ActionResult EditMaterial(int MatId, itmmMaterial a)
+        {
+            var b = (from y in con.Materials
+                     where y.MaterialId == MatId
+                     select y).FirstOrDefault();
+           
+
+            b.Name = a.Name;
+            b.Description = a.Description;
+            b.Quantity = a.Quantity;
+            b.DateUpdated = DateTime.Now;
+            con.SaveChanges();
+            return RedirectToAction("InventoryCost");
+        }
+        [Authorize(Roles = "Staff")]
+       public ActionResult DeleteMaterial(int MatId)
+       {
+           var x = (from y in con.Materials
+                    where y.MaterialId == MatId
+                    select y).FirstOrDefault();
+           con.DeleteObject(x);
+
+           var a = (from y in con.Laboratory_Material
+                    where y.MaterialId == MatId
+                    select y).FirstOrDefault();
+           con.DeleteObject(a);
+
+           con.SaveChanges();
+           return RedirectToAction("InventoryCost");
+       }
 
     }
 }

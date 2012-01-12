@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "InventoryCost";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+    var MatList = (ViewBag.MatList as IQueryable<itmm.Models.Material>);
+}
+
+
+
+<div id="content_wrapper">
+@if (MatList.Count() != 0) { 
+<div id="dataTable"><span>data tables here!</span>
+<table cellspacing="0">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>DateUpdated</th>
+            <th></th>
+        
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var x in MatList)
+       { 
+        <tr>
+            <td>@x.Name</td>
+            <td>@x.Description</td>  
+            <td>@x.Quantity</td>
+            <td>@x.DateUpdated</td>
+                        <td>
+            @Html.ActionLink("edit", "EditMaterial", "Staff", new { MatId= x.MaterialId }, null)
+            @Html.ActionLink("delete", "DeleteMaterial", "Staff", new { MatId = x.MaterialId }, null)
+            </td>
+
+        </tr>
+       }
+ 
+    </tbody>
+</table>
+</div><!--dataTable-->
+    }
+</div><!--content_wrapper-->
+
+@section SideNav{
+<ul>
+  
+    <li>@Html.ActionLink("Income", "Income", "Staff")</li>
+    <li>@Html.ActionLink("Liability", "Liability", "Staff")</li>
+    <li>@Html.ActionLink("Inventory Cost", "InventoryCost", "Staff", null, new { id="light"})</li>
+    
+</ul>
+}

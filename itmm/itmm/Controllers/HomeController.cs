@@ -18,8 +18,13 @@ namespace itmm.Controllers
                     select y;
             ViewBag.LabList = x;
 
+            var s = from y in con.Laboratory_Staff
+                    where y.LaboratoryId == lab
+                    select y;
+            ViewBag.StaffList = s;
 
-            ViewBag.Message = "Welcome to itmm!";
+
+            ViewBag.Message = "Welcome!";
 
             if (!lab.Equals(null))
             {

@@ -41,27 +41,27 @@
     <style type="text/css">
     #zero_div
     {
-         background-color:red;
+        /* background-color:red;*/
          /*1.2 escapes 0 div*/
          overflow: auto;
         }
     #first_div
     {
-       background-color:lightblue;
+     /*  background-color:lightblue;*/
        padding: 0 0 0 15px;
        width: 280px;
        float:left;
         }
      #second_div
      {
-         background-color:lightgreen;
+       /*  background-color:lightgreen;*/
          padding: 0 10px 0 0;
          width: 550px;
          float:right;
          }
     #dataTable
      {
-         background-color:lightblue;
+        /* background-color:lightblue;*/
          margin-top:30px;
          clear:right;
              }
@@ -72,7 +72,7 @@
     <div id="wrapper">
         <div id="nav">
         
-           <h1>@Html.ActionLink("INVETORY", "GoNow", "Error")</h1> 
+           <h1>@Html.ActionLink("INVENTORY", "GoNow", "Error")</h1> 
             
                 @if (IsSectionDefined("SideNav"))
                 {
@@ -172,7 +172,7 @@
         $("#tableTool").empty().html('<span id="loader"><img id="loading" src="../Content/images/loading3.gif" /></span>');
           
         $("#tableTool").ready(function () {
-            $("#tableTool").empty().html("yousure?").dialog({
+            $("#tableTool").empty().html("Confirm Delete?").dialog({
                 modal: true, position: [300, 200],
                 show: 'slide', hide: 'slide',
                 width: 750,

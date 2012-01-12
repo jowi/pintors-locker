@@ -1,0 +1,119 @@
+﻿@model itmm.Models.itmmLiability
+
+@{
+    ViewBag.Title = "Liability";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+    var LList = (ViewBag.LList as IQueryable<itmm.Models.Liability>);
+}
+
+<h2>Liability</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div id="content_wrapper">
+<div id="zero_div">
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+<div id="first_div">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FamilyName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FamilyName)
+            @Html.ValidationMessageFor(model => model.FamilyName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IdNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IdNumber)
+            @Html.ValidationMessageFor(model => model.IdNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Course)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Course)
+            @Html.ValidationMessageFor(model => model.Course)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Equipment)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Equipment)
+            @Html.ValidationMessageFor(model => model.Equipment)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Fine)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Fine)
+            @Html.ValidationMessageFor(model => model.Fine)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Status)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Status)
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+</div><!--first_div-->
+}
+</div><!--zero_div-->
+@if (LList.Count() != 0)
+{
+<div id="dataTable"><span>data tables here!</span>
+<table id="dtable" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Id Number</th>
+            <th>Family Name</th>
+            <th>First Name</th>
+            <th>Course&Year</th>
+            <th>Equipment</th>
+            <th>Fine</th>
+            <th>Status</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var x in LList)
+       { 
+        <tr>
+            <td>@x.StudentInfoReference.Value.IdNumber</td>
+            <td>@x.StudentInfoReference.Value.FamiliyName</td> 
+            <td>@x.StudentInfoReference.Value.FirstName</td>   
+            <td>@x.StudentInfoReference.Value.CourseAndYear</td>
+            <td>@x.Equipment</td>
+            <td>@x.Fine</td>
+            <td>@x.Status</td>
+            <td>
+            @Html.ActionLink("edit", "EditLiability", "Staff", new { LiabilityId = x.LiabilityId }, null)
+           
+            </td>
+        </tr>
+       }
+ 
+    </tbody>
+</table>
+</div><!--dataTable-->
+}
+</div><!--content_wrapper-->

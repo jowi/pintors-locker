@@ -275,6 +275,7 @@
     <EntitySetMapping Name="Liabilities">
       <EntityTypeMapping TypeName="pintorModel.Liability">
         <MappingFragment StoreEntitySet="Liability">
+          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="Fine" ColumnName="Fine" />
           <ScalarProperty Name="Equipment" ColumnName="Equipment" />
