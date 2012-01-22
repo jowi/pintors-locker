@@ -11,7 +11,7 @@
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
-<div id="content_wrapper">
+<div id="content_wrapper" >
 <div id="zero_div">
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
@@ -64,12 +64,12 @@
 </div><!--first_div-->
 }
 </div><!--zero_div-->
-
+</div><!--content_wrapper-->
 
 @if (NoticeList.Count() != 0)
 {
-<div id="dataTable"><span>data tables here!</span>
-<table cellspacing="0">
+<div id="dataTable">
+<table id="dtable" cellspacing=0>
     <thead>
         <tr>
             <th>Notification Id</th>
@@ -102,8 +102,9 @@
 </table>
 
 </div><!--dataTable-->
+
 }
-</div><!--content_wrapper-->
+
 
 <div id="notices">   
 
@@ -124,7 +125,7 @@
         </div>
 
                 cnt++;
-}
+    }
 }
 </div>
 <script type="text/javascript">

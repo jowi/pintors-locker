@@ -8,8 +8,7 @@ body a
     color:#BDBDBD;
 }
 #wrapper{
-/*   height:100%;
-   width:100%;*/
+    width:100%;
 }
 /*******NAV**********/
 #nav{
@@ -76,7 +75,7 @@ body a
    float:right;
 }
 #accholder{
-   width: 900px;
+  width: 800px;
    margin: 50px 0 0 100px;
 }
 #modal_diag{
@@ -88,14 +87,14 @@ width:260px;
 height:23px;  
 }
 /*******ADMIN**********/
-#room_div
+/*#room_div
 {
     margin-top:25px;
-}
+}*/
 /*#room_div table
 {
     margin-bottom:30px;
-}*/
+}
 #room_div table thead th
 {
     padding: 5px 120px 5px 10px;
@@ -110,6 +109,18 @@ height:23px;
 #room_div table tbody tr:hover
 {
 background-color:#E6E6E6;   
+}
+*/
+
+/*DATA TABLES*/
+#dtable
+{
+    width: 100%;
+}
+#dtable tbody tr td
+{
+    padding: 5px 5px 5px 0;
+    text-align: center;
 }
 
 /*
@@ -140,4 +151,6 @@ REPORT NAV
 #content_wrapper
 {
     border: dashed 1px #E6E6E6;
+    overflow:auto;
+    margin: 0 0 30px 0;
 }

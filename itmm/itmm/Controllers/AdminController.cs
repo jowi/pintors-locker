@@ -19,7 +19,7 @@ namespace itmm.Controllers
         [Authorize(Roles = "Dev")]
         public ActionResult Index()
         {
-            ViewBag.MyMessage = "Welcome to administrator page <- Message brought to you by ViewBag";
+            ViewBag.MyMessage = "Manage Laboratory";
 
             var room = from y in con.Rooms
                        select y;

@@ -215,7 +215,7 @@ input[type="password"]
 /* TABLE
 ----------------------------------------------------------*/
 
-table 
+/*table 
 {
   border: solid 1px #e8eef4;
   border-collapse: collapse;
@@ -233,7 +233,7 @@ table th
   text-align: left;
   background-color: #e8eef4; 
   border: solid 1px #e8eef4;   
-}
+}*/
 
 /* MISC  
 ----------------------------------------------------------*/

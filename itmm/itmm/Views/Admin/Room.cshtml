@@ -2,7 +2,7 @@
     var RoomList = (ViewBag.RoomList as IQueryable<itmm.Models.Room>);
 }
 <div id="accord">
- <span id="span_link" style="visibility: hidden;"><a id="modal_diag" href="#">Create Room</a></span><br />
+ <span id="span_link" style="visibility: hidden;"><a id="modal_diag" href="#">Create Room</a></span><br /><br />
 
  <div id="modal" title="Fill the form" style="visibility: hidden; height: 0px;">
         <form id="labform" method="post" action="/Admin/Room">
@@ -14,7 +14,7 @@
         </form>
     </div><!-- end dialog -->
  <div  id="room_div">
-        <table id="dtable" cellspacing="0" >@* style="position:relative;left:-100px;"*@
+        <table id="dtable" cellspacing="0" >
         <thead>
             <tr>
                 <th>Room</th>
@@ -29,7 +29,7 @@
         &nbsp<a href="javascript:TableConfirm('@Url.Action("DeleteRoom", "Admin", new { RoomId = roomlist.RoomId})')">delete</a>&nbsp</td></tr>
         }
         </tbody>
-        </table>
+</table>
 
  </div>
 <div id="tableTool"></div>
