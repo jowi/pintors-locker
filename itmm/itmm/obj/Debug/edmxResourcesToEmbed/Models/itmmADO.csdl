@@ -90,7 +90,11 @@
       <End Role="Equipment" EntitySet="Equipments" />
       <End Role="Laboratory_Equipment" EntitySet="Laboratory_Equipment" />
     </AssociationSet>
-    <AssociationSet Name="FK_Income_StudentInfo" Association="pintorModel.FK_Income_StudentInfo">
+    <AssociationSet Name="FK_Income_Laboratory" Association="pintorModel.FK_Income_Laboratory">
+      <End Role="Laboratory" EntitySet="Laboratories" />
+      <End Role="Income" EntitySet="Incomes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Income_StudentInfo1" Association="pintorModel.FK_Income_StudentInfo1">
       <End Role="StudentInfo" EntitySet="StudentInfoes" />
       <End Role="Income" EntitySet="Incomes" />
     </AssociationSet>
@@ -301,6 +305,7 @@
     <Property Type="Int32" Name="LabId" Nullable="false" />
     <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Class_Laboratory" FromRole="Class" ToRole="Laboratory" />
     <NavigationProperty Name="Tables" Relationship="pintorModel.FK_Group_Class" FromRole="Class" ToRole="Table" />
+    <Property Type="Int32" Name="AvailableTable" />
   </EntityType>
   <EntityType Name="Dispense">
     <Key>
@@ -348,10 +353,12 @@
       <PropertyRef Name="IncomeId" />
     </Key>
     <Property Type="Int32" Name="IncomeId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="LaboratoryId" />
     <Property Type="Int32" Name="StudentId" />
     <Property Type="String" Name="Transactionn" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Type="Decimal" Name="cost" Precision="19" Scale="4" />
-    <NavigationProperty Name="StudentInfo" Relationship="pintorModel.FK_Income_StudentInfo" FromRole="Income" ToRole="StudentInfo" />
+    <Property Type="Int32" Name="cost" />
+    <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Income_Laboratory" FromRole="Income" ToRole="Laboratory" />
+    <NavigationProperty Name="StudentInfo" Relationship="pintorModel.FK_Income_StudentInfo1" FromRole="Income" ToRole="StudentInfo" />
   </EntityType>
   <EntityType Name="InventoryCost">
     <Key>
@@ -371,6 +378,7 @@
     <Property Type="String" Name="LaboratoryName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="UserName" MaxLength="256" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Classes" Relationship="pintorModel.FK_Class_Laboratory" FromRole="Laboratory" ToRole="Class" />
+    <NavigationProperty Name="Incomes" Relationship="pintorModel.FK_Income_Laboratory" FromRole="Laboratory" ToRole="Income" />
     <NavigationProperty Name="Laboratory_Equipment" Relationship="pintorModel.FK_Laboratory_Equipment_Laboratory" FromRole="Laboratory" ToRole="Laboratory_Equipment" />
     <NavigationProperty Name="Laboratory_Head" Relationship="pintorModel.FK_Laboratory_Head_Laboratory" FromRole="Laboratory" ToRole="Laboratory_Head" />
     <NavigationProperty Name="Laboratory_Material" Relationship="pintorModel.FK_Laboratory_Material_Laboratory" FromRole="Laboratory" ToRole="Laboratory_Material" />
@@ -492,7 +500,7 @@
     <Property Type="String" Name="FirstName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="Int32" Name="IdNumber" Nullable="false" />
     <Property Type="String" Name="CourseAndYear" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Incomes" Relationship="pintorModel.FK_Income_StudentInfo" FromRole="StudentInfo" ToRole="Income" />
+    <NavigationProperty Name="Incomes" Relationship="pintorModel.FK_Income_StudentInfo1" FromRole="StudentInfo" ToRole="Income" />
     <NavigationProperty Name="Liabilities" Relationship="pintorModel.FK_Liability_StudentInfo" FromRole="StudentInfo" ToRole="Liability" />
     <NavigationProperty Name="Tables" Relationship="pintorModel.FK_Group_StudentInfo" FromRole="StudentInfo" ToRole="Table" />
   </EntityType>
@@ -698,7 +706,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Income_StudentInfo">
+  <Association Name="FK_Income_Laboratory">
+    <End Type="pintorModel.Laboratory" Role="Laboratory" Multiplicity="0..1" />
+    <End Type="pintorModel.Income" Role="Income" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratory">
+        <PropertyRef Name="LaboratoryId" />
+      </Principal>
+      <Dependent Role="Income">
+        <PropertyRef Name="LaboratoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Income_StudentInfo1">
     <End Type="pintorModel.StudentInfo" Role="StudentInfo" Multiplicity="0..1" />
     <End Type="pintorModel.Income" Role="Income" Multiplicity="*" />
     <ReferentialConstraint>

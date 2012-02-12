@@ -62,6 +62,13 @@
 	}   
    </select>
         <div class="editor-label">
+            @Html.LabelFor(model => model.AvailableTable)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AvailableTable)
+            @Html.ValidationMessageFor(model => model.AvailableTable)
+        </div>
+        <div class="editor-label">
             @Html.LabelFor(model => model.Instructor)
         </div>
         <div class="editor-field">

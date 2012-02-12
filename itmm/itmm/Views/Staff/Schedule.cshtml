@@ -66,6 +66,14 @@
 	}   
    </select>
     </div>
+     <div class="editor-label">
+            @Html.LabelFor(model => model.AvailableTable)
+     </div>
+     <div class="editor-field">
+            @Html.EditorFor(model => model.AvailableTable)
+            @Html.ValidationMessageFor(model => model.AvailableTable)
+        </div>
+
         <div class="editor-label">
             @Html.LabelFor(model => model.Instructor)
         </div>
@@ -90,6 +98,7 @@
             <th>Course Description</th>
             <th>Day</th>
             <th>Schedule</th>
+            <th>Table Assigned</th>
             <th>Room</th>
             <th>Instructor</th>
             <th></th>
@@ -104,11 +113,14 @@
             <td>@x.CourseDescription</td>
             <td>@x.Day</td>
             <td>@x.Schedule</td>
+            <td>@x.AvailableTable</td>
             <td>@x.Room</td>
             <td>@x.Instructor</td>
             <td>
+            @Html.ActionLink("students", "ClassStudents", "Staff", new { SkedId = x.ClassId }, null)
             @Html.ActionLink("edit", "EditSked", "Staff", new { SkedId = x.ClassId }, null)
             @Html.ActionLink("delete", "DeleteSked", "Staff", new { SkedId = x.ClassId }, null)
+
             </td>
         </tr>
        }

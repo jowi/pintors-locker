@@ -136,6 +136,7 @@
     <EntitySetMapping Name="Classes">
       <EntityTypeMapping TypeName="pintorModel.Class">
         <MappingFragment StoreEntitySet="Class">
+          <ScalarProperty Name="AvailableTable" ColumnName="AvailableTable" />
           <ScalarProperty Name="LabId" ColumnName="LabId" />
           <ScalarProperty Name="Instructor" ColumnName="Instructor" />
           <ScalarProperty Name="Room" ColumnName="Room" />
@@ -193,6 +194,7 @@
           <ScalarProperty Name="cost" ColumnName="cost" />
           <ScalarProperty Name="Transactionn" ColumnName="Transactionn" />
           <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
           <ScalarProperty Name="IncomeId" ColumnName="IncomeId" />
         </MappingFragment>
       </EntityTypeMapping>

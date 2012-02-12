@@ -146,6 +146,10 @@ namespace itmm.Models
         public int GroupNo { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [Display(Name = "Table Assign")]
+        public int AvailableTable { get; set; }
+
+        [Required(ErrorMessage = "Required")]
         [Display(Name = "Course Code")]
         public string CourseCode { get; set; }
 
@@ -211,6 +215,37 @@ namespace itmm.Models
         [Required(ErrorMessage = "Required")]
         [Display(Name = "Status")]
         public string Status { get; set; }
+
+
+    }
+
+    public class itmmIncome
+    {
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Family Name")]
+        public string FamilyName { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "FirstName")]
+        public string FirstName { get; set; }
+
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "IdNumber")]
+        public int IdNumber { get; set; }
+
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Course & Year")]
+        public string Course { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Transaction")]
+        public string Transaction { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Cost")]
+        public int Cost { get; set; }
 
 
     }

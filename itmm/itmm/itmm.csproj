@@ -233,6 +233,9 @@
     <Content Include="Views\Staff\EditMaterial.cshtml" />
     <Content Include="Views\Staff\Liability.cshtml" />
     <Content Include="Views\Staff\EditLiability.cshtml" />
+    <Content Include="Views\Staff\Income.cshtml" />
+    <Content Include="Views\Staff\EditIncome.cshtml" />
+    <Content Include="Views\Staff\ClassStudents.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

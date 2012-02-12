@@ -99,7 +99,11 @@
       <End Role="StudentInfo" EntitySet="StudentInfo" />
       <End Role="Table" EntitySet="Table" />
     </AssociationSet>
-    <AssociationSet Name="FK_Income_StudentInfo" Association="pintorModel.Store.FK_Income_StudentInfo">
+    <AssociationSet Name="FK_Income_Laboratory" Association="pintorModel.Store.FK_Income_Laboratory">
+      <End Role="Laboratory" EntitySet="Laboratory" />
+      <End Role="Income" EntitySet="Income" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Income_StudentInfo1" Association="pintorModel.Store.FK_Income_StudentInfo1">
       <End Role="StudentInfo" EntitySet="StudentInfo" />
       <End Role="Income" EntitySet="Income" />
     </AssociationSet>
@@ -285,6 +289,7 @@
     </Key>
     <Property Name="ClassId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="GroupNo" Type="int" Nullable="false" />
+    <Property Name="AvailableTable" Type="int" />
     <Property Name="CourseCode" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="CourseDescription" Type="varchar(max)" Nullable="false" />
     <Property Name="Day" Type="varchar" Nullable="false" MaxLength="50" />
@@ -334,9 +339,10 @@
       <PropertyRef Name="IncomeId" />
     </Key>
     <Property Name="IncomeId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="LaboratoryId" Type="int" />
     <Property Name="StudentId" Type="int" />
     <Property Name="Transactionn" Type="varchar" MaxLength="50" />
-    <Property Name="cost" Type="money" />
+    <Property Name="cost" Type="int" />
   </EntityType>
   <EntityType Name="InventoryCost">
     <Key>
@@ -679,7 +685,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Income_StudentInfo">
+  <Association Name="FK_Income_Laboratory">
+    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="0..1" />
+    <End Role="Income" Type="pintorModel.Store.Income" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratory">
+        <PropertyRef Name="LaboratoryId" />
+      </Principal>
+      <Dependent Role="Income">
+        <PropertyRef Name="LaboratoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Income_StudentInfo1">
     <End Role="StudentInfo" Type="pintorModel.Store.StudentInfo" Multiplicity="0..1" />
     <End Role="Income" Type="pintorModel.Store.Income" Multiplicity="*" />
     <ReferentialConstraint>
