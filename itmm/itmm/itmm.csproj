@@ -97,6 +97,7 @@
     <Content Include="Content\images\gritter.png" />
     <Content Include="Content\images\ie-spacer.gif" />
     <Content Include="Content\images\loading3.gif" />
+    <Content Include="Content\images\nav.jpg" />
     <Content Include="Content\images\sort_asc.png" />
     <Content Include="Content\images\sort_asc_disabled.png" />
     <Content Include="Content\images\sort_both.png" />
