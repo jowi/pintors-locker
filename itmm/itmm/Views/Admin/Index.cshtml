@@ -11,7 +11,7 @@
 
 @ViewBag.MyMessage
 <div id="accord">
-    <span id="span_link" style="visibility: hidden;"><a id="modal_diag" href="#">Create Laboratory</a></span><br />
+    <span id="span_link" style="visibility: hidden;"><a id="modal_diag" href="#">Create Laboratory</a></span><br /><br />
     <div id="modal" title="Fill the form" style="visibility: hidden; height: 0px;">
         <form id="labform" method="post" action="/Admin/Index">
         <div>
@@ -44,7 +44,7 @@
         </form>
     </div><!-- end dialog -->
     <div id="room_div"style="visibility: hidden">
-        <table cellspacing="0" id="dtable" style="position:relative;left:15%">
+        <table cellspacing="0" id="dtable">
         <thead><tr><th>Laboratory</th><th>Head</th><th>Room</th><th></th></tr></thead>
         <tbody>
         @foreach (var lablist in LabList)

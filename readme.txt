@@ -15,6 +15,8 @@ Can now create the ff:
 -update on inital staff gui pls visit /Staff or login on a staff account
 @jan 8
 -update on gritter notification
+@jan 22
+-fixed data tables, now looking good
 
 Step 1:
 login as Super Admin

@@ -84,7 +84,9 @@
     <Content Include="App_Data\pintor_log.ldf">
       <DependentUpon>pintor.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\dtablecss\demo_page.css" />
     <Content Include="Content\dtablecss\demo_table.css" />
+    <Content Include="Content\dtablecss\demo_table_jui.css" />
     <Content Include="Content\girttercss\jquery.gritter.css" />
     <Content Include="Content\images\back_disabled.jpg" />
     <Content Include="Content\images\back_enabled.jpg" />
@@ -95,6 +97,7 @@
     <Content Include="Content\images\gritter.png" />
     <Content Include="Content\images\ie-spacer.gif" />
     <Content Include="Content\images\loading3.gif" />
+    <Content Include="Content\images\nav.jpg" />
     <Content Include="Content\images\sort_asc.png" />
     <Content Include="Content\images\sort_asc_disabled.png" />
     <Content Include="Content\images\sort_both.png" />
@@ -237,6 +240,7 @@
     <Content Include="Views\Staff\EditIncome.cshtml" />
     <Content Include="Views\Staff\ClassStudents.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
