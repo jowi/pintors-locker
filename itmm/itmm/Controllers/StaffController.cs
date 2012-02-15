@@ -220,6 +220,77 @@ namespace itmm.Controllers
 
             return RedirectToAction("Liability");
         }
+
+    public ActionResult Income()
+    {
+        // TODO datatables 
+
+        var x = from y in con.Incomes
+                select y;
+        ViewBag.IncomeList = x;
+
+        return View();
+    }
+    [HttpPost]
+    public ActionResult Income(itmmIncome a)
+    {
+        StudentInfo c = new StudentInfo();
+        c.FirstName = a.FirstName;
+        c.FamiliyName = a.FamilyName;
+        c.IdNumber = a.IdNumber;
+        c.CourseAndYear = a.Course;
+        con.AddToStudentInfoes(c);
+
+        itmm.Models.Income b = new itmm.Models.Income();
+        b.Transactionn = a.Transaction;
+        b.cost = a.Cost;
+        b.StudentId = c.StudentId;
+        b.LaboratoryId = getLabId();
+        con.AddToIncomes(b);
+
+        con.SaveChanges();
+        return RedirectToAction("Income");
+    }
+
+    public ActionResult EditIncome(int IncomeId)
+    {
+        var x = (from y in con.Incomes
+                 where y.IncomeId == IncomeId
+                 select y).FirstOrDefault();
+
+        itmmIncome a = new itmmIncome();
+        a.FamilyName = x.StudentInfo.FamiliyName;
+        a.FirstName = x.StudentInfo.FirstName;
+        a.IdNumber = x.StudentInfo.IdNumber;
+        a.Course = x.StudentInfo.CourseAndYear;
+        a.Cost = Convert.ToInt32(x.cost);
+        a.Transaction = x.Transactionn;
+        return View(a);
+    }
+
+    [HttpPost]
+    public ActionResult EditIncome(itmmIncome a, int IncomeId)
+    {
+
+
+
+        var x = (from y in con.Incomes
+                 where y.IncomeId == IncomeId
+                 select y).FirstOrDefault();
+        x.StudentInfo.FirstName = a.FirstName;
+        x.StudentInfo.FamiliyName = a.FamilyName;
+        x.StudentInfo.IdNumber = a.IdNumber;
+        x.StudentInfo.CourseAndYear = a.Course;
+        x.cost = a.Cost;
+        x.Transactionn = a.Transaction;
+        con.SaveChanges();
+
+        return RedirectToAction("Income");
+    }
+
+
+
+
          [Authorize(Roles = "Staff")]
         public ActionResult InventoryCost()
         {
