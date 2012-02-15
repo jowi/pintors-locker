@@ -49,6 +49,10 @@
     </div><!--first_div-->
 }
 </div><!--zero_div-->
+</div><!--content_wrapper-->
+<input id="btn_qty" type="button" value="check" />
+<div id="QuantityNotification"></div>
+
 @if (MatList.Count() != 0) { 
 <div id="dataTable"><span>data tables here!</span>
 <table cellspacing="0">
@@ -77,7 +81,7 @@
 </table>
 </div><!--dataTable-->
     }
-</div><!--content_wrapper-->
+
 
 @section SideNav{
 <ul>
@@ -88,3 +92,4 @@
     <li>@Html.ActionLink("Notification", "Notification", "Head")</li>
 </ul>
 }
+

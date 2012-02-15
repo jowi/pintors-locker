@@ -239,6 +239,7 @@
     <Content Include="Views\Staff\Income.cshtml" />
     <Content Include="Views\Staff\EditIncome.cshtml" />
     <Content Include="Views\Staff\ClassStudents.cshtml" />
+    <Content Include="Views\Staff\MaterialQuantityChecker.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -258,7 +259,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1519</DevelopmentServerPort>
+          <DevelopmentServerPort>1777</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

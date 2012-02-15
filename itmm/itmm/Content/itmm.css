@@ -46,7 +46,7 @@ body a
     text-align: right;
     color:#BDBDBD;
     display:block;
-    padding: 8px 15px 0 0;
+    padding: 11px 15px 0 0;
     font-weight: 900;
     letter-spacing: 4px;
     
@@ -153,6 +153,36 @@ REPORT NAV
     visibility:hidden;
     height:0px;
 }
+
+
+
+
+
+/*******Material Quantity Warning**********/
+
+#QuantityNotification
+{
+    //border: solid 1px black;
+}
+#material_gty_warning
+{
+ 
+ 
+}
+#material_gty_warning img
+{
+
+    margin: 0 auto;
+}
+
+
+
+
+
+
+
+
+
 
 /*DEBUGGER CSS*/
 #content_wrapper

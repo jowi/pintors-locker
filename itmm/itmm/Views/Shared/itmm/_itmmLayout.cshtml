@@ -60,7 +60,7 @@
      {
        /*  background-color:lightgreen;*/
          padding: 0 10px 0 0;
-         width: 550px;
+         width: 370px;
          float:right;
          }
     #dataTable
@@ -212,5 +212,32 @@
         });
        
     }      
+</script>
+
+<!--material qty checker-->
+<script type="text/javascript">
+    $(document).ready(
+        function () {
+
+            get_data();
+
+            $("#btn_qty").click(
+                function () {
+
+                    get_data();
+                }
+            );
+        }
+    );
+
+    function get_data() {
+        $.ajax({
+            url: "../Staff/MaterialQuantityChecker",
+            success: function (data) {
+
+                $("#QuantityNotification").empty().append(data);
+            }
+        });
+    }
 </script>
 </html>
