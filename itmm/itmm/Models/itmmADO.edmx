@@ -366,6 +366,7 @@
           <Property Name="LaboratoryDesc" Type="varchar(max)" />
           <Property Name="LaboratoryName" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+          <Property Name="LaboratoryContact" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Laboratory_Equipment">
           <Key>
@@ -867,7 +868,6 @@
           <EntitySet Name="Events" EntityType="pintorModel.Event" />
           <EntitySet Name="Incomes" EntityType="pintorModel.Income" />
           <EntitySet Name="InventoryCosts" EntityType="pintorModel.InventoryCost" />
-          <EntitySet Name="Laboratories" EntityType="pintorModel.Laboratory" />
           <EntitySet Name="Laboratory_Equipment" EntityType="pintorModel.Laboratory_Equipment" />
           <EntitySet Name="Laboratory_Head" EntityType="pintorModel.Laboratory_Head" />
           <EntitySet Name="Laboratory_Material" EntityType="pintorModel.Laboratory_Material" />
@@ -916,10 +916,6 @@
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="aspnet_Profile" EntitySet="aspnet_Profile" />
           </AssociationSet>
-          <AssociationSet Name="FK_Class_Laboratory" Association="pintorModel.FK_Class_Laboratory">
-            <End Role="Laboratory" EntitySet="Laboratories" />
-            <End Role="Class" EntitySet="Classes" />
-          </AssociationSet>
           <AssociationSet Name="FK_Group_Class" Association="pintorModel.FK_Group_Class">
             <End Role="Class" EntitySet="Classes" />
             <End Role="Table" EntitySet="Tables" />
@@ -940,12 +936,37 @@
             <End Role="Equipment" EntitySet="Equipments" />
             <End Role="Laboratory_Equipment" EntitySet="Laboratory_Equipment" />
           </AssociationSet>
-          <AssociationSet Name="FK_Income_Laboratory" Association="pintorModel.FK_Income_Laboratory">
-            <End Role="Laboratory" EntitySet="Laboratories" />
-            <End Role="Income" EntitySet="Incomes" />
-          </AssociationSet>
           <AssociationSet Name="FK_Income_StudentInfo1" Association="pintorModel.FK_Income_StudentInfo1">
             <End Role="StudentInfo" EntitySet="StudentInfoes" />
+            <End Role="Income" EntitySet="Incomes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Laboratory_Material_Material" Association="pintorModel.FK_Laboratory_Material_Material">
+            <End Role="Material" EntitySet="Materials" />
+            <End Role="Laboratory_Material" EntitySet="Laboratory_Material" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Laboratory_Room_Room" Association="pintorModel.FK_Laboratory_Room_Room">
+            <End Role="Room" EntitySet="Rooms" />
+            <End Role="Laboratory_Room" EntitySet="Laboratory_Room" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Liability_StudentInfo" Association="pintorModel.FK_Liability_StudentInfo">
+            <End Role="StudentInfo" EntitySet="StudentInfoes" />
+            <End Role="Liability" EntitySet="Liabilities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Group_StudentInfo" Association="pintorModel.FK_Group_StudentInfo">
+            <End Role="StudentInfo" EntitySet="StudentInfoes" />
+            <End Role="Table" EntitySet="Tables" />
+          </AssociationSet>
+          <AssociationSet Name="aspnet_UsersInRoles" Association="pintorModel.aspnet_UsersInRoles">
+            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+          </AssociationSet>
+          <EntitySet Name="Laboratories" EntityType="pintorModel.Laboratory" />
+          <AssociationSet Name="FK_Class_Laboratory" Association="pintorModel.FK_Class_Laboratory">
+            <End Role="Laboratory" EntitySet="Laboratories" />
+            <End Role="Class" EntitySet="Classes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Income_Laboratory" Association="pintorModel.FK_Income_Laboratory">
+            <End Role="Laboratory" EntitySet="Laboratories" />
             <End Role="Income" EntitySet="Incomes" />
           </AssociationSet>
           <AssociationSet Name="FK_Laboratory_Equipment_Laboratory" Association="pintorModel.FK_Laboratory_Equipment_Laboratory">
@@ -975,26 +996,6 @@
           <AssociationSet Name="FK_Notification_Laboratory" Association="pintorModel.FK_Notification_Laboratory">
             <End Role="Laboratory" EntitySet="Laboratories" />
             <End Role="Notification" EntitySet="Notifications" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Laboratory_Material_Material" Association="pintorModel.FK_Laboratory_Material_Material">
-            <End Role="Material" EntitySet="Materials" />
-            <End Role="Laboratory_Material" EntitySet="Laboratory_Material" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Laboratory_Room_Room" Association="pintorModel.FK_Laboratory_Room_Room">
-            <End Role="Room" EntitySet="Rooms" />
-            <End Role="Laboratory_Room" EntitySet="Laboratory_Room" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Liability_StudentInfo" Association="pintorModel.FK_Liability_StudentInfo">
-            <End Role="StudentInfo" EntitySet="StudentInfoes" />
-            <End Role="Liability" EntitySet="Liabilities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Group_StudentInfo" Association="pintorModel.FK_Group_StudentInfo">
-            <End Role="StudentInfo" EntitySet="StudentInfoes" />
-            <End Role="Table" EntitySet="Tables" />
-          </AssociationSet>
-          <AssociationSet Name="aspnet_UsersInRoles" Association="pintorModel.aspnet_UsersInRoles">
-            <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
-            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="aspnet_Applications">
@@ -1153,9 +1154,9 @@
           <Property Type="String" Name="Room" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Instructor" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="LabId" Nullable="false" />
-          <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Class_Laboratory" FromRole="Class" ToRole="Laboratory" />
           <NavigationProperty Name="Tables" Relationship="pintorModel.FK_Group_Class" FromRole="Class" ToRole="Table" />
           <Property Type="Int32" Name="AvailableTable" />
+          <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Class_Laboratory" FromRole="Class" ToRole="Laboratory" />
         </EntityType>
         <EntityType Name="Dispense">
           <Key>
@@ -1207,8 +1208,8 @@
           <Property Type="Int32" Name="StudentId" />
           <Property Type="String" Name="Transactionn" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="cost" />
-          <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Income_Laboratory" FromRole="Income" ToRole="Laboratory" />
           <NavigationProperty Name="StudentInfo" Relationship="pintorModel.FK_Income_StudentInfo1" FromRole="Income" ToRole="StudentInfo" />
+          <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Income_Laboratory" FromRole="Income" ToRole="Laboratory" />
         </EntityType>
         <EntityType Name="InventoryCost">
           <Key>
@@ -1218,24 +1219,6 @@
           <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="Remaining" />
           <Property Type="DateTime" Name="Saved" />
-        </EntityType>
-        <EntityType Name="Laboratory">
-          <Key>
-            <PropertyRef Name="LaboratoryId" />
-          </Key>
-          <Property Type="Int32" Name="LaboratoryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="LaboratoryDesc" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LaboratoryName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="UserName" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Classes" Relationship="pintorModel.FK_Class_Laboratory" FromRole="Laboratory" ToRole="Class" />
-          <NavigationProperty Name="Incomes" Relationship="pintorModel.FK_Income_Laboratory" FromRole="Laboratory" ToRole="Income" />
-          <NavigationProperty Name="Laboratory_Equipment" Relationship="pintorModel.FK_Laboratory_Equipment_Laboratory" FromRole="Laboratory" ToRole="Laboratory_Equipment" />
-          <NavigationProperty Name="Laboratory_Head" Relationship="pintorModel.FK_Laboratory_Head_Laboratory" FromRole="Laboratory" ToRole="Laboratory_Head" />
-          <NavigationProperty Name="Laboratory_Material" Relationship="pintorModel.FK_Laboratory_Material_Laboratory" FromRole="Laboratory" ToRole="Laboratory_Material" />
-          <NavigationProperty Name="Laboratory_Room" Relationship="pintorModel.FK_Laboratory_Room_Laboratory" FromRole="Laboratory" ToRole="Laboratory_Room" />
-          <NavigationProperty Name="Laboratory_Staff" Relationship="pintorModel.FK_Laboratory_Staff_Laboratory_Staff" FromRole="Laboratory" ToRole="Laboratory_Staff" />
-          <NavigationProperty Name="Liabilities" Relationship="pintorModel.FK_Liability_Laboratory" FromRole="Laboratory" ToRole="Liability" />
-          <NavigationProperty Name="Notifications" Relationship="pintorModel.FK_Notification_Laboratory" FromRole="Laboratory" ToRole="Notification" />
         </EntityType>
         <EntityType Name="Laboratory_Equipment">
           <Key>
@@ -1267,8 +1250,8 @@
           <Property Type="Int32" Name="Laboratory_MaterialId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="LaboratoryId" Nullable="false" />
           <Property Type="Int32" Name="MaterialId" Nullable="false" />
-          <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Laboratory_Material_Laboratory" FromRole="Laboratory_Material" ToRole="Laboratory" />
           <NavigationProperty Name="Material" Relationship="pintorModel.FK_Laboratory_Material_Material" FromRole="Laboratory_Material" ToRole="Material" />
+          <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Laboratory_Material_Laboratory" FromRole="Laboratory_Material" ToRole="Laboratory" />
         </EntityType>
         <EntityType Name="Laboratory_Room">
           <Key>
@@ -1277,8 +1260,8 @@
           <Property Type="Int32" Name="Laboratory_RoomId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="LaboratoryId" Nullable="false" />
           <Property Type="Int32" Name="RoomId" Nullable="false" />
-          <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Laboratory_Room_Laboratory" FromRole="Laboratory_Room" ToRole="Laboratory" />
           <NavigationProperty Name="Room" Relationship="pintorModel.FK_Laboratory_Room_Room" FromRole="Laboratory_Room" ToRole="Room" />
+          <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Laboratory_Room_Laboratory" FromRole="Laboratory_Room" ToRole="Laboratory" />
         </EntityType>
         <EntityType Name="Laboratory_Staff">
           <Key>
@@ -1305,8 +1288,8 @@
           <Property Type="Int32" Name="Fine" Nullable="false" />
           <Property Type="String" Name="Status" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="LaboratoryId" Nullable="false" />
-          <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Liability_Laboratory" FromRole="Liability" ToRole="Laboratory" />
           <NavigationProperty Name="StudentInfo" Relationship="pintorModel.FK_Liability_StudentInfo" FromRole="Liability" ToRole="StudentInfo" />
+          <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Liability_Laboratory" FromRole="Liability" ToRole="Laboratory" />
         </EntityType>
         <EntityType Name="Material">
           <Key>
@@ -1484,18 +1467,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Class_Laboratory">
-          <End Type="pintorModel.Laboratory" Role="Laboratory" Multiplicity="1" />
-          <End Type="pintorModel.Class" Role="Class" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Laboratory">
-              <PropertyRef Name="LaboratoryId" />
-            </Principal>
-            <Dependent Role="Class">
-              <PropertyRef Name="LabId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Group_Class">
           <End Type="pintorModel.Class" Role="Class" Multiplicity="0..1" />
           <End Type="pintorModel.Table" Role="Table" Multiplicity="*" />
@@ -1556,18 +1527,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Income_Laboratory">
-          <End Type="pintorModel.Laboratory" Role="Laboratory" Multiplicity="0..1" />
-          <End Type="pintorModel.Income" Role="Income" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Laboratory">
-              <PropertyRef Name="LaboratoryId" />
-            </Principal>
-            <Dependent Role="Income">
-              <PropertyRef Name="LaboratoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Income_StudentInfo1">
           <End Type="pintorModel.StudentInfo" Role="StudentInfo" Multiplicity="0..1" />
           <End Type="pintorModel.Income" Role="Income" Multiplicity="*" />
@@ -1577,6 +1536,101 @@
             </Principal>
             <Dependent Role="Income">
               <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Laboratory_Material_Material">
+          <End Type="pintorModel.Material" Role="Material" Multiplicity="1" />
+          <End Type="pintorModel.Laboratory_Material" Role="Laboratory_Material" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="MaterialId" />
+            </Principal>
+            <Dependent Role="Laboratory_Material">
+              <PropertyRef Name="MaterialId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Laboratory_Room_Room">
+          <End Type="pintorModel.Room" Role="Room" Multiplicity="1" />
+          <End Type="pintorModel.Laboratory_Room" Role="Laboratory_Room" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="RoomId" />
+            </Principal>
+            <Dependent Role="Laboratory_Room">
+              <PropertyRef Name="RoomId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Liability_StudentInfo">
+          <End Type="pintorModel.StudentInfo" Role="StudentInfo" Multiplicity="1" />
+          <End Type="pintorModel.Liability" Role="Liability" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentInfo">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Liability">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Group_StudentInfo">
+          <End Type="pintorModel.StudentInfo" Role="StudentInfo" Multiplicity="0..1" />
+          <End Type="pintorModel.Table" Role="Table" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StudentInfo">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Table">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="aspnet_UsersInRoles">
+          <End Type="pintorModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
+          <End Type="pintorModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Laboratory">
+          <Key>
+            <PropertyRef Name="LaboratoryId" />
+          </Key>
+          <Property Type="Int32" Name="LaboratoryId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="LaboratoryDesc" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LaboratoryName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UserName" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LaboratoryContact" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Classes" Relationship="pintorModel.FK_Class_Laboratory" FromRole="Laboratory" ToRole="Class" />
+          <NavigationProperty Name="Incomes" Relationship="pintorModel.FK_Income_Laboratory" FromRole="Laboratory" ToRole="Income" />
+          <NavigationProperty Name="Laboratory_Equipment" Relationship="pintorModel.FK_Laboratory_Equipment_Laboratory" FromRole="Laboratory" ToRole="Laboratory_Equipment" />
+          <NavigationProperty Name="Laboratory_Head" Relationship="pintorModel.FK_Laboratory_Head_Laboratory" FromRole="Laboratory" ToRole="Laboratory_Head" />
+          <NavigationProperty Name="Laboratory_Material" Relationship="pintorModel.FK_Laboratory_Material_Laboratory" FromRole="Laboratory" ToRole="Laboratory_Material" />
+          <NavigationProperty Name="Laboratory_Room" Relationship="pintorModel.FK_Laboratory_Room_Laboratory" FromRole="Laboratory" ToRole="Laboratory_Room" />
+          <NavigationProperty Name="Laboratory_Staff" Relationship="pintorModel.FK_Laboratory_Staff_Laboratory_Staff" FromRole="Laboratory" ToRole="Laboratory_Staff" />
+          <NavigationProperty Name="Liabilities" Relationship="pintorModel.FK_Liability_Laboratory" FromRole="Laboratory" ToRole="Liability" />
+          <NavigationProperty Name="Notifications" Relationship="pintorModel.FK_Notification_Laboratory" FromRole="Laboratory" ToRole="Notification" />
+        </EntityType>
+        <Association Name="FK_Class_Laboratory">
+          <End Type="pintorModel.Laboratory" Role="Laboratory" Multiplicity="1" />
+          <End Type="pintorModel.Class" Role="Class" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Laboratory">
+              <PropertyRef Name="LaboratoryId" />
+            </Principal>
+            <Dependent Role="Class">
+              <PropertyRef Name="LabId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Income_Laboratory">
+          <End Type="pintorModel.Laboratory" Role="Laboratory" Multiplicity="0..1" />
+          <End Type="pintorModel.Income" Role="Income" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Laboratory">
+              <PropertyRef Name="LaboratoryId" />
+            </Principal>
+            <Dependent Role="Income">
+              <PropertyRef Name="LaboratoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1663,58 +1717,6 @@
               <PropertyRef Name="LaboratoryId" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Laboratory_Material_Material">
-          <End Type="pintorModel.Material" Role="Material" Multiplicity="1" />
-          <End Type="pintorModel.Laboratory_Material" Role="Laboratory_Material" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Material">
-              <PropertyRef Name="MaterialId" />
-            </Principal>
-            <Dependent Role="Laboratory_Material">
-              <PropertyRef Name="MaterialId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Laboratory_Room_Room">
-          <End Type="pintorModel.Room" Role="Room" Multiplicity="1" />
-          <End Type="pintorModel.Laboratory_Room" Role="Laboratory_Room" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Room">
-              <PropertyRef Name="RoomId" />
-            </Principal>
-            <Dependent Role="Laboratory_Room">
-              <PropertyRef Name="RoomId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Liability_StudentInfo">
-          <End Type="pintorModel.StudentInfo" Role="StudentInfo" Multiplicity="1" />
-          <End Type="pintorModel.Liability" Role="Liability" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StudentInfo">
-              <PropertyRef Name="StudentId" />
-            </Principal>
-            <Dependent Role="Liability">
-              <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Group_StudentInfo">
-          <End Type="pintorModel.StudentInfo" Role="StudentInfo" Multiplicity="0..1" />
-          <End Type="pintorModel.Table" Role="Table" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StudentInfo">
-              <PropertyRef Name="StudentId" />
-            </Principal>
-            <Dependent Role="Table">
-              <PropertyRef Name="StudentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="aspnet_UsersInRoles">
-          <End Type="pintorModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
-          <End Type="pintorModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -1930,16 +1932,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Laboratories">
-            <EntityTypeMapping TypeName="pintorModel.Laboratory">
-              <MappingFragment StoreEntitySet="Laboratory">
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="LaboratoryName" ColumnName="LaboratoryName" />
-                <ScalarProperty Name="LaboratoryDesc" ColumnName="LaboratoryDesc" />
-                <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Laboratory_Equipment">
             <EntityTypeMapping TypeName="pintorModel.Laboratory_Equipment">
               <MappingFragment StoreEntitySet="Laboratory_Equipment">
@@ -2079,6 +2071,17 @@
               <ScalarProperty Name="RoleId" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Laboratories">
+            <EntityTypeMapping TypeName="pintorModel.Laboratory">
+              <MappingFragment StoreEntitySet="Laboratory">
+                <ScalarProperty Name="LaboratoryContact" ColumnName="LaboratoryContact" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LaboratoryName" ColumnName="LaboratoryName" />
+                <ScalarProperty Name="LaboratoryDesc" ColumnName="LaboratoryDesc" />
+                <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2116,7 +2119,6 @@
         <EntityTypeShape EntityType="pintorModel.Event" Width="1.5" PointX="7.75" PointY="5.75" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="pintorModel.Income" Width="1.5" PointX="3" PointY="15.125" Height="2.3648893229166674" />
         <EntityTypeShape EntityType="pintorModel.InventoryCost" Width="1.5" PointX="9.75" PointY="0.75" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="pintorModel.Laboratory" Width="1.5" PointX="0.75" PointY="14.5" Height="3.5186979166666674" />
         <EntityTypeShape EntityType="pintorModel.Laboratory_Equipment" Width="1.5" PointX="6" PointY="15.25" Height="1.9802864583333246" />
         <EntityTypeShape EntityType="pintorModel.Laboratory_Head" Width="1.5" PointX="3" PointY="19.25" Height="2.557190755208353" />
         <EntityTypeShape EntityType="pintorModel.Laboratory_Material" Width="1.5" PointX="6" PointY="18.25" Height="1.9802864583333246" />
@@ -2171,16 +2173,9 @@
           <ConnectorPoint PointX="20.75" PointY="12.961293945312491" />
           <ConnectorPoint PointX="21.5" PointY="12.961293945312491" />
         </AssociationConnector>
-        <AssociationConnector Association="pintorModel.FK_Class_Laboratory" >
-          <ConnectorPoint PointX="1.5" PointY="14.5" />
-          <ConnectorPoint PointX="1.5" PointY="11.067047526041662" />
-          <ConnectorPoint PointX="3" PointY="11.067047526041662" />
-        </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Group_Class" >
-          <ConnectorPoint PointX="4.5" PointY="11.057444661458334" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="11.057444661458334" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="11.057444661458334" />
-          <ConnectorPoint PointX="5.25" PointY="11.057444661458334" />
+          <ConnectorPoint PointX="4.5" PointY="11.225216692057295" />
+          <ConnectorPoint PointX="5.25" PointY="11.225216692057295" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Dispense_Equipment" >
           <ConnectorPoint PointX="6.75" PointY="5.46875" />
@@ -2190,101 +2185,57 @@
           <ConnectorPoint PointX="7.59375" PointY="8.75" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Dispense_Room" >
-          <ConnectorPoint PointX="6.75" PointY="3.8564455645032054" />
-          <ConnectorPoint PointX="7.21875" PointY="4.3251955645032059" />
-          <ConnectorPoint PointX="7.21875" PointY="10.124746093749991" />
-          <ConnectorPoint PointX="7.5" PointY="10.124746093749991" />
+          <ConnectorPoint PointX="6.75" PointY="3.6919206997195508" />
+          <ConnectorPoint PointX="7.21875" PointY="4.1606706997195513" />
+          <ConnectorPoint PointX="7.21875" PointY="9.7353137909921728" />
+          <ConnectorPoint PointX="7.244791666666667" PointY="9.7353137909921728" />
+          <ConnectorPoint PointX="7.411458333333333" PointY="9.7353137909921728" />
+          <ConnectorPoint PointX="7.5" PointY="9.7353137909921728" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Dispense_Table" >
-          <ConnectorPoint PointX="6.75" PointY="10.874619140624986" />
-          <ConnectorPoint PointX="7.041666666666667" PointY="10.874619140624985" />
-          <ConnectorPoint PointX="7.364583333333333" PointY="10.874619140624986" />
-          <ConnectorPoint PointX="7.5" PointY="10.874619140624986" />
+          <ConnectorPoint PointX="6.75" PointY="10.519521484375" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="10.519521484375" />
+          <ConnectorPoint PointX="7.208333333333333" PointY="10.519521484375" />
+          <ConnectorPoint PointX="7.244791666666667" PointY="10.519521484375" />
+          <ConnectorPoint PointX="7.411458333333333" PointY="10.519521484375" />
+          <ConnectorPoint PointX="7.5" PointY="10.519521484375" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Laboratory_Equipment_Equipment" >
-          <ConnectorPoint PointX="6.75" PointY="6.957675026041656" />
-          <ConnectorPoint PointX="7.041666666666667" PointY="6.9576750260416551" />
-          <ConnectorPoint PointX="7.208333333333333" PointY="6.957675026041656" />
-          <ConnectorPoint PointX="7.28125" PointY="6.957675026041656" />
-          <ConnectorPoint PointX="7.28125" PointY="15.25" />
-        </AssociationConnector>
-        <AssociationConnector Association="pintorModel.FK_Income_Laboratory" >
-          <ConnectorPoint PointX="2.25" PointY="16.307444661458334" />
-          <ConnectorPoint PointX="3" PointY="16.307444661458334" />
+          <ConnectorPoint PointX="6.75" PointY="6.7619963151041595" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="6.7619963151041587" />
+          <ConnectorPoint PointX="7.302083333333333" PointY="6.7619963151041595" />
+          <ConnectorPoint PointX="7.328125" PointY="6.7619963151041595" />
+          <ConnectorPoint PointX="7.328125" PointY="15.25" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Income_StudentInfo1" >
-          <ConnectorPoint PointX="4.4630769230769225" PointY="8.4321907552083388" />
-          <ConnectorPoint PointX="4.90625" PointY="8.8753638321314163" />
-          <ConnectorPoint PointX="4.90625" PointY="14.719902846153847" />
-          <ConnectorPoint PointX="4.5" PointY="15.126152846153847" />
-        </AssociationConnector>
-        <AssociationConnector Association="pintorModel.FK_Laboratory_Equipment_Laboratory" >
-          <ConnectorPoint PointX="2.25" PointY="17.785543619791667" />
-          <ConnectorPoint PointX="6.75" PointY="17.785543619791667" />
-          <ConnectorPoint PointX="6.75" PointY="17.230286458333325" />
-        </AssociationConnector>
-        <AssociationConnector Association="pintorModel.FK_Laboratory_Head_Laboratory" >
-          <ConnectorPoint PointX="1.5" PointY="18.018697916666667" />
-          <ConnectorPoint PointX="1.5" PointY="20.528595377604177" />
-          <ConnectorPoint PointX="2.0260454166666664" PointY="20.528595377604177" />
-          <ConnectorPoint PointX="2.1927120833333333" PointY="20.528595377604177" />
-          <ConnectorPoint PointX="3" PointY="20.528595377604177" />
-        </AssociationConnector>
-        <AssociationConnector Association="pintorModel.FK_Laboratory_Material_Laboratory" >
-          <ConnectorPoint PointX="1.9062525" PointY="18.018697916666667" />
-          <ConnectorPoint PointX="1.9062525" PointY="18.71875" />
-          <ConnectorPoint PointX="2.0260454166666664" PointY="18.71875" />
-          <ConnectorPoint PointX="2.1927120833333333" PointY="18.71875" />
-          <ConnectorPoint PointX="6" PointY="18.71875" />
-        </AssociationConnector>
-        <AssociationConnector Association="pintorModel.FK_Laboratory_Room_Laboratory" >
-          <ConnectorPoint PointX="2.25" PointY="14.71875" />
-          <ConnectorPoint PointX="7.197916666666667" PointY="14.71875" />
-          <ConnectorPoint PointX="7.364583333333333" PointY="14.71875" />
-          <ConnectorPoint PointX="8.46875" PointY="14.71875" />
-          <ConnectorPoint PointX="8.46875" PointY="14.230286458333325" />
-        </AssociationConnector>
-        <AssociationConnector Association="pintorModel.FK_Laboratory_Staff_Laboratory_Staff" >
-          <ConnectorPoint PointX="1.0937475" PointY="18.018697916666667" />
-          <ConnectorPoint PointX="1.0937475" PointY="29.470896809895834" />
-          <ConnectorPoint PointX="2.0260454166666664" PointY="29.470896809895834" />
-          <ConnectorPoint PointX="2.1927120833333333" PointY="29.470896809895834" />
-          <ConnectorPoint PointX="3" PointY="29.470896809895834" />
-        </AssociationConnector>
-        <AssociationConnector Association="pintorModel.FK_Liability_Laboratory" >
-          <ConnectorPoint PointX="2.25" PointY="15.03125" />
-          <ConnectorPoint PointX="4.5115695128205138" PointY="15.03125" />
-          <ConnectorPoint PointX="4.67823617948718" PointY="15.03125" />
-          <ConnectorPoint PointX="7.197916666666667" PointY="15.03125" />
-          <ConnectorPoint PointX="7.364583333333333" PointY="15.03125" />
-          <ConnectorPoint PointX="9" PointY="15.03125" />
-        </AssociationConnector>
-        <AssociationConnector Association="pintorModel.FK_Notification_Laboratory" >
-          <ConnectorPoint PointX="2.10937875" PointY="18.018697916666667" />
-          <ConnectorPoint PointX="2.10937875" PointY="36.278595377604177" />
-          <ConnectorPoint PointX="3" PointY="36.278595377604177" />
+          <ConnectorPoint PointX="3.0011528461538459" PointY="8.1246956380208317" />
+          <ConnectorPoint PointX="2.625" PointY="8.5008484841746785" />
+          <ConnectorPoint PointX="2.625" PointY="14.748847153846153" />
+          <ConnectorPoint PointX="3.0011528461538459" PointY="15.125" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Laboratory_Material_Material" >
           <ConnectorPoint PointX="4.90625" PointY="23.125" />
-          <ConnectorPoint PointX="4.90625" PointY="18.984377499999994" />
-          <ConnectorPoint PointX="6" PointY="18.984377499999994" />
+          <ConnectorPoint PointX="4.90625" PointY="18.71875" />
+          <ConnectorPoint PointX="5.666666666666667" PointY="18.71875" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="18.71875" />
+          <ConnectorPoint PointX="6" PointY="18.71875" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Laboratory_Room_Room" >
-          <ConnectorPoint PointX="6.7257692307692309" PointY="3.9129850260416674" />
-          <ConnectorPoint PointX="7.125" PointY="4.3122157952724365" />
-          <ConnectorPoint PointX="7.125" PointY="13.240143229166662" />
-          <ConnectorPoint PointX="7.197916666666667" PointY="13.240143229166662" />
-          <ConnectorPoint PointX="7.364583333333333" PointY="13.240143229166662" />
-          <ConnectorPoint PointX="8" PointY="13.240143229166662" />
+          <ConnectorPoint PointX="6.7257692307692309" PointY="3.7173063151041665" />
+          <ConnectorPoint PointX="7.125" PointY="4.1165370843349356" />
+          <ConnectorPoint PointX="7.125" PointY="13.128326822916666" />
+          <ConnectorPoint PointX="7.244791666666667" PointY="13.128326822916666" />
+          <ConnectorPoint PointX="7.411458333333333" PointY="13.128326822916666" />
+          <ConnectorPoint PointX="8" PointY="13.128326822916666" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Liability_StudentInfo" >
-          <ConnectorPoint PointX="4.5" PointY="8.3952666782852621" />
-          <ConnectorPoint PointX="5.1875" PointY="9.0827666782852621" />
-          <ConnectorPoint PointX="5.1875" PointY="14.5" />
-          <ConnectorPoint PointX="7.197916666666667" PointY="14.5" />
-          <ConnectorPoint PointX="7.364583333333333" PointY="14.5" />
-          <ConnectorPoint PointX="8.5" PointY="14.5" />
-          <ConnectorPoint PointX="9" PointY="15" />
+          <ConnectorPoint PointX="4.5" PointY="8.0899666341145817" />
+          <ConnectorPoint PointX="7.041666666666667" PointY="8.08996663411458" />
+          <ConnectorPoint PointX="7.411458333333333" PointY="8.0899666341145817" />
+          <ConnectorPoint PointX="7.510416666666667" PointY="8.0899666341145817" />
+          <ConnectorPoint PointX="7.677083333333333" PointY="8.0899666341145817" />
+          <ConnectorPoint PointX="10.03125" PointY="8.0899666341145817" />
+          <ConnectorPoint PointX="10.03125" PointY="15" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Group_StudentInfo" >
           <ConnectorPoint PointX="4.5" PointY="8.4321907552083388" />
@@ -2296,6 +2247,86 @@
           <ConnectorPoint PointX="15.5" PointY="16.932444661458334" />
           <ConnectorPoint PointX="20" PointY="16.932444661458334" />
           <ConnectorPoint PointX="20" PointY="14.701396484374982" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="pintorModel.Laboratory" Width="1.5" PointX="0.75" PointY="21.75" Height="3.2357796223958246" />
+        <AssociationConnector Association="pintorModel.FK_Class_Laboratory" >
+          <ConnectorPoint PointX="1.5" PointY="21.75" />
+          <ConnectorPoint PointX="1.5" PointY="10.95354248046875" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="10.95354248046875" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="10.95354248046875" />
+          <ConnectorPoint PointX="3" PointY="10.95354248046875" />
+        </AssociationConnector>
+        <AssociationConnector Association="pintorModel.FK_Income_Laboratory" >
+          <ConnectorPoint PointX="1.9062525" PointY="21.75" />
+          <ConnectorPoint PointX="1.9062525" PointY="16.167674153645834" />
+          <ConnectorPoint PointX="2.0260454166666664" PointY="16.167674153645834" />
+          <ConnectorPoint PointX="2.1927120833333333" PointY="16.167674153645834" />
+          <ConnectorPoint PointX="3" PointY="16.167674153645834" />
+        </AssociationConnector>
+        <AssociationConnector Association="pintorModel.FK_Laboratory_Equipment_Laboratory" >
+          <ConnectorPoint PointX="2.25" PointY="23.367889811197912" />
+          <ConnectorPoint PointX="3.5" PointY="23.367889811197912" />
+          <ConnectorPoint PointX="3.5" PointY="22.875" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="22.875" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="22.875" />
+          <ConnectorPoint PointX="5.75" PointY="22.875" />
+          <ConnectorPoint PointX="5.75" PointY="17.381653645833339" />
+          <ConnectorPoint PointX="6.75" PointY="17.381653645833339" />
+          <ConnectorPoint PointX="6.75" PointY="17.006653645833335" />
+        </AssociationConnector>
+        <AssociationConnector Association="pintorModel.FK_Laboratory_Head_Laboratory" >
+          <ConnectorPoint PointX="2.25" PointY="22.3125" />
+          <ConnectorPoint PointX="3.25" PointY="22.3125" />
+          <ConnectorPoint PointX="3.25" PointY="21.499695638020835" />
+        </AssociationConnector>
+        <AssociationConnector Association="pintorModel.FK_Laboratory_Material_Laboratory" >
+          <ConnectorPoint PointX="1.0937475" PointY="21.75" />
+          <ConnectorPoint PointX="1.0937475" PointY="18.9843775" />
+          <ConnectorPoint PointX="1.4166666666666667" PointY="18.9843775" />
+          <ConnectorPoint PointX="1.5833333333333333" PointY="18.9843775" />
+          <ConnectorPoint PointX="1.6197929166666667" PointY="18.9843775" />
+          <ConnectorPoint PointX="1.7864595833333332" PointY="18.9843775" />
+          <ConnectorPoint PointX="1.8229191666666667" PointY="18.9843775" />
+          <ConnectorPoint PointX="1.9895858333333332" PointY="18.9843775" />
+          <ConnectorPoint PointX="2.0260454166666664" PointY="18.9843775" />
+          <ConnectorPoint PointX="2.1927120833333333" PointY="18.9843775" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="18.9843775" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="18.9843775" />
+          <ConnectorPoint PointX="5.666666666666667" PointY="18.9843775" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="18.9843775" />
+          <ConnectorPoint PointX="6" PointY="18.9843775" />
+        </AssociationConnector>
+        <AssociationConnector Association="pintorModel.FK_Laboratory_Room_Laboratory" >
+          <ConnectorPoint PointX="2.10937875" PointY="21.75" />
+          <ConnectorPoint PointX="2.10937875" PointY="13.598742734375" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="13.598742734375" />
+          <ConnectorPoint PointX="2.7083333333333335" PointY="13.598742734375" />
+          <ConnectorPoint PointX="7.244791666666667" PointY="13.598742734375" />
+          <ConnectorPoint PointX="7.411458333333333" PointY="13.598742734375" />
+          <ConnectorPoint PointX="8" PointY="13.598742734375" />
+        </AssociationConnector>
+        <AssociationConnector Association="pintorModel.FK_Laboratory_Staff_Laboratory_Staff" >
+          <ConnectorPoint PointX="1.5" PointY="24.985779622395825" />
+          <ConnectorPoint PointX="1.5" PointY="29.289195149739584" />
+          <ConnectorPoint PointX="1.8229191666666667" PointY="29.289195149739584" />
+          <ConnectorPoint PointX="1.9895858333333332" PointY="29.289195149739584" />
+          <ConnectorPoint PointX="3" PointY="29.289195149739584" />
+        </AssociationConnector>
+        <AssociationConnector Association="pintorModel.FK_Liability_Laboratory" >
+          <ConnectorPoint PointX="1.70312625" PointY="21.75" />
+          <ConnectorPoint PointX="1.70312625" PointY="15.03125" />
+          <ConnectorPoint PointX="2.0260454166666664" PointY="15.03125" />
+          <ConnectorPoint PointX="2.1927120833333333" PointY="15.03125" />
+          <ConnectorPoint PointX="2.8240695128205133" PointY="15.03125" />
+          <ConnectorPoint PointX="2.9907361794871803" PointY="15.03125" />
+          <ConnectorPoint PointX="7.244791666666667" PointY="15.03125" />
+          <ConnectorPoint PointX="7.411458333333333" PointY="15.03125" />
+          <ConnectorPoint PointX="9" PointY="15.03125" />
+        </AssociationConnector>
+        <AssociationConnector Association="pintorModel.FK_Notification_Laboratory" >
+          <ConnectorPoint PointX="1.9062525" PointY="24.985779622395825" />
+          <ConnectorPoint PointX="1.9062525" PointY="36.124847819010412" />
+          <ConnectorPoint PointX="3" PointY="36.124847819010412" />
         </AssociationConnector>
       </Diagram>
     </Diagrams>

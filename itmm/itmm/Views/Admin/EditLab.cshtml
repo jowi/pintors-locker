@@ -17,7 +17,11 @@
 </div>
 <div>
     Laboratory Description:<br />
-    <textarea name="LabDesc" class="required" style="width: 528px; height: 204px;">@labinfo.LaboratoryDesc</textarea>
+    <textarea name="LabDesc" class="required"  style="width: 528px; height: 204px;">@labinfo.LaboratoryDesc</textarea>
+</div>
+<div>
+     Contact Number:<br />
+    <input type="text" name="LabNum" value="@labinfo.LaboratoryContact" class="required" maxlength=13 style="width:260px;height:23px;" />
 </div>
 <div>Available Rooms:<br />
 @foreach (var _LabRoom in LabRoom)

@@ -361,6 +361,7 @@
     <Property Name="LaboratoryDesc" Type="varchar(max)" />
     <Property Name="LaboratoryName" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+    <Property Name="LaboratoryContact" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Laboratory_Equipment">
     <Key>

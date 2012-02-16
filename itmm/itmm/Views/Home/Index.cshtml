@@ -20,20 +20,13 @@ else
             <h4>
                 <a href="#">About</a></h4>
             <div>
-@*                <span><a id="modal_diag" href="#">Register</a></span><br />
-                <div id="modal" title="Register" style="visibility: hidden;height:0px;">
-                    <form method="post" action="test.html">
-                    <input type="text" name="fname" placeholder="name" /><br />
-                    <input type="text" name="age" placeholder="age" /><br />
-                    <input type="submit" value="save" />
-                    </form>
-                </div>*@
-                <!--end dialog -->
-@*                @foreach (var info in LabInfo)
+
+           
+                @foreach (var info in LabInfo)
                 {
                         @info.LaboratoryDesc
-                }*@
-                "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga." 
+                }
+                
     
             </div>
             <!-- end form -->
@@ -54,7 +47,10 @@ else
             <h4>
                 <a href="#">Contact</a></h4>
             <div>
-                ossimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente 
+               @foreach (var info in LabInfo)
+                {
+                        @info.LaboratoryContact
+                }
             </div>
                 
         </div>

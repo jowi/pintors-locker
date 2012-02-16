@@ -21,6 +21,13 @@ namespace itmm.Controllers
         [Authorize(Roles="Staff")]
         public ActionResult Index()
         {
+            //for active notification and is lab exclusive
+            int labid = getLabId();
+            var time = DateTime.Now.ToString("MM/dd/yyyy");
+            var a = from y in con.Notifications
+                    where y.Whin == time && y.LaboratoryId == labid
+                    select y;
+            ViewBag.Notice = a;
             return View();
         }
          [Authorize(Roles = "Staff")]

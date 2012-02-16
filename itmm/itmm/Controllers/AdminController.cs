@@ -41,11 +41,12 @@ namespace itmm.Controllers
         }
         [Authorize(Roles = "Dev")]
         [HttpPost]
-        public ActionResult Index(string LabName, string LabDesc, int[] room)
+        public ActionResult Index(string LabName, string LabDesc, int[] room,string LabNum)
         {
             Laboratory f = new Laboratory();
             f.LaboratoryName = LabName;
             f.LaboratoryDesc = LabDesc;
+            f.LaboratoryContact = LabNum;
 
             con.AddToLaboratories(f);
             con.SaveChanges();
@@ -119,7 +120,7 @@ namespace itmm.Controllers
         }
         [Authorize(Roles = "Dev")]
         [HttpPost]
-        public ActionResult EditLab(int LabId, string LabName, string LabDesc, int[] room)
+        public ActionResult EditLab(int LabId, string LabName, string LabDesc, int[] room,string LabNum)
         {
             var x = (from y in con.Laboratories
                      where y.LaboratoryId == LabId
@@ -129,6 +130,7 @@ namespace itmm.Controllers
                     select y;
             x.LaboratoryName = LabName;
             x.LaboratoryDesc = LabDesc;
+            x.LaboratoryContact = LabNum;
 
 
             foreach (var _z in z)

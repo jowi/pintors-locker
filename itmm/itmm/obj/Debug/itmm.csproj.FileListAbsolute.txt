@@ -33,3 +33,8 @@ C:\pintors-locker\itmm\itmm\bin\itmm.pdb
 C:\pintors-locker\itmm\itmm\obj\Debug\ResolveAssemblyReference.cache
 C:\pintors-locker\itmm\itmm\obj\Debug\itmm.dll
 C:\pintors-locker\itmm\itmm\obj\Debug\itmm.pdb
+H:\itmm 16\pintors-locker\itmm\itmm\bin\itmm.dll
+H:\itmm 16\pintors-locker\itmm\itmm\bin\itmm.pdb
+H:\itmm 16\pintors-locker\itmm\itmm\obj\Debug\ResolveAssemblyReference.cache
+H:\itmm 16\pintors-locker\itmm\itmm\obj\Debug\itmm.dll
+H:\itmm 16\pintors-locker\itmm\itmm\obj\Debug\itmm.pdb

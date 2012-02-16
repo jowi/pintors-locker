@@ -23,6 +23,10 @@
             <textarea name="LabDesc" class="required" style="width: 528px; height: 204px;" /></textarea>
         </div>
         <div>
+            Contact Number:<br />
+            <input type="text" name="LabNum" class="required" maxlength=13 style="width:260px;height:23px;" />
+        </div>
+        <div>
             Availabe Room:<br />
             @foreach (var room in Room)
             {
@@ -45,7 +49,7 @@
     </div><!-- end dialog -->
     <div id="room_div"style="visibility: hidden">
         <table cellspacing="0" id="dtable">
-        <thead><tr><th>Laboratory</th><th>Head</th><th>Room</th><th></th></tr></thead>
+        <thead><tr><th>Laboratory</th><th>Head</th><th>Room</th><th>Contact</th><<th></th></tr></thead>
         <tbody>
         @foreach (var lablist in LabList)
         {
@@ -83,6 +87,7 @@
                   @head
             </td>
             <td>@RoomInLab</td>
+             <td>@lablist.LaboratoryContact</td>
             <td><a href="javascript:TableTools('@Url.Action("EditLab", "Admin", new { LabId = lablist.LaboratoryId})')">edit</a>
             &nbsp<a href="javascript:TableConfirm('@Url.Action("DeleteLab", "Admin", new { LabId = lablist.LaboratoryId})')">delete</a>&nbsp</td></tr>
         }
