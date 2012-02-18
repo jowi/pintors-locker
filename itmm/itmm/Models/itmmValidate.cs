@@ -250,4 +250,11 @@ namespace itmm.Models
 
     }
 
+    public class itmmStudentsToTables {
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Id Numbers (Id No.1, Id No.2, etc.)")]
+        public string IdNumbers { get; set; }
+    }
+
 }

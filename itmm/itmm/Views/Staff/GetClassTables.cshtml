@@ -1,0 +1,35 @@
+﻿
+@{
+    Layout = null;
+    var TableLists = (ViewBag.TableLists as IQueryable<itmm.Models.Table>);
+}
+
+
+
+
+<div>
+ <div id="dataTable">
+ <table id="dtable" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Table No.</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var x in TableLists)
+       { 
+        <tr>
+            <td>@x.TableNo</td>
+            <td>
+            @Html.ActionLink("dispense", "DispenseEquipment", "Staff", new { TableId = x.TableId }, null)
+            @Html.ActionLink("return", "ReturnEquipment", "Staff", new { TableId = x.TableId }, null)
+            @Html.ActionLink("liabality", "LiabilityEquipment", "Staff", new { TableId = x.TableId }, null)
+            </td>
+        </tr>
+       }
+ 
+    </tbody>
+</table>
+ </div><!--dataTable-->
+ </div><!--content_wrapper-->

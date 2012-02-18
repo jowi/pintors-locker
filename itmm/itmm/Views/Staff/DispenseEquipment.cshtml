@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "DispenseEquipment";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+    var Equipment = (ViewBag.Equipment as IQueryable<itmm.Models.Equipment>);
+}
+
+<form id="dispense_form" method="post" action="../Staff/DispenseFinal" >
+    Select Equipment:
+    <select name="EquipmentId">
+    @foreach (var x in Equipment)
+    {
+        <option value="@x.EquipmentId">@x.Make</option>
+        
+    }
+    </select>
+    <input type="hidden" name="tableId" value="@ViewBag.TableId" />
+    <input type="submit" value="Ok" />
+</form>
+<div>
+    @Html.ActionLink("Back to List", "Dispense")
+
+</div>
+
+

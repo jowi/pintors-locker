@@ -57,10 +57,21 @@ namespace itmm.Controllers
              b.Day = a.Day;
              b.Schedule = a.Schedule;
              b.Instructor = a.Instructor;
+             b.AvailableTable = a.AvailableTable;
              b.Room = room;
 
              b.LabId = getLabId();
 
+            
+             for (int i = 1; i <= a.AvailableTable; i++)
+             {
+                 Table c = new Table();
+                 c.ClassId = b.ClassId;
+                 c.TableNo = i;
+                 con.AddToTables(c);
+             }
+
+             
              con.AddToClasses(b);
              con.SaveChanges();
 
@@ -85,6 +96,7 @@ namespace itmm.Controllers
                 b.Day = a.Day;
                 b.Schedule = a.Schedule;
                 b.Instructor = a.Instructor;
+                b.AvailableTable = Convert.ToInt32(a.AvailableTable);
 
                 int labid = getLabId();
                 //room list  exclusive per lab
@@ -114,6 +126,7 @@ namespace itmm.Controllers
              b.Schedule = a.Schedule;
              b.Instructor = a.Instructor;
              b.Room = room;
+             b.AvailableTable = a.AvailableTable;
 
              con.SaveChanges();
              return RedirectToAction("Schedule");
@@ -123,17 +136,36 @@ namespace itmm.Controllers
         {
             try
             {
+                var a = (from y in con.Tables
+                         where y.ClassId == SkedId
+                         select y).FirstOrDefault();
+                con.DeleteObject(a);
                 var x = (from y in con.Classes
                          where y.ClassId == SkedId
                          select y).FirstOrDefault();
                 con.DeleteObject(x);
+
                 con.SaveChanges();
                 return RedirectToAction("Schedule");
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 return RedirectToAction("Schedule");
             }
+}
+
+        //CLASS STUDENTS 
+        [Authorize(Roles = "Staff")]
+        public ActionResult AssignStudentsToTables(int skedId)
+        {
+            var x = from y in con.Tables
+                    where y.ClassId == skedId
+                    select y;
+            ViewBag.SkedId = skedId;
+            ViewBag.TableLists = x;
+            return View();
         }
+
         //REPORT
         [Authorize(Roles = "Staff")]
         public ActionResult Report()
@@ -141,6 +173,57 @@ namespace itmm.Controllers
             ViewBag.Message = "Welcome to Report";
             return View();
         }
+
+
+        //Adding Students to Tables
+        [Authorize(Roles = "Staff")]
+        public ActionResult AddStudentsToTables(int TableId)
+        {
+            ViewBag.Message = TableId;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddStudentsToTables(itmmStudentsToTables a, int TableId)
+        {
+
+            var x = (from y in con.Tables
+                     where y.TableId == TableId
+                     select y).FirstOrDefault();
+            x.StudentId = a.IdNumbers;
+            con.SaveChanges();
+
+
+           return RedirectToAction("Schedule");
+        }
+
+        public ActionResult EditStudentsToTables(int TableId)
+        {
+            itmmStudentsToTables b = new itmmStudentsToTables();
+
+            var x = (from y in con.Tables
+                     where y.TableId == TableId
+                     select y).FirstOrDefault();
+
+            b.IdNumbers = x.StudentId;
+
+            return View(b);
+        }
+
+        [HttpPost]
+        public ActionResult EditStudentsToTables(itmmStudentsToTables a, int TableId)
+        {
+            var x = (from y in con.Tables
+                     where y.TableId == TableId
+                     select y).FirstOrDefault();
+            x.StudentId = a.IdNumbers;
+            con.SaveChanges();
+
+
+
+            return RedirectToAction("Schedule");
+        }
+
 
         [Authorize(Roles = "Staff")]
         public ActionResult Liability()
@@ -364,5 +447,96 @@ namespace itmm.Controllers
            return PartialView();
        }
 
+      [Authorize(Roles = "Staff")]
+      public ActionResult Dispense()
+      {
+          var labid = getLabId();
+          var x = from y in con.Classes
+                  where y.LabId == labid
+                  select y;
+
+          ViewBag.ClassLists = x;
+          return View();
+      }
+
+      [Authorize(Roles = "Staff")]
+      [HttpPost]
+      public ActionResult GetClassTables(int classId)
+      {
+
+          var x = from y in con.Tables
+                  where y.ClassId == classId
+                  select y;
+
+          ViewBag.TableLists = x;
+
+          return View();
+      }
+
+        //Equipment Dispense 
+
+      [Authorize(Roles = "Staff")]
+      public ActionResult DispenseEquipment(int TableId)
+      {
+          var x = (from y in con.Tables
+                   where y.TableId == TableId
+                   select y.ClassId).FirstOrDefault();
+
+          //var b = x.ClassReference.Value.LabId;
+
+          var b = (from y in con.Classes
+                   where y.ClassId == x
+                   select y.LabId).FirstOrDefault();
+
+
+          var a = from y in con.Laboratory_Equipment
+                  where y.LaboratoryId == b
+                  select y.Equipment;
+
+          ViewBag.Equipment = a;
+          ViewBag.TableId = TableId;
+
+
+          return View();
+      }
+      [HttpPost]
+      [Authorize(Roles = "Staff")]
+      public ActionResult DispenseFinal(int tableId, int EquipmentId)
+      {
+          Dispense a = new Dispense();
+
+          a.TableId = tableId;
+          a.EquipmentId = EquipmentId;
+          con.AddToDispenses(a);
+          con.SaveChanges();
+
+          return RedirectToAction("DispenseEquipment");
+      }
+
+
+       [Authorize(Roles = "Staff")]
+      public ActionResult ReturnEquipment(int tableId )
+      {
+          var a = (from y in con.Dispenses
+                   where y.TableId == tableId
+                   select y).FirstOrDefault();
+          con.DeleteObject(a);
+          con.SaveChanges();
+
+          return RedirectToAction("Dispense");
+      }
+        [Authorize(Roles = "Staff")]
+       public ActionResult Fine(int tableId)
+       {
+           var x = (from y in con.Tables
+                    where y.TableId == tableId
+                    select y.ClassId).FirstOrDefault();
+           var a = from y in con.Classes
+                   where y.ClassId == x
+                   select y.LabId;
+            //var b = 
+            //get equipment name
+           return View();
+       }
     }
 }

@@ -238,8 +238,13 @@
     <Content Include="Views\Staff\EditLiability.cshtml" />
     <Content Include="Views\Staff\Income.cshtml" />
     <Content Include="Views\Staff\EditIncome.cshtml" />
-    <Content Include="Views\Staff\ClassStudents.cshtml" />
     <Content Include="Views\Staff\MaterialQuantityChecker.cshtml" />
+    <Content Include="Views\Staff\AssignStudentsToTables.cshtml" />
+    <Content Include="Views\Staff\AddStudentsToTables.cshtml" />
+    <Content Include="Views\Staff\EditStudentsToTables.cshtml" />
+    <Content Include="Views\Staff\Dispense.cshtml" />
+    <Content Include="Views\Staff\GetClassTables.cshtml" />
+    <Content Include="Views\Staff\DispenseEquipment.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

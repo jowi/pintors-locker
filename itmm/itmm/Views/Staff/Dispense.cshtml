@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Dispense";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+    var ClassLists = (ViewBag.Classlists as IQueryable<itmm.Models.Class>);
+}
+
+<form id="dispense_form" method="post" action="test.html" >
+    Select Class:
+    <select name="classId">
+    @foreach (var x in ClassLists)
+    {
+        <option value="@x.ClassId">Group No. @x.GroupNo @x.CourseCode @x.Day @x.Schedule </option>
+        
+    }
+    </select>
+    <input type="submit" value="Ok" />
+</form>
+
+
+<div id="class_tables">
+</div>
+
+
+<script type="text/javascript">
+
+    $(document).ready(
+        function () {
+            $("#dispense_form").submit(
+                function () {
+                    var parameter = $(this).serialize();
+                    var url = "../Staff/GetClassTables";
+                    $.post(url, parameter,
+                            function (data) {
+
+                                $("#class_tables").empty().append(data);
+                                $("#dtable").dataTable({
+                                    "sDom": 'R<"H"lfr>t<"F"ip<',
+                                    "bJQueryUI": true,
+                                    "sPaginationType": "full_numbers"
+
+                                });
+
+                            }, "html");
+                    return false;
+
+                }
+            );
+        }
+
+    );
+
+</script>
+
+@section SideNav{
+<ul>
+    <li>@Html.ActionLink("Home", "Index", "Staff")</li>
+    <li>@Html.ActionLink("Class", "Schedule", "Staff")</li>
+    <li>@Html.ActionLink("Dispense", "Dispense", "Staff", null, new { id = "light" })</li>
+    <li>@Html.ActionLink("Report", "Report", "Staff")</li>
+    
+</ul>
+}
