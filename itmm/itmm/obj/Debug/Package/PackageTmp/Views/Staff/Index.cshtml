@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+    var Notice = (ViewBag.Notice as IQueryable<itmm.Models.Notification>);
+}
+
+
+
+<div id="notices">   
+
+@if (Notice.Count() != 0)
+{
+    int cnt = 0;
+    foreach (var a in Notice)
+    {
+        string idname = "notice" + cnt;
+        string title = "title" + cnt;
+        string text = "text" + cnt;
+        <div id="@idname">
+            <span id="@title">@a.What</span><br />
+            <span id="@text">When: @a.Whin<br />
+                Where:@a.Whire<br />
+                Time:@a.Time
+            </span>
+        </div>
+
+                cnt++;
+    }
+}
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var cnt = $("#notices > div").length;
+
+        for (var x = 0; x < cnt; x++) {
+
+            var title = "title" + x;
+            var text = "text" + x;
+
+            var titles = $("#" + title).html();
+            var texts = $("#" + text).html();
+
+            $.gritter.add({
+                // (string | mandatory) the heading of the notification
+                title: titles,
+                // (string | mandatory) the text inside the notification
+                text: texts,
+                // (bool | optional) if you want it to fade out on its own or just sit there
+                sticky: true
+            });
+        }
+    });
+
+
+</script>
+
+
+
+
+
+
+@section SideNav{
+<ul>
+    <li>@Html.ActionLink("Home", "Index", "Staff", null, new { id = "light" })</li>
+    <li>@Html.ActionLink("Class Schedule", "Schedule", "Staff")</li>
+    <li>@Html.ActionLink("Dispense", "Dispense", "Staff")</li>
+    <li>@Html.ActionLink("Report", "Report", "Staff")</li>
+   
+</ul>
+}

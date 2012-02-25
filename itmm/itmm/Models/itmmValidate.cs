@@ -186,23 +186,23 @@ namespace itmm.Models
     }
     public class itmmLiability
     {
-        [Required(ErrorMessage = "Required")]
-        [Display(Name = "Family Name")]
-        public string FamilyName { get; set; }
+        //[Required(ErrorMessage = "Required")]
+        //[Display(Name = "Family Name")]
+        //public string FamilyName { get; set; }
 
-        [Required(ErrorMessage = "Required")]
-        [Display(Name = "FirstName")]
-        public string FirstName { get; set; }
+        //[Required(ErrorMessage = "Required")]
+        //[Display(Name = "FirstName")]
+        //public string FirstName { get; set; }
 
 
         [Required(ErrorMessage = "Required")]
         [Display(Name = "IdNumber")]
-        public int IdNumber { get; set; }
+        public string IdNumber { get; set; }
 
 
-        [Required(ErrorMessage = "Required")]
-        [Display(Name = "Course & Year")]
-        public string Course { get; set; }
+        //[Required(ErrorMessage = "Required")]
+        //[Display(Name = "Course & Year")]
+        //public string Course { get; set; }
 
         [Required(ErrorMessage = "Required")]
         [Display(Name = "Equipment")]
@@ -210,7 +210,7 @@ namespace itmm.Models
 
         [Required(ErrorMessage = "Required")]
         [Display(Name = "Fine")]
-        public int Fine { get; set; }
+        public string Fine { get; set; }
 
         [Required(ErrorMessage = "Required")]
         [Display(Name = "Status")]

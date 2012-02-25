@@ -149,18 +149,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Dispenses">
-      <EntityTypeMapping TypeName="pintorModel.Dispense">
-        <MappingFragment StoreEntitySet="Dispense">
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
-          <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
-          <ScalarProperty Name="RoomId" ColumnName="RoomId" />
-          <ScalarProperty Name="TableId" ColumnName="TableId" />
-          <ScalarProperty Name="DispenseId" ColumnName="DispenseId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Events">
       <EntityTypeMapping TypeName="pintorModel.Event">
         <MappingFragment StoreEntitySet="Event">
@@ -202,15 +190,6 @@
           <ScalarProperty Name="LaboratoryName" ColumnName="LaboratoryName" />
           <ScalarProperty Name="LaboratoryDesc" ColumnName="LaboratoryDesc" />
           <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Laboratory_Equipment">
-      <EntityTypeMapping TypeName="pintorModel.Laboratory_Equipment">
-        <MappingFragment StoreEntitySet="Laboratory_Equipment">
-          <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
-          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
-          <ScalarProperty Name="Laboratory_EquipmentId" ColumnName="Laboratory_EquipmentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -257,18 +236,6 @@
           <ScalarProperty Name="LastName" ColumnName="LastName" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="StaffId" ColumnName="StaffId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Liabilities">
-      <EntityTypeMapping TypeName="pintorModel.Liability">
-        <MappingFragment StoreEntitySet="Liability">
-          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="Fine" ColumnName="Fine" />
-          <ScalarProperty Name="Equipment" ColumnName="Equipment" />
-          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-          <ScalarProperty Name="LiabilityId" ColumnName="LiabilityId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -341,6 +308,41 @@
           <ScalarProperty Name="StudentId" ColumnName="StudentId" />
           <ScalarProperty Name="TableNo" ColumnName="TableNo" />
           <ScalarProperty Name="TableId" ColumnName="TableId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dispenses">
+      <EntityTypeMapping TypeName="pintorModel.Dispense">
+        <MappingFragment StoreEntitySet="Dispense">
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
+          <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
+          <ScalarProperty Name="RoomId" ColumnName="RoomId" />
+          <ScalarProperty Name="TableId" ColumnName="TableId" />
+          <ScalarProperty Name="DispenseId" ColumnName="DispenseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Liabilities">
+      <EntityTypeMapping TypeName="pintorModel.Liability">
+        <MappingFragment StoreEntitySet="Liability">
+          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Fine" ColumnName="Fine" />
+          <ScalarProperty Name="Equipment" ColumnName="Equipment" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="LiabilityId" ColumnName="LiabilityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Laboratory_Equipment">
+      <EntityTypeMapping TypeName="pintorModel.Laboratory_Equipment">
+        <MappingFragment StoreEntitySet="Laboratory_Equipment">
+          <ScalarProperty Name="Borrowed" ColumnName="Borrowed" />
+          <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
+          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
+          <ScalarProperty Name="Laboratory_EquipmentId" ColumnName="Laboratory_EquipmentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

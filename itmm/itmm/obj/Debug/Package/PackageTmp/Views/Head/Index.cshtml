@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+    var Notice = (ViewBag.Notice as IQueryable<itmm.Models.Notification>);
+}
+
+@ViewBag.Welcome
+
+
+<div id="notices">
+@if (Notice.Count() != 0)
+{
+    <div></div>
+}
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var cnt = $("#notices > div").length;
+        if (cnt != 0) {
+            $.gritter.add({               
+                title: "Events today:",
+               
+                text: "It seems that there is an event today,for more info please go the Notification Menu",
+                
+                sticky: true
+            });
+        }
+    });
+</script>
+@section SideNav{
+<ul>
+    <li>@Html.ActionLink("Home", "Index", "Head",null, new { id = "light"})</li>
+    <li>@Html.ActionLink("Staff", "Staff", "Head")</li>
+    <li>@Html.ActionLink("Material", "Material", "Head")</li>
+    <li>@Html.ActionLink("Equipment", "Equipment", "Head")</li>
+    <li>@Html.ActionLink("Notification", "Notification", "Head")</li>
+</ul>
+}
+
+
+

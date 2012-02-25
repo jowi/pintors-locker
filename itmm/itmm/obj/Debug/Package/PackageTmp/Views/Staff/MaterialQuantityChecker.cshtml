@@ -1,0 +1,23 @@
+﻿@{
+    var  Critical = (ViewBag.Critical as IQueryable<itmm.Models.Material>);
+}
+@if (Critical.Count() != 0)
+{
+<div id="material_gty_warning">
+    <center><img id="warn_logo" src="../../Content/images/warning_logo.jpg" width="60" height="50" alt="warning"/></center>
+    <center><h6>list of Materials under critical quantity</h6></center>
+</div>
+    
+    <center><div><ul>
+    @foreach (var item in Critical)
+    {
+		<li>@item.Name x @item.Quantity</li>
+    }
+    </ul></div></center>
+
+}
+else
+{
+    <span>All Material Quantity are stable</span>
+}
+    

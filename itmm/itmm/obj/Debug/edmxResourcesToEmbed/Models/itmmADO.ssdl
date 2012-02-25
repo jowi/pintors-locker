@@ -91,10 +91,6 @@
       <End Role="Table" EntitySet="Table" />
       <End Role="Dispense" EntitySet="Dispense" />
     </AssociationSet>
-    <AssociationSet Name="FK_Group_Class" Association="pintorModel.Store.FK_Group_Class">
-      <End Role="Class" EntitySet="Class" />
-      <End Role="Table" EntitySet="Table" />
-    </AssociationSet>
     <AssociationSet Name="FK_Income_Laboratory" Association="pintorModel.Store.FK_Income_Laboratory">
       <End Role="Laboratory" EntitySet="Laboratory" />
       <End Role="Income" EntitySet="Income" />
@@ -134,14 +130,6 @@
     <AssociationSet Name="FK_Laboratory_Staff_Laboratory_Staff" Association="pintorModel.Store.FK_Laboratory_Staff_Laboratory_Staff">
       <End Role="Laboratory" EntitySet="Laboratory" />
       <End Role="Laboratory_Staff" EntitySet="Laboratory_Staff" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Liability_Laboratory" Association="pintorModel.Store.FK_Liability_Laboratory">
-      <End Role="Laboratory" EntitySet="Laboratory" />
-      <End Role="Liability" EntitySet="Liability" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Liability_StudentInfo" Association="pintorModel.Store.FK_Liability_StudentInfo">
-      <End Role="StudentInfo" EntitySet="StudentInfo" />
-      <End Role="Liability" EntitySet="Liability" />
     </AssociationSet>
     <AssociationSet Name="FK_Notification_Laboratory" Association="pintorModel.Store.FK_Notification_Laboratory">
       <End Role="Laboratory" EntitySet="Laboratory" />
@@ -304,6 +292,7 @@
     <Property Name="EquipmentId" Type="int" />
     <Property Name="LaboratoryId" Type="int" />
     <Property Name="Status" Type="varchar" MaxLength="50" />
+    <Property Name="ClassId" Type="int" />
   </EntityType>
   <EntityType Name="Equipment">
     <Key>
@@ -366,6 +355,7 @@
     <Property Name="Laboratory_EquipmentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="LaboratoryId" Type="int" Nullable="false" />
     <Property Name="EquipmentId" Type="int" Nullable="false" />
+    <Property Name="Borrowed" Type="int" />
   </EntityType>
   <EntityType Name="Laboratory_Head">
     <Key>
@@ -416,7 +406,7 @@
     <Property Name="LiabilityId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="StudentId" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Equipment" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="Fine" Type="int" Nullable="false" />
+    <Property Name="Fine" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Status" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="LaboratoryId" Type="int" Nullable="false" />
   </EntityType>
@@ -658,18 +648,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Group_Class">
-    <End Role="Class" Type="pintorModel.Store.Class" Multiplicity="0..1" />
-    <End Role="Table" Type="pintorModel.Store.Table" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Class">
-        <PropertyRef Name="ClassId" />
-      </Principal>
-      <Dependent Role="Table">
-        <PropertyRef Name="ClassId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Income_Laboratory">
     <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="0..1" />
     <End Role="Income" Type="pintorModel.Store.Income" Multiplicity="*" />
@@ -787,30 +765,6 @@
       </Principal>
       <Dependent Role="Laboratory_Staff">
         <PropertyRef Name="LaboratoryId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Liability_Laboratory">
-    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1" />
-    <End Role="Liability" Type="pintorModel.Store.Liability" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Laboratory">
-        <PropertyRef Name="LaboratoryId" />
-      </Principal>
-      <Dependent Role="Liability">
-        <PropertyRef Name="LaboratoryId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Liability_StudentInfo">
-    <End Role="StudentInfo" Type="pintorModel.Store.StudentInfo" Multiplicity="1" />
-    <End Role="Liability" Type="pintorModel.Store.Liability" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="StudentInfo">
-        <PropertyRef Name="StudentId" />
-      </Principal>
-      <Dependent Role="Liability">
-        <PropertyRef Name="StudentId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

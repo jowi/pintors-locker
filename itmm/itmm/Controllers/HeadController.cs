@@ -221,8 +221,10 @@ namespace itmm.Controllers
         {
             return RedirectToAction("Error");
         }
-        var x = from y in con.Equipments
-                select y;
+        var labid = getLabId();
+        var x = from y in con.Laboratory_Equipment
+                where y.LaboratoryId == labid
+                select y.Equipment;
         ViewBag.EquipList = x;
         return View();
     }

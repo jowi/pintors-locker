@@ -1,0 +1,30 @@
+﻿
+
+@{
+    ViewBag.Title = "ViewEquipment";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+
+   // var DispenseList = (ViewBag.DispenseList as IQueryable<itmm.Models.Dispense>);
+}
+
+
+<div>
+
+@Html.Raw((String)ViewBag.DispenseList)
+</div>
+<div>
+    @Html.ActionLink("Back to Dispense", "Dispense", new {TableId = ViewBag.TableId,ClassId = ViewBag.ClassId  })
+</div>
+
+<script type="text/javascript">
+    $(document).ready(
+        function () {
+            $("#liability").click(
+                function () {
+                    //alert("ok");
+                    //$(this).parent("td").remove();
+                }
+            );
+        }
+    );
+</script>

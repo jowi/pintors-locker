@@ -230,7 +230,7 @@ namespace itmm.Controllers
         {
             var labid = getLabId();
             var x = from y in con.Liabilities
-                    where y.LaboratoryId == labid
+                    where y.LaboratoryId == labid  
                     select y;
             ViewBag.LList = x;
 
@@ -240,21 +240,22 @@ namespace itmm.Controllers
         public ActionResult Liability(itmmLiability a)
         {
 
-            StudentInfo c = new StudentInfo();
-            c.FamiliyName = a.FamilyName;
-            c.FirstName = a.FirstName;
-            c.IdNumber = a.IdNumber;
-            c.CourseAndYear = a.Course;
-            con.AddToStudentInfoes(c);
+            //StudentInfo c = new StudentInfo();
+            ////c.FamiliyName = a.FamilyName;
+            ////c.FirstName = a.FirstName;
+            //c.IdNumber = a.IdNumber;
+            ////c.CourseAndYear = a.Course;
+            //con.AddToStudentInfoes(c);
 
 
             var labid = getLabId();
             Liability b = new Liability();
+            b.StudentId = a.IdNumber;
             b.Equipment = a.Equipment;
             b.Fine = a.Fine;
             b.Status = a.Status;
             b.LaboratoryId = labid;
-            b.StudentId = c.StudentId;
+            //b.StudentId = c.StudentId;
             con.AddToLiabilities(b);
 
             con.SaveChanges();
@@ -274,11 +275,11 @@ namespace itmm.Controllers
                      select y.StudentInfo).FirstOrDefault();
 
             itmmLiability a = new itmmLiability();
-            a.FamilyName = b.FamiliyName;
-            a.FirstName=b.FirstName;
-            a.IdNumber=b.IdNumber;
-            a.Course=b.CourseAndYear;
-
+            //a.FamilyName = b.FamiliyName;
+            //a.FirstName=b.FirstName;
+            //a.IdNumber=b.IdNumber;
+            //a.Course=b.CourseAndYear;
+            a.IdNumber = c.StudentId;
             a.Equipment = c.Equipment;
             a.Fine = c.Fine;
             a.Status = c.Status;
@@ -296,12 +297,12 @@ namespace itmm.Controllers
                      where y.LiabilityId == LiabilityId
                      select y.StudentInfo).FirstOrDefault();
 
-            b.FamiliyName = a.FamilyName;
-            b.FirstName = a.FirstName;
-            b.IdNumber = a.IdNumber;
-            b.CourseAndYear = a.Course;
+            //b.FamiliyName = a.FamilyName;
+            //b.FirstName = a.FirstName;
+            //b.IdNumber = a.IdNumber;
+            //b.CourseAndYear = a.Course;
 
-
+            c.StudentId = a.IdNumber;
             c.Equipment = a.Equipment;
             c.Fine = a.Fine;
             c.Status = a.Status;
@@ -440,9 +441,10 @@ namespace itmm.Controllers
       [Authorize]
        public ActionResult MaterialQuantityChecker()
        {
-           var x = from y in con.Materials
-                   where y.Quantity <= 10
-                   select y;
+           var labid = getLabId();
+           var x = from y in con.Laboratory_Material
+                   where y.LaboratoryId == labid && y.Material.Quantity <= 50
+                   select y.Material;
            ViewBag.Critical = x;
            return PartialView();
        }
@@ -476,7 +478,7 @@ namespace itmm.Controllers
         //Equipment Dispense 
 
       [Authorize(Roles = "Staff")]
-      public ActionResult DispenseEquipment(int TableId)
+      public ActionResult DispenseEquipment(int TableId, int ClassId)
       {
           var x = (from y in con.Tables
                    where y.TableId == TableId
@@ -490,53 +492,119 @@ namespace itmm.Controllers
 
 
           var a = from y in con.Laboratory_Equipment
-                  where y.LaboratoryId == b
+                  where y.LaboratoryId == b && y.Borrowed == null
                   select y.Equipment;
 
           ViewBag.Equipment = a;
           ViewBag.TableId = TableId;
+          ViewBag.ClassId = ClassId;
 
 
           return View();
       }
       [HttpPost]
       [Authorize(Roles = "Staff")]
-      public ActionResult DispenseFinal(int tableId, int EquipmentId)
+      public ActionResult DispenseFinal(int TableId, int[] EquipmentId, int ClassId)
       {
-          Dispense a = new Dispense();
+          var labid = getLabId();
 
-          a.TableId = tableId;
-          a.EquipmentId = EquipmentId;
-          con.AddToDispenses(a);
-          con.SaveChanges();
+          foreach (var item in EquipmentId)
+          {
+              Dispense a = new Dispense();
+              a.TableId = TableId;
+              a.ClassId = ClassId;
+              a.EquipmentId = item;
+              
+              con.AddToDispenses(a);
 
-          return RedirectToAction("DispenseEquipment");
-      }
+              
 
+              var x = (from y in con.Laboratory_Equipment
+                       where y.Borrowed == null && y.LaboratoryId == labid && y.EquipmentId == item
+                       select y).FirstOrDefault();
 
-       [Authorize(Roles = "Staff")]
-      public ActionResult ReturnEquipment(int tableId )
-      {
-          var a = (from y in con.Dispenses
-                   where y.TableId == tableId
-                   select y).FirstOrDefault();
-          con.DeleteObject(a);
+              x.Borrowed = 1;
+          }
+    
+          
+
           con.SaveChanges();
 
           return RedirectToAction("Dispense");
       }
+
+      [Authorize(Roles = "Staff")]
+      public ActionResult ViewEquipment(int TableId, int ClassId)
+      {
+
+          var x = from y in con.Dispenses
+                  where y.TableId == TableId && y.ClassId == ClassId && y.Status == null
+                  select y;
+
+          //get TableNo.
+          var a = (from y in con.Tables where y.TableId == TableId select y.TableNo).FirstOrDefault();
+          var b = (from y in con.Classes where y.ClassId == ClassId select y).FirstOrDefault();
+          string str =  b.CourseCode +" "+ b.GroupNo +" " + b.Day +" " +b.Schedule+"<br/><br/>";
+          str += "<div id='content_wrapper'><span>Table No.</span>" + a +"<br/><br/>";
+          str += "<center><table id='dispense_list' cellspacing=0>";
+          foreach (var item in x)
+          {
+              var c = (from y in con.Equipments where y.EquipmentId == item.EquipmentId select y).FirstOrDefault();
+              str += "<tr><td>" + c.Make+"  ["+ c.Barcode +"] " + "</td><td id='d_td'><a href='../Staff/ReturnEquipment?TableId=" + TableId + "&EquipmentId=" + item.EquipmentId + "&ClassId=" + ClassId + "'>Return</a>      <a id='liability' href='../Staff/Fine?TableId=" + TableId + "&EquipmentId=" + item.EquipmentId + "&ClassId=" + ClassId + "' >Liability</a></td></tr>";
+          }
+
+          str += "</table></center><br/><br/></div><br/>";
+
+          ViewBag.TableId = TableId;
+          ViewBag.ClassId = ClassId;
+          ViewBag.DispenseList = str;
+          return View();
+      }
+
+
+       [Authorize(Roles = "Staff")]
+      public ActionResult ReturnEquipment(int TableId,int EquipmentId, int ClassId )
+      {
+
+          var labid = getLabId();
+          var x = (from y in con.Laboratory_Equipment
+                   where y.EquipmentId == EquipmentId && y.LaboratoryId == labid 
+                   select y).FirstOrDefault();
+
+          x.Borrowed = null;
+
+          var a = (from y in con.Dispenses
+                   where y.TableId == TableId && y.EquipmentId == EquipmentId && y.ClassId == ClassId
+                   select y).FirstOrDefault();
+          con.DeleteObject(a);
+
+
+          con.SaveChanges();
+
+          return RedirectToAction("ViewEquipment", "Staff", new { TableId = TableId, ClassId = ClassId });
+      }
         [Authorize(Roles = "Staff")]
-       public ActionResult Fine(int tableId)
+       public ActionResult Fine(int TableId, int EquipmentId, int ClassId)
        {
-           var x = (from y in con.Tables
-                    where y.TableId == tableId
-                    select y.ClassId).FirstOrDefault();
-           var a = from y in con.Classes
-                   where y.ClassId == x
-                   select y.LabId;
-            //var b = 
-            //get equipment name
-           return View();
+           Liability a = new Liability();
+
+           a.Equipment = (from y in con.Equipments where y.EquipmentId == EquipmentId select y.Make).FirstOrDefault();
+           a.StudentId = (from y in con.Tables where y.TableId == TableId select y.StudentId).FirstOrDefault();
+           a.Fine = "To be Determined";
+           a.Status = "Unsettled";
+           a.LaboratoryId = (from y in con.Classes where y.ClassId == ClassId select y.LabId).FirstOrDefault();
+
+           con.AddToLiabilities(a);
+
+
+           Dispense b = new Dispense();
+
+           var x = (from y in con.Dispenses
+                   where y.EquipmentId == EquipmentId && y.TableId == TableId && y.ClassId == ClassId
+                   select y).FirstOrDefault();
+           x.Status = "liability";
+           con.SaveChanges();
+           return RedirectToAction("ViewEquipment", "Staff", new { TableId = TableId, ClassId = ClassId });
        }
     }
 }

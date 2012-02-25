@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Report";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+}
+
+@ViewBag.Message
+
+
+@section SideNav{
+<ul>
+  
+    <li>@Html.ActionLink("Income", "Income", "Staff")</li>
+    <li>@Html.ActionLink("Liability", "Liability", "Staff")</li>
+    <li>@Html.ActionLink("Inventory Cost", "InventoryCost", "Staff")</li>
+    
+</ul>
+}
+

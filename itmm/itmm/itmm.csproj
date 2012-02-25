@@ -245,6 +245,7 @@
     <Content Include="Views\Staff\Dispense.cshtml" />
     <Content Include="Views\Staff\GetClassTables.cshtml" />
     <Content Include="Views\Staff\DispenseEquipment.cshtml" />
+    <Content Include="Views\Staff\ViewEquipment.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
