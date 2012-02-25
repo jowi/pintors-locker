@@ -331,26 +331,31 @@ namespace itmm.Controllers
         [Authorize(Roles = "Dev")]
         public ActionResult DeleteHead(string UserName)
         {
-            try
-            {
+           
+                //delete User from aspnet users
                 Membership.DeleteUser(UserName);
                 //delete head on Laboratory
-                var x = (from y in con.Laboratories
-                         where y.UserName == UserName
-                         select y).FirstOrDefault();
-                x.UserName = null;
-                //delete head on Laborator_Head
-                var z = (from y in con.Laboratory_Head
-                         where y.UserName == UserName
-                         select y).FirstOrDefault();
-               
-                con.DeleteObject(z);
-                con.SaveChanges();
-            }
-            catch (Exception)
-            {
-                return View();
-            }
+
+                    var x = (from y in con.Laboratories
+                             where y.UserName == UserName
+                             select y.UserName).FirstOrDefault();
+
+
+                    if (x != "")
+                    {
+
+                        x = null;
+                    
+                    }
+
+                    var z = (from y in con.Laboratory_Head
+                             where y.UserName == UserName
+                             select y).FirstOrDefault();
+                    con.DeleteObject(z);
+
+                    con.SaveChanges();
+
+                //    return View();
             return RedirectToAction("Index", "Admin");
         }
 

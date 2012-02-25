@@ -64,12 +64,20 @@
             @Html.ValidationMessageFor(model => model.Fine)
         </div>
 
-        <div class="editor-label">
+@*        <div class="editor-label">
             @Html.LabelFor(model => model.Status)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.Status)
             @Html.ValidationMessageFor(model => model.Status)
+        </div>*@
+        <br />
+        <div>
+        Status:
+        <select name="status">
+                    <option value="Settled">Settled</option>
+                    <option value="Unsettled">Unsettled</option>
+               </select>
         </div>
 
         <p>

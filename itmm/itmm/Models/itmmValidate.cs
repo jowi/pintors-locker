@@ -193,7 +193,7 @@ namespace itmm.Models
         //[Required(ErrorMessage = "Required")]
         //[Display(Name = "FirstName")]
         //public string FirstName { get; set; }
-
+        string _status = "Unsettled";
 
         [Required(ErrorMessage = "Required")]
         [Display(Name = "IdNumber")]
@@ -214,7 +214,15 @@ namespace itmm.Models
 
         [Required(ErrorMessage = "Required")]
         [Display(Name = "Status")]
-        public string Status { get; set; }
+        public string Status { 
+            get {
+                return _status;
+            } 
+            set{
+                _status = value;
+            } 
+                
+        }
 
 
     }

@@ -136,10 +136,10 @@ namespace itmm.Controllers
         {
             try
             {
-                var a = (from y in con.Tables
-                         where y.ClassId == SkedId
-                         select y).FirstOrDefault();
-                con.DeleteObject(a);
+                //var a = (from y in con.Tables
+                //         where y.ClassId == SkedId
+                //         select y).FirstOrDefault();
+                //con.DeleteObject(a);
                 var x = (from y in con.Classes
                          where y.ClassId == SkedId
                          select y).FirstOrDefault();
@@ -287,7 +287,7 @@ namespace itmm.Controllers
             return View(a);
         }
     [HttpPost]
-        public ActionResult EditLiability(int LiabilityId, itmmLiability a)
+        public ActionResult EditLiability(int LiabilityId, itmmLiability a, string status)
         {
             var c = (from y in con.Liabilities
                      where y.LiabilityId == LiabilityId
@@ -305,7 +305,7 @@ namespace itmm.Controllers
             c.StudentId = a.IdNumber;
             c.Equipment = a.Equipment;
             c.Fine = a.Fine;
-            c.Status = a.Status;
+            c.Status = status;
 
             con.SaveChanges();
 
