@@ -119,15 +119,6 @@
       <End Role="Table" EntitySet="Tables" />
       <End Role="Dispense" EntitySet="Dispenses" />
     </AssociationSet>
-    <EntitySet Name="Liabilities" EntityType="pintorModel.Liability" />
-    <AssociationSet Name="FK_Liability_Laboratory" Association="pintorModel.FK_Liability_Laboratory">
-      <End Role="Laboratory" EntitySet="Laboratories" />
-      <End Role="Liability" EntitySet="Liabilities" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Liability_StudentInfo" Association="pintorModel.FK_Liability_StudentInfo">
-      <End Role="StudentInfo" EntitySet="StudentInfoes" />
-      <End Role="Liability" EntitySet="Liabilities" />
-    </AssociationSet>
     <EntitySet Name="Laboratory_Equipment" EntityType="pintorModel.Laboratory_Equipment" />
     <AssociationSet Name="FK_Laboratory_Equipment_Laboratory" Association="pintorModel.FK_Laboratory_Equipment_Laboratory">
       <End Role="Laboratory" EntitySet="Laboratories" />
@@ -141,6 +132,20 @@
     <AssociationSet Name="FK_Laboratory_Equipment_Equipment" Association="pintorModel.FK_Laboratory_Equipment_Equipment">
       <End Role="Equipment" EntitySet="Equipments" />
       <End Role="Laboratory_Equipment" EntitySet="Laboratory_Equipment" />
+    </AssociationSet>
+    <EntitySet Name="Liabilities" EntityType="pintorModel.Liability" />
+    <AssociationSet Name="FK_Liability_Laboratory" Association="pintorModel.FK_Liability_Laboratory">
+      <End Role="Laboratory" EntitySet="Laboratories" />
+      <End Role="Liability" EntitySet="Liabilities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Liability_StudentInfo" Association="pintorModel.FK_Liability_StudentInfo">
+      <End Role="StudentInfo" EntitySet="StudentInfoes" />
+      <End Role="Liability" EntitySet="Liabilities" />
+    </AssociationSet>
+    <EntitySet Name="Expenses" EntityType="pintorModel.Expens" />
+    <AssociationSet Name="FK_Expenses_Expenses" Association="pintorModel.FK_Expenses_Expenses">
+      <End Role="Laboratory" EntitySet="Laboratories" />
+      <End Role="Expens" EntitySet="Expenses" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="aspnet_Applications">
@@ -351,8 +356,9 @@
     <NavigationProperty Name="Laboratory_Room" Relationship="pintorModel.FK_Laboratory_Room_Laboratory" FromRole="Laboratory" ToRole="Laboratory_Room" />
     <NavigationProperty Name="Laboratory_Staff" Relationship="pintorModel.FK_Laboratory_Staff_Laboratory_Staff" FromRole="Laboratory" ToRole="Laboratory_Staff" />
     <NavigationProperty Name="Notifications" Relationship="pintorModel.FK_Notification_Laboratory" FromRole="Laboratory" ToRole="Notification" />
-    <NavigationProperty Name="Liabilities" Relationship="pintorModel.FK_Liability_Laboratory" FromRole="Laboratory" ToRole="Liability" />
     <NavigationProperty Name="Laboratory_Equipment" Relationship="pintorModel.FK_Laboratory_Equipment_Laboratory" FromRole="Laboratory" ToRole="Laboratory_Equipment" />
+    <NavigationProperty Name="Liabilities" Relationship="pintorModel.FK_Liability_Laboratory" FromRole="Laboratory" ToRole="Liability" />
+    <NavigationProperty Name="Expenses" Relationship="pintorModel.FK_Expenses_Expenses" FromRole="Laboratory" ToRole="Expens" />
   </EntityType>
   <EntityType Name="Laboratory_Head">
     <Key>
@@ -751,43 +757,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Liability">
-    <Key>
-      <PropertyRef Name="LiabilityId" />
-    </Key>
-    <Property Type="Int32" Name="LiabilityId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Type="String" Name="StudentId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="Equipment" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="Fine" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="Status" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Type="Int32" Name="LaboratoryId" Nullable="false" />
-    <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Liability_Laboratory" FromRole="Liability" ToRole="Laboratory" />
-    <NavigationProperty Name="StudentInfo" Relationship="pintorModel.FK_Liability_StudentInfo" FromRole="Liability" ToRole="StudentInfo" />
-  </EntityType>
-  <Association Name="FK_Liability_Laboratory">
-    <End Type="pintorModel.Laboratory" Role="Laboratory" Multiplicity="1" />
-    <End Type="pintorModel.Liability" Role="Liability" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Laboratory">
-        <PropertyRef Name="LaboratoryId" />
-      </Principal>
-      <Dependent Role="Liability">
-        <PropertyRef Name="LaboratoryId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Liability_StudentInfo">
-    <End Type="pintorModel.StudentInfo" Role="StudentInfo" Multiplicity="1" />
-    <End Type="pintorModel.Liability" Role="Liability" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="StudentInfo">
-        <PropertyRef Name="StudentId" />
-      </Principal>
-      <Dependent Role="Liability">
-        <PropertyRef Name="StudentId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="Laboratory_Equipment">
     <Key>
       <PropertyRef Name="Laboratory_EquipmentId" />
@@ -848,6 +817,67 @@
       </Principal>
       <Dependent Role="Laboratory_Equipment">
         <PropertyRef Name="EquipmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Liability">
+    <Key>
+      <PropertyRef Name="LiabilityId" />
+    </Key>
+    <Property Type="Int32" Name="LiabilityId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="StudentId" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Equipment" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Fine" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="LaboratoryId" Nullable="false" />
+    <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Liability_Laboratory" FromRole="Liability" ToRole="Laboratory" />
+    <NavigationProperty Name="StudentInfo" Relationship="pintorModel.FK_Liability_StudentInfo" FromRole="Liability" ToRole="StudentInfo" />
+  </EntityType>
+  <Association Name="FK_Liability_Laboratory">
+    <End Type="pintorModel.Laboratory" Role="Laboratory" Multiplicity="1" />
+    <End Type="pintorModel.Liability" Role="Liability" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratory">
+        <PropertyRef Name="LaboratoryId" />
+      </Principal>
+      <Dependent Role="Liability">
+        <PropertyRef Name="LaboratoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Liability_StudentInfo">
+    <End Type="pintorModel.StudentInfo" Role="StudentInfo" Multiplicity="1" />
+    <End Type="pintorModel.Liability" Role="Liability" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StudentInfo">
+        <PropertyRef Name="StudentId" />
+      </Principal>
+      <Dependent Role="Liability">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Expens">
+    <Key>
+      <PropertyRef Name="ExpensesId" />
+    </Key>
+    <Property Type="Int32" Name="ExpensesId" Nullable="false" />
+    <Property Type="Int32" Name="LaboratoryId" Nullable="false" />
+    <Property Type="String" Name="ExpensesTransaction" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="ExpensesCost" Nullable="false" />
+    <Property Type="DateTime" Name="DateCreated" Nullable="false" />
+    <Property Type="String" Name="ExpensesDetail" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Expenses_Expenses" FromRole="Expens" ToRole="Laboratory" />
+  </EntityType>
+  <Association Name="FK_Expenses_Expenses">
+    <End Type="pintorModel.Laboratory" Role="Laboratory" Multiplicity="1" />
+    <End Type="pintorModel.Expens" Role="Expens" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Laboratory">
+        <PropertyRef Name="LaboratoryId" />
+      </Principal>
+      <Dependent Role="Expens">
+        <PropertyRef Name="LaboratoryId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

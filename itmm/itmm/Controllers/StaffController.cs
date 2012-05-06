@@ -18,6 +18,7 @@ namespace itmm.Controllers
             return x;
         }
 
+
         [Authorize(Roles="Staff")]
         public ActionResult Index()
         {
@@ -230,7 +231,7 @@ namespace itmm.Controllers
         {
             var labid = getLabId();
             var x = from y in con.Liabilities
-                    where y.LaboratoryId == labid  
+                    where y.LaboratoryId == labid  && y.Status != "Settled"
                     select y;
             ViewBag.LList = x;
 
@@ -606,5 +607,71 @@ namespace itmm.Controllers
            con.SaveChanges();
            return RedirectToAction("ViewEquipment", "Staff", new { TableId = TableId, ClassId = ClassId });
        }
+
+        [Authorize(Roles = "Staff")]
+        public ActionResult Expenses()
+        {
+            var labid = getLabId();
+            var CurrentYear = DateTime.Now.Year;
+
+            var x = from y in con.Expenses
+                    where y.LaboratoryId == labid && y.DateCreated.Year == CurrentYear
+                    select y;
+            ViewBag.ExpensesList = x;
+
+            return View();
+        }
+
+        [Authorize(Roles = "Staff")]
+        [HttpPost]
+        public ActionResult Expenses(itmmExpenses a)
+        {
+            
+            Expens b = new Expens();
+
+            var labid = getLabId();
+
+            b.LaboratoryId = labid;
+            b.ExpensesTransaction = a.Transaction;
+            b.ExpensesDetail = a.Detail;
+            b.ExpensesCost = a.Cost;
+            b.DateCreated = DateTime.Now;
+
+            con.AddToExpenses(b);
+            con.SaveChanges();
+
+            return RedirectToAction("Expenses");
+        }
+
+        public ActionResult EditExpenses(int ExpensesId)
+        {
+            var x = (from y in con.Expenses
+                     where y.ExpensesId == ExpensesId
+                     select y).FirstOrDefault();
+
+            itmmExpenses a = new itmmExpenses();
+            a.Transaction = x.ExpensesTransaction;
+            a.Detail = x.ExpensesDetail;
+            a.Cost = Convert.ToInt32(x.ExpensesCost);
+
+            return View(a);
+        }
+
+        [HttpPost]
+        public ActionResult EditExpenses(int ExpensesId, itmmExpenses a)
+        {
+            var c =  (from y in con.Expenses
+                     where y.ExpensesId == ExpensesId
+                     select y).FirstOrDefault();
+
+
+            c.ExpensesTransaction = a.Transaction;
+            c.ExpensesDetail = a.Detail;
+            c.ExpensesCost = a.Cost;
+
+            con.SaveChanges();
+
+            return RedirectToAction("Expenses");
+        }
     }
 }

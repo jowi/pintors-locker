@@ -1,0 +1,95 @@
+﻿@model itmm.Models.itmmExpenses
+
+@{
+    ViewBag.Title = "Expenses";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+    var ExpensesList = (ViewBag.ExpensesList as IQueryable<itmm.Models.Expens>);
+}
+
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div id="content_wrapper">
+<div id="zero_div">
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+<div id="first_div">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Transaction)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Transaction)
+            @Html.ValidationMessageFor(model => model.Transaction)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Detail)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Detail, new { rows = 5, cols = 50 })
+            @Html.ValidationMessageFor(model => model.Detail)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Cost)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Cost)
+            @Html.ValidationMessageFor(model => model.Cost)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </div><!--first_div-->
+
+}
+</div><!--zero_div-->
+</div><!--content_wrapper-->
+
+@if (ExpensesList.Count() != 0)
+{
+<div id="dataTable">
+<table id="dtable" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Transaction</th>
+            <th>Detail</th>
+            <th>Cost</th>
+            <th>Date Added</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var x in ExpensesList)
+       { 
+        <tr>
+            <td>@x.ExpensesTransaction</td>
+            <td>@x.ExpensesDetail</td>  
+            <td>@x.ExpensesCost</td>
+            <td>@x.DateCreated</td>
+            <td>
+            @Html.ActionLink("[Edit]", "EditExpenses", "Staff", new { ExpensesId = x.ExpensesId }, null)
+            </td>
+        </tr>
+       }
+ 
+    </tbody>
+</table>
+
+</div><!--dataTable-->
+}
+
+@section SideNav{
+<ul>
+  
+    <li>@Html.ActionLink("Income", "Income", "Staff")</li>
+    <li>@Html.ActionLink("Expenses", "Expenses", "Staff", null, new { id = "light" })</li>
+    <li>@Html.ActionLink("Liability", "Liability", "Staff")</li>
+    <li>@Html.ActionLink("Inventory Cost", "InventoryCost", "Staff")</li>
+    <li>@Html.ActionLink("Go Back", "Index", "Staff")</li>
+    
+</ul>
+}

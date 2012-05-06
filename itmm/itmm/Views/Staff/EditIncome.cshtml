@@ -5,16 +5,18 @@
     Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
 }
 
-<h2>EditIncome</h2>
+<h2>Edit Income</h2>
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
-@using (Html.BeginForm()) {
+<div id="content_wrapper">
+<div id="zero_div">
+@using (Html.BeginForm())
+{
     @Html.ValidationSummary(true)
-    <fieldset>
-        <legend>itmmIncome</legend>
 
+    <div id="first_div">
         <div class="editor-label">
             @Html.LabelFor(model => model.FamilyName)
         </div>
@@ -66,8 +68,12 @@
         <p>
             <input type="submit" value="Save" />
         </p>
-    </fieldset>
+</div><!--first_div-->
 }
+</div><!--zero_div-->
+
+
+</div><!--content_wrapper-->
 
 <div>
     @Html.ActionLink("Back to List", "Index")

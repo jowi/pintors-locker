@@ -265,4 +265,22 @@ namespace itmm.Models
         public string IdNumbers { get; set; }
     }
 
+    public class itmmExpenses
+    {
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Transaction")]
+        public string Transaction { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Detail")]
+        public string Detail { get; set; }
+
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Cost")]
+        public int Cost { get; set; }
+
+
+    }
+
 }

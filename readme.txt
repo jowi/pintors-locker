@@ -23,15 +23,39 @@ login as Super Admin
 id:super
 pass:Pass1234
 
+
 Step 2:
 from there u can create lab heads!
 
-
+-----------------------------------------------------------------------------------------------------------------------
 Ipa fix ang bugs, 
-1. example katong sa liabilities d makita. 
-2. Ang stock list dli mo alert if gamay nalang, 
+1. example katong sa liabilities d makita. -di makita kung wa pai liabilities na gi input, try adding a liability
+2. Ang stock list dli mo alert if gamay nalang,  -mo alert if 40 below ang material quantity (click `check` button or refresh the page)
 3. tapos accurate and efficient data system, 
 4. inventory cost hasta critical level. 
 5. Nya better gui ug nka deployed na.
+-----------------------------------------------------------------------------------------------------------------------
+toDo
+1. Change query to show only settled Liabilities -done
+
+2.  Add Expenses Menu for Staff
+    Create table Expenses
+    Show only the Expenses for the current year
+ 
+3. Add year coloumn at the Income Table
+   Show only the Income for the current year
+
+-----------------------------------------------------------------------------------------------------------------------
+
+
+ssh key issue fix
+    https://gist.github.com/1994872
+    https://github.com/settings/ssh/audit
+    
+    http://www.google.com.ph/search?rlz=1C1CHMO_tlPH471PH471&sourceid=chrome&ie=UTF-8&q=how+to+approve+ssh+key+github.com#hl=tl&gs_nf=1&pq=best%20web%20wireframing%20tool&cp=10&gs_id=t&xhr=t&q=best+free+web+wireframing+tool&pf=p&rlz=1C1CHMO_tlPH471PH471&sclient=psy-ab&oq=best+free+web+wireframing+tool&aq=f&aqi=&aql=&gs_l=&pbx=1&bav=on.2,or.r_gc.r_pw.r_qf.,cf.osb&fp=217d639afdeb2aa0&biw=1280&bih=933
+    
+    
+    
+
 
 

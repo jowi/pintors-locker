@@ -324,18 +324,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Liabilities">
-      <EntityTypeMapping TypeName="pintorModel.Liability">
-        <MappingFragment StoreEntitySet="Liability">
-          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
-          <ScalarProperty Name="Status" ColumnName="Status" />
-          <ScalarProperty Name="Fine" ColumnName="Fine" />
-          <ScalarProperty Name="Equipment" ColumnName="Equipment" />
-          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
-          <ScalarProperty Name="LiabilityId" ColumnName="LiabilityId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Laboratory_Equipment">
       <EntityTypeMapping TypeName="pintorModel.Laboratory_Equipment">
         <MappingFragment StoreEntitySet="Laboratory_Equipment">
@@ -358,6 +346,30 @@
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Make" ColumnName="Make" />
           <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Liabilities">
+      <EntityTypeMapping TypeName="pintorModel.Liability">
+        <MappingFragment StoreEntitySet="Liability">
+          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Fine" ColumnName="Fine" />
+          <ScalarProperty Name="Equipment" ColumnName="Equipment" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="LiabilityId" ColumnName="LiabilityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Expenses">
+      <EntityTypeMapping TypeName="pintorModel.Expens">
+        <MappingFragment StoreEntitySet="Expenses">
+          <ScalarProperty Name="ExpensesDetail" ColumnName="ExpensesDetail" />
+          <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+          <ScalarProperty Name="ExpensesCost" ColumnName="ExpensesCost" />
+          <ScalarProperty Name="ExpensesTransaction" ColumnName="ExpensesTransaction" />
+          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
+          <ScalarProperty Name="ExpensesId" ColumnName="ExpensesId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

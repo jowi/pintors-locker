@@ -215,6 +215,7 @@
     <Content Include="Views\Admin\Head.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Content\images\Sorting icons.psd" />
     <Content Include="Views\Admin\EditHead.cshtml" />
     <Content Include="Views\Head\Index.cshtml" />
@@ -246,6 +247,8 @@
     <Content Include="Views\Staff\GetClassTables.cshtml" />
     <Content Include="Views\Staff\DispenseEquipment.cshtml" />
     <Content Include="Views\Staff\ViewEquipment.cshtml" />
+    <Content Include="Views\Staff\Expenses.cshtml" />
+    <Content Include="Views\Staff\EditExpenses.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

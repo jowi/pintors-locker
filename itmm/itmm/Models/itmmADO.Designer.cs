@@ -41,11 +41,12 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Group_Class", "Class", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Class), "Table", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Table), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Dispense_Room", "Room", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Room), "Dispense", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Dispense), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Dispense_Table", "Table", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Table), "Dispense", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Dispense), true)]
-[assembly: EdmRelationshipAttribute("pintorModel", "FK_Liability_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Liability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Liability), true)]
-[assembly: EdmRelationshipAttribute("pintorModel", "FK_Liability_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.StudentInfo), "Liability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Liability), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Equipment_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Equipment), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Dispense_Equipment", "Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Equipment), "Dispense", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Dispense), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Equipment_Equipment", "Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Equipment), "Laboratory_Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Equipment), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Liability_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Liability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Liability), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Liability_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.StudentInfo), "Liability", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Liability), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_Expenses_Expenses", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Expens", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Expens), true)]
 
 #endregion
 
@@ -516,22 +517,6 @@ namespace itmm.Models
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<Liability> Liabilities
-        {
-            get
-            {
-                if ((_Liabilities == null))
-                {
-                    _Liabilities = base.CreateObjectSet<Liability>("Liabilities");
-                }
-                return _Liabilities;
-            }
-        }
-        private ObjectSet<Liability> _Liabilities;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<Laboratory_Equipment> Laboratory_Equipment
         {
             get
@@ -560,6 +545,38 @@ namespace itmm.Models
             }
         }
         private ObjectSet<Equipment> _Equipments;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Liability> Liabilities
+        {
+            get
+            {
+                if ((_Liabilities == null))
+                {
+                    _Liabilities = base.CreateObjectSet<Liability>("Liabilities");
+                }
+                return _Liabilities;
+            }
+        }
+        private ObjectSet<Liability> _Liabilities;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<Expens> Expenses
+        {
+            get
+            {
+                if ((_Expenses == null))
+                {
+                    _Expenses = base.CreateObjectSet<Expens>("Expenses");
+                }
+                return _Expenses;
+            }
+        }
+        private ObjectSet<Expens> _Expenses;
 
         #endregion
         #region AddTo Methods
@@ -773,14 +790,6 @@ namespace itmm.Models
         }
     
         /// <summary>
-        /// Deprecated Method for adding a new object to the Liabilities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToLiabilities(Liability liability)
-        {
-            base.AddObject("Liabilities", liability);
-        }
-    
-        /// <summary>
         /// Deprecated Method for adding a new object to the Laboratory_Equipment EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
         /// </summary>
         public void AddToLaboratory_Equipment(Laboratory_Equipment laboratory_Equipment)
@@ -794,6 +803,22 @@ namespace itmm.Models
         public void AddToEquipments(Equipment equipment)
         {
             base.AddObject("Equipments", equipment);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Liabilities EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToLiabilities(Liability liability)
+        {
+            base.AddObject("Liabilities", liability);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the Expenses EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToExpenses(Expens expens)
+        {
+            base.AddObject("Expenses", expens);
         }
 
         #endregion
@@ -4745,6 +4770,232 @@ namespace itmm.Models
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="pintorModel", Name="Expens")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class Expens : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new Expens object.
+        /// </summary>
+        /// <param name="expensesId">Initial value of the ExpensesId property.</param>
+        /// <param name="laboratoryId">Initial value of the LaboratoryId property.</param>
+        /// <param name="expensesTransaction">Initial value of the ExpensesTransaction property.</param>
+        /// <param name="expensesCost">Initial value of the ExpensesCost property.</param>
+        /// <param name="dateCreated">Initial value of the DateCreated property.</param>
+        /// <param name="expensesDetail">Initial value of the ExpensesDetail property.</param>
+        public static Expens CreateExpens(global::System.Int32 expensesId, global::System.Int32 laboratoryId, global::System.String expensesTransaction, global::System.Int32 expensesCost, global::System.DateTime dateCreated, global::System.String expensesDetail)
+        {
+            Expens expens = new Expens();
+            expens.ExpensesId = expensesId;
+            expens.LaboratoryId = laboratoryId;
+            expens.ExpensesTransaction = expensesTransaction;
+            expens.ExpensesCost = expensesCost;
+            expens.DateCreated = dateCreated;
+            expens.ExpensesDetail = expensesDetail;
+            return expens;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ExpensesId
+        {
+            get
+            {
+                return _ExpensesId;
+            }
+            set
+            {
+                if (_ExpensesId != value)
+                {
+                    OnExpensesIdChanging(value);
+                    ReportPropertyChanging("ExpensesId");
+                    _ExpensesId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ExpensesId");
+                    OnExpensesIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _ExpensesId;
+        partial void OnExpensesIdChanging(global::System.Int32 value);
+        partial void OnExpensesIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LaboratoryId
+        {
+            get
+            {
+                return _LaboratoryId;
+            }
+            set
+            {
+                OnLaboratoryIdChanging(value);
+                ReportPropertyChanging("LaboratoryId");
+                _LaboratoryId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LaboratoryId");
+                OnLaboratoryIdChanged();
+            }
+        }
+        private global::System.Int32 _LaboratoryId;
+        partial void OnLaboratoryIdChanging(global::System.Int32 value);
+        partial void OnLaboratoryIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ExpensesTransaction
+        {
+            get
+            {
+                return _ExpensesTransaction;
+            }
+            set
+            {
+                OnExpensesTransactionChanging(value);
+                ReportPropertyChanging("ExpensesTransaction");
+                _ExpensesTransaction = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ExpensesTransaction");
+                OnExpensesTransactionChanged();
+            }
+        }
+        private global::System.String _ExpensesTransaction;
+        partial void OnExpensesTransactionChanging(global::System.String value);
+        partial void OnExpensesTransactionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ExpensesCost
+        {
+            get
+            {
+                return _ExpensesCost;
+            }
+            set
+            {
+                OnExpensesCostChanging(value);
+                ReportPropertyChanging("ExpensesCost");
+                _ExpensesCost = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ExpensesCost");
+                OnExpensesCostChanged();
+            }
+        }
+        private global::System.Int32 _ExpensesCost;
+        partial void OnExpensesCostChanging(global::System.Int32 value);
+        partial void OnExpensesCostChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime DateCreated
+        {
+            get
+            {
+                return _DateCreated;
+            }
+            set
+            {
+                OnDateCreatedChanging(value);
+                ReportPropertyChanging("DateCreated");
+                _DateCreated = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("DateCreated");
+                OnDateCreatedChanged();
+            }
+        }
+        private global::System.DateTime _DateCreated;
+        partial void OnDateCreatedChanging(global::System.DateTime value);
+        partial void OnDateCreatedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ExpensesDetail
+        {
+            get
+            {
+                return _ExpensesDetail;
+            }
+            set
+            {
+                OnExpensesDetailChanging(value);
+                ReportPropertyChanging("ExpensesDetail");
+                _ExpensesDetail = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("ExpensesDetail");
+                OnExpensesDetailChanged();
+            }
+        }
+        private global::System.String _ExpensesDetail;
+        partial void OnExpensesDetailChanging(global::System.String value);
+        partial void OnExpensesDetailChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Expenses_Expenses", "Laboratory")]
+        public Laboratory Laboratory
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Expenses_Expenses", "Laboratory").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Expenses_Expenses", "Laboratory").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Laboratory> LaboratoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Laboratory>("pintorModel.FK_Expenses_Expenses", "Laboratory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Laboratory>("pintorModel.FK_Expenses_Expenses", "Laboratory", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="pintorModel", Name="Income")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -5412,6 +5663,28 @@ namespace itmm.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Laboratory_Equipment_Laboratory", "Laboratory_Equipment")]
+        public EntityCollection<Laboratory_Equipment> Laboratory_Equipment
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Laboratory_Equipment>("pintorModel.FK_Laboratory_Equipment_Laboratory", "Laboratory_Equipment");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Laboratory_Equipment>("pintorModel.FK_Laboratory_Equipment_Laboratory", "Laboratory_Equipment", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
         [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Liability_Laboratory", "Liability")]
         public EntityCollection<Liability> Liabilities
         {
@@ -5434,18 +5707,18 @@ namespace itmm.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Laboratory_Equipment_Laboratory", "Laboratory_Equipment")]
-        public EntityCollection<Laboratory_Equipment> Laboratory_Equipment
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Expenses_Expenses", "Expens")]
+        public EntityCollection<Expens> Expenses
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Laboratory_Equipment>("pintorModel.FK_Laboratory_Equipment_Laboratory", "Laboratory_Equipment");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Expens>("pintorModel.FK_Expenses_Expenses", "Expens");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Laboratory_Equipment>("pintorModel.FK_Laboratory_Equipment_Laboratory", "Laboratory_Equipment", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Expens>("pintorModel.FK_Expenses_Expenses", "Expens", value);
                 }
             }
         }
