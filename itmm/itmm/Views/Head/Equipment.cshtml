@@ -77,6 +77,9 @@
   </div>  
 }
 </div><!--zero_div-->
+
+</div><!--content_wrapper-->
+
 @if (EquipList.Count() != 0)
 {
 <div id="dataTable">
@@ -117,7 +120,6 @@
 </table>
 </div><!-- dataTables -->
 }
-</div><!--content_wrapper-->
 
 @section SideNav{
 <ul>
@@ -126,5 +128,6 @@
      <li>@Html.ActionLink("Material", "Material", "Head")</li>
     <li>@Html.ActionLink("Equipment", "Equipment", "Head", null, new { id = "light" })</li>
      <li>@Html.ActionLink("Notification", "Notification", "Head")</li>
+     <li>@Html.ActionLink("Reports", "HeadReports", "Head")</li>
 </ul>
 }

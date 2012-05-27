@@ -1,0 +1,239 @@
+﻿@{
+    ViewBag.Title = "HeadReports";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+    var ExpensesList = (ViewBag.ExpensesList as IQueryable<itmm.Models.Expens>);
+    var IncomeList = (ViewBag.IncomeList as IQueryable<itmm.Models.Income>);
+
+
+
+
+}
+
+
+
+<div id="summary_toggle_wrapper">
+    <a href="">Current</a>&nbsp&nbsp&nbsp<a href="">Previous</a>
+</div>
+
+<br />
+
+<div id="current_summary_wrapper" style="width:950px">
+<!-- start current income -->
+<div>
+    <span style="color:green;font-size:25px">Income : @ViewBag.Income</span>
+
+    <a href="" style="padding-left:50px">Show Details</a>
+    <br />
+    <div id="income_datatable_wrapper">
+
+        @if (IncomeList.Count() != 0)
+        {
+            <div  style="min-height:102px;">
+            <table  cellspacing="0" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Id Number </th>
+                        <th>Family Name</th>
+                        <th>First Name</th>
+                        <th>Course and Year</th>
+                        <th>Transaction</th>
+                        <th>Cost</th>
+                        <th>Date Added</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var x in IncomeList)
+                    { 
+                    <tr>
+                        <td>@x.StudentInfo.StudentId</td>
+                        <td>@x.StudentInfo.FamiliyName</td>  
+                        <td>@x.StudentInfo.FirstName</td>
+                        <td>@x.StudentInfo.CourseAndYear</td>
+                        <td>@x.Transactionn</td>
+                        <td>@x.cost</td>       
+                        <td>@x.DateCreated</td>
+                        <td>
+                        @Html.ActionLink("[Edit]", "EditIncome", "Staff", new { IncomeId = x.IncomeId }, null)
+                        @* @Html.ActionLink("[Delete]", "DeleteIncome", "Staff", new { IncomeId = x.IncomeId }, null)*@
+                        </td>
+                    </tr>
+                    }
+ 
+                </tbody>
+            </table>
+
+            </div><!--dataTable-->
+        }
+    <br />
+    <a href="">Hide</a>
+    </div> <!--end income_datatable_wrapper-->
+    <br />
+</div>
+<!-- end current income -->
+
+<!-- start current expenses -->
+    <div>
+        <span style="color:red;font-size:25px">Expenses : @ViewBag.Expenses</span> 
+        <a href="" style="padding-left:50px" >Show Details</a>
+        <br />
+        <div id="expense_datatable_wrapper">
+
+            @if (ExpensesList.Count() != 0)
+            {
+            <div>
+            <table  cellspacing="0" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Transaction</th>
+                        <th>Detail</th>
+                        <th>Cost</th>
+                        <th>Date Added</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                   @foreach (var x in ExpensesList)
+                   { 
+                    <tr>
+                        <td>@x.ExpensesTransaction</td>
+                        <td>@x.ExpensesDetail</td>  
+                        <td>@x.ExpensesCost</td>
+                        <td>@x.DateCreated</td>
+                        <td>
+                        @Html.ActionLink("[Edit]", "EditExpenses", "Staff", new { ExpensesId = x.ExpensesId }, null)
+                        </td>
+                    </tr>
+                   }
+ 
+                </tbody>
+            </table>
+
+            </div><!--dataTable-->
+            }
+            <br />
+        <a href="">Hide</a>
+        </div> <!--end expense_datatable_wrapper-->
+            <br />
+
+        
+    </div>
+<!-- end current expenses -->
+<div>
+ <span style="color:silver;font-size:25px">Total Income: @ViewBag.TotalIncome</span>
+</div>
+
+</div>
+
+
+
+<div id="previous_summary_wrapper" style="background-color:lightblue;width:950px">
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        hideDiv();
+        initDataTables();
+
+
+        //1. show current  summary
+        $("#summary_toggle_wrapper > a:nth-child(1)").click(function () {
+            $("#previous_summary_wrapper").fadeOut();
+            $("#current_summary_wrapper").fadeIn();
+
+            return false;
+        });
+
+        //1-1. show income datatable
+        $("#current_summary_wrapper > div:nth-child(1) > a").click(function () {
+            $("#income_datatable_wrapper").fadeIn();
+            return false;
+        });
+
+        //1-2. hide income datatable
+        $("#income_datatable_wrapper > a").click(function () {
+            $("#income_datatable_wrapper").fadeOut();
+            return false;
+        });
+
+
+        //1-3. show expense datatable
+        $("#current_summary_wrapper > div:nth-child(2) > a").click(function () {
+            $("#expense_datatable_wrapper").fadeIn();
+            return false;
+        });
+
+        //1-4. hide expense datatable
+        $("#expense_datatable_wrapper > a").click(function () {
+            $("#expense_datatable_wrapper").fadeOut();
+            return false;
+        });
+
+
+
+
+
+
+        //2. show previous summary
+        $("#summary_toggle_wrapper > a:nth-child(2)").click(function () {
+            $("#current_summary_wrapper").fadeOut();
+            $("#previous_summary_wrapper").fadeIn();
+
+            return false;
+        });
+
+
+    });
+
+
+
+
+
+
+    function hideDiv() {
+        $("#current_summary_wrapper").addClass("hide_div");
+        $("#previous_summary_wrapper").addClass("hide_div");
+        $("#income_datatable_wrapper").addClass("hide_div");
+        $("#expense_datatable_wrapper").addClass("hide_div");
+    }
+
+
+    function initDataTables() {
+        $("#income_datatable_wrapper > div > table").dataTable({
+            "sDom": 'R<"H"lfr>t<"F"ip<',
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers"
+
+        });
+        $("#expense_datatable_wrapper > div > table").dataTable({
+            "sDom": 'R<"H"lfr>t<"F"ip<',
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers"
+
+        });
+    }
+
+</script>
+
+
+<style type="text/css">
+    .hide_div
+    {
+        display: none;
+       
+    }
+</style>
+
+
+@section SideNav{
+<ul>
+    <li>@Html.ActionLink("Home", "Index", "Head")</li>
+    <li>@Html.ActionLink("Staff", "Staff", "Head")</li>
+    <li>@Html.ActionLink("Material", "Material", "Head")</li>
+    <li>@Html.ActionLink("Equipment", "Equipment", "Head")</li>
+    <li>@Html.ActionLink("Notification", "Notification", "Head")</li>
+    <li>@Html.ActionLink("Reports", "HeadReports", "Head", null, new { id = "light" })</li>
+</ul>
+}

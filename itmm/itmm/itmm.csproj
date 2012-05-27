@@ -249,6 +249,7 @@
     <Content Include="Views\Staff\ViewEquipment.cshtml" />
     <Content Include="Views\Staff\Expenses.cshtml" />
     <Content Include="Views\Staff\EditExpenses.cshtml" />
+    <Content Include="Views\Head\HeadReports.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
@@ -268,7 +269,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>1777</DevelopmentServerPort>
+          <DevelopmentServerPort>7872</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

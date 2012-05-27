@@ -230,6 +230,8 @@ namespace itmm.Controllers
         public ActionResult Liability()
         {
             var labid = getLabId();
+
+
             var x = from y in con.Liabilities
                     where y.LaboratoryId == labid  && y.Status != "Settled"
                     select y;
@@ -241,22 +243,22 @@ namespace itmm.Controllers
         public ActionResult Liability(itmmLiability a)
         {
 
-            //StudentInfo c = new StudentInfo();
-            ////c.FamiliyName = a.FamilyName;
-            ////c.FirstName = a.FirstName;
-            //c.IdNumber = a.IdNumber;
-            ////c.CourseAndYear = a.Course;
-            //con.AddToStudentInfoes(c);
+            StudentInfo c = new StudentInfo();
+            c.FirstName = "autogen";
+            c.FamiliyName = "autogen";
+            c.StudentId = a.IdNumber.ToString();
+            c.CourseAndYear = "autogen";
+            con.AddToStudentInfoes(c);
 
 
             var labid = getLabId();
             Liability b = new Liability();
-            b.StudentId = a.IdNumber;
+            b.StudenInfotId = Convert.ToInt32(a.IdNumber);
             b.Equipment = a.Equipment;
             b.Fine = a.Fine;
             b.Status = a.Status;
             b.LaboratoryId = labid;
-            //b.StudentId = c.StudentId;
+            b.StudenInfotId = c.StudentInfoId;
             con.AddToLiabilities(b);
 
             con.SaveChanges();
@@ -280,7 +282,7 @@ namespace itmm.Controllers
             //a.FirstName=b.FirstName;
             //a.IdNumber=b.IdNumber;
             //a.Course=b.CourseAndYear;
-            a.IdNumber = c.StudentId;
+            a.IdNumber = c.StudenInfotId.ToString();
             a.Equipment = c.Equipment;
             a.Fine = c.Fine;
             a.Status = c.Status;
@@ -303,7 +305,7 @@ namespace itmm.Controllers
             //b.IdNumber = a.IdNumber;
             //b.CourseAndYear = a.Course;
 
-            c.StudentId = a.IdNumber;
+            c.StudenInfotId = Convert.ToInt32(a.IdNumber);
             c.Equipment = a.Equipment;
             c.Fine = a.Fine;
             c.Status = status;
@@ -316,8 +318,10 @@ namespace itmm.Controllers
     public ActionResult Income()
     {
         // TODO datatables 
+        var labid = getLabId();
 
         var x = from y in con.Incomes
+                where y.LaboratoryId == labid
                 select y;
         ViewBag.IncomeList = x;
 
@@ -329,15 +333,16 @@ namespace itmm.Controllers
         StudentInfo c = new StudentInfo();
         c.FirstName = a.FirstName;
         c.FamiliyName = a.FamilyName;
-        c.IdNumber = a.IdNumber;
+        c.StudentId = a.IdNumber.ToString();
         c.CourseAndYear = a.Course;
         con.AddToStudentInfoes(c);
 
         itmm.Models.Income b = new itmm.Models.Income();
         b.Transactionn = a.Transaction;
         b.cost = a.Cost;
-        b.StudentId = c.StudentId;
+        b.StudentInfoId = c.StudentInfoId;
         b.LaboratoryId = getLabId();
+        b.DateCreated = DateTime.Now;
         con.AddToIncomes(b);
 
         con.SaveChanges();
@@ -353,7 +358,7 @@ namespace itmm.Controllers
         itmmIncome a = new itmmIncome();
         a.FamilyName = x.StudentInfo.FamiliyName;
         a.FirstName = x.StudentInfo.FirstName;
-        a.IdNumber = x.StudentInfo.IdNumber;
+        a.IdNumber = Convert.ToInt32(x.StudentInfo.StudentId);
         a.Course = x.StudentInfo.CourseAndYear;
         a.Cost = Convert.ToInt32(x.cost);
         a.Transaction = x.Transactionn;
@@ -371,7 +376,7 @@ namespace itmm.Controllers
                  select y).FirstOrDefault();
         x.StudentInfo.FirstName = a.FirstName;
         x.StudentInfo.FamiliyName = a.FamilyName;
-        x.StudentInfo.IdNumber = a.IdNumber;
+        x.StudentInfo.StudentId = a.IdNumber.ToString();
         x.StudentInfo.CourseAndYear = a.Course;
         x.cost = a.Cost;
         x.Transactionn = a.Transaction;
@@ -590,7 +595,7 @@ namespace itmm.Controllers
            Liability a = new Liability();
 
            a.Equipment = (from y in con.Equipments where y.EquipmentId == EquipmentId select y.Make).FirstOrDefault();
-           a.StudentId = (from y in con.Tables where y.TableId == TableId select y.StudentId).FirstOrDefault();
+           a.StudenInfotId = Convert.ToInt32((from y in con.Tables where y.TableId == TableId select y.StudentId).FirstOrDefault());
            a.Fine = "To be Determined";
            a.Status = "Unsettled";
            a.LaboratoryId = (from y in con.Classes where y.ClassId == ClassId select y.LabId).FirstOrDefault();

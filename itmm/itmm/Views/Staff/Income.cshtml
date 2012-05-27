@@ -83,6 +83,7 @@
             <th>Course and Year</th>
             <th>Transaction</th>
             <th>Cost</th>
+            <th>Date Added</th>
             <th></th>
         </tr>
     </thead>
@@ -90,12 +91,13 @@
        @foreach (var x in IncomeList)
        { 
         <tr>
-            <td>@x.StudentInfo.IdNumber</td>
+            <td>@x.StudentInfo.StudentId</td>
             <td>@x.StudentInfo.FamiliyName</td>  
             <td>@x.StudentInfo.FirstName</td>
             <td>@x.StudentInfo.CourseAndYear</td>
             <td>@x.Transactionn</td>
-            <td>@x.cost</td>
+            <td>@x.cost</td>       
+            <td>@x.DateCreated</td>
             <td>
             @Html.ActionLink("[Edit]", "EditIncome", "Staff", new { IncomeId = x.IncomeId }, null)
            @* @Html.ActionLink("[Delete]", "DeleteIncome", "Staff", new { IncomeId = x.IncomeId }, null)*@
