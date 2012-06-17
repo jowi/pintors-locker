@@ -143,6 +143,7 @@
       <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
       <End Role="aspnet_Users" EntitySet="aspnet_Users" />
     </AssociationSet>
+    <EntitySet Name="HeadReports" EntityType="pintorModel.HeadReport" />
   </EntityContainer>
   <EntityType Name="aspnet_Applications">
     <Key>
@@ -865,4 +866,15 @@
     <End Type="pintorModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
     <End Type="pintorModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
   </Association>
+  <EntityType Name="HeadReport">
+    <Key>
+      <PropertyRef Name="HeadReportsId" />
+    </Key>
+    <Property Type="Int32" Name="HeadReportsId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Gain" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Loss" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="LaboraratoryId" Nullable="false" />
+    <Property Type="Int32" Name="YearArchived" Nullable="false" />
+    <Property Type="String" Name="TotalGain" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

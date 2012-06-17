@@ -22,6 +22,7 @@
           <EntitySet Name="Equipment" EntityType="pintorModel.Store.Equipment" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Event" EntityType="pintorModel.Store.Event" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Expenses" EntityType="pintorModel.Store.Expenses" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="HeadReports" EntityType="pintorModel.Store.HeadReports" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Income" EntityType="pintorModel.Store.Income" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="InventoryCost" EntityType="pintorModel.Store.InventoryCost" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Laboratory" EntityType="pintorModel.Store.Laboratory" store:Type="Tables" Schema="dbo" />
@@ -347,6 +348,17 @@
           <Property Name="ExpensesCost" Type="int" Nullable="false" />
           <Property Name="DateCreated" Type="datetime2" Nullable="false" />
           <Property Name="ExpensesDetail" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="HeadReports">
+          <Key>
+            <PropertyRef Name="HeadReportsId" />
+          </Key>
+          <Property Name="HeadReportsId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Gain" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Loss" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="LaboraratoryId" Type="int" Nullable="false" />
+          <Property Name="YearArchived" Type="int" Nullable="false" />
+          <Property Name="TotalGain" Type="varchar" Nullable="false" MaxLength="255" />
         </EntityType>
         <EntityType Name="Income">
           <Key>
@@ -1016,6 +1028,7 @@
             <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
           </AssociationSet>
+          <EntitySet Name="HeadReports" EntityType="pintorModel.HeadReport" />
         </EntityContainer>
         <EntityType Name="aspnet_Applications">
           <Key>
@@ -1738,6 +1751,17 @@
           <End Type="pintorModel.aspnet_Roles" Role="aspnet_Roles" Multiplicity="*" />
           <End Type="pintorModel.aspnet_Users" Role="aspnet_Users" Multiplicity="*" />
         </Association>
+        <EntityType Name="HeadReport">
+          <Key>
+            <PropertyRef Name="HeadReportsId" />
+          </Key>
+          <Property Type="Int32" Name="HeadReportsId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Gain" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Loss" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="LaboraratoryId" Nullable="false" />
+          <Property Type="Int32" Name="YearArchived" Nullable="false" />
+          <Property Type="String" Name="TotalGain" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2118,6 +2142,18 @@
               <ScalarProperty Name="RoleId" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="HeadReports">
+            <EntityTypeMapping TypeName="pintorModel.HeadReport">
+              <MappingFragment StoreEntitySet="HeadReports">
+                <ScalarProperty Name="TotalGain" ColumnName="TotalGain" />
+                <ScalarProperty Name="YearArchived" ColumnName="YearArchived" />
+                <ScalarProperty Name="LaboraratoryId" ColumnName="LaboraratoryId" />
+                <ScalarProperty Name="Loss" ColumnName="Loss" />
+                <ScalarProperty Name="Gain" ColumnName="Gain" />
+                <ScalarProperty Name="HeadReportsId" ColumnName="HeadReportsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -2139,46 +2175,46 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="itmmADO" ZoomLevel="97">
-        <EntityTypeShape EntityType="pintorModel.aspnet_Applications" Width="1.5" PointX="8.75" PointY="7.875" Height="2.557190755208353" />
-        <EntityTypeShape EntityType="pintorModel.aspnet_Membership" Width="1.5" PointX="14" PointY="9.5" Height="5.441712239583353" />
+        <EntityTypeShape EntityType="pintorModel.aspnet_Applications" Width="1.5" PointX="8.75" PointY="7.875" Height="2.5571907552083246" />
+        <EntityTypeShape EntityType="pintorModel.aspnet_Membership" Width="1.5" PointX="14" PointY="9.5" Height="5.4417122395833388" />
         <EntityTypeShape EntityType="pintorModel.aspnet_Paths" Width="1.5" PointX="11" PointY="6.375" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="pintorModel.aspnet_PersonalizationAllUsers" Width="1.5" PointX="13.25" PointY="6.75" Height="1.7879850260416106" />
+        <EntityTypeShape EntityType="pintorModel.aspnet_PersonalizationAllUsers" Width="1.5" PointX="13.25" PointY="6.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="pintorModel.aspnet_PersonalizationPerUser" Width="1.5" PointX="13.25" PointY="3.375" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="pintorModel.aspnet_Profile" Width="1.5" PointX="18.5" PointY="11.875" Height="2.1725878906249818" />
+        <EntityTypeShape EntityType="pintorModel.aspnet_Profile" Width="1.5" PointX="18.5" PointY="11.875" Height="2.172587890624996" />
         <EntityTypeShape EntityType="pintorModel.aspnet_Roles" Width="1.5" PointX="11" PointY="15.75" Height="2.3648893229166674" />
-        <EntityTypeShape EntityType="pintorModel.aspnet_SchemaVersions" Width="1.5" PointX="0.75" PointY="0.75" Height="1.5956835937499818" />
-        <EntityTypeShape EntityType="pintorModel.aspnet_Users" Width="1.5" PointX="16.25" PointY="11.375" Height="3.3263964843749818" />
-        <EntityTypeShape EntityType="pintorModel.aspnet_WebEvent_Events" Width="1.5" PointX="2.75" PointY="0.75" Height="3.9033007812499818" />
-        <EntityTypeShape EntityType="pintorModel.Class" Width="1.5" PointX="3" PointY="9.875" Height="3.134095052083353" />
+        <EntityTypeShape EntityType="pintorModel.aspnet_SchemaVersions" Width="1.5" PointX="0.75" PointY="0.75" Height="1.5956835937500102" />
+        <EntityTypeShape EntityType="pintorModel.aspnet_Users" Width="1.5" PointX="16.25" PointY="11.375" Height="3.3263964843750102" />
+        <EntityTypeShape EntityType="pintorModel.aspnet_WebEvent_Events" Width="1.5" PointX="2.75" PointY="0.75" Height="3.9033007812500102" />
+        <EntityTypeShape EntityType="pintorModel.Class" Width="1.5" PointX="3" PointY="9.875" Height="3.1340950520833388" />
         <EntityTypeShape EntityType="pintorModel.Dispense" Width="1.5" PointX="9" PointY="19" Height="2.9417936197916674" />
-        <EntityTypeShape EntityType="pintorModel.Equipment" Width="1.5" PointX="3.75" PointY="26.625" Height="3.134095052083353" />
+        <EntityTypeShape EntityType="pintorModel.Equipment" Width="1.5" PointX="3.75" PointY="26.625" Height="3.1340950520833246" />
         <EntityTypeShape EntityType="pintorModel.Event" Width="1.5" PointX="4.75" PointY="0.75" Height="2.1725878906249818" />
-        <EntityTypeShape EntityType="pintorModel.Expens" Width="1.5" PointX="3" PointY="13.75" Height="2.3648893229166106" />
-        <EntityTypeShape EntityType="pintorModel.Income" Width="1.5" PointX="3" PointY="16.875" Height="2.557190755208353" />
-        <EntityTypeShape EntityType="pintorModel.InventoryCost" Width="1.5" PointX="4.75" PointY="3.75" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="pintorModel.Expens" Width="1.5" PointX="3" PointY="13.75" Height="2.3648893229166674" />
+        <EntityTypeShape EntityType="pintorModel.Income" Width="1.5" PointX="3" PointY="16.875" Height="2.5571907552083246" />
+        <EntityTypeShape EntityType="pintorModel.InventoryCost" Width="1.5" PointX="0.75" PointY="5.75" Height="1.7879850260416674" />
         <EntityTypeShape EntityType="pintorModel.Laboratory" Width="1.5" PointX="0.75" PointY="16.25" Height="3.9033007812499818" />
         <EntityTypeShape EntityType="pintorModel.Laboratory_Equipment" Width="1.5" PointX="6" PointY="17.125" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="pintorModel.Laboratory_Head" Width="1.5" PointX="3" PointY="23.125" Height="2.557190755208353" />
-        <EntityTypeShape EntityType="pintorModel.Laboratory_Material" Width="1.5" PointX="3" PointY="20.25" Height="1.980286458333353" />
-        <EntityTypeShape EntityType="pintorModel.Laboratory_Room" Width="1.5" PointX="6" PointY="14.25" Height="1.980286458333353" />
-        <EntityTypeShape EntityType="pintorModel.Laboratory_Staff" Width="1.5" PointX="3" PointY="31.875" Height="2.9417936197916106" />
-        <EntityTypeShape EntityType="pintorModel.Liability" Width="1.5" PointX="6" PointY="20.875" Height="2.557190755208353" />
+        <EntityTypeShape EntityType="pintorModel.Laboratory_Material" Width="1.5" PointX="3" PointY="20.25" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="pintorModel.Laboratory_Room" Width="1.5" PointX="6" PointY="14.25" Height="1.9802864583333246" />
+        <EntityTypeShape EntityType="pintorModel.Laboratory_Staff" Width="1.5" PointX="3" PointY="31.875" Height="2.9417936197916674" />
+        <EntityTypeShape EntityType="pintorModel.Liability" Width="1.5" PointX="6" PointY="20.875" Height="2.5571907552083246" />
         <EntityTypeShape EntityType="pintorModel.Material" Width="1.5" PointX="0.75" PointY="21.125" Height="2.1725878906249818" />
         <EntityTypeShape EntityType="pintorModel.Notification" Width="1.5" PointX="3" PointY="38.875" Height="2.557190755208353" />
         <EntityTypeShape EntityType="pintorModel.Room" Width="1.5" PointX="3.75" PointY="7.25" Height="1.7879850260416674" />
-        <EntityTypeShape EntityType="pintorModel.StudentInfo" Width="1.5" PointX="0.75" PointY="12.875" Height="2.557190755208353" />
-        <EntityTypeShape EntityType="pintorModel.sysdiagram" Width="1.5" PointX="0.75" PointY="5.75" Height="1.980286458333353" />
+        <EntityTypeShape EntityType="pintorModel.StudentInfo" Width="1.5" PointX="0.75" PointY="12.875" Height="2.5571907552083246" />
+        <EntityTypeShape EntityType="pintorModel.sysdiagram" Width="1.5" PointX="6.75" PointY="0.75" Height="1.9802864583333246" />
         <EntityTypeShape EntityType="pintorModel.Table" Width="1.5" PointX="6.75" PointY="24.5" Height="1.980286458333353" />
         <AssociationConnector Association="pintorModel.FK__aspnet_Me__Appli__66603565" >
-          <ConnectorPoint PointX="10.25" PointY="9.9660953776041765" />
-          <ConnectorPoint PointX="14" PointY="9.9660953776041765" />
+          <ConnectorPoint PointX="10.25" PointY="9.9660953776041623" />
+          <ConnectorPoint PointX="14" PointY="9.9660953776041623" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK__aspnet_Pa__Appli__1F98B2C1" >
           <ConnectorPoint PointX="10.25" PointY="8.3074446614583337" />
           <ConnectorPoint PointX="11" PointY="8.3074446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK__aspnet_Ro__Appli__08B54D69" >
-          <ConnectorPoint PointX="9.5" PointY="10.432190755208353" />
+          <ConnectorPoint PointX="9.5" PointY="10.432190755208325" />
           <ConnectorPoint PointX="9.5" PointY="16.932444661458334" />
           <ConnectorPoint PointX="11" PointY="16.932444661458334" />
         </AssociationConnector>
@@ -2190,12 +2226,12 @@
           <ConnectorPoint PointX="17" PointY="11.375" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK__aspnet_Me__UserI__6754599E" >
-          <ConnectorPoint PointX="16.25" PointY="13.038198242187491" />
-          <ConnectorPoint PointX="15.5" PointY="13.038198242187491" />
+          <ConnectorPoint PointX="16.25" PointY="13.038198242187505" />
+          <ConnectorPoint PointX="15.5" PointY="13.038198242187505" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK__aspnet_Pe__PathI__2739D489" >
-          <ConnectorPoint PointX="12.5" PointY="7.6439925130208053" />
-          <ConnectorPoint PointX="13.25" PointY="7.6439925130208053" />
+          <ConnectorPoint PointX="12.5" PointY="7.6439925130208337" />
+          <ConnectorPoint PointX="13.25" PointY="7.6439925130208337" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK__aspnet_Pe__PathI__2CF2ADDF" >
           <ConnectorPoint PointX="11.75" PointY="6.375" />
@@ -2208,39 +2244,39 @@
           <ConnectorPoint PointX="14.75" PointY="4.5574446614583337" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK__aspnet_Pr__UserI__7D439ABD" >
-          <ConnectorPoint PointX="17.75" PointY="12.961293945312491" />
-          <ConnectorPoint PointX="18.5" PointY="12.961293945312491" />
+          <ConnectorPoint PointX="17.75" PointY="12.961293945312498" />
+          <ConnectorPoint PointX="18.5" PointY="12.961293945312498" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Class_Laboratory" >
           <ConnectorPoint PointX="2.2130769230769229" PointY="16.25" />
           <ConnectorPoint PointX="2.65625" PointY="15.806826923076923" />
-          <ConnectorPoint PointX="2.65625" PointY="11.442047526041677" />
-          <ConnectorPoint PointX="3" PointY="11.442047526041677" />
+          <ConnectorPoint PointX="2.65625" PointY="11.442047526041669" />
+          <ConnectorPoint PointX="3" PointY="11.442047526041669" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Dispense_Equipment" >
           <ConnectorPoint PointX="4.90625" PointY="26.625" />
-          <ConnectorPoint PointX="4.90625" PointY="19.841095377604177" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="19.841095377604177" />
-          <ConnectorPoint PointX="5.833333333333333" PointY="19.841095377604177" />
-          <ConnectorPoint PointX="6.2916671666666675" PointY="19.841095377604177" />
-          <ConnectorPoint PointX="6.4583338333333336" PointY="19.841095377604177" />
-          <ConnectorPoint PointX="6.666666666666667" PointY="19.841095377604177" />
-          <ConnectorPoint PointX="6.833333333333333" PointY="19.841095377604177" />
-          <ConnectorPoint PointX="9" PointY="19.841095377604177" />
+          <ConnectorPoint PointX="4.90625" PointY="19.841095377604162" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="19.841095377604162" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="19.841095377604162" />
+          <ConnectorPoint PointX="6.2916671666666675" PointY="19.841095377604162" />
+          <ConnectorPoint PointX="6.4583338333333336" PointY="19.841095377604162" />
+          <ConnectorPoint PointX="6.666666666666667" PointY="19.841095377604162" />
+          <ConnectorPoint PointX="6.833333333333333" PointY="19.841095377604162" />
+          <ConnectorPoint PointX="9" PointY="19.841095377604162" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Dispense_Room" >
           <ConnectorPoint PointX="5.078125" PointY="9.0379850260416674" />
-          <ConnectorPoint PointX="5.078125" PointY="19.636640566406271" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="19.636640566406271" />
-          <ConnectorPoint PointX="5.833333333333333" PointY="19.636640566406271" />
-          <ConnectorPoint PointX="6.666666666666667" PointY="19.636640566406271" />
-          <ConnectorPoint PointX="6.833333333333333" PointY="19.636640566406271" />
-          <ConnectorPoint PointX="9" PointY="19.636640566406271" />
+          <ConnectorPoint PointX="5.078125" PointY="19.63664056640625" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="19.63664056640625" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="19.63664056640625" />
+          <ConnectorPoint PointX="6.666666666666667" PointY="19.63664056640625" />
+          <ConnectorPoint PointX="6.833333333333333" PointY="19.63664056640625" />
+          <ConnectorPoint PointX="9" PointY="19.63664056640625" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Dispense_Table" >
           <ConnectorPoint PointX="7.90625" PointY="24.5" />
-          <ConnectorPoint PointX="7.90625" PointY="20.358050188802082" />
-          <ConnectorPoint PointX="9" PointY="20.358050188802082" />
+          <ConnectorPoint PointX="7.90625" PointY="20.358050188802075" />
+          <ConnectorPoint PointX="9" PointY="20.358050188802075" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Laboratory_Equipment_Equipment" >
           <ConnectorPoint PointX="5.25" PointY="26.626152846153843" />
@@ -2253,38 +2289,38 @@
         <AssociationConnector Association="pintorModel.FK_Expenses_Expenses" >
           <ConnectorPoint PointX="2.25" PointY="16.251152846153843" />
           <ConnectorPoint PointX="2.5" PointY="16.001152846153843" />
-          <ConnectorPoint PointX="2.5" PointY="16.616042169070457" />
-          <ConnectorPoint PointX="2.6910744349011209" PointY="16.424967734169336" />
-          <ConnectorPoint PointX="2.8089255650988787" PointY="16.307116603971579" />
-          <ConnectorPoint PointX="2.8160744349011209" PointY="16.299967734169332" />
-          <ConnectorPoint PointX="2.9339255650988787" PointY="16.182116603971576" />
-          <ConnectorPoint PointX="3.0011528461538459" PointY="16.114889322916611" />
+          <ConnectorPoint PointX="2.5" PointY="16.616042169070514" />
+          <ConnectorPoint PointX="2.6910744349011209" PointY="16.424967734169392" />
+          <ConnectorPoint PointX="2.8089255650988787" PointY="16.307116603971636" />
+          <ConnectorPoint PointX="2.8160744349011209" PointY="16.299967734169389" />
+          <ConnectorPoint PointX="2.9339255650988787" PointY="16.182116603971632" />
+          <ConnectorPoint PointX="3.0011528461538459" PointY="16.114889322916667" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Income_Laboratory" >
-          <ConnectorPoint PointX="2.25" PointY="18.153595377604177" />
-          <ConnectorPoint PointX="3" PointY="18.153595377604177" />
+          <ConnectorPoint PointX="2.25" PointY="18.153595377604162" />
+          <ConnectorPoint PointX="3" PointY="18.153595377604162" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Income_StudentInfo" >
-          <ConnectorPoint PointX="2.2499999999999996" PointY="15.432190755208353" />
-          <ConnectorPoint PointX="2.6910744349011213" PointY="15.873265190109473" />
-          <ConnectorPoint PointX="2.8089255650988791" PointY="15.991116320307231" />
-          <ConnectorPoint PointX="2.875" PointY="16.057190755208353" />
-          <ConnectorPoint PointX="2.875" PointY="17.483045688802093" />
-          <ConnectorPoint PointX="3" PointY="17.483045688802093" />
+          <ConnectorPoint PointX="2.2499999999999996" PointY="15.432190755208325" />
+          <ConnectorPoint PointX="2.6910744349011213" PointY="15.873265190109445" />
+          <ConnectorPoint PointX="2.8089255650988791" PointY="15.991116320307203" />
+          <ConnectorPoint PointX="2.875" PointY="16.057190755208325" />
+          <ConnectorPoint PointX="2.875" PointY="17.483045688802086" />
+          <ConnectorPoint PointX="3" PointY="17.483045688802086" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Laboratory_Equipment_Laboratory" >
-          <ConnectorPoint PointX="2.25" PointY="19.997198079427079" />
-          <ConnectorPoint PointX="2.4166666666666665" PointY="19.997198079427079" />
-          <ConnectorPoint PointX="2.5833333333333335" PointY="19.997198079427079" />
-          <ConnectorPoint PointX="2.6650175922475912" PointY="19.997198079427079" />
-          <ConnectorPoint PointX="2.8316842589142581" PointY="19.997198079427079" />
-          <ConnectorPoint PointX="4.822916666666667" PointY="19.997198079427079" />
-          <ConnectorPoint PointX="4.989583333333333" PointY="19.997198079427079" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="19.997198079427079" />
-          <ConnectorPoint PointX="5.833333333333333" PointY="19.997198079427079" />
-          <ConnectorPoint PointX="6.2916671666666675" PointY="19.997198079427079" />
-          <ConnectorPoint PointX="6.4583338333333336" PointY="19.997198079427079" />
-          <ConnectorPoint PointX="6.75" PointY="19.997198079427079" />
+          <ConnectorPoint PointX="2.25" PointY="19.997198079427072" />
+          <ConnectorPoint PointX="2.4166666666666665" PointY="19.997198079427072" />
+          <ConnectorPoint PointX="2.5833333333333335" PointY="19.997198079427072" />
+          <ConnectorPoint PointX="2.6650175922475841" PointY="19.997198079427072" />
+          <ConnectorPoint PointX="2.831684258914251" PointY="19.997198079427072" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="19.997198079427072" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="19.997198079427072" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="19.997198079427072" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="19.997198079427072" />
+          <ConnectorPoint PointX="6.2916671666666675" PointY="19.997198079427072" />
+          <ConnectorPoint PointX="6.4583338333333336" PointY="19.997198079427072" />
+          <ConnectorPoint PointX="6.75" PointY="19.997198079427072" />
           <ConnectorPoint PointX="6.75" PointY="19.297587890624982" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Laboratory_Head_Laboratory" >
@@ -2302,27 +2338,27 @@
         <AssociationConnector Association="pintorModel.FK_Laboratory_Room_Laboratory" >
           <ConnectorPoint PointX="2.25" PointY="16.288075923076921" />
           <ConnectorPoint PointX="2.375" PointY="16.163075923076921" />
-          <ConnectorPoint PointX="2.375" PointY="16.605286458333353" />
-          <ConnectorPoint PointX="2.7916666666666665" PointY="16.605286458333353" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="16.605286458333353" />
-          <ConnectorPoint PointX="4.994791666666667" PointY="16.605286458333353" />
-          <ConnectorPoint PointX="5.161458333333333" PointY="16.605286458333353" />
-          <ConnectorPoint PointX="5.6261528461538468" PointY="16.605286458333353" />
-          <ConnectorPoint PointX="6.0011528461538459" PointY="16.230286458333353" />
+          <ConnectorPoint PointX="2.375" PointY="16.605286458333325" />
+          <ConnectorPoint PointX="2.7916666666666665" PointY="16.605286458333325" />
+          <ConnectorPoint PointX="2.9583333333333335" PointY="16.605286458333325" />
+          <ConnectorPoint PointX="4.994791666666667" PointY="16.605286458333325" />
+          <ConnectorPoint PointX="5.161458333333333" PointY="16.605286458333325" />
+          <ConnectorPoint PointX="5.6261528461538468" PointY="16.605286458333325" />
+          <ConnectorPoint PointX="6.0011528461538459" PointY="16.230286458333325" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Laboratory_Staff_Laboratory_Staff" >
           <ConnectorPoint PointX="2.25" PointY="20.13829978124998" />
           <ConnectorPoint PointX="2.71875" PointY="20.60704978124998" />
-          <ConnectorPoint PointX="2.71875" PointY="33.345896809895805" />
-          <ConnectorPoint PointX="3" PointY="33.345896809895805" />
+          <ConnectorPoint PointX="2.71875" PointY="33.345896809895834" />
+          <ConnectorPoint PointX="3" PointY="33.345896809895834" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Liability_Laboratory" >
-          <ConnectorPoint PointX="2.25" PointY="19.075396728515628" />
-          <ConnectorPoint PointX="2.75" PointY="19.075396728515628" />
-          <ConnectorPoint PointX="2.75" PointY="19.744690755208353" />
-          <ConnectorPoint PointX="5.541666666666667" PointY="19.744690755208353" />
-          <ConnectorPoint PointX="5.833333333333333" PointY="19.744690755208353" />
-          <ConnectorPoint PointX="6.3750005000000005" PointY="19.744690755208353" />
+          <ConnectorPoint PointX="2.25" PointY="19.075396728515617" />
+          <ConnectorPoint PointX="2.75" PointY="19.075396728515617" />
+          <ConnectorPoint PointX="2.75" PointY="19.744690755208325" />
+          <ConnectorPoint PointX="5.541666666666667" PointY="19.744690755208325" />
+          <ConnectorPoint PointX="5.833333333333333" PointY="19.744690755208325" />
+          <ConnectorPoint PointX="6.3750005000000005" PointY="19.744690755208325" />
           <ConnectorPoint PointX="6.3750005000000005" PointY="20.875" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Notification_Laboratory" >
@@ -2332,29 +2368,29 @@
           <ConnectorPoint PointX="3" PointY="40.153595377604177" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Laboratory_Material_Material" >
-          <ConnectorPoint PointX="2.25" PointY="21.677643229166677" />
-          <ConnectorPoint PointX="2.5416666666666665" PointY="21.677643229166677" />
-          <ConnectorPoint PointX="2.8645833333333335" PointY="21.677643229166677" />
-          <ConnectorPoint PointX="3" PointY="21.677643229166677" />
+          <ConnectorPoint PointX="2.25" PointY="21.677643229166662" />
+          <ConnectorPoint PointX="2.5416666666666665" PointY="21.677643229166662" />
+          <ConnectorPoint PointX="2.8645833333333335" PointY="21.677643229166662" />
+          <ConnectorPoint PointX="3" PointY="21.677643229166662" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Laboratory_Room_Room" >
           <ConnectorPoint PointX="4.78906" PointY="9.0379850260416674" />
-          <ConnectorPoint PointX="4.78906" PointY="16.203837890624982" />
-          <ConnectorPoint PointX="4.994791666666667" PointY="16.203837890624982" />
-          <ConnectorPoint PointX="5.161458333333333" PointY="16.203837890624982" />
-          <ConnectorPoint PointX="6" PointY="16.203837890624982" />
+          <ConnectorPoint PointX="4.78906" PointY="16.203837890624996" />
+          <ConnectorPoint PointX="4.994791666666667" PointY="16.203837890624996" />
+          <ConnectorPoint PointX="5.161458333333333" PointY="16.203837890624996" />
+          <ConnectorPoint PointX="6" PointY="16.203837890624996" />
         </AssociationConnector>
         <AssociationConnector Association="pintorModel.FK_Liability_StudentInfo" >
-          <ConnectorPoint PointX="2.25" PointY="14.122343377604182" />
-          <ConnectorPoint PointX="2.5729166666666665" PointY="14.122343377604182" />
-          <ConnectorPoint PointX="2.7395833333333335" PointY="14.122343377604182" />
-          <ConnectorPoint PointX="2.75" PointY="14.122343377604182" />
-          <ConnectorPoint PointX="2.75" PointY="16.480286458333353" />
-          <ConnectorPoint PointX="2.7916666666666665" PointY="16.480286458333353" />
-          <ConnectorPoint PointX="2.9583333333333335" PointY="16.480286458333353" />
-          <ConnectorPoint PointX="4.994791666666667" PointY="16.480286458333353" />
-          <ConnectorPoint PointX="5.161458333333333" PointY="16.480286458333353" />
-          <ConnectorPoint PointX="5.75" PointY="16.480286458333353" />
+          <ConnectorPoint PointX="2.25" PointY="14.122343377604167" />
+          <ConnectorPoint PointX="2.5729166666666665" PointY="14.122343377604167" />
+          <ConnectorPoint PointX="2.7395833333333335" PointY="14.122343377604167" />
+          <ConnectorPoint PointX="2.75" PointY="14.122343377604167" />
+          <ConnectorPoint PointX="2.75" PointY="16.480286458333325" />
+          <ConnectorPoint PointX="2.7916666666666665" PointY="16.480286458333325" />
+          <ConnectorPoint PointX="2.9583333333333335" PointY="16.480286458333325" />
+          <ConnectorPoint PointX="4.994791666666667" PointY="16.480286458333325" />
+          <ConnectorPoint PointX="5.161458333333333" PointY="16.480286458333325" />
+          <ConnectorPoint PointX="5.75" PointY="16.480286458333325" />
           <ConnectorPoint PointX="5.75" PointY="20.5" />
           <ConnectorPoint PointX="6.2916671666666675" PointY="20.5" />
           <ConnectorPoint PointX="6.4583338333333336" PointY="20.5" />
@@ -2364,8 +2400,9 @@
         <AssociationConnector Association="pintorModel.aspnet_UsersInRoles" >
           <ConnectorPoint PointX="12.5" PointY="16.932444661458334" />
           <ConnectorPoint PointX="17" PointY="16.932444661458334" />
-          <ConnectorPoint PointX="17" PointY="14.701396484374982" />
+          <ConnectorPoint PointX="17" PointY="14.70139648437501" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="pintorModel.HeadReport" Width="1.5" PointX="5.375" PointY="3.75" Height="2.1725878906250102" />
       </Diagram>
     </Diagrams>
   </Designer>

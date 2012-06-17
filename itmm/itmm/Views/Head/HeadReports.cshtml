@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
     var ExpensesList = (ViewBag.ExpensesList as IQueryable<itmm.Models.Expens>);
     var IncomeList = (ViewBag.IncomeList as IQueryable<itmm.Models.Income>);
+    var PreviousReprtList = (ViewBag.PreviousReprtList as IQueryable<itmm.Models.HeadReport>);
 
 
 
@@ -123,12 +124,39 @@
  <span style="color:silver;font-size:25px">Total Income: @ViewBag.TotalIncome</span>
 </div>
 
+<div style="float:right;padding: 0 500px 0 0">
+
+    <form id="archived" action="#" method="post">
+        <input type="hidden" value="@ViewBag.Income" name="Income" />
+        <input type="hidden" value="@ViewBag.Expenses" name="Expenses" />
+        <input type="hidden" value="@ViewBag.TotalIncome"  name="TotalIncome" />
+        <input type="submit" value="Archived" />
+    </form>
 </div>
 
+</div>
 
+<!-- START PREVOIUS REPORT -->
 
-<div id="previous_summary_wrapper" style="background-color:lightblue;width:950px">
+<div id="previous_summary_wrapper" width:950px">
 
+         
+
+           @{
+                foreach (var item in PreviousReprtList)
+                {
+                    <div>  
+                        <span>Year: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp @item.YearArchived</span><br />
+                        <span style="color:green">Income: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp @item.Gain</span><br />
+                        <span style="color:red">Expenses: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp @item.Loss</span><br />
+                        <span style="color:silver">Total Income: &nbsp @item.TotalGain</span><br />
+                        <span ><input type="hidden" value="@item.YearArchived" /><a href="#">Details</a></span>
+                    </div><br />
+                }
+           }
+
+     
+ 
 </div>
 
 <script type="text/javascript">
@@ -173,9 +201,6 @@
 
 
 
-
-
-
         //2. show previous summary
         $("#summary_toggle_wrapper > a:nth-child(2)").click(function () {
             $("#current_summary_wrapper").fadeOut();
@@ -216,6 +241,95 @@
     }
 
 </script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        /*Archive Report*/
+        $("#archived").submit(function () {
+            var data = $(this).serialize();
+
+
+            $.ajax({
+                url: "/Head/HeadReportsArchive",
+                type: "post",
+                data: data,
+                success: function () {
+                    alert("success");
+                },
+                error: function () {
+                    alert("error");
+                }
+            });
+
+            return false;
+        });
+        /*Get Details for previous report*/
+        $("#previous_summary_wrapper > div > span > a").click(function () {
+            var a = $(this);
+
+            var isDetailExist = a.parent().siblings("div").length;
+
+            if (isDetailExist == 0) {
+                //0 means details not yet queried, ajax call to get details
+                var YearArchived = "YearArchived=" + a.siblings().val();
+
+                $.ajax({
+                    url: "/Head/GetArchivedReportDetails",
+                    type: "get",
+                    data: YearArchived,
+                    success: function (data) {
+
+                        var b = $(data).find(".GetOnlyThis").html();
+                        var d = $(data).find(".hello");
+
+                        a.parent().parent().append(b);
+
+
+
+                        //make tables from b to dataTables
+                        $(".hello").dataTable({
+                            "sDom": 'R<"H"lfr>t<"F"ip<',
+                            "bJQueryUI": true,
+                            "sPaginationType": "full_numbers",
+                            "bRetrieve": true
+                        });
+
+                        //when click hide
+                        $(".ArchivedHide").click(function () {
+                            $(this).parent().parent().css("display", "none");
+                            return false;
+                        });
+
+                    },
+                    error: function () {
+                        alert("error");
+                    }
+
+                });
+            } else {
+                //if != 0, means details are already queried, so we only hide/unhide it if click Details
+                var c = a.parent().siblings("div");
+                if (c.css("display") == "block") {
+                    c.css("display", "none");
+                } else {
+
+                    (c.css("display", "block"))
+                }
+
+            }
+
+            return false;
+        });
+
+
+
+    });
+
+
+</script>
+
 
 
 <style type="text/css">

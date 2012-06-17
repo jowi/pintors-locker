@@ -375,5 +375,17 @@
         <ScalarProperty Name="RoleId" ColumnName="RoleId" />
       </EndProperty>
     </AssociationSetMapping>
+    <EntitySetMapping Name="HeadReports">
+      <EntityTypeMapping TypeName="pintorModel.HeadReport">
+        <MappingFragment StoreEntitySet="HeadReports">
+          <ScalarProperty Name="TotalGain" ColumnName="TotalGain" />
+          <ScalarProperty Name="YearArchived" ColumnName="YearArchived" />
+          <ScalarProperty Name="LaboraratoryId" ColumnName="LaboraratoryId" />
+          <ScalarProperty Name="Loss" ColumnName="Loss" />
+          <ScalarProperty Name="Gain" ColumnName="Gain" />
+          <ScalarProperty Name="HeadReportsId" ColumnName="HeadReportsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

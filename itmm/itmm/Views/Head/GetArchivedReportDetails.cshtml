@@ -1,0 +1,95 @@
+﻿@{
+    ViewBag.Title = "GetArchivedReportDetails";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+
+    var ExpensesList = (ViewBag.ExpensesList as IQueryable<itmm.Models.Expens>);
+    var IncomeList = (ViewBag.IncomeList as IQueryable<itmm.Models.Income>);
+}
+
+<div class="GetOnlyThis">
+   <div>
+
+        
+        @if (IncomeList.Count() != 0)
+        {
+            <h3>Income</h3>
+            <div  style="min-height:102px;">
+            <table class="hello" cellspacing="0" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th>Id Number </th>
+                        <th>Family Name</th>
+                        <th>First Name</th>
+                        <th>Course and Year</th>
+                        <th>Transaction</th>
+                        <th>Cost</th>
+                        <th>Date Added</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var x in IncomeList)
+                    { 
+                    <tr>
+                        <td>@x.StudentInfo.StudentId</td>
+                        <td>@x.StudentInfo.FamiliyName</td>  
+                        <td>@x.StudentInfo.FirstName</td>
+                        <td>@x.StudentInfo.CourseAndYear</td>
+                        <td>@x.Transactionn</td>
+                        <td>@x.cost</td>       
+                        <td>@x.DateCreated</td>
+                    </tr>
+                    }
+ 
+                </tbody>
+            </table>
+
+            </div><!--dataTable-->
+                <br />
+
+        }
+
+    </div> <!--end income_datatable_wrapper-->
+    <br />
+
+
+
+    <div>
+
+    @if (ExpensesList.Count() != 0)
+    {
+   <h3>Expenses</h3>
+    <div>
+    <table  class="hello" cellspacing="0" style="width: 100%;">
+        <thead>
+            <tr>
+                <th>Transaction</th>
+                <th>Detail</th>
+                <th>Cost</th>
+                <th>Date Added</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var x in ExpensesList)
+            { 
+            <tr>
+                <td>@x.ExpensesTransaction</td>
+                <td>@x.ExpensesDetail</td>  
+                <td>@x.ExpensesCost</td>
+                <td>@x.DateCreated</td>
+            </tr>
+            }
+ 
+        </tbody>
+    </table>
+
+    </div><!--dataTable-->
+    <br />
+
+    }
+
+</div> <!--end expense_datatable_wrapper-->
+ <br />
+
+
+</div><!-- get only this -->

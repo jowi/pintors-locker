@@ -17,6 +17,7 @@
     <EntitySet Name="Equipment" EntityType="pintorModel.Store.Equipment" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Event" EntityType="pintorModel.Store.Event" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Expenses" EntityType="pintorModel.Store.Expenses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HeadReports" EntityType="pintorModel.Store.HeadReports" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Income" EntityType="pintorModel.Store.Income" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="InventoryCost" EntityType="pintorModel.Store.InventoryCost" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Laboratory" EntityType="pintorModel.Store.Laboratory" store:Type="Tables" Schema="dbo" />
@@ -342,6 +343,17 @@
     <Property Name="ExpensesCost" Type="int" Nullable="false" />
     <Property Name="DateCreated" Type="datetime2" Nullable="false" />
     <Property Name="ExpensesDetail" Type="varchar" Nullable="false" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="HeadReports">
+    <Key>
+      <PropertyRef Name="HeadReportsId" />
+    </Key>
+    <Property Name="HeadReportsId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Gain" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="Loss" Type="varchar" Nullable="false" MaxLength="255" />
+    <Property Name="LaboraratoryId" Type="int" Nullable="false" />
+    <Property Name="YearArchived" Type="int" Nullable="false" />
+    <Property Name="TotalGain" Type="varchar" Nullable="false" MaxLength="255" />
   </EntityType>
   <EntityType Name="Income">
     <Key>

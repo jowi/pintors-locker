@@ -250,6 +250,7 @@
     <Content Include="Views\Staff\Expenses.cshtml" />
     <Content Include="Views\Staff\EditExpenses.cshtml" />
     <Content Include="Views\Head\HeadReports.cshtml" />
+    <Content Include="Views\Head\GetArchivedReportDetails.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

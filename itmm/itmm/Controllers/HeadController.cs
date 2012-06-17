@@ -416,7 +416,7 @@ namespace itmm.Controllers
 
       //get datatable summary income details for the current year
       ViewBag.IncomeList = from y in con.Incomes
-                          where y.LaboratoryId == labid
+                          where y.LaboratoryId == labid && y.DateCreated.Year == PresentYear
                           select y;
 
 
@@ -440,6 +440,69 @@ namespace itmm.Controllers
 
      ViewBag.TotalIncome = ViewBag.Income - ViewBag.Expenses;
 
+
+      /*queries for previous reports*/
+
+     var c = from y in con.HeadReports
+             where y.LaboraratoryId == labid && y.YearArchived != PresentYear
+             select y;
+     ViewBag.PreviousReprtList = c;
+
+      return View();
+  }
+
+  [Authorize(Roles = "Head")]
+  public ActionResult HeadReportsArchive(string Income, string Expenses, string TotalIncome)
+  {
+      var year = DateTime.Now.Year;
+      var labid = getLabId();
+
+      var x = (from y in con.HeadReports
+               where y.YearArchived == year
+               select y.YearArchived).Count();
+
+      if (x != 0)
+      {
+          //update existing record
+          var a = (from y in con.HeadReports
+                   where y.YearArchived == year && y.LaboraratoryId == labid
+                   select y).FirstOrDefault();
+          a.Gain = Income;
+          a.Loss = Expenses;
+          a.TotalGain = TotalIncome;
+
+          con.SaveChanges();
+
+      }
+      else
+      {
+          //insert if no record exists
+          var b = new HeadReport();
+          b.Gain = Income;
+          b.Loss = Expenses;
+          b.TotalGain = TotalIncome;
+          b.YearArchived = year;
+          b.LaboraratoryId = labid;
+
+          con.AddToHeadReports(b);
+          con.SaveChanges();
+
+      }
+
+
+      return View();
+  }
+  public ActionResult GetArchivedReportDetails(int YearArchived)
+  {
+      var labid = getLabId();
+
+      ViewBag.ExpensesList = from y in con.Expenses
+                             where y.LaboratoryId == labid && y.DateCreated.Year == YearArchived
+                             select y;
+
+      ViewBag.IncomeList = from y in con.Incomes
+                           where y.LaboratoryId == labid && y.DateCreated.Year == YearArchived
+                           select y;
 
 
       return View();

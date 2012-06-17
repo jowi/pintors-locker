@@ -576,6 +576,22 @@ namespace itmm.Models
             }
         }
         private ObjectSet<Table> _Tables;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<HeadReport> HeadReports
+        {
+            get
+            {
+                if ((_HeadReports == null))
+                {
+                    _HeadReports = base.CreateObjectSet<HeadReport>("HeadReports");
+                }
+                return _HeadReports;
+            }
+        }
+        private ObjectSet<HeadReport> _HeadReports;
 
         #endregion
         #region AddTo Methods
@@ -818,6 +834,14 @@ namespace itmm.Models
         public void AddToTables(Table table)
         {
             base.AddObject("Tables", table);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the HeadReports EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToHeadReports(HeadReport headReport)
+        {
+            base.AddObject("HeadReports", headReport);
         }
 
         #endregion
@@ -4968,6 +4992,191 @@ namespace itmm.Models
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="pintorModel", Name="HeadReport")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class HeadReport : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new HeadReport object.
+        /// </summary>
+        /// <param name="headReportsId">Initial value of the HeadReportsId property.</param>
+        /// <param name="gain">Initial value of the Gain property.</param>
+        /// <param name="loss">Initial value of the Loss property.</param>
+        /// <param name="laboraratoryId">Initial value of the LaboraratoryId property.</param>
+        /// <param name="yearArchived">Initial value of the YearArchived property.</param>
+        /// <param name="totalGain">Initial value of the TotalGain property.</param>
+        public static HeadReport CreateHeadReport(global::System.Int32 headReportsId, global::System.String gain, global::System.String loss, global::System.Int32 laboraratoryId, global::System.Int32 yearArchived, global::System.String totalGain)
+        {
+            HeadReport headReport = new HeadReport();
+            headReport.HeadReportsId = headReportsId;
+            headReport.Gain = gain;
+            headReport.Loss = loss;
+            headReport.LaboraratoryId = laboraratoryId;
+            headReport.YearArchived = yearArchived;
+            headReport.TotalGain = totalGain;
+            return headReport;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 HeadReportsId
+        {
+            get
+            {
+                return _HeadReportsId;
+            }
+            set
+            {
+                if (_HeadReportsId != value)
+                {
+                    OnHeadReportsIdChanging(value);
+                    ReportPropertyChanging("HeadReportsId");
+                    _HeadReportsId = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("HeadReportsId");
+                    OnHeadReportsIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _HeadReportsId;
+        partial void OnHeadReportsIdChanging(global::System.Int32 value);
+        partial void OnHeadReportsIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Gain
+        {
+            get
+            {
+                return _Gain;
+            }
+            set
+            {
+                OnGainChanging(value);
+                ReportPropertyChanging("Gain");
+                _Gain = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Gain");
+                OnGainChanged();
+            }
+        }
+        private global::System.String _Gain;
+        partial void OnGainChanging(global::System.String value);
+        partial void OnGainChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Loss
+        {
+            get
+            {
+                return _Loss;
+            }
+            set
+            {
+                OnLossChanging(value);
+                ReportPropertyChanging("Loss");
+                _Loss = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Loss");
+                OnLossChanged();
+            }
+        }
+        private global::System.String _Loss;
+        partial void OnLossChanging(global::System.String value);
+        partial void OnLossChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 LaboraratoryId
+        {
+            get
+            {
+                return _LaboraratoryId;
+            }
+            set
+            {
+                OnLaboraratoryIdChanging(value);
+                ReportPropertyChanging("LaboraratoryId");
+                _LaboraratoryId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("LaboraratoryId");
+                OnLaboraratoryIdChanged();
+            }
+        }
+        private global::System.Int32 _LaboraratoryId;
+        partial void OnLaboraratoryIdChanging(global::System.Int32 value);
+        partial void OnLaboraratoryIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 YearArchived
+        {
+            get
+            {
+                return _YearArchived;
+            }
+            set
+            {
+                OnYearArchivedChanging(value);
+                ReportPropertyChanging("YearArchived");
+                _YearArchived = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("YearArchived");
+                OnYearArchivedChanged();
+            }
+        }
+        private global::System.Int32 _YearArchived;
+        partial void OnYearArchivedChanging(global::System.Int32 value);
+        partial void OnYearArchivedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String TotalGain
+        {
+            get
+            {
+                return _TotalGain;
+            }
+            set
+            {
+                OnTotalGainChanging(value);
+                ReportPropertyChanging("TotalGain");
+                _TotalGain = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("TotalGain");
+                OnTotalGainChanged();
+            }
+        }
+        private global::System.String _TotalGain;
+        partial void OnTotalGainChanging(global::System.String value);
+        partial void OnTotalGainChanged();
+
+        #endregion
+    
     }
     
     /// <summary>
