@@ -251,6 +251,9 @@
     <Content Include="Views\Staff\EditExpenses.cshtml" />
     <Content Include="Views\Head\HeadReports.cshtml" />
     <Content Include="Views\Head\GetArchivedReportDetails.cshtml" />
+    <Content Include="Views\Head\HeadReportsArchive.cshtml" />
+    <Content Include="Views\Head\MaterialQuantityChecker.cshtml" />
+    <Content Include="Views\Error\InactiveLab.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

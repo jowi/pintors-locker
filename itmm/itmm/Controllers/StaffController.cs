@@ -59,21 +59,26 @@ namespace itmm.Controllers
              b.Schedule = a.Schedule;
              b.Instructor = a.Instructor;
              b.AvailableTable = a.AvailableTable;
-             b.Room = room;
-
+             b.Room = room;        
              b.LabId = getLabId();
 
+             con.AddToClasses(b);
+             con.SaveChanges();
+
+             int lastInsertedClassId = b.ClassId;
+
+             
             
              for (int i = 1; i <= a.AvailableTable; i++)
              {
                  Table c = new Table();
-                 c.ClassId = b.ClassId;
+                 c.ClassId = lastInsertedClassId;
                  c.TableNo = i;
                  con.AddToTables(c);
              }
 
              
-             con.AddToClasses(b);
+             
              con.SaveChanges();
 
 

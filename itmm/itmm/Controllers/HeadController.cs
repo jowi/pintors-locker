@@ -90,6 +90,11 @@ namespace itmm.Controllers
           
         return View();
     }
+    [Authorize]
+    public ActionResult LabInactive()
+    {
+        return View();
+    }
     [Authorize(Roles = "Head")]
     [HttpPost]
     public ActionResult Staff(itmmAdminStaff model, string type)
@@ -451,6 +456,18 @@ namespace itmm.Controllers
       return View();
   }
 
+  //QUANTITY CHECKER
+  [Authorize]
+  public ActionResult MaterialQuantityChecker()
+  {
+      var labid = getLabId();
+      var x = from y in con.Laboratory_Material
+              where y.LaboratoryId == labid && y.Material.Quantity <= 50
+              select y.Material;
+      ViewBag.Critical = x;
+      return PartialView();
+  }
+
   [Authorize(Roles = "Head")]
   public ActionResult HeadReportsArchive(string Income, string Expenses, string TotalIncome)
   {
@@ -458,7 +475,7 @@ namespace itmm.Controllers
       var labid = getLabId();
 
       var x = (from y in con.HeadReports
-               where y.YearArchived == year
+               where y.YearArchived == year && y.LaboraratoryId == labid
                select y.YearArchived).Count();
 
       if (x != 0)

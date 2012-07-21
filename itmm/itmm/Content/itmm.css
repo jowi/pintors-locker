@@ -148,6 +148,25 @@ background-color:#E6E6E6;
     text-align: center;
 }
 
+.dtable
+{
+    width: 100%;
+}
+.dtable tbody tr td
+{
+    padding: 5px 5px 5px 0;
+    text-align: center;
+}
+#dtables
+{
+    width: 100%;
+}
+#dtables tbody tr td
+{
+    padding: 5px 5px 5px 0;
+    text-align: center;
+}
+
 /*
 REPORT NAV
 */

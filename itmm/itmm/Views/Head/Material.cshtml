@@ -53,8 +53,10 @@
 
 
 @if (MatList.Count() != 0) { 
- <input id="btn_qty" type="button" value="check" />
-<div id="QuantityNotification"></div>
+    
+<input id="btn_qty_head" type="button" value="check" />
+<div id="QuantityNotificationHead"></div>
+    
 <div id="dataTable">
 <table id="dtable" cellspacing="0">
     <thead>
@@ -95,3 +97,27 @@
 </ul>
 }
 
+<script type="text/javascript">
+    $(document).ready(
+        function () {
+
+            get_data_head();
+
+            $("#btn_qty_head").click(
+                function () {
+
+                    get_data_head();
+                }
+            );
+        }
+    );
+
+    function get_data_head() {
+        $.ajax({
+            url: "../Head/MaterialQuantityChecker",
+            success: function (data) {
+                $("#QuantityNotificationHead").empty().append(data);
+            }
+        });
+    }
+</script>

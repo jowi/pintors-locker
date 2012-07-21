@@ -90,6 +90,9 @@
 }
 </div><!--zero_div-->
  </div><!--content_wrapper-->
+
+@if (SkedList.Count() != 0)
+{
  <div id="dataTable">
  <table id="dtable" cellspacing="0">
     <thead>
@@ -128,6 +131,7 @@
     </tbody>
 </table>
  </div><!--dataTable-->
+}
 
 @section SideNav{
 <ul>

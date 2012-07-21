@@ -30,9 +30,16 @@ namespace itmm.Controllers
             ViewBag.LabRoom = labroom;
 
             var lablist = from y in con.Laboratories
+                          where y.inactive == 0
                           orderby y.LaboratoryName ascending
                           select y;
             ViewBag.LabList = lablist;
+
+            var InactiveLabList = from y in con.Laboratories
+                          where y.inactive != 0
+                          orderby y.LaboratoryName ascending
+                          select y;
+            ViewBag.InactiveLabList = InactiveLabList;
 
             //LabHead
 
@@ -47,7 +54,7 @@ namespace itmm.Controllers
             f.LaboratoryName = LabName;
             f.LaboratoryDesc = LabDesc;
             f.LaboratoryContact = LabNum;
-
+            f.inactive = 0;
             con.AddToLaboratories(f);
             con.SaveChanges();
 
@@ -160,14 +167,31 @@ namespace itmm.Controllers
         [Authorize(Roles = "Dev")]
         public ActionResult DeleteLab(int LabId)
         {
-                var x = (from y in con.Laboratories
-                         where y.LaboratoryId == LabId
-                         select y).FirstOrDefault();
-                con.DeleteObject(x);
-                con.SaveChanges();
-                return RedirectToAction("Index", "Admin");      
+            var x = (from y in con.Laboratories
+                     where y.LaboratoryId == LabId
+                     select y).FirstOrDefault();
+                //con.DeleteObject(x);
+
+            x.inactive = 1;
+            con.SaveChanges();
+
+
+            return RedirectToAction("Index", "Admin");      
             
         }
+
+        [Authorize(Roles = "Dev")]
+        public ActionResult RestoreLab(int LabId)
+        {
+            var x = (from y in con.Laboratories
+                     where y.LaboratoryId == LabId
+                     select y).FirstOrDefault();
+            x.inactive = 0;
+            con.SaveChanges();
+
+            return RedirectToAction("Index", "Admin");   
+        }
+
         [Authorize(Roles = "Dev")]
         public ActionResult Room()
         {

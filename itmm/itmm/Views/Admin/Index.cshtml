@@ -5,6 +5,7 @@
     var Room = (ViewBag.Room as IQueryable<itmm.Models.Room>);
     var LabRoom = (ViewBag.LabRoom as IQueryable<itmm.Models.Laboratory_Room>);
     var LabList = (ViewBag.LabList as IQueryable<itmm.Models.Laboratory>);
+    var InactiveLabList = (ViewBag.InactiveLabList as IQueryable<itmm.Models.Laboratory>);
 }
 
 
@@ -48,6 +49,7 @@
 
         </form>
     </div><!-- end dialog -->
+
     <div id="room_div"style="visibility: hidden">
         <table cellspacing="0" id="dtable">
         <thead><tr><th>Laboratory</th><th>Lab Head</th><th>Room</th><th>Contact</th><th></th></tr></thead>
@@ -96,7 +98,40 @@
         }
         </tbody>
         </table>
+
+
+  
+            @if(InactiveLabList.Count() != 0)
+            {
+            <div id="dataTable">
+            <table id="dtables" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Laboratory</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var obj in InactiveLabList)
+                { 
+                    <tr>
+                        <td>@obj.LaboratoryName</td>
+                        <td>
+                        @Html.ActionLink("[Restore]", "RestoreLab", "Admin", new { LabId = obj.LaboratoryId }, null)
+            
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+             </div>
+            }
+       
+
     </div>
+
+
+
     <div id="tableTool"></div>
 </div><!-- end accord -->
    
@@ -107,3 +142,4 @@
     <li><a href="javascript:ItmmLoad('@Url.Action("Head", "Admin")')">Head Accounts</a></li>
 </ul>
 }
+

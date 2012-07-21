@@ -8,12 +8,13 @@
     <center><h6>list of Materials under critical quantity</h6></center>
 </div>
     
-    <center><div><ul>
+    <div>
     @foreach (var item in Critical)
     {
-		<li>@item.Name x @item.Quantity</li>
+		<center><p>* @item.Name x @item.Quantity</p></center>
     }
-    </ul></div></center>
+    </div>
+ 
 
 }
 else

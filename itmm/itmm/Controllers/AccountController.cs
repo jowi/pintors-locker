@@ -17,6 +17,8 @@ namespace itmm.Controllers
         public IFormsAuthenticationService FormsService { get; set; }
         public IMembershipService MembershipService { get; set; }
 
+        public pintorEntities con = new pintorEntities();
+
         protected override void Initialize(RequestContext requestContext)
         {
             if (FormsService == null) { FormsService = new FormsAuthenticationService(); }
@@ -25,6 +27,38 @@ namespace itmm.Controllers
             base.Initialize(requestContext);
         }
 
+        public bool IsLabInactiveHead(string uname)
+        {
+
+            var x = (from y in con.Laboratories
+                    where y.UserName == uname
+                    select y.inactive).FirstOrDefault();
+
+            if (x != 0)//0 means, lab is active 
+            {
+                return true; 
+            }
+            else{
+                return false;
+            }
+        }
+
+        public bool IsLabInactiveStaff(string uname)
+        {
+
+            var x = (from y in con.Laboratory_Staff
+                     where y.UserName == uname
+                     select y.Laboratory.inactive).FirstOrDefault();
+
+            if (x != 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         // **************************************
         // URL: /Account/LogOn
         // **************************************
@@ -60,10 +94,27 @@ namespace itmm.Controllers
                             return RedirectToAction("Index", "Admin");
                         }
                         else if(Roles.IsUserInRole(model.UserName,"Head")){
-                            return RedirectToAction("Index", "Head");
+
+                            if( IsLabInactiveHead(model.UserName) )
+                            {
+                                return RedirectToAction("InactiveLab", "Error");
+                            }
+                            else
+                            {
+                                return RedirectToAction("Index", "Head");
+                            }
                         }
                         else if(Roles.IsUserInRole(model.UserName,"Staff")){
-                            return RedirectToAction("Index", "Staff");
+
+                            if (IsLabInactiveStaff(model.UserName))
+                            {
+                                return RedirectToAction("InactiveLab", "Error");
+                            }
+                            else
+                            {
+                                return RedirectToAction("Index", "Staff");
+                            }
+                            
                         }
                         else
                         {

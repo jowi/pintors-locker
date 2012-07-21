@@ -14,7 +14,7 @@ namespace itmm.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Message = "It seems that you don't have the authority to access that page (^_^)";
+            ViewBag.Message = "It seems that you don't have the authority to access that page";
             return View();
         }
         public ActionResult GoNow()
@@ -35,7 +35,12 @@ namespace itmm.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-           
+
+        }
+        public ActionResult InactiveLab()
+        {
+            ViewBag.Message = "It seems that this lab is inactive";
+            return View();
         }
 
     }

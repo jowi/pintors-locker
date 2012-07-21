@@ -112,12 +112,16 @@
     $(document).ready(function () {
         $("#light").addClass("light").css("color", "#F7BE81");
 
+
         $("#dtable").dataTable({
             "sDom": 'R<"H"lfr>t<"F"ip<',
             "bJQueryUI": true,
             "sPaginationType": "full_numbers"
 
         });
+
+
+
 
         $("#whin").datepicker();
         $("#myform").validate();
@@ -144,7 +148,14 @@
         
         $("#accholder").load(info, function () {
             $("#accordion").ready(function () {
+
                 $("#dtable").dataTable({
+                    "sDom": 'R<"H"lfr>t<"F"ip<',
+                    "bJQueryUI": true,
+                    "sPaginationType": "full_numbers"
+
+                });
+                $("#dtables").dataTable({
                     "sDom": 'R<"H"lfr>t<"F"ip<',
                     "bJQueryUI": true,
                     "sPaginationType": "full_numbers"
@@ -234,7 +245,6 @@
         $.ajax({
             url: "../Staff/MaterialQuantityChecker",
             success: function (data) {
-
                 $("#QuantityNotification").empty().append(data);
             }
         });

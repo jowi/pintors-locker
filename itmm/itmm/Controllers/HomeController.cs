@@ -13,6 +13,7 @@ namespace itmm.Controllers
         public ActionResult Index(int? lab)
         {
             var x = from y in con.Laboratories
+                    where y.inactive == 0
                     orderby y.LaboratoryName ascending
                     select y;
             ViewBag.LabList = x;

@@ -223,17 +223,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Laboratories">
-      <EntityTypeMapping TypeName="pintorModel.Laboratory">
-        <MappingFragment StoreEntitySet="Laboratory">
-          <ScalarProperty Name="LaboratoryContact" ColumnName="LaboratoryContact" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-          <ScalarProperty Name="LaboratoryName" ColumnName="LaboratoryName" />
-          <ScalarProperty Name="LaboratoryDesc" ColumnName="LaboratoryDesc" />
-          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Laboratory_Equipment">
       <EntityTypeMapping TypeName="pintorModel.Laboratory_Equipment">
         <MappingFragment StoreEntitySet="Laboratory_Equipment">
@@ -384,6 +373,18 @@
           <ScalarProperty Name="Loss" ColumnName="Loss" />
           <ScalarProperty Name="Gain" ColumnName="Gain" />
           <ScalarProperty Name="HeadReportsId" ColumnName="HeadReportsId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Laboratories">
+      <EntityTypeMapping TypeName="pintorModel.Laboratory">
+        <MappingFragment StoreEntitySet="Laboratory">
+          <ScalarProperty Name="inactive" ColumnName="inactive" />
+          <ScalarProperty Name="LaboratoryContact" ColumnName="LaboratoryContact" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="LaboratoryName" ColumnName="LaboratoryName" />
+          <ScalarProperty Name="LaboratoryDesc" ColumnName="LaboratoryDesc" />
+          <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

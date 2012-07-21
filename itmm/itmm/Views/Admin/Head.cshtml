@@ -15,8 +15,11 @@
 
 
 
+
+
+
 <div id="content_wrapper" >
-<div id="zero_div" style="border-bottom-style:none;">
+
 
 @using (Html.BeginForm())
 {
@@ -24,8 +27,9 @@
     @Html.ValidationSummary(true)
     </div>
    
+<div id="zero_div">
+<div id="first_div">
 
-    <div style="float:left;margin-bottom:100px">
         <div class="editor-label">
             @Html.LabelFor(model => model.fname)
         </div>
@@ -69,9 +73,9 @@
         }
         </select>
         </div>
-    </div>
-  
-   <div  style="float:right;padding-right:170px">
+    </div><!--first_div-->
+
+<div id="second_div">
         <div class="editor-label">
             @Html.LabelFor(model => model.uname)
         </div>
@@ -100,10 +104,11 @@
              <button id="button" class=" ui-button ui-state-default ui-corner-all ui-button-text-only" style="height: 30px;"> &nbsp;&nbsp;&nbsp; + Create &nbsp;&nbsp;&nbsp;</button>
 
         </p>
- </div><!--first_div-->
+ </div><!--second_div-->
+</div><!--zero_div-->
    
 }
-</div><!--zero_div-->
+
 </div><!--content_wrapper-->
 
 
@@ -151,7 +156,14 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $("#light").addClass("light").css("color", "#F7BE81");
-        $("#dtable").dataTable();
+       // initDatatable();
+        $(".dtable").dataTable({
+            "sDom": 'R<"H"lfr>t<"F"ip<',
+            "bJQueryUI": true,
+            "sPaginationType": "full_numbers"
+
+        });
+
     });
 </script>
 <div id="tableTool"></div>

@@ -384,6 +384,7 @@
     <Property Name="LaboratoryName" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="UserName" Type="nvarchar" MaxLength="256" />
     <Property Name="LaboratoryContact" Type="varchar" MaxLength="50" />
+    <Property Name="inactive" Type="int" />
   </EntityType>
   <EntityType Name="Laboratory_Equipment">
     <Key>
@@ -839,7 +840,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Liability_Laboratory">
-    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1" />
+    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Liability" Type="pintorModel.Store.Liability" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Laboratory">
