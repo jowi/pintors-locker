@@ -1,18 +1,20 @@
 ﻿body{
    font-family:Arial, sans-serif;
    margin:0;
+   background-color : #EFF6FF;
    /*overflow-y: scroll;*/
 }
 body a
 {
-    color:#BDBDBD;
+     color:#7D7F7F; 
 }
 #wrapper{
     width:100%;
 }
+
 /*******NAV**********/
 #nav{
-    background-color: #E6E6E6;/*DBDADA*/
+    background-color: #192E40;/*DBDADA*/
     width:210px;
     height:100%;
     color:white;/*#EFF2FB;*//*#BDBDBD;*/
@@ -53,7 +55,7 @@ body a
   
 }
 .light{
-   background-color:white;
+   background-color: #324759;
    border:solid 1px white;
      
    box-shadow: 10px 10px 5px #888;
@@ -69,7 +71,7 @@ body a
    width: 85%;
    position: relative;
    left: 220px;
-   background-color:white;
+   background-color: #EFF6FF;
 }
 #usrnav{
    height:30px;
