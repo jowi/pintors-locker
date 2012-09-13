@@ -49,14 +49,13 @@
             @Html.ValidationMessageFor(model => model.serial)
         </div>
 
-
-        <div class="editor-label">
+@*        <div class="editor-label">
             @Html.LabelFor(model => model.status)
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.status)
             @Html.ValidationMessageFor(model => model.status)
-        </div>
+        </div>*@
 
         <div class="editor-label">
             @Html.LabelFor(model => model.life)
@@ -66,6 +65,14 @@
             @Html.ValidationMessageFor(model => model.life)
         </div>
 
+            <br />
+        <div>
+        Status <br />
+        <select name="status">
+                    <option value="OK">OK</option>
+                    <option value="Defective">Defective</option>
+               </select>
+        </div>
         <p>
             <input type="submit" value="Save" />
         </p>

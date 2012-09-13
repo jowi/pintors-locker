@@ -1,20 +1,26 @@
 ﻿@{
     var RoomList = (ViewBag.RoomList as IQueryable<itmm.Models.Room>);
 }
+
+
+
 <div id="accord">
  <span id="span_link" style="visibility: hidden;"><a id="modal_diag" href="#" class="but ui-state-default ui-corner-all ui-button-text-only" style="color:black;padding: 1px 1px 1px 1px;"> &nbsp; Create Room &nbsp; </a>
 </span><br /><br />
 
  <div id="modal" title="Create room" style="visibility: hidden; height: 0px;">
-        <form id="labform" method="post" action="/Admin/Room">
-        <div>
-            Room Name:<br />
-            <input type="text" name="RoomName" class="required" maxlength=10 style="width:260px;height:23px;" /><br /><br />
-        </div>
-        <button id="button" class=" ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="height: 30px;"> &nbsp;&nbsp;&nbsp; + Create &nbsp;&nbsp;&nbsp;</button>
 
+        <form id="labform" method="post" class="create_room" action="/Admin/Room">
 
-        </form>
+            <div>
+                Room Name:<br />
+                <input type="text" name="RoomName" class="required" maxlength=10 style="width:260px;height:23px;" /><br /><br />
+            </div>
+
+            <button id="button" class=" ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" style="height: 30px;"> &nbsp;&nbsp;&nbsp; + Create &nbsp;&nbsp;&nbsp;</button>
+
+       </form>
+
     </div><!-- end dialog -->
  <div  id="room_div">
         <table id="dtable" cellspacing="0" >
@@ -41,3 +47,8 @@
 <div id="tableTool"></div>
 
 </div><!-- end accord-->
+
+
+
+
+

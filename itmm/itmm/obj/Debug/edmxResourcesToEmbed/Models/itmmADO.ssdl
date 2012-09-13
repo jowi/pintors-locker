@@ -141,10 +141,6 @@
       <End Role="Laboratory" EntitySet="Laboratory" />
       <End Role="Liability" EntitySet="Liability" />
     </AssociationSet>
-    <AssociationSet Name="FK_Liability_StudentInfo" Association="pintorModel.Store.FK_Liability_StudentInfo">
-      <End Role="StudentInfo" EntitySet="StudentInfo" />
-      <End Role="Liability" EntitySet="Liability" />
-    </AssociationSet>
     <AssociationSet Name="FK_Notification_Laboratory" Association="pintorModel.Store.FK_Notification_Laboratory">
       <End Role="Laboratory" EntitySet="Laboratory" />
       <End Role="Notification" EntitySet="Notification" />
@@ -340,7 +336,7 @@
     <Property Name="ExpensesId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="LaboratoryId" Type="int" Nullable="false" />
     <Property Name="ExpensesTransaction" Type="varchar" Nullable="false" MaxLength="255" />
-    <Property Name="ExpensesCost" Type="int" Nullable="false" />
+    <Property Name="ExpensesCost" Type="money" Nullable="false" />
     <Property Name="DateCreated" Type="datetime2" Nullable="false" />
     <Property Name="ExpensesDetail" Type="varchar" Nullable="false" MaxLength="255" />
   </EntityType>
@@ -363,7 +359,7 @@
     <Property Name="LaboratoryId" Type="int" Nullable="false" />
     <Property Name="StudentInfoId" Type="int" Nullable="false" />
     <Property Name="Transactionn" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="cost" Type="int" Nullable="false" />
+    <Property Name="cost" Type="money" Nullable="false" />
     <Property Name="DateCreated" Type="datetime2" Nullable="false" />
   </EntityType>
   <EntityType Name="InventoryCost">
@@ -385,6 +381,7 @@
     <Property Name="UserName" Type="nvarchar" MaxLength="256" />
     <Property Name="LaboratoryContact" Type="varchar" MaxLength="50" />
     <Property Name="inactive" Type="int" />
+    <Property Name="DateUpdated" Type="datetime2" />
   </EntityType>
   <EntityType Name="Laboratory_Equipment">
     <Key>
@@ -405,7 +402,7 @@
     <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="EmailAdd" Type="varchar" Nullable="false" MaxLength="50" />
-    <Property Name="ContactNum" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="ContactNum" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Laboratory_Material">
     <Key>
@@ -442,7 +439,7 @@
       <PropertyRef Name="LiabilityId" />
     </Key>
     <Property Name="LiabilityId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="StudenInfotId" Type="int" Nullable="false" />
+    <Property Name="StudenInfotId" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Equipment" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Fine" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Status" Type="varchar" Nullable="false" MaxLength="50" />
@@ -486,7 +483,7 @@
     <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="CourseAndYear" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="LaboratoryId" Type="int" />
-    <Property Name="StudentInfoId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="StudentInfoId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -640,9 +637,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Class_Laboratory">
-    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1" />
     <End Role="Class" Type="pintorModel.Store.Class" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Laboratory">
@@ -666,7 +661,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Dispense_Room">
-    <End Role="Room" Type="pintorModel.Store.Room" Multiplicity="0..1" />
+    <End Role="Room" Type="pintorModel.Store.Room" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Dispense" Type="pintorModel.Store.Dispense" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Room">
@@ -718,9 +715,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Income_StudentInfo">
-    <End Role="StudentInfo" Type="pintorModel.Store.StudentInfo" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
+    <End Role="StudentInfo" Type="pintorModel.Store.StudentInfo" Multiplicity="1" />
     <End Role="Income" Type="pintorModel.Store.Income" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="StudentInfo">
@@ -850,18 +845,6 @@
       </Principal>
       <Dependent Role="Liability">
         <PropertyRef Name="LaboratoryId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Liability_StudentInfo">
-    <End Role="StudentInfo" Type="pintorModel.Store.StudentInfo" Multiplicity="1" />
-    <End Role="Liability" Type="pintorModel.Store.Liability" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="StudentInfo">
-        <PropertyRef Name="StudentInfoId" />
-      </Principal>
-      <Dependent Role="Liability">
-        <PropertyRef Name="StudenInfotId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

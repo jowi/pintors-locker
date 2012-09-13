@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminBoldController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HeadController.cs" />
@@ -87,6 +88,8 @@
     <Content Include="Content\dtablecss\demo_page.css" />
     <Content Include="Content\dtablecss\demo_table.css" />
     <Content Include="Content\dtablecss\demo_table_jui.css" />
+    <Content Include="Content\dtablecss\jquery.dataTables.css" />
+    <Content Include="Content\dtablecss\tableTools.css" />
     <Content Include="Content\girttercss\jquery.gritter.css" />
     <Content Include="Content\images\back_disabled.jpg" />
     <Content Include="Content\images\back_enabled.jpg" />
@@ -120,7 +123,14 @@
     <Content Include="Content\themes\smoothness\smoothness\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\themes\smoothness\smoothness\jquery-ui-1.8.16.custom.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\itmm_js\dataTable_js\jquery.dataTables.js" />
+    <Content Include="Scripts\itmm_js\dataTable_js\swf\copy_csv_xls.swf" />
+    <Content Include="Scripts\itmm_js\dataTable_js\swf\copy_csv_xls_pdf.swf" />
+    <Content Include="Scripts\itmm_js\dataTable_js\swf\my_pdf.swf" />
+    <Content Include="Scripts\itmm_js\dataTable_js\tabeTools.js" />
+    <Content Include="Scripts\itmm_js\dataTable_js\ZeroClipboard.js" />
     <Content Include="Scripts\itmm_js\jquery-1.6.2.min.js" />
+    <Content Include="Scripts\itmm_js\jquery-1.7.2.js" />
     <Content Include="Scripts\itmm_js\jquery-ui-1.8.16.custom.min.js" />
     <Content Include="Scripts\itmm_js\jquery-validation.js" />
     <Content Include="Scripts\itmm_js\jquery.dataTables.js" />
@@ -254,6 +264,14 @@
     <Content Include="Views\Head\HeadReportsArchive.cshtml" />
     <Content Include="Views\Head\MaterialQuantityChecker.cshtml" />
     <Content Include="Views\Error\InactiveLab.cshtml" />
+    <Content Include="Views\AdminBold\Index.cshtml" />
+    <Content Include="Views\AdminBold\Room.cshtml" />
+    <Content Include="Views\AdminBold\RoomEdit.cshtml" />
+    <Content Include="Views\AdminBold\EditRoom.cshtml" />
+    <Content Include="Views\AdminBold\Laboratory.cshtml" />
+    <Content Include="Views\AdminBold\EditLaboratory.cshtml" />
+    <Content Include="Views\AdminBold\Head.cshtml" />
+    <Content Include="Views\AdminBold\EditHead.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

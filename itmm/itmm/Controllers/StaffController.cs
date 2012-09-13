@@ -134,7 +134,32 @@ namespace itmm.Controllers
              b.Room = room;
              b.AvailableTable = a.AvailableTable;
 
+            
+
+            // 1. delete added tables
+
+                var x = from y in con.Tables
+                        where y.ClassId == SkedId
+                        select y;
+
+                foreach (var obj in x)
+                {
+                    con.DeleteObject(obj);
+                }
+             
+            // 2. adding tables again
+                int lastInsertedClassId = b.ClassId;
+
+                for (int i = 1; i <= a.AvailableTable; i++)
+                {
+                    Table c = new Table();
+                    c.ClassId = lastInsertedClassId;
+                    c.TableNo = i;
+                    con.AddToTables(c);
+                }
+
              con.SaveChanges();
+
              return RedirectToAction("Schedule");
          }
         [Authorize(Roles = "Staff")]
@@ -258,12 +283,12 @@ namespace itmm.Controllers
 
             var labid = getLabId();
             Liability b = new Liability();
-            b.StudenInfotId = Convert.ToInt32(a.IdNumber);
+            b.StudenInfotId = a.IdNumber;//Convert.ToInt32(a.IdNumber);
             b.Equipment = a.Equipment;
             b.Fine = a.Fine;
             b.Status = a.Status;
             b.LaboratoryId = labid;
-            b.StudenInfotId = c.StudentInfoId;
+           // b.StudenInfotId = c.StudentInfoId;
             con.AddToLiabilities(b);
 
             con.SaveChanges();
@@ -278,9 +303,9 @@ namespace itmm.Controllers
                      where y.LiabilityId == LiabilityId
                      select y).FirstOrDefault();
 
-            var b = (from y in con.Liabilities
-                     where y.LiabilityId == LiabilityId
-                     select y.StudentInfo).FirstOrDefault();
+            //var b = (from y in con.Liabilities
+            //         where y.LiabilityId == LiabilityId
+            //         select y.StudentInfo).FirstOrDefault();
 
             itmmLiability a = new itmmLiability();
             //a.FamilyName = b.FamiliyName;
@@ -301,16 +326,16 @@ namespace itmm.Controllers
                      where y.LiabilityId == LiabilityId
                      select y).FirstOrDefault();
 
-            var b = (from y in con.Liabilities
-                     where y.LiabilityId == LiabilityId
-                     select y.StudentInfo).FirstOrDefault();
+            //var b = (from y in con.Liabilities
+            //         where y.LiabilityId == LiabilityId
+            //         select y.StudentInfo).FirstOrDefault();
 
             //b.FamiliyName = a.FamilyName;
             //b.FirstName = a.FirstName;
             //b.IdNumber = a.IdNumber;
             //b.CourseAndYear = a.Course;
 
-            c.StudenInfotId = Convert.ToInt32(a.IdNumber);
+            c.StudenInfotId = a.IdNumber;//Convert.ToInt32(a.IdNumber);
             c.Equipment = a.Equipment;
             c.Fine = a.Fine;
             c.Status = status;
@@ -600,7 +625,7 @@ namespace itmm.Controllers
            Liability a = new Liability();
 
            a.Equipment = (from y in con.Equipments where y.EquipmentId == EquipmentId select y.Make).FirstOrDefault();
-           a.StudenInfotId = Convert.ToInt32((from y in con.Tables where y.TableId == TableId select y.StudentId).FirstOrDefault());
+           a.StudenInfotId = (from y in con.Tables where y.TableId == TableId select y.StudentId).FirstOrDefault();
            a.Fine = "To be Determined";
            a.Status = "Unsettled";
            a.LaboratoryId = (from y in con.Classes where y.ClassId == ClassId select y.LabId).FirstOrDefault();
@@ -614,7 +639,9 @@ namespace itmm.Controllers
                    where y.EquipmentId == EquipmentId && y.TableId == TableId && y.ClassId == ClassId
                    select y).FirstOrDefault();
            x.Status = "liability";
+
            con.SaveChanges();
+
            return RedirectToAction("ViewEquipment", "Staff", new { TableId = TableId, ClassId = ClassId });
        }
 

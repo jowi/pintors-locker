@@ -21,7 +21,7 @@ namespace itmm.Controllers
         {
             if (Roles.IsUserInRole(User.Identity.Name, "Dev"))
             {
-                return RedirectToAction("Index", "Admin");
+                return RedirectToAction("Index", "AdminBold");
             }
             else if (Roles.IsUserInRole(User.Identity.Name, "Head"))
             {

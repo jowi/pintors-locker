@@ -48,12 +48,12 @@ namespace itmm.Controllers
         }
         [Authorize(Roles = "Dev")]
         [HttpPost]
-        public ActionResult Index(string LabName, string LabDesc, int[] room,string LabNum)
+        public ActionResult Index(string LabName, string LabDesc, int[] room,int LabNum)
         {
             Laboratory f = new Laboratory();
             f.LaboratoryName = LabName;
             f.LaboratoryDesc = LabDesc;
-            f.LaboratoryContact = LabNum;
+            f.LaboratoryContact = LabNum.ToString();
             f.inactive = 0;
             con.AddToLaboratories(f);
             con.SaveChanges();
@@ -127,7 +127,7 @@ namespace itmm.Controllers
         }
         [Authorize(Roles = "Dev")]
         [HttpPost]
-        public ActionResult EditLab(int LabId, string LabName, string LabDesc, int[] room,string LabNum)
+        public ActionResult EditLab(int LabId, string LabName, string LabDesc, int[] room,int LabNum)
         {
             var x = (from y in con.Laboratories
                      where y.LaboratoryId == LabId
@@ -137,7 +137,7 @@ namespace itmm.Controllers
                     select y;
             x.LaboratoryName = LabName;
             x.LaboratoryDesc = LabDesc;
-            x.LaboratoryContact = LabNum;
+            x.LaboratoryContact = LabNum.ToString();
 
 
             foreach (var _z in z)
@@ -266,8 +266,10 @@ namespace itmm.Controllers
         public ActionResult Head()
         {
             var x = from y in con.Laboratories
+                    where y.inactive == 0
                     orderby y.LaboratoryName ascending
                     select y;
+
             ViewBag.LabList = x;
             var b = from y in con.Laboratory_Head
                     select y;
@@ -281,6 +283,7 @@ namespace itmm.Controllers
                    orderby y.LaboratoryName ascending
                    select y;
            ViewBag.LabList = l;
+
            var b = from y in con.Laboratory_Head
                    select y;
            ViewBag.HeadList = b;
@@ -335,7 +338,7 @@ namespace itmm.Controllers
        }
         [Authorize(Roles = "Dev")]
         [HttpPost]
-        public ActionResult EditHead(int LabHeadId,string fname,string lname,string cnum,string eadd,int section)
+        public ActionResult EditHead(int LabHeadId,string fname,string lname,int cnum,string eadd,int section)
         {
             var x = (from y in con.Laboratory_Head
                      where y.Laboratory_HeadId == LabHeadId
@@ -382,6 +385,7 @@ namespace itmm.Controllers
                 //    return View();
             return RedirectToAction("Index", "Admin");
         }
+
 
 
 

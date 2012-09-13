@@ -1,0 +1,132 @@
+﻿@model itmm.Models.itmmLaboratory
+@using itmm.Models;
+
+@{
+    ViewBag.Title = "Laboratory";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+    var Room = (ViewBag.Room as IQueryable<itmm.Models.Room>);
+    var LabRoom = (ViewBag.LabRoom as IQueryable<itmm.Models.Laboratory_Room>);
+    var LabList = (ViewBag.LabList as IQueryable<itmm.Models.Laboratory>);
+}
+
+
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+
+
+          //  @Html.HiddenFor(model => model.labid)
+
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.labname)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.labname)
+            @Html.ValidationMessageFor(model => model.labname)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.labdesc)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.labdesc)
+            @Html.ValidationMessageFor(model => model.labdesc)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.labcontact)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.labcontact)
+            @Html.ValidationMessageFor(model => model.labcontact)
+        </div>
+    
+        <div>
+            <br />
+            Availabe Room:<br />
+            @foreach (var room in Room)
+            {
+                int flag = 0;
+                foreach (var labroom in LabRoom)
+                {
+                    if (room.RoomId == labroom.RoomId)
+                    {
+                        flag = 1;
+                    }
+                }
+                if (flag == 0)
+                {
+                <input type="checkbox" name="room" value="@room.RoomId"/>@room.RoomName<br />  
+                }             
+            }
+        </div>
+           
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+
+}
+
+<div>
+<table cellspacing="0" id="dtable">
+        <thead><tr><th>Laboratory</th><th>Lab Head</th><th>Room</th><th>Contact</th><th></th></tr></thead>
+        <tbody>
+        @foreach (var lablist in LabList)
+        {
+            string RoomInLab = "none";
+            int cnt = 0;       
+        <tr><td>@lablist.LaboratoryName</td>
+            @foreach (var labroom in LabRoom)
+            {
+                if (lablist.LaboratoryId == labroom.LaboratoryId)
+                {
+                    if (cnt == 0)
+                    {
+                        RoomInLab = labroom.Room.RoomName;
+                        cnt++;
+                    }
+                    else
+                    {
+                        RoomInLab = RoomInLab + "," + labroom.Room.RoomName;
+                    }
+                }
+            }
+            <td>@{pintorEntities p = new pintorEntities();
+                  var z = p.Laboratory_Head.FirstOrDefault(x => x.UserName == lablist.UserName);
+                  string head;
+                  if (z != null)
+                  {
+                      head = z.FirstName + " " + z.LastName;
+                  }
+                  else
+                  {
+                      head = "none";
+                  }
+                  
+                  }
+                  @head
+            </td>
+            <td>@RoomInLab</td>
+             <td>@lablist.LaboratoryContact</td>
+             
+            <td><a href="@Url.Action("EditLaboratory", "AdminBold", new { LabId = lablist.LaboratoryId })" class="but ui-state-default ui-corner-all ui-button-text-only" style="color:black;padding: 1px 1px 1px 1px;"> &nbsp; Edit &nbsp; </a>
+            &nbsp<a  href="@Url.Action("DeleteLaboratory", "AdminBold", new { LabId = lablist.LaboratoryId })" class="but ui-state-default ui-corner-all ui-button-text-only" style="color:black;padding: 1px 1px 1px 1px;"> &nbsp; Delete &nbsp; </a>&nbsp</td></tr>
+            
+        }
+        </tbody>
+        </table>
+</div>
+
+@section SideNav{
+<ul>
+    <li>@Html.ActionLink("Room", "Room", "AdminBold")</li>
+    <li>@Html.ActionLink("Laboratory", "Laboratory", "AdminBold", null, new { id = "light" })</li>
+    <li>@Html.ActionLink("Head Accounts", "Head", "AdminBold")</li>
+</ul>
+}

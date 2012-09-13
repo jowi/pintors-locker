@@ -8,22 +8,56 @@ using itmm.Models;
 
 namespace itmm.Models
 {
+    public  class itmmAdminRoom
+    {
+        [Required(ErrorMessage = "Required")]
+        [Remote("IsRoomNameTaken", "AdminBold")]
+        [Display(Name="Room")]
+        public string room { get; set; }
+        public int roomid { get; set; }
+    }
+
+    public class itmmLaboratory
+    {
+        public int labid { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        //[Remote("IsLabNameTaken", "AdminBold")] // there is problem during editing with this
+        [Display(Name = "Laboratory Name")]
+        public string labname { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Display(Name = "Laboratory Description")]
+        public string labdesc { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [StringLength(50, MinimumLength = 7, ErrorMessage="Must be at least 7 digits")]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Please enter digits.")]
+        [Display(Name = "Laboratory Contact")]
+        public string labcontact { get; set; }
+
+    }
+
     public class itmmAdminHead
     {
         [Required(ErrorMessage = "Required")]
-        [Display(Name="Firstname")]
+        [Display(Name="First Name")]
         public string fname { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "Lastname")]
+        //[Remote("CheckLastName", "Head")]
+        [Display(Name = "Last Name")]
         public string lname { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        //[StringLength(50, MinimumLength = 7, ErrorMessage = "Must be at least 7 digits")]
+        //[RegularExpression(@"^\d+$", ErrorMessage = "Please enter digits.")]
         [Display(Name = "Contact Number")]
-        public string cnum { get; set; }
+        public int cnum { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [DataType(DataType.EmailAddress)]
+        //[DataType(DataType.EmailAddress, ErrorMessage="Invalid Email")]
+        [RegularExpression(@"^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$", ErrorMessage = "Invalid Email")]
         [Display(Name = "Email Address")]
         public string eadd { get; set; }
 
@@ -41,7 +75,7 @@ namespace itmm.Models
         public string password { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "Confrim Password")]
+        [Display(Name = "Confirm Password")]
         [DataType(DataType.Password)]
         [Compare("password")]
         public string c_password { get; set; }
@@ -50,23 +84,25 @@ namespace itmm.Models
     public class itmmAdminStaff
     {
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "Firstname")]
+        [Display(Name = "First Name")]
         public string fname { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "Lastname")]
+        [Display(Name = "Last Name")]
         public string lname { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "Id Number")]
+        [RegularExpression(@"^\d+$", ErrorMessage = "Please enter digits.")]
+        [Display(Name = "ID Number")]
         public string cnum { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "Course&Year")]
+        [Display(Name = "Education Attained")]
         public string course { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [DataType(DataType.EmailAddress)]
+        [RegularExpression(@"^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$", ErrorMessage = "Invalid Email")]
+       // [DataType(DataType.EmailAddress)]
         [Display(Name = "Email Address")]
         public string eadd { get; set; }
 
@@ -81,7 +117,7 @@ namespace itmm.Models
         public string password { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "Confrim Password")]
+        [Display(Name = "Confirm Password")]
         [DataType(DataType.Password)]
         [Compare("password")]
         public string c_password { get; set; }
@@ -115,7 +151,7 @@ namespace itmm.Models
 
  
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "Life (e.g. 4 years)")]
+        [Display(Name = "Life Expectancy")]
         public string life { get; set; }
     }
     public class itmmNotification 
@@ -137,7 +173,7 @@ namespace itmm.Models
         public string who { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "time")]
+        [Display(Name = "Time")]
         public string time { get; set; }
     }
     public class itmmSchedule {
@@ -146,7 +182,7 @@ namespace itmm.Models
         public int GroupNo { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "Table Assign")]
+        [Display(Name = "Assign Table")]
         public int AvailableTable { get; set; }
 
         [Required(ErrorMessage = "Required")]
@@ -158,7 +194,7 @@ namespace itmm.Models
         public string CourseDesc { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "Day (e.g.Monday)")]
+        [Display(Name = "Day")]
         public string Day { get; set; }
 
         [Required(ErrorMessage = "Required")]
@@ -196,7 +232,7 @@ namespace itmm.Models
         string _status = "Unsettled";
 
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "IdNumber")]
+        [Display(Name = "ID Number")]
         public string IdNumber { get; set; }
 
 
@@ -234,17 +270,17 @@ namespace itmm.Models
         public string FamilyName { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "FirstName")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
 
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "IdNumber")]
+        [Display(Name = "ID Number")]
         public int IdNumber { get; set; }
 
 
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "Course & Year")]
+        [Display(Name = "Course and Year")]
         public string Course { get; set; }
 
         [Required(ErrorMessage = "Required")]
@@ -253,7 +289,7 @@ namespace itmm.Models
 
         [Required(ErrorMessage = "Required")]
         [Display(Name = "Cost")]
-        public int Cost { get; set; }
+        public decimal Cost { get; set; }
 
 
     }
@@ -261,7 +297,7 @@ namespace itmm.Models
     public class itmmStudentsToTables {
 
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "Id Numbers (Id No.1, Id No.2, etc.)")]
+        [Display(Name = "ID Numbers (format : ID Number 1, ID Number2)")]
         public string IdNumbers { get; set; }
     }
 
@@ -278,9 +314,12 @@ namespace itmm.Models
 
         [Required(ErrorMessage = "Required")]
         [Display(Name = "Cost")]
-        public int Cost { get; set; }
+        public decimal Cost { get; set; }
 
 
     }
+
+    
+
 
 }

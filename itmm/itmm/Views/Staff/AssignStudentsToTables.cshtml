@@ -19,8 +19,15 @@
         <tr>
             <td>@x.TableNo</td>
             <td>
-            @Html.ActionLink("[Add]", "AddStudentsToTables", "Staff", new { TableId = x.TableId }, null)
-            @Html.ActionLink("[Edit]", "EditStudentsToTables", "Staff", new { TableId = x.TableId }, null)
+            @{
+           if ( x.StudentId != "" && x.StudentId != null )
+           {
+                    @Html.ActionLink("[View / Edit]", "EditStudentsToTables", "Staff", new { TableId = x.TableId }, null)
+                }else{
+                    @Html.ActionLink("[Add]", "AddStudentsToTables", "Staff", new { TableId = x.TableId }, null)
+                }
+             }
+         
             </td>
         </tr>
        }

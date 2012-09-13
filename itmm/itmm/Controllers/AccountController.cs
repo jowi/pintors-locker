@@ -32,7 +32,8 @@ namespace itmm.Controllers
 
             var x = (from y in con.Laboratories
                     where y.UserName == uname
-                    select y.inactive).FirstOrDefault();
+                    orderby y.DateUpdated descending
+                    select y.inactive ).FirstOrDefault();
 
             if (x != 0)//0 means, lab is active 
             {
@@ -91,7 +92,7 @@ namespace itmm.Controllers
                     {
                         if (Roles.IsUserInRole(model.UserName, "Dev"))
                         {
-                            return RedirectToAction("Index", "Admin");
+                            return RedirectToAction("Index", "AdminBold");
                         }
                         else if(Roles.IsUserInRole(model.UserName,"Head")){
 
@@ -219,6 +220,9 @@ namespace itmm.Controllers
 
             return View();
         }
+
+
+ 
 
     }
 }

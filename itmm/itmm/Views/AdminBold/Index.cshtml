@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
+}
+
+
+@ViewBag.MyMessage
+
+
+@section SideNav{
+<ul>
+    <li>@Html.ActionLink("Room", "Room", "AdminBold")</li>
+    <li>@Html.ActionLink("Laboratory", "Laboratory", "AdminBold")</li>
+    <li>@Html.ActionLink("Head Accounts", "Head", "AdminBold")</li>
+</ul>
