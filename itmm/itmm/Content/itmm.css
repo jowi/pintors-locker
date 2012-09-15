@@ -43,7 +43,7 @@ body a
 #nav ul li{
 }
 #nav ul li a{
-    height: 30px;
+    height: auto;
     text-decoration: none;
     text-align: right;
     color:#BDBDBD;
@@ -54,7 +54,7 @@ body a
     
   
 }
-.light{
+.elight{
    background-color: #324759;
    border:solid 1px white;
      

@@ -55,8 +55,8 @@
                         <td>@x.cost</td>       
                         <td>@x.DateCreated</td>
                         <td>
-                        @Html.ActionLink("[Edit]", "EditIncome", "Staff", new { IncomeId = x.IncomeId }, null)
-                        @* @Html.ActionLink("[Delete]", "DeleteIncome", "Staff", new { IncomeId = x.IncomeId }, null)*@
+                           @Html.ActionLink("[Edit]", "EditIncome", "Staff", new { IncomeId = x.IncomeId }, null)
+                           @Html.ActionLink("[Delete]", "DeleteIncome", "Staff", new { IncomeId = x.IncomeId }, null)
                         </td>
                     </tr>
                     }
@@ -102,7 +102,7 @@
                         <td>@x.ExpensesCost</td>
                         <td>@x.DateCreated</td>
                         <td>
-                        @Html.ActionLink("[Edit]", "EditExpenses", "Staff", new { ExpensesId = x.ExpensesId }, null)
+                        @Html.ActionLink("[Edit]", "EditExpenses", "Staff", new { ExpensesId = x.ExpensesId }, null)*
                         </td>
                     </tr>
                    }
@@ -267,6 +267,7 @@
         });
         /*Get Details for previous report*/
         $("#previous_summary_wrapper > div > span > a").click(function () {
+
             var a = $(this);
 
             var isDetailExist = a.parent().siblings("div").length;
@@ -281,12 +282,14 @@
                     data: YearArchived,
                     success: function (data) {
 
+
+
                         var b = $(data).find(".GetOnlyThis").html();
                         var d = $(data).find(".hello");
 
+  
+
                         a.parent().parent().append(b);
-
-
 
                         //make tables from b to dataTables
                         $(".hello").dataTable({

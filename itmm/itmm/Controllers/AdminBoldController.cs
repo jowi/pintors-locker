@@ -452,6 +452,20 @@ namespace itmm.Controllers
             x.LaboratoryId = section;
             x.Laboratory.DateUpdated = DateTime.Now;
 
+            // unassign head to its previous lab
+            var b = from y in con.Laboratories
+                     where y.UserName == x.UserName
+                     select y;
+
+                if( b != null ){
+                    foreach (var item in b)
+	                {
+                        item.UserName = null;
+	                }
+                    
+                }
+
+            // assign head to lab
             var z = (from y in con.Laboratories
                      where y.LaboratoryId == section
                      select y).FirstOrDefault();

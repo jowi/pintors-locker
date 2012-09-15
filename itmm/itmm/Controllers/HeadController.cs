@@ -238,6 +238,7 @@ namespace itmm.Controllers
             ViewBag.EquipList = x;
             return View();
         }
+
         [Authorize(Roles = "Head")]
         [HttpPost]
         public ActionResult Equipment(itmmAdminEquipment model)
@@ -264,6 +265,7 @@ namespace itmm.Controllers
 
             return RedirectToAction("Equipment", "Head");
         }
+
         [Authorize(Roles = "Head")]
         public ActionResult EditEquipment(int EquipId)
         {
@@ -285,6 +287,7 @@ namespace itmm.Controllers
 
             return View(model);
         }
+
         [Authorize(Roles = "Head")]
         [HttpPost]
         public ActionResult EditEquipment(itmmAdminEquipment model, int EquipId, string status)
@@ -301,6 +304,7 @@ namespace itmm.Controllers
             con.SaveChanges();
             return RedirectToAction("Equipment", "Head");
         }
+
         [Authorize(Roles = "Head")]
         public ActionResult DeleteEquipment(int EquipId)
         {
@@ -320,6 +324,40 @@ namespace itmm.Controllers
             con.SaveChanges();
             return RedirectToAction("Equipment", "Head");
         }
+
+
+        public JsonResult IsSerialExist( string serial )
+        {
+
+            var x = (from y in con.Equipments
+                     where y.SerialNumber == serial
+                     select y).FirstOrDefault();
+            if (x == null)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(string.Format("{0} is already taken.", serial), JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public JsonResult IsBarcodeExist(string barcode)
+        {
+
+            var x = (from y in con.Equipments
+                     where y.Barcode == barcode
+                     select y).FirstOrDefault();
+            if (x == null)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(string.Format("{0} is already taken.", barcode), JsonRequestBehavior.AllowGet);
+            }
+        }
+
         [Authorize(Roles = "Head")]
         public ActionResult Notification()
         {
@@ -517,6 +555,7 @@ namespace itmm.Controllers
 
             return View();
         }
+
         public ActionResult GetArchivedReportDetails(int YearArchived)
         {
             var labid = getLabId();
@@ -528,6 +567,8 @@ namespace itmm.Controllers
             ViewBag.IncomeList = from y in con.Incomes
                                  where y.LaboratoryId == labid && y.DateCreated.Year == YearArchived
                                  select y;
+
+      
 
 
             return View();

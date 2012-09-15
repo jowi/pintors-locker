@@ -6,10 +6,11 @@
     var IncomeList = (ViewBag.IncomeList as IQueryable<itmm.Models.Income>);
 }
 
-<div class="GetOnlyThis">
+<div class="GetOnlyThis"> 
    <div>
 
         
+
         @if (IncomeList.Count() != 0)
         {
             <h3>Income</h3>

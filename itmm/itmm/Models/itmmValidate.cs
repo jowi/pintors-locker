@@ -138,10 +138,12 @@ namespace itmm.Models
         public string location { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [Display(Name = "Serial Number")]
+        [Remote("IsSerialExist", "Head")]
+        [Display(Name = "Serial")]
         public string serial { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [Remote("IsBarcodeExist", "Head")]
         [Display(Name = "Barcode")]
         public string barcode { get; set; }
 

@@ -637,7 +637,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Class_Laboratory">
-    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1" />
+    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Class" Type="pintorModel.Store.Class" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Laboratory">
@@ -689,7 +691,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Expenses_Expenses">
-    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1" />
+    <End Role="Laboratory" Type="pintorModel.Store.Laboratory" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Expenses" Type="pintorModel.Store.Expenses" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Laboratory">
