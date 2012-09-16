@@ -4,17 +4,21 @@
     var Equipment = (ViewBag.Equipment as IQueryable<itmm.Models.Equipment>);
 }
 <div>
+
+<div><form id="barcode_form" action="talong.html"> <span>Barcode:</span>  <input type="text" id="barcode" name="barcode" value="" /> <input type="Submit" value="Dispense" /> <input type="reset" value="Clear" /> </form></div>  <br />
+
+
 <form id="dispense_form" method="post" action="../Staff/DispenseFinal" >
-    Select Equipment:
+    Equipment List:
     <select id="Equip" name="EquipmentId">
     @foreach (var x in Equipment)
     {
-        <option value="@x.EquipmentId">@x.Make [@x.Barcode]</option>
+        <option value="@x.EquipmentId">@x.Make @x.Barcode</option>
         
     }
     </select>
    
-    <input type="submit" value="Ok" />
+    @*<input type="submit" value="Ok" />*@
 </form>
 </div><br />
 <div id="content_wrapper">
@@ -49,12 +53,13 @@
                 $("#Equip option:selected").remove();
                 // alert(input);
                 if (EquipmentName != null) {
-                    
+
                     $("#equipment_list > ul").append(input);
                 } else {
                     alert("No item to dispense!");
                 }
                 $("#form_buttons").css("display", "block");
+
                 return false;
             }
             );
@@ -79,10 +84,40 @@
             }
          );
 
+            // edited start
+            $("#barcode_form").submit(function () {
 
+                var b = $('#barcode').val(); // EquipmentId
+
+                // find the barcode on the dropdown menu, get it and append it to the dispense form
+                var a = $('select[name="EquipmentId"]');
+                var c = a.find("option:contains('" + b + "')");
+                var d = c.text();
+                var e = c.val();
+        
+                if (b != "" && e != undefined) {
+
+                    $("#form_buttons").css("display", "block");
+                 
+                    // Remove item from Equiment List dropdown menu, this prevents duplicate entries
+                    c.remove();
+
+                     //if (e != undefined && e != null) {
+                        var input = "<div><li><input type='hidden' name='EquipmentId' value='" + e + "'/>" + d + "</li></div>";
+                        $("#equipment_list > ul").append(input);
+                     //}
+
+                }
+
+                return false;
+
+            });
+
+            // edited end
 
         }
     );
+
 </script>
 
 
