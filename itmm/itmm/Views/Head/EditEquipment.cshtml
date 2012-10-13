@@ -34,19 +34,21 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.location)
+            @*@Html.LabelFor(model => model.location)*@
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.location)
-            @Html.ValidationMessageFor(model => model.location)
+            @Html.HiddenFor(model => model.location)
+           @* @Html.EditorFor(model => model.location)
+            @Html.ValidationMessageFor(model => model.location)*@
         </div>
 
         <div class="editor-label">
             @Html.LabelFor(model => model.serial)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.serial)
-            @Html.ValidationMessageFor(model => model.serial)
+            @Html.DisplayTextFor(model => model.serial)
+            @Html.HiddenFor(model => model.serial, new { data_val = false })
+            @*@Html.ValidationMessageFor(model => model.serial)*@
         </div>
 
 @*        <div class="editor-label">
@@ -58,11 +60,12 @@
         </div>*@
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.life)
+          @*  @Html.LabelFor(model => model.life)*@
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.life)
-            @Html.ValidationMessageFor(model => model.life)
+            @Html.HiddenFor(model => model.life)
+            @*@Html.EditorFor(model => model.life)
+            @Html.ValidationMessageFor(model => model.life)*@
         </div>
 
             <br />

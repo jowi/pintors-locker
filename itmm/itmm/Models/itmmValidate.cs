@@ -11,6 +11,7 @@ namespace itmm.Models
     public  class itmmAdminRoom
     {
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z0-9\s]+$", ErrorMessage = "Invalid Room Name")]
         [Remote("IsRoomNameTaken", "AdminBold")]
         [Display(Name="Room")]
         public string room { get; set; }
@@ -22,16 +23,16 @@ namespace itmm.Models
         public int labid { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        //[Remote("IsLabNameTaken", "AdminBold")] // there is problem during editing with this
+        [Remote("IsLabNameTaken", "AdminBold")] // there is problem during editing with this
         [Display(Name = "Laboratory Name")]
         public string labname { get; set; }
 
         [Required(ErrorMessage = "Required")]
         [Display(Name = "Laboratory Description")]
         public string labdesc { get; set; }
-
+        
         [Required(ErrorMessage = "Required")]
-        [StringLength(50, MinimumLength = 7, ErrorMessage="Must be at least 7 digits")]
+        //[StringLength(50, MinimumLength = 7, ErrorMessage="Must be at least 7 digits")]
         [RegularExpression(@"^\d+$", ErrorMessage = "Please enter digits.")]
         [Display(Name = "Laboratory Contact")]
         public string labcontact { get; set; }
@@ -41,10 +42,12 @@ namespace itmm.Models
     public class itmmAdminHead
     {
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Invalid First Name")]
         [Display(Name="First Name")]
         public string fname { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Invalid Last Name")]
         //[Remote("CheckLastName", "Head")]
         [Display(Name = "Last Name")]
         public string lname { get; set; }
@@ -81,13 +84,16 @@ namespace itmm.Models
         public string c_password { get; set; }
 
     }
+
     public class itmmAdminStaff
     {
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Invalid First Name")]
         [Display(Name = "First Name")]
         public string fname { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Invalid Last Name")]
         [Display(Name = "Last Name")]
         public string lname { get; set; }
 
@@ -97,6 +103,7 @@ namespace itmm.Models
         public string cnum { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z0-9]+$", ErrorMessage = "Invalid Education Attained")]
         [Display(Name = "Education Attained")]
         public string course { get; set; }
 
@@ -123,6 +130,7 @@ namespace itmm.Models
         public string c_password { get; set; }
 
     }
+
     public class itmmAdminEquipment
     {
         [Required(ErrorMessage = "Required")]
@@ -133,16 +141,18 @@ namespace itmm.Models
         [Display(Name = "Description")]
         public string description { get; set; }
 
-        [Required(ErrorMessage = "Required")]
-        [Display(Name = "Location")]
+        //[Required(ErrorMessage = "Required")]
+        //[Display(Name = "Location")]
         public string location { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [Remote("IsSerialExist", "Head")]
+        [RegularExpression(@"^[a-zA-Z0-9\s]+$", ErrorMessage = "Invalid Serial")]
+        [Remote("IsSerialExist", "Head")]  
         [Display(Name = "Serial")]
         public string serial { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z0-9\s]+$", ErrorMessage = "Invalid Barcode")]
         [Remote("IsBarcodeExist", "Head")]
         [Display(Name = "Barcode")]
         public string barcode { get; set; }
@@ -152,32 +162,39 @@ namespace itmm.Models
         public string status { get; set; }
 
  
-        [Required(ErrorMessage = "Required")]
-        [Display(Name = "Life Expectancy")]
+        //[Required(ErrorMessage = "Required")]
+        //[Display(Name = "Life Expectancy")]
         public string life { get; set; }
     }
+
     public class itmmNotification 
     {
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z0-9\s]+$", ErrorMessage = "Special characters not allowed")]
         [Display(Name = "What")]
         public string what { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z0-9/]+$", ErrorMessage = "Special characters not allowed")]
         [Display(Name = "When")]
         public string whin { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z0-9\s]+$", ErrorMessage = "Special characters not allowed")]
         [Display(Name = "Where")]
         public string whire { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z0-9\s]+$", ErrorMessage = "Special characters not allowed")]
         [Display(Name = "Who")]
         public string who { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z0-9-:\s]+$", ErrorMessage = "Special characters not allowed")]
         [Display(Name = "Time")]
         public string time { get; set; }
     }
+
     public class itmmSchedule {
         [Required(ErrorMessage = "Required")]
         [Display(Name = "Group No.")]
@@ -188,6 +205,7 @@ namespace itmm.Models
         public int AvailableTable { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z0-9\s]+$", ErrorMessage = "Invalid Course Code")]
         [Display(Name = "Course Code")]
         public string CourseCode { get; set; }
 
@@ -204,16 +222,20 @@ namespace itmm.Models
         public string Schedule { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z0-9\s]+$", ErrorMessage = "Invalid Instrcutor Name")]
         [Display(Name = "Instructor")]
         public string Instructor { get; set; }
     }
+
     public class itmmMaterial
     {
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Invalid Material Name")]
         [Display(Name = "Name")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [Remote("IsMaterialDescriptionUnique", "Head")]
         [Display(Name = "Description")]
         public string Description { get; set; }
 
@@ -222,6 +244,7 @@ namespace itmm.Models
         public int Quantity { get; set; }
      
     }
+
     public class itmmLiability
     {
         //[Required(ErrorMessage = "Required")]
@@ -268,10 +291,12 @@ namespace itmm.Models
     public class itmmIncome
     {
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Invalid Family Name")]
         [Display(Name = "Family Name")]
         public string FamilyName { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Invalid First Name")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
@@ -282,10 +307,12 @@ namespace itmm.Models
 
 
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z0-9\s]+$", ErrorMessage = "Invalid Course and Year")]
         [Display(Name = "Course and Year")]
         public string Course { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Invalid Transaction Input")]
         [Display(Name = "Transaction")]
         public string Transaction { get; set; }
 
@@ -306,6 +333,7 @@ namespace itmm.Models
     public class itmmExpenses
     {
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Invalid Transaction Input")]
         [Display(Name = "Transaction")]
         public string Transaction { get; set; }
 

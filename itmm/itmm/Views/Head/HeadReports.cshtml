@@ -90,7 +90,7 @@
                         <th>Detail</th>
                         <th>Cost</th>
                         <th>Date Added</th>
-                        <th></th>
+                        @*<th></th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -101,9 +101,9 @@
                         <td>@x.ExpensesDetail</td>  
                         <td>@x.ExpensesCost</td>
                         <td>@x.DateCreated</td>
-                        <td>
+                        @*<td>
                         @Html.ActionLink("[Edit]", "EditExpenses", "Staff", new { ExpensesId = x.ExpensesId }, null)*
-                        </td>
+                        </td>*@
                     </tr>
                    }
  

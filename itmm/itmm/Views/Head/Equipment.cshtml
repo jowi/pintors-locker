@@ -31,11 +31,12 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.location)
+            @*@Html.LabelFor(model => model.location)*@
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.location)
-            @Html.ValidationMessageFor(model => model.location)
+            @Html.HiddenFor(model => model.location, new { default_value = "NA" })
+            @*@Html.EditorFor(model => model.location)
+            @Html.ValidationMessageFor(model => model.location)*@
         </div>
 
         <div class="editor-label">
@@ -55,7 +56,7 @@
             @Html.ValidationMessageFor(model => model.barcode)
         </div>
 
-@*        <div class="editor-label">
+        @*<div class="editor-label">
             @Html.LabelFor(model => model.status)
         </div>
         <div class="editor-field">
@@ -64,11 +65,12 @@
         </div>*@
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.life)
+           @* @Html.LabelFor(model => model.life)*@
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.life)
-            @Html.ValidationMessageFor(model => model.life)
+            @Html.HiddenFor(model => model.life, new { @Value = "NA"})
+            @*@Html.EditorFor(model => model.life)
+            @Html.ValidationMessageFor(model => model.life)*@
         </div>
 
         <p>
@@ -88,12 +90,12 @@
         <tr>
             <th>Make</th>
             <th>Description</th>
-            <th>Location</th>
+            @*<th>Location</th>*@
             <th>Serial Number</th>
             <th>Barcode</th>
             <th>Status</th>
             <th>Date Received</th>
-            <th>Life</th>
+            @*<th>Life</th>*@
             <th></th>
         </tr>
     </thead>
@@ -103,12 +105,12 @@
         <tr>
             <td>@x.Make</td>
             <td>@x.Description</td>  
-            <td>@x.Location</td>
+            @*<td>@x.Location</td>*@
             <td>@x.SerialNumber</td>
             <td>@x.Barcode</td>
             <td>@x.Status</td>
             <td>@x.DateReceived</td>
-            <td>@x.LifeExpectancy</td>
+            @*<td>@x.LifeExpectancy</td>*@
             <td>
             @Html.ActionLink("[Edit]", "EditEquipment", "Head", new { EquipId = x.EquipmentId }, null)
             @Html.ActionLink("[Delete]", "DeleteEquipment", "Head", new { EquipId = x.EquipmentId }, null)
@@ -120,7 +122,14 @@
 </table>
 </div><!-- dataTables -->
 }
+<script type="text/javascript">
 
+    $(document).ready(function () {
+        $("#location").val("NA");
+        $("#life").val("NA");
+
+    });
+</script>
 @section SideNav{
 <ul>
     <li>@Html.ActionLink("Home", "Index", "Head")</li>

@@ -574,6 +574,23 @@ namespace itmm.Controllers
             return View();
         }
 
+        public JsonResult IsMaterialDescriptionUnique(string Description)
+        {
+
+            var x = (from y in con.Materials
+                     where y.Description == Description
+                     select y).FirstOrDefault();
+            if (x == null)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(string.Format("Description is already taken.", Description), JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
         //public JsonResult CheckLastName(string lname)
         //{
 
