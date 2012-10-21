@@ -222,7 +222,41 @@ namespace itmm.Controllers
         }
 
 
- 
+
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword(itmm.Models.itmmForgotPassword model)
+        {
+
+            var a = (from y in con.aspnet_Users
+                     where y.UserName == model.uname
+                     select y.UserId).FirstOrDefault();
+
+            var b = (from y in con.aspnet_Membership
+                     where y.UserId == a
+                     select y.Password).FirstOrDefault();
+
+            MembershipUser currentUser = Membership.GetUser(model.uname);
+            currentUser.UnlockUser();
+            string password = currentUser.ResetPassword();
+
+
+            if (MembershipService.ChangePassword(model.uname, password, "Pass12345"))
+            {
+                return RedirectToAction("ChangePasswordSuccess");
+            }
+            else
+            {
+                ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+            }
+
+            return View();
+        }
+
 
     }
 }

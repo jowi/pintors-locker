@@ -18,6 +18,25 @@ namespace itmm.Controllers
             return x;
         }
 
+        public string FormatDays(string[] Days)
+        {
+            var str = "";
+
+            for (int i = 0; i < Days.Count(); i++)
+            {
+                if (i == Days.Count() - 1)
+                {
+                    str += " " + Days[i];
+                }
+                else
+                {
+                    str += " " + Days[i] + " - ";
+                }
+            }
+
+            return str;
+        }
+
 
         [Authorize(Roles="Staff")]
         public ActionResult Index()
@@ -31,7 +50,8 @@ namespace itmm.Controllers
             ViewBag.Notice = a;
             return View();
         }
-         [Authorize(Roles = "Staff")]
+
+        [Authorize(Roles = "Staff")]
         public ActionResult Schedule()
         {
             
@@ -41,24 +61,34 @@ namespace itmm.Controllers
                      where y.LaboratoryId == labid orderby y.Room.RoomName                    
                      select y.Room;
              ViewBag.RoomList = x;
+
              //SkedList exclusive per lab
              var a = from y in con.Classes
                      where y.LabId == labid
                      select y;
              ViewBag.SkedList = a;
+
+             ViewBag.Days = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
+
+
             return View();
         }
+
         [HttpPost]
-         public ActionResult Schedule(itmmSchedule a, string room)
+        public ActionResult Schedule(itmmSchedule a, string room, int AvailableTable, string[] Days)
          {
+
+
+
              Class b = new Class();
              b.GroupNo = a.GroupNo;
              b.CourseCode = a.CourseCode;
              b.CourseDescription = a.CourseDesc;
-             b.Day = a.Day;
+            // b.Day = a.Day;
+             b.Day = FormatDays(Days);
              b.Schedule = a.Schedule;
              b.Instructor = a.Instructor;
-             b.AvailableTable = a.AvailableTable;
+             b.AvailableTable = AvailableTable;
              b.Room = room;        
              b.LabId = getLabId();
 
@@ -66,25 +96,22 @@ namespace itmm.Controllers
              con.SaveChanges();
 
              int lastInsertedClassId = b.ClassId;
-
-             
-            
-             for (int i = 1; i <= a.AvailableTable; i++)
+                   
+             for (int i = 1; i <= AvailableTable; i++)
              {
                  Table c = new Table();
-                 c.ClassId = lastInsertedClassId;
+                 c.ClassId = b.ClassId;
                  c.TableNo = i;
                  con.AddToTables(c);
              }
-
-             
-             
+              
              con.SaveChanges();
 
 
              return RedirectToAction("Schedule");
          }
-         [Authorize(Roles = "Staff")]
+
+        [Authorize(Roles = "Staff")]
         public ActionResult EditSked(int SkedId)
         {
             try
@@ -112,14 +139,17 @@ namespace itmm.Controllers
                         select y.Room;
                 ViewBag.RoomList = x;
 
+                ViewBag.Days = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
+
                 return View(b);
             }catch(Exception){
                 return RedirectToAction("Schedule");
             }
             
         }
+
         [HttpPost]
-         public ActionResult EditSked(itmmSchedule a,string room ,int SkedId)
+        public ActionResult EditSked(itmmSchedule a, string room, int SkedId, int AvailableTable, string[] Days)
          {
              var b = (from y in con.Classes
                      where y.ClassId == SkedId
@@ -128,11 +158,12 @@ namespace itmm.Controllers
              b.GroupNo = a.GroupNo;
              b.CourseCode = a.CourseCode;
              b.CourseDescription = a.CourseDesc;
-             b.Day = a.Day;
+            // b.Day = a.Day;
+             b.Day = FormatDays(Days);
              b.Schedule = a.Schedule;
              b.Instructor = a.Instructor;
              b.Room = room;
-             b.AvailableTable = a.AvailableTable;
+             b.AvailableTable = AvailableTable;
 
             
 
@@ -150,7 +181,7 @@ namespace itmm.Controllers
             // 2. adding tables again
                 int lastInsertedClassId = b.ClassId;
 
-                for (int i = 1; i <= a.AvailableTable; i++)
+                for (int i = 1; i <= AvailableTable; i++)
                 {
                     Table c = new Table();
                     c.ClassId = lastInsertedClassId;
@@ -162,6 +193,7 @@ namespace itmm.Controllers
 
              return RedirectToAction("Schedule");
          }
+
         [Authorize(Roles = "Staff")]
         public ActionResult DeleteSked(int SkedId)
         {
@@ -255,7 +287,6 @@ namespace itmm.Controllers
             return RedirectToAction("Schedule");
         }
 
-
         [Authorize(Roles = "Staff")]
         public ActionResult Liability()
         {
@@ -269,6 +300,7 @@ namespace itmm.Controllers
 
             return View();
         }
+
         [HttpPost]
         public ActionResult Liability(itmmLiability a)
         {
@@ -296,6 +328,7 @@ namespace itmm.Controllers
 
             return RedirectToAction("Liability");
         }
+
         [Authorize(Roles = "Staff")]
         public ActionResult EditLiability(int LiabilityId)
         {
@@ -319,7 +352,8 @@ namespace itmm.Controllers
 
             return View(a);
         }
-    [HttpPost]
+
+        [HttpPost]
         public ActionResult EditLiability(int LiabilityId, itmmLiability a, string status)
         {
             var c = (from y in con.Liabilities
@@ -357,6 +391,7 @@ namespace itmm.Controllers
 
         return View();
     }
+
     [HttpPost]
     public ActionResult Income(itmmIncome a)
     {
@@ -418,7 +453,7 @@ namespace itmm.Controllers
 
 
 
-         [Authorize(Roles = "Staff")]
+        [Authorize(Roles = "Staff")]
         public ActionResult InventoryCost()
         {
             var labid = getLabId();

@@ -88,7 +88,7 @@ namespace itmm.Controllers
             return RedirectToAction("Room", "AdminBold");
         }
 
-        public JsonResult IsRoomNameTaken(string room)
+        public JsonResult IsRoomNameTaken(string room, int? roomid)
         {
 
             var x = (from y in con.Rooms
@@ -100,7 +100,16 @@ namespace itmm.Controllers
             }
             else
             {
-                return Json(string.Format("{0} is already taken.", room), JsonRequestBehavior.AllowGet);
+                // do not check for uniqueness when the object being edited owns the unique value
+                if (x.RoomId == roomid && roomid != null)
+                {
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(string.Format("{0} is already taken.", room), JsonRequestBehavior.AllowGet);
+                }
+                
             }
 
         }

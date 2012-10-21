@@ -233,3 +233,8 @@ REPORT NAV
     min-width: 900px;
     margin: 0 0 30px 0;
 }
+
+.ScheduleList
+{
+    list-style: none;
+}

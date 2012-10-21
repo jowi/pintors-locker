@@ -272,6 +272,7 @@
     <Content Include="Views\AdminBold\EditLaboratory.cshtml" />
     <Content Include="Views\AdminBold\Head.cshtml" />
     <Content Include="Views\AdminBold\EditHead.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

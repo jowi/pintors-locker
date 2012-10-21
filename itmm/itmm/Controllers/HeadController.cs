@@ -62,11 +62,13 @@ namespace itmm.Controllers
 
             return View();
         }
+
         [Authorize(Roles = "Head")]
         public ActionResult Error()
         {
             return View();
         }
+
         [Authorize(Roles = "Head")]
         public ActionResult Staff()
         {
@@ -92,11 +94,13 @@ namespace itmm.Controllers
 
             return View();
         }
+
         [Authorize]
         public ActionResult LabInactive()
         {
             return View();
         }
+
         [Authorize(Roles = "Head")]
         [HttpPost]
         public ActionResult Staff(itmmAdminStaff model, string type)
@@ -135,6 +139,7 @@ namespace itmm.Controllers
             }
             return View(model);
         }
+
         [Authorize(Roles = "Head")]
         public ActionResult EditStaff(string UserName)
         {
@@ -158,6 +163,7 @@ namespace itmm.Controllers
 
             return View(model);
         }
+
         [Authorize(Roles = "Head")]
         [HttpPost]
         public ActionResult EditStaff(itmmAdminStaff model, string type)
@@ -174,6 +180,7 @@ namespace itmm.Controllers
             con.SaveChanges();
             return RedirectToAction("Staff", "Head");
         }
+
         [Authorize(Roles = "Head")]
         public ActionResult DeleteStaff(string UserName)
         {
@@ -189,6 +196,7 @@ namespace itmm.Controllers
             con.SaveChanges();
             return RedirectToAction("Staff", "Head");
         }
+
         [Authorize(Roles = "Head")]
         public ActionResult Material()
         {
@@ -204,6 +212,7 @@ namespace itmm.Controllers
 
             return View();
         }
+
         [HttpPost]
         public ActionResult Material(itmmMaterial a)
         {
@@ -224,6 +233,7 @@ namespace itmm.Controllers
             con.SaveChanges();
             return RedirectToAction("Material");
         }
+
         [Authorize(Roles = "Head")]
         public ActionResult Equipment()
         {
@@ -238,6 +248,7 @@ namespace itmm.Controllers
             ViewBag.EquipList = x;
             return View();
         }
+
 
         [Authorize(Roles = "Head")]
         [HttpPost]
@@ -397,6 +408,7 @@ namespace itmm.Controllers
             con.SaveChanges();
             return RedirectToAction("Notification", "Head");
         }
+
         [Authorize(Roles = "Head")]
         public ActionResult EditNotification(int NoticeId)
         {
@@ -416,6 +428,7 @@ namespace itmm.Controllers
 
             return View(a);
         }
+
         [Authorize(Roles = "Head")]
         [HttpPost]
         public ActionResult EditNotification(itmmNotification model, int NoticeId)
@@ -433,6 +446,7 @@ namespace itmm.Controllers
             con.SaveChanges();
             return RedirectToAction("Notification", "Head");
         }
+
         [Authorize(Roles = "Head")]
         public ActionResult DeleteNotification(int NoticeId)
         {
@@ -574,7 +588,7 @@ namespace itmm.Controllers
             return View();
         }
 
-        public JsonResult IsMaterialDescriptionUnique(string Description)
+        public JsonResult IsMaterialDescriptionUnique(string Description, int? matid)
         {
 
             var x = (from y in con.Materials
@@ -586,7 +600,15 @@ namespace itmm.Controllers
             }
             else
             {
-                return Json(string.Format("Description is already taken.", Description), JsonRequestBehavior.AllowGet);
+                // do not check for uniqueness when the object being edited owns the unique value
+                if (x.MaterialId == matid && matid != null)
+                {
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(string.Format("Description is already taken.", Description), JsonRequestBehavior.AllowGet);
+                }
             }
 
         }

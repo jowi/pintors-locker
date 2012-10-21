@@ -14,6 +14,7 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
 
+        @Html.HiddenFor(model => model.roomid)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.room)

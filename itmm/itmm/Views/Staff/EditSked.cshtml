@@ -44,9 +44,24 @@
             @Html.LabelFor(model => model.Day)
         </div>
         <div class="editor-field">
+            <ul class="ScheduleList">
+                @foreach (var item in ViewBag.Days)
+                {
+                    if ( Convert.ToBoolean(Model.Day.Contains(item)) )
+                    {
+                        <li><input type="checkbox" value="@item" name="Days" checked="checked" />@item</li>
+                    }
+                    else
+                    {
+                        <li><input type="checkbox" value="@item" name="Days" />@item</li>
+                    }
+                }
+            </ul>          
+        </div>
+        @*<div class="editor-field">
             @Html.EditorFor(model => model.Day)
             @Html.ValidationMessageFor(model => model.Day)
-        </div>
+        </div>*@
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Schedule)
@@ -55,19 +70,43 @@
             @Html.EditorFor(model => model.Schedule)
             @Html.ValidationMessageFor(model => model.Schedule)
         </div>
-    <select name="room">
-        @foreach (var x in RoomList)
-	{
-            <option value="@x.RoomName">@x.RoomName</option>
-	}   
-   </select>
+
+
+        <div class="editor-label">
+            <label>Room </label>
+        </div>
+        <div class="editor-field">
+            <select name="room">
+                @foreach (var x in RoomList)
+                {
+                    <option value="@x.RoomName">@x.RoomName</option>
+                }   
+           </select>
+        </div>
+
         <div class="editor-label">
             @Html.LabelFor(model => model.AvailableTable)
         </div>
         <div class="editor-field">
+             <select name="AvailableTable">
+                @for (int i = 1; i < 21; i++)
+                {
+                    if (Model.AvailableTable == i)
+                    {
+                        <option value="@i" selected ="selected">@i</option>
+                    }
+                    else
+                    {
+                        <option value="@i">@i</option>
+                    }
+                }
+            </select>
+        </div>
+        @*<div class="editor-field">
             @Html.EditorFor(model => model.AvailableTable)
             @Html.ValidationMessageFor(model => model.AvailableTable)
-        </div>
+        </div>*@
+
         <div class="editor-label">
             @Html.LabelFor(model => model.Instructor)
         </div>
