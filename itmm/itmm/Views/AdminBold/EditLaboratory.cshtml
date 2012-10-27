@@ -16,9 +16,8 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
 
-            @Html.HiddenFor(model => model.labid)
+            @Html.EditorFor(model => model.labid)
            
-   
 
         <div class="editor-label">
             @Html.LabelFor(model => model.labname)

@@ -101,10 +101,6 @@
       <End Role="Laboratory" EntitySet="Laboratory" />
       <End Role="Income" EntitySet="Income" />
     </AssociationSet>
-    <AssociationSet Name="FK_Income_StudentInfo" Association="pintorModel.Store.FK_Income_StudentInfo">
-      <End Role="StudentInfo" EntitySet="StudentInfo" />
-      <End Role="Income" EntitySet="Income" />
-    </AssociationSet>
     <AssociationSet Name="FK_Laboratory_Equipment_Equipment" Association="pintorModel.Store.FK_Laboratory_Equipment_Equipment">
       <End Role="Equipment" EntitySet="Equipment" />
       <End Role="Laboratory_Equipment" EntitySet="Laboratory_Equipment" />
@@ -144,6 +140,10 @@
     <AssociationSet Name="FK_Notification_Laboratory" Association="pintorModel.Store.FK_Notification_Laboratory">
       <End Role="Laboratory" EntitySet="Laboratory" />
       <End Role="Notification" EntitySet="Notification" />
+    </AssociationSet>
+    <AssociationSet Name="FK_StudentInfo_Income" Association="pintorModel.Store.FK_StudentInfo_Income">
+      <End Role="Income" EntitySet="Income" />
+      <End Role="StudentInfo" EntitySet="StudentInfo" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="aspnet_Applications">
@@ -483,7 +483,8 @@
     <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="CourseAndYear" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="LaboratoryId" Type="int" />
-    <Property Name="StudentInfoId" Type="int" Nullable="false" />
+    <Property Name="StudentInfoId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="IncomeId" Type="int" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -718,18 +719,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Income_StudentInfo">
-    <End Role="StudentInfo" Type="pintorModel.Store.StudentInfo" Multiplicity="1" />
-    <End Role="Income" Type="pintorModel.Store.Income" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="StudentInfo">
-        <PropertyRef Name="StudentInfoId" />
-      </Principal>
-      <Dependent Role="Income">
-        <PropertyRef Name="StudentInfoId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Laboratory_Equipment_Equipment">
     <End Role="Equipment" Type="pintorModel.Store.Equipment" Multiplicity="1" />
     <End Role="Laboratory_Equipment" Type="pintorModel.Store.Laboratory_Equipment" Multiplicity="*" />
@@ -863,6 +852,18 @@
       </Principal>
       <Dependent Role="Notification">
         <PropertyRef Name="LaboratoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_StudentInfo_Income">
+    <End Role="Income" Type="pintorModel.Store.Income" Multiplicity="0..1" />
+    <End Role="StudentInfo" Type="pintorModel.Store.StudentInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Income">
+        <PropertyRef Name="IncomeId" />
+      </Principal>
+      <Dependent Role="StudentInfo">
+        <PropertyRef Name="IncomeId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

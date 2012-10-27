@@ -351,6 +351,7 @@
     <EntitySetMapping Name="StudentInfoes">
       <EntityTypeMapping TypeName="pintorModel.StudentInfo">
         <MappingFragment StoreEntitySet="StudentInfo">
+          <ScalarProperty Name="IncomeId" ColumnName="IncomeId" />
           <ScalarProperty Name="StudentInfoId" ColumnName="StudentInfoId" />
           <ScalarProperty Name="LaboratoryId" ColumnName="LaboratoryId" />
           <ScalarProperty Name="CourseAndYear" ColumnName="CourseAndYear" />

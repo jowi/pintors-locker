@@ -321,7 +321,7 @@ namespace itmm.Controllers
         //    return RedirectToAction("Index", "Admin");
         //}
 
-        public JsonResult IsLabNameTaken(string labname)
+        public JsonResult IsLabNameTaken(string labname, int? labid)
         {
 
             var x = (from y in con.Laboratories
@@ -333,7 +333,16 @@ namespace itmm.Controllers
             }
             else
             {
-                return Json(string.Format("{0} is already taken.", labname), JsonRequestBehavior.AllowGet);
+                // do not check for uniqueness when the object being edited owns the unique value
+                if (x.LaboratoryId == labid && labid != null)
+                {
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(string.Format("Laboratory Name is already taken.", labname), JsonRequestBehavior.AllowGet);
+                }
+               
             }
 
         }

@@ -242,7 +242,6 @@
     <Content Include="Views\Staff\Report.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\ChangePasswordSuccess.cshtml" />
-    <Content Include="Views\Head\Material.cshtml" />
     <Content Include="Views\Staff\InventoryCost.cshtml" />
     <Content Include="Views\Staff\EditMaterial.cshtml" />
     <Content Include="Views\Staff\Liability.cshtml" />
@@ -273,6 +272,7 @@
     <Content Include="Views\AdminBold\Head.cshtml" />
     <Content Include="Views\AdminBold\EditHead.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Head\Material.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

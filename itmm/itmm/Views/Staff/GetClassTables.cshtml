@@ -18,16 +18,21 @@
     </thead>
     <tbody>
        @foreach (var x in TableLists)
-       { 
-        <tr>
-            <td>@x.TableNo</td>
-            <td>
-            @Html.ActionLink("dispense", "DispenseEquipment", "Staff", new { TableId = x.TableId, ClassId = x.ClassId }, null)
-             @Html.ActionLink("view", "ViewEquipment", "Staff", new { TableId = x.TableId, ClassId = x.ClassId }, null)
-            @*@Html.ActionLink("return", "ReturnEquipment", "Staff", new { TableId = x.TableId }, null)
-            @Html.ActionLink("liabality", "LiabilityEquipment", "Staff", new { TableId = x.TableId }, null)*@
-            </td>
-        </tr>
+       {
+           if (x.StudentId != "" && x.StudentId != null)
+           { // show table, only when it has Student Ids assigned to it.
+            
+            <tr>
+                <td>@x.TableNo</td>
+                <td>
+                @Html.ActionLink("dispense", "DispenseEquipment", "Staff", new { TableId = x.TableId, ClassId = x.ClassId }, null)
+                 @Html.ActionLink("view", "ViewEquipment", "Staff", new { TableId = x.TableId, ClassId = x.ClassId }, null)
+                @*@Html.ActionLink("return", "ReturnEquipment", "Staff", new { TableId = x.TableId }, null)
+                @Html.ActionLink("liabality", "LiabilityEquipment", "Staff", new { TableId = x.TableId }, null)*@
+                </td>
+            </tr>
+           
+           }
        }
  
     </tbody>

@@ -68,7 +68,7 @@ namespace itmm.Controllers
                      select y;
              ViewBag.SkedList = a;
 
-             ViewBag.Days = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
+             ViewBag.Days = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 
 
             return View();
@@ -84,7 +84,7 @@ namespace itmm.Controllers
              b.GroupNo = a.GroupNo;
              b.CourseCode = a.CourseCode;
              b.CourseDescription = a.CourseDesc;
-            // b.Day = a.Day;
+             //b.Day = a.Day
              b.Day = FormatDays(Days);
              b.Schedule = a.Schedule;
              b.Instructor = a.Instructor;
@@ -126,7 +126,7 @@ namespace itmm.Controllers
                 b.GroupNo = a.GroupNo;
                 b.CourseCode = a.CourseCode;
                 b.CourseDesc = a.CourseDescription;
-                b.Day = a.Day;
+                b.Days = a.Day;
                 b.Schedule = a.Schedule;
                 b.Instructor = a.Instructor;
                 b.AvailableTable = Convert.ToInt32(a.AvailableTable);
@@ -139,7 +139,7 @@ namespace itmm.Controllers
                         select y.Room;
                 ViewBag.RoomList = x;
 
-                ViewBag.Days = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
+                ViewBag.Days = new string[] { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
 
                 return View(b);
             }catch(Exception){
@@ -384,8 +384,8 @@ namespace itmm.Controllers
         // TODO datatables 
         var labid = getLabId();
 
-        var x = from y in con.Incomes
-                where y.LaboratoryId == labid
+        var x = from y in con.StudentInfoes
+                where y.Income.LaboratoryId == labid
                 select y;
         ViewBag.IncomeList = x;
 
@@ -395,20 +395,27 @@ namespace itmm.Controllers
     [HttpPost]
     public ActionResult Income(itmmIncome a)
     {
-        StudentInfo c = new StudentInfo();
-        c.FirstName = a.FirstName;
-        c.FamiliyName = a.FamilyName;
-        c.StudentId = a.IdNumber.ToString();
-        c.CourseAndYear = a.Course;
-        con.AddToStudentInfoes(c);
+
 
         itmm.Models.Income b = new itmm.Models.Income();
         b.Transactionn = a.Transaction;
-        b.cost = a.Cost;
-        b.StudentInfoId = c.StudentInfoId;
+        b.cost = a.Cost;      
         b.LaboratoryId = getLabId();
         b.DateCreated = DateTime.Now;
+        
+
+        StudentInfo c = new StudentInfo();
+        c.FirstName = a.FirstName;
+        c.FamiliyName = a.FamilyName;
+        c.StudentId = a.IdNumber.ToString();       
+        c.CourseAndYear = a.Course;
+
+        c.IncomeId = b.IncomeId;
+        b.StudentInfoId = c.StudentInfoId;
+
         con.AddToIncomes(b);
+        con.AddToStudentInfoes(c);
+        
 
         con.SaveChanges();
         return RedirectToAction("Income");
@@ -416,17 +423,21 @@ namespace itmm.Controllers
 
     public ActionResult EditIncome(int IncomeId)
     {
-        var x = (from y in con.Incomes
+        //var x = (from y in con.Incomes
+        //         where y.IncomeId == IncomeId
+        //         select y).FirstOrDefault();
+
+        var x = (from y in con.StudentInfoes
                  where y.IncomeId == IncomeId
                  select y).FirstOrDefault();
 
         itmmIncome a = new itmmIncome();
-        a.FamilyName = x.StudentInfo.FamiliyName;
-        a.FirstName = x.StudentInfo.FirstName;
-        a.IdNumber = Convert.ToInt32(x.StudentInfo.StudentId);
-        a.Course = x.StudentInfo.CourseAndYear;
-        a.Cost = Convert.ToInt32(x.cost);
-        a.Transaction = x.Transactionn;
+        a.FamilyName = x.FamiliyName;
+        a.FirstName = x.FirstName;
+        a.IdNumber = Convert.ToInt32(x.StudentId);
+        a.Course = x.CourseAndYear;
+        a.Cost = Convert.ToInt32(x.Income.cost);
+        a.Transaction = x.Income.Transactionn;
         return View(a);
     }
 
@@ -434,17 +445,20 @@ namespace itmm.Controllers
     public ActionResult EditIncome(itmmIncome a, int IncomeId)
     {
 
+        //var x = (from y in con.Incomes
+        //         where y.IncomeId == IncomeId
+        //         select y).FirstOrDefault();
 
-
-        var x = (from y in con.Incomes
+        var x = (from y in con.StudentInfoes
                  where y.IncomeId == IncomeId
                  select y).FirstOrDefault();
-        x.StudentInfo.FirstName = a.FirstName;
-        x.StudentInfo.FamiliyName = a.FamilyName;
-        x.StudentInfo.StudentId = a.IdNumber.ToString();
-        x.StudentInfo.CourseAndYear = a.Course;
-        x.cost = a.Cost;
-        x.Transactionn = a.Transaction;
+
+        x.FirstName = a.FirstName;
+        x.FamiliyName = a.FamilyName;
+        x.StudentId = a.IdNumber.ToString();
+        x.CourseAndYear = a.Course;
+        x.Income.cost = a.Cost;
+        x.Income.Transactionn = a.Transaction;
         con.SaveChanges();
 
         return RedirectToAction("Income");
@@ -745,5 +759,19 @@ namespace itmm.Controllers
 
             return RedirectToAction("Expenses");
         }
+
+        //public JsonResult IsDayEmpty(string Days)
+        //{
+        //    if (Days != "" || Days != null)
+        //    {
+        //        return Json(true, JsonRequestBehavior.AllowGet);
+        //    }
+        //    else 
+        //    {
+        //        return Json(string.Format("Please choose a day for the class"), JsonRequestBehavior.AllowGet);
+        //    }    
+
+        //}
+
     }
 }

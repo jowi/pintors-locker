@@ -43,7 +43,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Day)
+            @Html.LabelFor(model => model.Days)
         </div>
         <div class="editor-field">
             <ul class="ScheduleList">
@@ -53,9 +53,9 @@
             }
             </ul>          
         </div>
-@*        <div class="editor-field">
+       @* <div class="editor-field">
             @Html.EditorFor(model => model.Day)
-            @Html.ValidationMessageFor(model => model.Day)
+            @Html.ValidationMessageFor(model => model.Days)
         </div>*@
 
         <div class="editor-label">
@@ -153,6 +153,34 @@
 </table>
  </div><!--dataTable-->
 }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(" #zero_div > form ").submit(function () {
+
+            var flag = 0;
+
+            var a = $(".ScheduleList").find(":checkbox");
+
+            $.each(a, function () {
+                if ($(this).is(":checked")) {
+                    flag = 1;
+                    return false;
+                }
+            });
+            // submit form when 'days' checkbox has a value
+            if (flag == 1) {
+                return true;
+            } else {
+                alert('Days for class not selected');
+                return false;
+            }
+
+        });
+
+    });
+</script>
 
 @section SideNav{
 <ul>

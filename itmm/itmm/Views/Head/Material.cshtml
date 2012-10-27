@@ -18,7 +18,10 @@
 
 <div id="first_div">
 
-        @Html.HiddenFor(model => model.matid)
+        @if (!User.IsInRole("Head")) 
+        {
+            @Html.HiddenFor(model => model.matid)
+        }
 
         <div class="editor-label">
             @Html.LabelFor(model => model.Name)
@@ -113,6 +116,11 @@
             );
         }
     );
+
+            $("form").submit(function () {
+                $(this).attr("disabled", "disabled");
+                return true;
+            });
 
     function get_data_head() {
         $.ajax({

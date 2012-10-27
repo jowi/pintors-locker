@@ -34,7 +34,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Equipment_Equipment", "Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Equipment), "Laboratory_Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Equipment), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Expenses_Expenses", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Expens", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Expens), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Income_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Income", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Income), true)]
-[assembly: EdmRelationshipAttribute("pintorModel", "FK_Income_StudentInfo", "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.StudentInfo), "Income", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Income), true)]
+[assembly: EdmRelationshipAttribute("pintorModel", "FK_StudentInfo_Income", "Income", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(itmm.Models.Income), "StudentInfo", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.StudentInfo), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Equipment_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Equipment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Equipment), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Head_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Head", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Head), true)]
 [assembly: EdmRelationshipAttribute("pintorModel", "FK_Laboratory_Material_Laboratory", "Laboratory", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(itmm.Models.Laboratory), "Laboratory_Material", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(itmm.Models.Laboratory_Material), true)]
@@ -5407,34 +5407,18 @@ namespace itmm.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Income_StudentInfo", "StudentInfo")]
-        public StudentInfo StudentInfo
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_StudentInfo_Income", "StudentInfo")]
+        public EntityCollection<StudentInfo> StudentInfoes
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StudentInfo>("pintorModel.FK_Income_StudentInfo", "StudentInfo").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StudentInfo>("pintorModel.FK_Income_StudentInfo", "StudentInfo").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<StudentInfo> StudentInfoReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<StudentInfo>("pintorModel.FK_Income_StudentInfo", "StudentInfo");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<StudentInfo>("pintorModel.FK_StudentInfo_Income", "StudentInfo");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<StudentInfo>("pintorModel.FK_Income_StudentInfo", "StudentInfo", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<StudentInfo>("pintorModel.FK_StudentInfo_Income", "StudentInfo", value);
                 }
             }
         }
@@ -8097,6 +8081,30 @@ namespace itmm.Models
         private global::System.Int32 _StudentInfoId;
         partial void OnStudentInfoIdChanging(global::System.Int32 value);
         partial void OnStudentInfoIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> IncomeId
+        {
+            get
+            {
+                return _IncomeId;
+            }
+            set
+            {
+                OnIncomeIdChanging(value);
+                ReportPropertyChanging("IncomeId");
+                _IncomeId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("IncomeId");
+                OnIncomeIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _IncomeId;
+        partial void OnIncomeIdChanging(Nullable<global::System.Int32> value);
+        partial void OnIncomeIdChanged();
 
         #endregion
     
@@ -8108,18 +8116,34 @@ namespace itmm.Models
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_Income_StudentInfo", "Income")]
-        public EntityCollection<Income> Incomes
+        [EdmRelationshipNavigationPropertyAttribute("pintorModel", "FK_StudentInfo_Income", "Income")]
+        public Income Income
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<Income>("pintorModel.FK_Income_StudentInfo", "Income");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Income>("pintorModel.FK_StudentInfo_Income", "Income").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Income>("pintorModel.FK_StudentInfo_Income", "Income").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<Income> IncomeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<Income>("pintorModel.FK_StudentInfo_Income", "Income");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<Income>("pintorModel.FK_Income_StudentInfo", "Income", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<Income>("pintorModel.FK_StudentInfo_Income", "Income", value);
                 }
             }
         }

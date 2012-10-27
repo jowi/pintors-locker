@@ -24,7 +24,8 @@ namespace itmm.Models
         public int labid { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [Remote("IsLabNameTaken", "AdminBold")] // there is problem during editing with this
+        [Remote("IsLabNameTaken", "AdminBold", AdditionalFields = "labid")]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Invalid Laboratory Name")]
         [Display(Name = "Laboratory Name")]
         public string labname { get; set; }
 
@@ -38,6 +39,7 @@ namespace itmm.Models
         [Display(Name = "Laboratory Contact")]
         public string labcontact { get; set; }
 
+    
     }
 
     public class itmmAdminHead
@@ -215,9 +217,10 @@ namespace itmm.Models
         [Display(Name = "Course Description")]
         public string CourseDesc { get; set; }
 
-        [Required(ErrorMessage = "Required")]
-        [Display(Name = "Day")]
-        public string Day { get; set; }
+        //[Required(ErrorMessage = "Required")]
+        //[Remote("IsDayEmpty", "Staff")]
+        [Display(Name = "Days")]
+        public string Days { get; set; }
 
         [Required(ErrorMessage = "Required")]
         [Display(Name = "Schedule")]
@@ -231,13 +234,16 @@ namespace itmm.Models
 
     public class itmmMaterial
     {
+
+        public int matid { get; set; }
+
         [Required(ErrorMessage = "Required")]
         [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Invalid Material Name")]
         [Display(Name = "Name")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        [Remote("IsMaterialDescriptionUnique", "Head", AdditionalFields="matid")]
+        [Remote("IsMaterialDescriptionUnique", "Head", AdditionalFields = "matid")]
         [Display(Name = "Description")]
         public string Description { get; set; }
 
@@ -245,7 +251,7 @@ namespace itmm.Models
         [Display(Name = "Quantity")]
         public int Quantity { get; set; }
 
-        public int matid { get; set; }
+     
      
     }
 

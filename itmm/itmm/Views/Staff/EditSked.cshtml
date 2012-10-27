@@ -41,13 +41,13 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Day)
+            @Html.LabelFor(model => model.Days)
         </div>
         <div class="editor-field">
             <ul class="ScheduleList">
                 @foreach (var item in ViewBag.Days)
                 {
-                    if ( Convert.ToBoolean(Model.Day.Contains(item)) )
+                    if ( Convert.ToBoolean(Model.Days.Contains(item)) )
                     {
                         <li><input type="checkbox" value="@item" name="Days" checked="checked" />@item</li>
                     }
@@ -122,6 +122,35 @@
 }
 </div><!--zero_div-->
 </div><!--content_wrapper-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $(" #zero_div > form ").submit(function () {
+
+            var flag = 0;
+
+            var a = $(".ScheduleList").find(":checkbox");
+
+            $.each(a, function () {
+                if ($(this).is(":checked")) {
+                    flag = 1;
+                    return false;
+                }
+            });
+            // submit form when 'days' checkbox has a value
+            if (flag == 1) {
+                return true;
+            } else {
+                alert('Days for class not selected');
+                return false;
+            }
+
+        });
+
+    });
+</script>
+
 <div>
     @Html.ActionLink("Back to List", "Schedule")
 </div>
