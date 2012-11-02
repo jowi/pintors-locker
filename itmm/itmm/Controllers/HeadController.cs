@@ -470,10 +470,13 @@ namespace itmm.Controllers
             //.Sum() throws an error when there is no data to sum up;
             try
             {
-                ViewBag.Income = (from y in con.Incomes
-                                  where y.LaboratoryId == labid && y.DateCreated.Year == PresentYear
-                                  select y.cost).Sum();
+                //ViewBag.Income = (from y in con.Incomes
+                //                  where y.LaboratoryId == labid && y.DateCreated.Year == PresentYear
+                //                  select y.cost).Sum();
 
+                ViewBag.Income = (from y in con.StudentInfoes
+                                  where y.Income.LaboratoryId == labid && y.Income.DateCreated.Year == PresentYear
+                                  select y.Income.cost).Sum();
             }
             catch (Exception e)
             {
@@ -481,10 +484,13 @@ namespace itmm.Controllers
             }
 
             //get datatable summary income details for the current year
-            ViewBag.IncomeList = from y in con.Incomes
-                                 where y.LaboratoryId == labid && y.DateCreated.Year == PresentYear
-                                 select y;
+            //ViewBag.IncomeList = from y in con.Incomes
+            //                     where y.LaboratoryId == labid && y.DateCreated.Year == PresentYear
+            //                     select y;
 
+            ViewBag.IncomeList = from y in con.StudentInfoes
+                                  where y.Income.LaboratoryId == labid && y.Income.DateCreated.Year == PresentYear
+                                  select y;
 
             //.Sum() throws an error when there is no data to sum up;
             try

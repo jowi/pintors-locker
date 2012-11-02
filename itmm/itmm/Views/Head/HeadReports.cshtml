@@ -2,7 +2,7 @@
     ViewBag.Title = "HeadReports";
     Layout = "~/Views/Shared/itmm/_itmmLayout.cshtml";
     var ExpensesList = (ViewBag.ExpensesList as IQueryable<itmm.Models.Expens>);
-    var IncomeList = (ViewBag.IncomeList as IQueryable<itmm.Models.Income>);
+    var IncomeList = (ViewBag.IncomeList as IQueryable<itmm.Models.StudentInfo>);
     var PreviousReprtList = (ViewBag.PreviousReprtList as IQueryable<itmm.Models.HeadReport>);
 
 
@@ -47,13 +47,13 @@
                     @foreach (var x in IncomeList)
                     { 
                     <tr>
-                        <td>@x.StudentInfo.StudentId</td>
-                        <td>@x.StudentInfo.FamiliyName</td>  
-                        <td>@x.StudentInfo.FirstName</td>
-                        <td>@x.StudentInfo.CourseAndYear</td>
-                        <td>@x.Transactionn</td>
-                        <td>@x.cost</td>       
-                        <td>@x.DateCreated</td>
+                        <td>@x.StudentId</td>
+                        <td>@x.FamiliyName</td>  
+                        <td>@x.FirstName</td>
+                        <td>@x.CourseAndYear</td>
+                        <td>@x.Income.Transactionn</td>
+                        <td>@x.Income.cost</td>       
+                        <td>@x.Income.DateCreated</td>
                         <td>
                            @Html.ActionLink("[Edit]", "EditIncome", "Staff", new { IncomeId = x.IncomeId }, null)
                            @Html.ActionLink("[Delete]", "DeleteIncome", "Staff", new { IncomeId = x.IncomeId }, null)

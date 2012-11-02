@@ -276,6 +276,7 @@ namespace itmm.Models
         //public string Course { get; set; }
 
         [Required(ErrorMessage = "Required")]
+        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Invalid Equipment Name")]
         [Display(Name = "Equipment")]
         public string Equipment { get; set; }
 
