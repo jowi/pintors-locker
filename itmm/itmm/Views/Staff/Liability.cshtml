@@ -56,6 +56,14 @@
             @Html.ValidationMessageFor(model => model.Equipment)
         </div>
 
+         <div class="editor-label">
+            @Html.LabelFor(model => model.Barcode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Barcode)
+            @Html.ValidationMessageFor(model => model.Barcode)
+        </div>
+
         <div class="editor-label">
             @Html.LabelFor(model => model.Fine)
         </div>
@@ -90,6 +98,7 @@
             <th>First Name</th>
             <th>Course&Year</th>*@
             <th>Equipment</th>
+            <th>Barcode</th>
             <th>Fine</th>
             <th>Status</th>
             <th></th>
@@ -105,6 +114,7 @@
             <td>@x.StudentInfoReference.Value.CourseAndYear</td>*@
             <td>@x.StudenInfotId</td>
             <td>@x.Equipment</td>
+            <td>@x.Barcode</td>
             <td>@x.Fine</td>
             <td>@x.Status</td>
             <td>

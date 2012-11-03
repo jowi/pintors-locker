@@ -92,7 +92,7 @@
 
                 // find the barcode on the dropdown menu, get it and append it to the dispense form
                 var a = $('select[name="EquipmentId"]');
-                var c = a.find("option:contains('" + b + "')");
+                var c = a.find("option:contains('" + b + "')").first();
                 var d = c.text();
                 var e = c.val();
         

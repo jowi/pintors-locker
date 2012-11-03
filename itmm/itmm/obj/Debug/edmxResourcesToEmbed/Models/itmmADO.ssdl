@@ -444,6 +444,7 @@
     <Property Name="Fine" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Status" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="LaboratoryId" Type="int" Nullable="false" />
+    <Property Name="Barcode" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Material">
     <Key>

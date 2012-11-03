@@ -7295,6 +7295,30 @@ namespace itmm.Models
         private global::System.Int32 _LaboratoryId;
         partial void OnLaboratoryIdChanging(global::System.Int32 value);
         partial void OnLaboratoryIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Barcode
+        {
+            get
+            {
+                return _Barcode;
+            }
+            set
+            {
+                OnBarcodeChanging(value);
+                ReportPropertyChanging("Barcode");
+                _Barcode = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Barcode");
+                OnBarcodeChanged();
+            }
+        }
+        private global::System.String _Barcode;
+        partial void OnBarcodeChanging(global::System.String value);
+        partial void OnBarcodeChanged();
 
         #endregion
     

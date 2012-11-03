@@ -57,6 +57,14 @@
         </div>
 
         <div class="editor-label">
+            @Html.LabelFor(model => model.Barcode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Barcode)
+            @Html.ValidationMessageFor(model => model.Barcode)
+        </div>
+
+        <div class="editor-label">
             @Html.LabelFor(model => model.Fine)
         </div>
         <div class="editor-field">

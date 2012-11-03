@@ -296,6 +296,9 @@ namespace itmm.Models
                 
         }
 
+        [Required(ErrorMessage = "Required")]
+        public string Barcode { get; set; }
+
 
     }
 

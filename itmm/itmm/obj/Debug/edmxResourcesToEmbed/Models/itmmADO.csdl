@@ -478,6 +478,7 @@
     <Property Type="String" Name="Fine" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="String" Name="Status" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Type="Int32" Name="LaboratoryId" Nullable="false" />
+    <Property Type="String" Name="Barcode" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Laboratory" Relationship="pintorModel.FK_Liability_Laboratory" FromRole="Liability" ToRole="Laboratory" />
   </EntityType>
   <EntityType Name="Material">

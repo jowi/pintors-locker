@@ -310,6 +310,7 @@ namespace itmm.Controllers
             c.FamiliyName = "autogen";
             c.StudentId = a.IdNumber.ToString();
             c.CourseAndYear = "autogen";
+    
             con.AddToStudentInfoes(c);
 
 
@@ -320,6 +321,7 @@ namespace itmm.Controllers
             b.Fine = a.Fine;
             b.Status = a.Status;
             b.LaboratoryId = labid;
+            b.Barcode = a.Barcode;
            // b.StudenInfotId = c.StudentInfoId;
             con.AddToLiabilities(b);
 
@@ -371,6 +373,7 @@ namespace itmm.Controllers
 
             c.StudenInfotId = a.IdNumber;//Convert.ToInt32(a.IdNumber);
             c.Equipment = a.Equipment;
+            c.Barcode = a.Barcode;
             c.Fine = a.Fine;
             c.Status = status;
 
