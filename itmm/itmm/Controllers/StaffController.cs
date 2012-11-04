@@ -638,7 +638,7 @@ namespace itmm.Controllers
           foreach (var item in x)
           {
               var c = (from y in con.Equipments where y.EquipmentId == item.EquipmentId select y).FirstOrDefault();
-              str += "<tr><td>" + c.Make+"  ["+ c.Barcode +"] " + "</td><td id='d_td'><a href='../Staff/ReturnEquipment?TableId=" + TableId + "&EquipmentId=" + item.EquipmentId + "&ClassId=" + ClassId + "'>Return</a>      <a id='liability' href='../Staff/Fine?TableId=" + TableId + "&EquipmentId=" + item.EquipmentId + "&ClassId=" + ClassId + "' >Liability</a></td></tr>";
+              str += "<tr><td>" + c.Make + "  [" + c.Barcode + "] " + "</td><td id='d_td'><a href='../Staff/ReturnEquipment?TableId=" + TableId + "&EquipmentId=" + item.EquipmentId + "&ClassId=" + ClassId + "'>Return</a>      <a id='liability' href='../Staff/Fine?TableId=" + TableId + "&EquipmentId=" + item.EquipmentId + "&ClassId=" + ClassId + "&Barcode=" + c.Barcode + "' >Liability</a></td></tr>";
           }
 
           str += "</table></center><br/><br/></div><br/>";
@@ -672,7 +672,7 @@ namespace itmm.Controllers
           return RedirectToAction("ViewEquipment", "Staff", new { TableId = TableId, ClassId = ClassId });
       }
         [Authorize(Roles = "Staff")]
-       public ActionResult Fine(int TableId, int EquipmentId, int ClassId)
+       public ActionResult Fine(int TableId, int EquipmentId, int ClassId, string Barcode)
        {
            Liability a = new Liability();
 
@@ -680,6 +680,7 @@ namespace itmm.Controllers
            a.StudenInfotId = (from y in con.Tables where y.TableId == TableId select y.StudentId).FirstOrDefault();
            a.Fine = "To be Determined";
            a.Status = "Unsettled";
+           a.Barcode = Barcode;
            a.LaboratoryId = (from y in con.Classes where y.ClassId == ClassId select y.LabId).FirstOrDefault();
 
            con.AddToLiabilities(a);
