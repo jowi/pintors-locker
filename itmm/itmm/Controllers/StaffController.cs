@@ -315,15 +315,19 @@ namespace itmm.Controllers
 
 
             var labid = getLabId();
+
             Liability b = new Liability();
             b.StudenInfotId = a.IdNumber;//Convert.ToInt32(a.IdNumber);
-            b.Equipment = a.Equipment;
+            // b.Equipment = a.Equipment;
+            b.Equipment = (from y in con.Equipments where y.Barcode == a.Barcode select y.Make).FirstOrDefault();
             b.Fine = a.Fine;
             b.Status = a.Status;
             b.LaboratoryId = labid;
             b.Barcode = a.Barcode;
            // b.StudenInfotId = c.StudentInfoId;
             con.AddToLiabilities(b);
+
+
 
             con.SaveChanges();
 
@@ -580,7 +584,7 @@ namespace itmm.Controllers
 
 
           var a = from y in con.Laboratory_Equipment
-                  where y.LaboratoryId == b && y.Borrowed == null
+                  where y.LaboratoryId == b && y.Borrowed == null && y.Equipment.Status == "OK"
                   select y.Equipment;
 
           ViewBag.Equipment = a;
@@ -776,6 +780,27 @@ namespace itmm.Controllers
         //    }    
 
         //}
+
+        public JsonResult IsBarcodeExistOnLab(string Barcode)
+        {
+            var labid = getLabId();
+
+
+            var x = (from y in con.Laboratory_Equipment
+                     where y.LaboratoryId == labid && y.Equipment.Barcode == Barcode
+                     select y).FirstOrDefault();
+
+            if (x == null)
+            {                
+                return Json(string.Format("Barcode does not exist on the laboratory"), JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+
+
+        }
 
     }
 }

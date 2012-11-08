@@ -275,9 +275,9 @@ namespace itmm.Models
         //[Display(Name = "Course & Year")]
         //public string Course { get; set; }
 
-        [Required(ErrorMessage = "Required")]
-        [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Invalid Equipment Name")]
-        [Display(Name = "Equipment")]
+       // [Required(ErrorMessage = "Required")]
+       // [RegularExpression(@"^[a-zA-Z\s]+$", ErrorMessage = "Invalid Equipment Name")]
+       // [Display(Name = "Equipment")]
         public string Equipment { get; set; }
 
         [Required(ErrorMessage = "Required")]
@@ -297,6 +297,7 @@ namespace itmm.Models
         }
 
         [Required(ErrorMessage = "Required")]
+        [Remote("IsBarcodeExistOnLab", "Staff")]
         public string Barcode { get; set; }
 
 
