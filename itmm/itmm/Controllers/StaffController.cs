@@ -327,6 +327,11 @@ namespace itmm.Controllers
            // b.StudenInfotId = c.StudentInfoId;
             con.AddToLiabilities(b);
 
+            var d = (from y in con.Equipments
+                     where y.Barcode == a.Barcode
+                     select y).FirstOrDefault();
+
+            d.Status = "Liability";
 
 
             con.SaveChanges();
@@ -794,13 +799,20 @@ namespace itmm.Controllers
             {                
                 return Json(string.Format("Barcode does not exist on the laboratory"), JsonRequestBehavior.AllowGet);
             }
+            else if (x.Borrowed == null)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            else if (x.Borrowed == 1)
+            {
+                return Json(string.Format("Equipment is currently borrowed"), JsonRequestBehavior.AllowGet);
+            }
             else
             {
                 return Json(true, JsonRequestBehavior.AllowGet);
             }
-
-
         }
+
 
     }
 }
